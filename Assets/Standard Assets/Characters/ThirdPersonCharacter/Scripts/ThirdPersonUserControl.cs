@@ -43,9 +43,37 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (!m_Jump)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                // Only dash if we have some movement input
+                    if (m_Move != Vector3.zero)
+                    {
+                       float dashDistance = 5f;    // How far to dash
+                       float dashSpeed = 10f;      // How fast to dash
+
+                        // Calculate dash target
+                        Vector3 dashTarget = transform.position + m_Move.normalized * dashDistance;
+
+                        Debug.Log("dashed");
+                        // Instantly move or lerp over time
+                        StartCoroutine(DashTo(dashTarget, dashSpeed));
+                    }
+                }
             }
+
         }
 
+        private System.Collections.IEnumerator DashTo(Vector3 target, float speed)
+        {
+            // Optionally disable character movement during dash
+            float distance = Vector3.Distance(transform.position, target);
+            while (distance > 0.05f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                distance = Vector3.Distance(transform.position, target);
+                yield return null;
+            }
+        }
 
         // Fixed update is called in sync with physics
         public void FixedUpdate()
@@ -64,6 +92,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 {
                     Transform target = lockOnSystem.currentTarget;
 
+                    
                     // Arah ke musuh
                     Vector3 directionToEnemy = (target.position - transform.position).normalized;
                     directionToEnemy.y = 0f;
@@ -77,6 +106,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
                     // Pergerakan strafe
                     m_Move = h * right + v * forward;
+
                 }
                 else
                 {
