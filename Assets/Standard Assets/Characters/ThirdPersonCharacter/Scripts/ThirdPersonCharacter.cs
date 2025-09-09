@@ -8,6 +8,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 	[RequireComponent(typeof(Animator))]
 	public class ThirdPersonCharacter : MonoBehaviour
 	{
+		
 		[SerializeField] float m_MovingTurnSpeed = 360;
 		[SerializeField] float m_StationaryTurnSpeed = 180;
 		[SerializeField] float m_JumpPower = 12f;
@@ -16,6 +17,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		[SerializeField] float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
 		[SerializeField] float m_GroundCheckDistance = 0.1f;
+        [SerializeField] float moveSpeed = 5f;
 
         [SerializeField] private LockOnTarget lockOnSystem;
         [SerializeField] private ThirdPersonUserControl ThirdPersonControl;
@@ -62,6 +64,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 m_TurnAmount = Mathf.Atan2(move.x, move.z);
                 m_ForwardAmount = move.z;
                 ApplyExtraTurnRotation();
+
+                Vector3 velocity = transform.forward * moveSpeed * m_ForwardAmount;
+                velocity.y = m_Rigidbody.velocity.y; // keep gravity
+                m_Rigidbody.velocity = velocity;
             }
             else
             {
