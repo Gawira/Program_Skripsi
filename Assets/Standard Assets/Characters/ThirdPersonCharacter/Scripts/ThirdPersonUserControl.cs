@@ -8,14 +8,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
     [RequireComponent(typeof (ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
-
+        
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
         [SerializeField] private LockOnTarget lockOnSystem;
-
+       
         Animator m_Animator;
 
         private void Start()
@@ -35,6 +35,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
+            
         }
 
 
@@ -48,8 +49,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 // Only dash if we have some movement input
                     if (m_Move != Vector3.zero)
                     {
-                       float dashDistance = 5f;    // How far to dash
-                       float dashSpeed = 10f;      // How fast to dash
+                       float dashDistance = 2f;    // How far to dash
+                       float dashSpeed = 5f;      // How fast to dash
 
                         // Calculate dash target
                         Vector3 dashTarget = transform.position + m_Move.normalized * dashDistance;

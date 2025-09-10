@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityStandardAssets.Cameras;
 
@@ -18,9 +19,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
 		[SerializeField] float m_GroundCheckDistance = 0.1f;
         [SerializeField] float moveSpeed = 5f;
+        [SerializeField] float strafeSpeed = 2f;
 
         [SerializeField] private LockOnTarget lockOnSystem;
         [SerializeField] private ThirdPersonUserControl ThirdPersonControl;
+        
 
 
 
@@ -50,12 +53,33 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
 		}
 
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                
+                int rand = Random.Range(0, 2); 
 
-		public void Move(Vector3 move, bool crouch, bool jump)
+                if (rand == 0)
+                    m_Animator.SetTrigger("Attack1");
+                else
+                    m_Animator.SetTrigger("Attack2");
+            }
+
+            // Buat animasi Dash pake spasi
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                m_Animator.SetTrigger("Dash");
+            }
+
+            
+        }
+
+        public void Move(Vector3 move, bool crouch, bool jump)
         {
             if (move.magnitude > 1f) move.Normalize();
 
-            // Kalau sedang lock-on, abaikan turning
+            
             if (!lockOnSystem.LockOn)
             {
                 move = transform.InverseTransformDirection(move);
@@ -71,11 +95,19 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
             else
             {
-                // Dalam mode lock-on, hanya kalkulasi animasi gerak maju/mundur
+                // Kalau sedang lock-on, abaikan turning
+                // Dalam mode lock-on gerakan sama tapi gk mementingkan rotasi
                 CheckGroundStatus();
                 move = Vector3.ProjectOnPlane(move, m_GroundNormal);
                 m_TurnAmount = 0f;
-                m_ForwardAmount = move.magnitude;
+                m_ForwardAmount = 0f;
+
+
+                Vector3 moveDirection = move.normalized;
+                Vector3 velocity = moveDirection * strafeSpeed;
+                velocity.y = m_Rigidbody.velocity.y;               
+                m_Rigidbody.velocity = velocity;
+
             }
 
             if (m_IsGrounded)
@@ -90,48 +122,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             ScaleCapsuleForCrouching(crouch);
             PreventStandingInLowHeadroom();
 
-            // Update animasi (akan tetap jalan meski turnAmount = 0)
+            
             UpdateAnimator(move);
         }
 
 
-        void ScaleCapsuleForCrouching(bool crouch)
-		{
-			if (m_IsGrounded && crouch)
-			{
-				if (m_Crouching) return;
-				m_Capsule.height = m_Capsule.height / 2f;
-				m_Capsule.center = m_Capsule.center / 2f;
-				m_Crouching = true;
-			}
-			else
-			{
-				Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
-				float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
-				if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
-				{
-					m_Crouching = true;
-					return;
-				}
-				m_Capsule.height = m_CapsuleHeight;
-				m_Capsule.center = m_CapsuleCenter;
-				m_Crouching = false;
-			}
-		}
-
-		void PreventStandingInLowHeadroom()
-		{
-			// prevent standing up in crouch-only zones
-			if (!m_Crouching)
-			{
-				Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
-				float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
-				if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
-				{
-					m_Crouching = true;
-				}
-			}
-		}
+       
 
 
 		void UpdateAnimator(Vector3 move)
@@ -142,8 +138,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             m_Animator.SetBool("Crouch", m_Crouching);
             m_Animator.SetBool("OnGround", m_IsGrounded);
 
-            m_Animator.SetBool("IsLockedOn", lockOnSystem.LockOn); // status lock on
-                    
+            m_Animator.SetBool("IsLockedOn", lockOnSystem.LockOn); 
+
+
+
             
 
             if (!m_IsGrounded)
@@ -200,12 +198,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 		}
 
-		void ApplyExtraTurnRotation()
-		{
-			// help the character turn faster (this is in addition to root rotation in the animation)
-			float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
-			transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
-		}
+		
 
 
 		public void OnAnimatorMove()
@@ -222,8 +215,52 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 		}
 
+        void ScaleCapsuleForCrouching(bool crouch)
+        {
+            if (m_IsGrounded && crouch)
+            {
+                if (m_Crouching) return;
+                m_Capsule.height = m_Capsule.height / 2f;
+                m_Capsule.center = m_Capsule.center / 2f;
+                m_Crouching = true;
+            }
+            else
+            {
+                Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
+                float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
+                if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+                {
+                    m_Crouching = true;
+                    return;
+                }
+                m_Capsule.height = m_CapsuleHeight;
+                m_Capsule.center = m_CapsuleCenter;
+                m_Crouching = false;
+            }
+        }
 
-		void CheckGroundStatus()
+        void PreventStandingInLowHeadroom()
+        {
+            // prevent standing up in crouch-only zones
+            if (!m_Crouching)
+            {
+                Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
+                float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
+                if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+                {
+                    m_Crouching = true;
+                }
+            }
+        }
+
+        void ApplyExtraTurnRotation()
+        {
+            // help the character turn faster (this is in addition to root rotation in the animation)
+            float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
+            transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
+        }
+
+        void CheckGroundStatus()
 		{
 			RaycastHit hitInfo;
 #if UNITY_EDITOR

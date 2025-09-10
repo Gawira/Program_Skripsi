@@ -25,7 +25,7 @@ namespace UnityStandardAssets.Cameras
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(2)) // Mouse scroll click
+            if (Input.GetMouseButtonDown(1)) // Mouse scroll click
             {
                 // If already locked, unlock
                 if (currentTarget != null)
