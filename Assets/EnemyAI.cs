@@ -11,7 +11,6 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Decision Settings")]
     public float decisionInterval = 0.5f;  // How often it chooses an action
-    public float attackChance = 100f;     // % chance to AttackPosition (only in attack radius)
 
     [Header("Movement")]
     public float strafeSpeed = 2f;       // How fast it circles player
@@ -19,13 +18,23 @@ public class EnemyAI : MonoBehaviour
     private Transform goal;
     private NavMeshAgent agent;
     private float checkTimer = 0f;
-    private float decisionTimer = 0f;
+    private float decisionTimer = 1f;
     private string currentState = "Idle"; // Idle by default until player is in chaseRadius
     private int strafeDirection = 1;
 
+    [SerializeField] private Animator m_Animator;
+
     void Start()
     {
+        m_Animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+
+        // Keep agent's automatic rotation
+        agent.updateRotation = true;
+
+        // Apply offset
+        float rotationOffset = 90f; // degrees
+        transform.rotation = agent.transform.rotation * Quaternion.Euler(0, rotationOffset, 0);
     }
 
     void Update()
@@ -47,6 +56,7 @@ public class EnemyAI : MonoBehaviour
         if (dist > chaseRadius)
         {
             currentState = "Idle";
+            m_Animator.SetTrigger("Idle");
             agent.ResetPath();
         }
         else if (dist <= attackRadius) // player di dalam attack radius
@@ -61,6 +71,18 @@ public class EnemyAI : MonoBehaviour
 
             if (currentState == "Attack")
             {
+                m_Animator.SetTrigger("Attack1");
+            }
+
+            if (currentState == "Mundur")
+            {
+                agent.Move(-transform.forward * agent.speed * Time.deltaTime);
+                m_Animator.SetTrigger("Mundur");
+            }
+
+            if (currentState == "Strafe")
+            {
+                m_Animator.SetTrigger("Strafe");
                 AttackPosition(); // override movement
                 return; // Don't run to player
             }
@@ -74,6 +96,7 @@ public class EnemyAI : MonoBehaviour
         // Only chase if not attacking
         if (currentState == "Chase")
         {
+            m_Animator.SetTrigger("Run");
             RunToPlayer();
         }
 
@@ -89,15 +112,34 @@ public class EnemyAI : MonoBehaviour
 
     void DecideAttackOrIdle()
     {
+        
+        bool attackDecision = Random.value < 0.5f; 
+
         float rand = Random.Range(0f, 100f);
 
-        if (rand < attackChance)
+        if (attackDecision) 
         {
-            currentState = "Attack";
-            strafeDirection = Random.value < 0.5f ? -1 : 1;
+            if (rand < 80f) 
+            {
+                currentState = "Attack";
+                strafeDirection = Random.value < 0.5f ? -1 : 1;
+            }
+            else 
+            {
+                currentState = "Strafe";
+            }
         }
-        else
-            currentState = "Idle";
+        else // Mundur mode
+        {
+            if (rand < 40f) 
+            {
+                currentState = "Mundur";
+            }
+            else 
+            {
+                currentState = "Strafe";
+            }
+        }
     }
 
     void AttackPosition()
@@ -127,6 +169,7 @@ public class EnemyAI : MonoBehaviour
         currentState = "Chase";
         agent.destination = goal.position;
     }
+
 
     void OnDrawGizmosSelected()
     {

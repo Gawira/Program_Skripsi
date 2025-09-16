@@ -49,7 +49,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 // Only dash if we have some movement input
                     if (m_Move != Vector3.zero)
                     {
-                       float dashDistance = 2f;    // How far to dash
+                       float dashDistance = 3f;    // How far to dash
                        float dashSpeed = 5f;      // How fast to dash
 
                         // Calculate dash target
