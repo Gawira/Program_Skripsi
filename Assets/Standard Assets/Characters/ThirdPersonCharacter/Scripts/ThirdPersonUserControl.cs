@@ -84,7 +84,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 float v = CrossPlatformInputManager.GetAxis("Vertical");
                 bool crouch = Input.GetKey(KeyCode.C);
 
-                Debug.Log(h);
                 m_Animator.SetFloat("Horizontal", h);
                 m_Animator.SetFloat("Vertical", v);
 
