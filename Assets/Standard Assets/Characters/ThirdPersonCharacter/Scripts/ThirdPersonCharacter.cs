@@ -1,6 +1,9 @@
 using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Cameras;
+
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -9,8 +12,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 	[RequireComponent(typeof(Animator))]
 	public class ThirdPersonCharacter : MonoBehaviour
 	{
-		
-		[SerializeField] float m_MovingTurnSpeed = 360;
+        
+
+        [SerializeField] float m_MovingTurnSpeed = 360;
 		[SerializeField] float m_StationaryTurnSpeed = 180;
 		[SerializeField] float m_JumpPower = 12f;
 		[Range(1f, 4f)][SerializeField] float m_GravityMultiplier = 2f;
@@ -24,7 +28,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         [SerializeField] private LockOnTarget lockOnSystem;
         [SerializeField] private ThirdPersonUserControl ThirdPersonControl;
         
-
+        //[SerializeField] private PlayerManager playerManager;
 
 
         Rigidbody m_Rigidbody;
@@ -60,6 +64,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (Input.GetMouseButtonDown(0))
             {
                 
+                
                 int rand = Random.Range(0, 2); 
 
                 if (rand == 0)
@@ -71,6 +76,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // Buat animasi Dash pake spasi
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                //playerManager.SetInvincible();
                 m_Animator.SetTrigger("Dash");
             }
 

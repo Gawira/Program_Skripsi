@@ -82,7 +82,6 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Nodes\RPGDialogueBaseNode.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGSkill.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\ShapeshiftingSlotsDisplayManager.cs" />
-    <Compile Include="Assets\Weapon.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\CombatTreeSlot.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGSpellbook.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\CraftingPanelDisplayManager.cs" />
@@ -91,7 +90,9 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\GroundIndicatorManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\CustomInputManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\CraftingManager.cs" />
+    <Compile Include="Assets\Script\PlayerHealthUI.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\DisplayHandler\PlayerStatesDisplayHandler.cs" />
+    <Compile Include="Assets\Script\LockOntarget.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\EnchantingManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGWorldPosition.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Utility\RendererExtension.cs" />
@@ -110,7 +111,6 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\ThirdPartyAssets\GabrielAguiarProductions\Scripts\UniqueProjectiles\CameraShakeSimpleScript.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\World\Region.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGGeneralDATA.cs" />
-    <Compile Include="Assets\EnemyManager.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\LevelReset.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\CustomAttributes\RPGBCustomAttributes.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\BossUISlotHolder.cs" />
@@ -118,15 +118,15 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\StatAllocationSlotDataHolder.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\CharacterEventsManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\RPGBThirdPersonCharacterControllerEssentials.cs" />
-    <Compile Include="Assets\RotationOffset.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\WeaponTemplatesDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\DataHandling\CharacterData.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\SkillBookDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\ScreenTextObject.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Nodes\RPGDialogueTextNode.cs" />
-    <Compile Include="Assets\ParticleManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGLevelsTemplate.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\GameActionsManager.cs" />
+    <Compile Include="Assets\Script\TPUserControl.cs" />
+    <Compile Include="Assets\Script\EnemyWeapon.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\QuestStateSlotHolder.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Resources\EditorData\RPGBuilderEditorFilters.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\RegionMessageDisplayManager.cs" />
@@ -154,7 +154,6 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\LogicMono\GroundIndicator.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\ScreenSpaceStateDisplay.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGQuest.cs" />
-    <Compile Include="Assets\EnemyWeapon.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGDialogueGraphUtilities.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\RPGBCharacterWorldInteraction.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGAbility.cs" />
@@ -187,6 +186,7 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGSpecies.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\ItemSlotHolder.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UI\AbilityTooltip.cs" />
+    <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\StatAllocationDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\World\CraftingStation.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\ThirdPerson\TestHelper.cs" />
@@ -200,6 +200,7 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\ThirdPartyAssets\GabrielAguiarProductions\Scripts\ParticleSystemController\ParticleSystemController.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\QuestInteractionDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Logic\AILogic.cs" />
+    <Compile Include="Assets\Script\EnemyManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\RequirementsManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\ThirdPerson\CharacterAnimator.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGNpc.cs" />
@@ -212,11 +213,9 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Utility\MathParabola.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\ClassSlotHolder.cs" />
-    <Compile Include="Assets\PlayerManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\GameOptionsDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGGearSet.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\PlayerAnimatorLayerHandler.cs" />
-    <Compile Include="Assets\EnemyAI.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Interfaces\IDisplayPanel.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Utility\PolytopeCharacterCustomizer.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\MerchantPanelDisplayManager.cs" />
@@ -226,6 +225,7 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\CurrencyDisplaySlotHolder.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\PlayerAppearanceHandler.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\ActiveBlockingDisplayManager.cs" />
+    <Compile Include="Assets\Script\EnemyAI.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\ThirdPartyAssets\GabrielAguiarProductions\Scripts\UniqueMagicAbilities\SpawnMagicAbilityScript.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\LogicMono\ProjectileHitDetection.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGCombatDATA.cs" />
@@ -233,10 +233,8 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\ThirdPerson\PlayerCamera.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\MinimapDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\PetPanelDisplayManager.cs" />
-    <Compile Include="Assets\PlayerHealthUI.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\EnchantSlotHolder.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\RaceSlotHolder.cs" />
-    <Compile Include="Assets\LockOnTarget.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\ActionBarManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\ThirdPartyAssets\GabrielAguiarProductions\Scripts\UniqueProjectiles\ProjectileMoveScript.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\NameplatesDATAHolder.cs" />
@@ -247,12 +245,14 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\ThirdPerson\SpringArm.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\CharacterSlotHolder.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGFaction.cs" />
+    <Compile Include="Assets\Script\TPCharacter.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\ErrorEventsDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\ThirdPerson\InterpolationCurve.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\DataHandling\DataSavingSystem.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\DialogueDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UI\ItemTooltip.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\ThirdPerson\PlayerController.cs" />
+    <Compile Include="Assets\Script\Weapon.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\TreesDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\CrosshairDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Interfaces\IPlayerInteractable.cs" />
@@ -260,6 +260,7 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Character\RPGBCharacterControllerEssentials.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\ThirdPartyAssets\RDR\Particles\Fantasy_Portal\Script\NextPrefab.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\World\CameraParticleObject.cs" />
+    <Compile Include="Assets\Script\PlayerManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGTreePoint.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\ThirdPartyAssets\GabrielAguiarProductions\Scripts\ParticleSystemController\SaveParticleSystemScript.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\FactionManager.cs" />

@@ -8,10 +8,10 @@ namespace UnityStandardAssets.Cameras
     public class LockOnTarget : MonoBehaviour
     {
 
-        [SerializeField] FreeLookCam freelookcam;
         [SerializeField] private string enemyTag = "Enemy";   // Tag for enemies
         [SerializeField] private float lockOnRange = 50f;     // Max lock-on distance
         [SerializeField] private float rotationSpeed = 5f;    // Smooth turning
+        [SerializeField] FreeLookCam freelookcam;
 
         public Transform currentTarget;                     // Currently locked enemy
         private Camera mainCam;
@@ -21,6 +21,7 @@ namespace UnityStandardAssets.Cameras
         void Start()
         {
             mainCam = Camera.main;
+            
         }
 
         void Update()
@@ -37,7 +38,7 @@ namespace UnityStandardAssets.Cameras
                 else
                 {
                     currentTarget = FindVisibleEnemy();
-
+                    Debug.Log(currentTarget);
                 }
             }
 
@@ -104,20 +105,6 @@ namespace UnityStandardAssets.Cameras
                 targetRotation,
                 rotationSpeed * Time.deltaTime
             );
-
-            // (Optional) also rotate the root rig horizontally
-            //Vector3 flatDir = currentTarget.position - freelookcam.transform.position;
-            //flatDir.y = 0; // keep horizontal only
-            //if (flatDir.sqrMagnitude > 0.01f)
-            //{
-            //    Quaternion flatLookRot = Quaternion.LookRotation(flatDir);
-            //    freelookcam.transform.rotation = Quaternion.Slerp(
-            //        freelookcam.transform.rotation,
-            //        flatLookRot,
-            //        rotationSpeed * Time.deltaTime
-            //    );
-            //}
-
         }
         void OnDrawGizmos()
         {
