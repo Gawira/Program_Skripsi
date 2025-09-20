@@ -5,18 +5,19 @@ using System.Collections.Generic;
 
 namespace UnityStandardAssets.Cameras
 {
-    public class LockOnTarget : MonoBehaviour
+    public class LockOntarget : MonoBehaviour
     {
 
         [SerializeField] private string enemyTag = "Enemy";   // Tag for enemies
         [SerializeField] private float lockOnRange = 50f;     // Max lock-on distance
         [SerializeField] private float rotationSpeed = 5f;    // Smooth turning
-        [SerializeField] FreeLookCam freelookcam;
+        [SerializeField] FreeLookcam freelookcam;
+        
 
         public Transform currentTarget;                     // Currently locked enemy
         private Camera mainCam;
         public Boolean LockOn = false;
-
+        
 
         void Start()
         {
@@ -26,31 +27,61 @@ namespace UnityStandardAssets.Cameras
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(1)) // Mouse scroll click
+            // Toggle lock-on with Right Mouse Button
+            if (Input.GetMouseButtonDown(1))
             {
-                // If already locked, unlock
                 if (currentTarget != null)
                 {
-                    currentTarget = null;
-                    LockOn = false;
-                    //Debug.Log(LockOn);
+                    UnlockTarget();
                 }
                 else
                 {
-                    currentTarget = FindVisibleEnemy();
-                    Debug.Log(currentTarget);
+                    LockOntoNewTarget();
                 }
             }
 
+            // If currently locked
             if (currentTarget != null)
             {
-                LockOnToTarget();
-                LockOn = true;
-                //Debug.Log(LockOn);
+                //// Check if target is dead
+                //EnemyManager enemy = currentTarget.GetComponent<EnemyManager>();
+                //if (enemy != null && enemy.currentHealth <= 0)
+                //{
+                //    UnlockTarget();
+                //    LockOntoNewTarget(); // Try to find the next enemy
+                //    return;
+                //}
+
+                //// Keep locking onto target
+                //LockOnToTarget();
+                //LockOn = true;
+            }
+            else
+            {
+                LockOn = false;
             }
         }
 
-        Transform FindVisibleEnemy()
+        private void UnlockTarget()
+        {
+            currentTarget = null;
+            LockOn = false;
+        }
+
+        private void LockOntoNewTarget()
+        {
+            currentTarget = FindVisibleEnemy();
+            if (currentTarget != null)
+            {
+                LockOn = true;
+            }
+            else
+            {
+                LockOn = false;
+            }
+        }
+
+        public Transform FindVisibleEnemy()
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
             Transform bestTarget = null;

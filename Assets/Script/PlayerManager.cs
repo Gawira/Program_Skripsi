@@ -20,8 +20,6 @@ namespace UnityEngine
         public TPCharacter thirdPersonCharacter;
         
 
-        
-
         void Start()
         {
             currentHealth = playerHealth;

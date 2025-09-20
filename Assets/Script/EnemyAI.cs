@@ -112,7 +112,7 @@ public class EnemyAI : MonoBehaviour
 
         if (Random.value < 0.5f) // attack bias
         {
-            if (rand < 80f)
+            if (rand < 90f)
                 SetState("Attack", "Attack1");
             else
                 SetState("Strafe", "Strafe");

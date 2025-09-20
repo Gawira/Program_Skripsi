@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,13 +14,26 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Player Tag")]
     public string playerTag = "Player";
-
+    public event Action<EnemyManager> OnEnemyDied;
     private Animator anim;
+
+    [SerializeField] private GameObject healthBarCanvas;
+    [SerializeField] private LockOnTarget lockOnTarget;
 
     void Start()
     {
         currentHealth = maxHealth;
         anim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        Debug.Log(lockOnTarget.LockOn);
+        if (healthBarCanvas != null && lockOnTarget.LockOn == true)
+        {
+            Debug.Log("helpme");
+            healthBarCanvas.SetActive(true);
+        }
     }
 
     // Public method to get current health (for LockOnTarget system)
@@ -45,7 +59,10 @@ public class EnemyManager : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0); // Prevent negative health
 
-        
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
     public void Die()
     {
@@ -56,13 +73,12 @@ public class EnemyManager : MonoBehaviour
         // Give player money
         // PlayerManager.Instance.AddMoney(moneyDrop);
 
+        OnEnemyDied?.Invoke(this);
+
         // Destroy after small delay (so death anim plays)
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 1f);       
     }
 
-    // ===============================
-    // Collision with Player
-    // ===============================
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(playerTag))

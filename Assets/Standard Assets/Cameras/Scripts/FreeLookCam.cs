@@ -6,7 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Cameras
 {
-    public class FreeLookCam : PivotBasedCameraRig
+    public class FreeLookcam : PivotBasedCameraRig
     {
         // This script is designed to be placed on the root object of a camera rig,
         // comprising 3 gameobjects, each parented to the next:
@@ -15,7 +15,7 @@ namespace UnityStandardAssets.Cameras
         // 		Pivot
         // 			Camera
 
-        [SerializeField] LockOnTarget lockontarget;
+        [SerializeField] LockOntarget lockontarget;
 
         [SerializeField] private float m_MoveSpeed = 1f;                      // How fast the rig will move to keep up with the target's position.
         [Range(0f, 10f)][SerializeField] private float m_TurnSpeed = 1.5f;   // How fast the rig will rotate from user input.

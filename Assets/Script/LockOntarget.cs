@@ -1,55 +1,116 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using UnityStandardAssets.Cameras;
 
 namespace UnityStandardAssets.Cameras
 {
-    internal class LockOntarget : MonoBehaviour
+    public class LockOnTarget : MonoBehaviour
     {
-
-        [SerializeField] FreeLookCam freelookcam;
+        [Header("Lock-On Settings")]
         [SerializeField] private string enemyTag = "Enemy";   // Tag for enemies
         [SerializeField] private float lockOnRange = 50f;     // Max lock-on distance
         [SerializeField] private float rotationSpeed = 5f;    // Smooth turning
+        [SerializeField] private FreeLookCam freelookcam;
 
-        public Transform currentTarget;                     // Currently locked enemy
+        [Header("Runtime")]
+        public Transform currentTarget;                      // Currently locked enemy
         private Camera mainCam;
-        public Boolean LockOn = false;
+        public bool LockOn;
+
+        public Vector3 savedPivot;
+
+        public Quaternion savedPivotRotation;
 
 
         void Start()
         {
             mainCam = Camera.main;
+
+            // Subscribe to all existing enemies
+            foreach (EnemyManager enemy in FindObjectsOfType<EnemyManager>())
+            {
+                enemy.OnEnemyDied += HandleEnemyDeath;
+            }
         }
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(1)) // Mouse scroll click
+            // Toggle lock-on with Right Mouse Button
+            if (Input.GetMouseButtonDown(1))
             {
-                // If already locked, unlock
                 if (currentTarget != null)
                 {
-                    currentTarget = null;
-                    LockOn = false;
-                    //Debug.Log(LockOn);
+                    UnlockTarget();
                 }
                 else
                 {
-                    currentTarget = FindVisibleEnemy();
-
+                    LockOntoNewTarget();
                 }
             }
 
+            // If currently locked
+            if (currentTarget != null)
+            {
+                
+
+                LockOnToTarget();
+                
+                LockOn = true;
+
+                
+                
+            }
+            else
+            {
+                LockOn = false;
+            }
+            Debug.Log($"Saved Pivot Rotation: {savedPivotRotation.eulerAngles}");
+        }
+        void LateUpdate()
+        {
             if (currentTarget != null)
             {
                 LockOnToTarget();
-                LockOn = true;
-                //Debug.Log(LockOn);
             }
         }
 
-        Transform FindVisibleEnemy()
+
+        private void HandleEnemyDeath(EnemyManager deadEnemy)
+        {
+            if (currentTarget == deadEnemy.transform)
+            {
+                currentTarget = FindVisibleEnemy();
+                LockOn = currentTarget != null;
+                
+                if (!LockOn && freelookcam != null)
+                {
+                    freelookcam.SyncFromPivot();
+
+                }
+            }
+        }
+
+
+        #region 🔹 Lock-On Methods
+        private void UnlockTarget()
+        {
+            if (freelookcam != null)
+            {
+                freelookcam.SyncFromPivot();
+            }
+
+            currentTarget = null;
+            LockOn = false;
+        }
+
+        private void LockOntoNewTarget()
+        {
+            currentTarget = FindVisibleEnemy();
+            LockOn = currentTarget != null;
+        }
+
+        public Transform FindVisibleEnemy()
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
             Transform bestTarget = null;
@@ -57,19 +118,19 @@ namespace UnityStandardAssets.Cameras
 
             foreach (GameObject enemy in enemies)
             {
+                EnemyManager e = enemy.GetComponent<EnemyManager>();
+                if (e == null || e.currentHealth <= 0) continue; // Skip dead ones
+
                 Vector3 viewportPos = mainCam.WorldToViewportPoint(enemy.transform.position);
 
-                // Check if enemy is in front of camera (0<viewport<1)
+                // Check if enemy is in camera view
                 if (viewportPos.z > 0 &&
                     viewportPos.x > 0 && viewportPos.x < 1 &&
                     viewportPos.y > 0 && viewportPos.y < 1)
-                //Debug.Log("visible found");
                 {
-                    // Check distance
                     float distance = Vector3.Distance(transform.position, enemy.transform.position);
                     if (distance > lockOnRange) continue;
 
-                    // Check angle (how close to center of screen)
                     Vector3 dirToEnemy = enemy.transform.position - mainCam.transform.position;
                     float angle = Vector3.Angle(mainCam.transform.forward, dirToEnemy);
 
@@ -77,7 +138,6 @@ namespace UnityStandardAssets.Cameras
                     {
                         closestAngle = angle;
                         bestTarget = enemy.transform;
-                        //Debug.Log(bestTarget);
                     }
                 }
             }
@@ -85,63 +145,53 @@ namespace UnityStandardAssets.Cameras
             return bestTarget;
         }
 
-        void LockOnToTarget()
+        public void LockOnToTarget()
         {
             if (!currentTarget || freelookcam == null) return;
 
-            // 1️ Get the pivot transform from FreeLookCam
             Transform pivot = freelookcam.m_Pivot;
 
-            // 2️ Calculate the direction from pivot to the enemy
+            // Direction from pivot to target
             Vector3 dirToTarget = currentTarget.position - pivot.position;
 
-            // 3️ Get the desired rotation that looks at the target
+            // Ignore vertical difference (optional)
+            dirToTarget.y = -2f;
+
             Quaternion targetRotation = Quaternion.LookRotation(dirToTarget);
 
-            // 4️ Smoothly rotate the pivot toward the target
+            // Smooth rotate pivot
             pivot.rotation = Quaternion.Slerp(
                 pivot.rotation,
                 targetRotation,
                 rotationSpeed * Time.deltaTime
             );
 
-            // (Optional) also rotate the root rig horizontally
-            //Vector3 flatDir = currentTarget.position - freelookcam.transform.position;
-            //flatDir.y = 0; // keep horizontal only
-            //if (flatDir.sqrMagnitude > 0.01f)
-            //{
-            //    Quaternion flatLookRot = Quaternion.LookRotation(flatDir);
-            //    freelookcam.transform.rotation = Quaternion.Slerp(
-            //        freelookcam.transform.rotation,
-            //        flatLookRot,
-            //        rotationSpeed * Time.deltaTime
-            //    );
-            //}
+            // Save the pivot’s rotation so you can reuse it later
+            savedPivotRotation = pivot.rotation;
 
+            
         }
+        #endregion
+
+        #region 🔹 Debug Gizmos
         void OnDrawGizmos()
         {
-            // Only draw gizmos when in play mode and we have a FreeLookCam
             if (!Application.isPlaying || freelookcam == null) return;
 
-            // Draw the camera pivot position
             if (freelookcam.m_Pivot != null)
             {
                 Gizmos.color = Color.cyan;
                 Gizmos.DrawWireSphere(freelookcam.m_Pivot.position, 0.2f);
 
-                // Show pivot forward direction
                 Gizmos.color = Color.blue;
                 Gizmos.DrawRay(freelookcam.m_Pivot.position, freelookcam.m_Pivot.forward * 2f);
             }
 
-            // Draw current target debug
             if (currentTarget != null)
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(currentTarget.position, 0.3f);
 
-                // Draw a line from pivot → target
                 Gizmos.color = Color.yellow;
                 if (freelookcam.m_Pivot != null)
                 {
@@ -149,5 +199,6 @@ namespace UnityStandardAssets.Cameras
                 }
             }
         }
+        #endregion
     }
 }

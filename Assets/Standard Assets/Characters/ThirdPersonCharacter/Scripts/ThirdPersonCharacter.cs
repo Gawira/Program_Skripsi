@@ -25,7 +25,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         [SerializeField] float moveSpeed = 5f;
         [SerializeField] float strafeSpeed = 2f;
 
-        [SerializeField] private LockOnTarget lockOnSystem;
+        [SerializeField] private LockOntarget lockOnSystem;
         [SerializeField] private ThirdPersonUserControl ThirdPersonControl;
         
         //[SerializeField] private PlayerManager playerManager;
