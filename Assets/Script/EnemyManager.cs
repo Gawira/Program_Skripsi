@@ -28,10 +28,10 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(lockOnTarget.LockOn);
-        if (healthBarCanvas != null && lockOnTarget.LockOn == true)
+        //Debug.Log(lockOnTarget.LockOn);
+        if (healthBarCanvas != null && lockOnTarget.LockOn == true || currentHealth != 100)
         {
-            Debug.Log("helpme");
+            //Debug.Log("helpme");
             healthBarCanvas.SetActive(true);
         }
     }

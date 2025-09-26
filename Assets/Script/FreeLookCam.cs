@@ -25,7 +25,7 @@ namespace UnityStandardAssets.Cameras
         [SerializeField] private bool m_LockCursor = false;                   // Whether the cursor should be hidden and locked.
         [SerializeField] private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
         [SerializeField] private float k_LookDistance = 200f;
-
+        [SerializeField] private PauseSetting pauseSetting;
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
@@ -54,13 +54,14 @@ namespace UnityStandardAssets.Cameras
 
         protected void Update()
         {
-            HandleRotationMovement();
-
-            if (m_LockCursor && Input.GetMouseButtonUp(0))
+            // Check pause state first
+            if (pauseSetting != null && pauseSetting.isPaused)
             {
-                Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
-                Cursor.visible = !m_LockCursor;
+                // Stop camera movement
+                return;
             }
+
+            HandleRotationMovement();
         }
 
 
@@ -78,7 +79,19 @@ namespace UnityStandardAssets.Cameras
             transform.position = Vector3.Lerp(transform.position, m_Target.position, deltaTime * m_MoveSpeed);
         }
 
-
+        public void UpdateCursorState()
+        {
+            if (pauseSetting != null && pauseSetting.isPaused)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
+                Cursor.visible = !m_LockCursor;
+            }
+        }
         private void HandleRotationMovement()
         {
             if (Time.timeScale < float.Epsilon)

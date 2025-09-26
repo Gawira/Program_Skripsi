@@ -65,7 +65,7 @@ namespace UnityStandardAssets.Cameras
             {
                 LockOn = false;
             }
-            Debug.Log($"Saved Pivot Rotation: {savedPivotRotation.eulerAngles}");
+            //Debug.Log($"Saved Pivot Rotation: {savedPivotRotation.eulerAngles}");
         }
         void LateUpdate()
         {

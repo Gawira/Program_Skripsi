@@ -29,6 +29,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         [SerializeField] private TPUserControl ThirdPersonControl;
         
         [SerializeField] private PlayerManager playerManager;
+        [SerializeField] private PauseSetting pauseSetting;
 
 
         Rigidbody m_Rigidbody;
@@ -59,20 +60,19 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
-            
 
-            if (Input.GetMouseButtonDown(0))
+            if (pauseSetting.isPaused == false)
             {
-                
-                
-                int rand = Random.Range(0, 2); 
+                if (Input.GetMouseButtonDown(0))
+                {
+                    int rand = Random.Range(0, 2);
 
-                if (rand == 0)
-                    m_Animator.SetTrigger("Attack1");
-                else
-                    m_Animator.SetTrigger("Attack2");
+                    if (rand == 0)
+                        m_Animator.SetTrigger("Attack1");
+                    else
+                        m_Animator.SetTrigger("Attack2");
+                }
             }
-
             // Buat animasi Dash pake spasi
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -81,7 +81,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 m_Animator.SetTrigger("Dash");
             }
 
-            
         }
 
         public void Move(Vector3 move, bool crouch, bool jump)

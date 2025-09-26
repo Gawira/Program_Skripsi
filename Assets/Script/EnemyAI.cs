@@ -152,13 +152,13 @@ public class EnemyAI : MonoBehaviour
         if (!goal) return;
 
         currentState = "Chase";
-        agent.isStopped = false;
-        agent.destination = goal.position;
+        agent.isStopped = false; 
+        agent.SetDestination(goal.position); 
     }
 
     public void StopToPlayer()
     {
-        agent.isStopped = true;
+        agent.ResetPath(); 
     }
 
     void SetState(string newState, string animationTrigger)
