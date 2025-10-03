@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Enemy Stats")]
     public int maxHealth = 100;
     public int currentHealth;
-    public int moneyDrop = 50;
+    public int moneyDrop = 0;
     public int damage = 10;
 
     [Header("Player Tag")]
@@ -19,6 +19,7 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private GameObject healthBarCanvas;
     [SerializeField] private LockOnTarget lockOnTarget;
+    public PlayerManager playerManager;
 
     void Start()
     {
@@ -61,7 +62,10 @@ public class EnemyManager : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            // Give player money
+            playerManager.AddMoney(moneyDrop);
             Die();
+            
         }
     }
     public void Die()
@@ -70,8 +74,7 @@ public class EnemyManager : MonoBehaviour
         if (anim != null)
             anim.SetTrigger("Die");
 
-        // Give player money
-        // PlayerManager.Instance.AddMoney(moneyDrop);
+        
 
         OnEnemyDied?.Invoke(this);
 

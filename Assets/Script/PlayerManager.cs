@@ -13,6 +13,7 @@ namespace UnityEngine
 
         public int money = 0;
         public int damage = 20;
+        public int slotMax = 2;
 
         private Animator anim;
         private bool canTakeDamage = true;
