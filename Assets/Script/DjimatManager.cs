@@ -51,45 +51,40 @@ public class DjimatManager : MonoBehaviour
     /// <summary>Equip item into a specific equipped-slot index. If slot already had item it's moved back to inventory. Returns true on success.</summary>
     public bool EquipToSlot(int slotIndex, DjimatItem item)
     {
-        if (item == null) return false;
         if (slotIndex < 0 || slotIndex >= equippedSlots.Length) return false;
 
-        int currentUsed = GetCurrentUsedSlots();
-        int existingCost = equippedSlots[slotIndex] != null ? equippedSlots[slotIndex].slotCost : 0;
+        int used = GetCurrentUsedSlots();
+        if (used + item.slotCost > SlotCapacity) return false;
 
-        if (currentUsed - existingCost + item.slotCost > SlotCapacity)
-        {
-            Debug.LogWarning("Not enough slot capacity to equip " + item.itemName);
-            return false;
-        }
-
-        // remove the chosen item from inventory (if present)
-        if (!inventory.Remove(item))
-        {
-            // If it's not in inventory it's okay (maybe obtained directly)
-            // but do not fail.
-        }
-
-        // move old equipped item back to inventory
+        // If slot already has an item, return it to inventory first
         if (equippedSlots[slotIndex] != null)
+        {
             inventory.Add(equippedSlots[slotIndex]);
+        }
 
+        // Place the new item into the slot
         equippedSlots[slotIndex] = item;
 
-        ApplyBonuses();
+        // Remove from inventory so it doesn't appear duplicated
+        inventory.Remove(item);
+
+        // Notify listeners
         OnChanged?.Invoke();
+
         return true;
     }
 
     public void UnequipSlot(int slotIndex)
     {
         if (slotIndex < 0 || slotIndex >= equippedSlots.Length) return;
-        if (equippedSlots[slotIndex] == null) return;
 
-        inventory.Add(equippedSlots[slotIndex]);
-        equippedSlots[slotIndex] = null;
-        ApplyBonuses();
-        OnChanged?.Invoke();
+        var item = equippedSlots[slotIndex];
+        if (item != null)
+        {
+            inventory.Add(item);
+            equippedSlots[slotIndex] = null;
+            OnChanged?.Invoke();
+        }
     }
 
     /// <summary>Add item to inventory (blue list)</summary>

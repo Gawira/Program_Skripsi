@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,16 +8,15 @@ public class DjimatUIManager : MonoBehaviour
     public DjimatManager djimatManager;
 
     [Header("Prefabs & UI Parents")]
-    public GameObject slotPrefab;           // prefab with SimpleSlotUI + Button
-    public Transform equippedParent;        // red block container (one child per equipped slot)
-    public Transform inventoryParent;       // blue block container (grid for inventory)
-    public List<Image> diamondIcons = new List<Image>(); // orange diamonds to show capacity usage
+    public Transform equippedParent;        // Parent that holds EquippedDjimatSlot1–4
+    public Transform inventoryParent;       // Grid parent for inventory
+    public GameObject slotPrefab;           // Only used for inventory
+    public List<Image> diamondIcons = new List<Image>();
 
-    // UI internal lists
-    private List<GameObject> equippedUI = new List<GameObject>();
+    // internal references
+    private List<SimpleSlotUI> equippedUI = new List<SimpleSlotUI>();
     private List<GameObject> inventoryUI = new List<GameObject>();
 
-    // selection state
     private int selectedEquippedIndex = -1;
 
     void Start()
@@ -33,13 +30,10 @@ public class DjimatUIManager : MonoBehaviour
             return;
         }
 
-        // Create UI for equipped slots
+        // Instead of instantiating, grab already-existing equipped slots
         BuildEquippedUI();
 
-        // initial populate inventory UI
         RefreshAll();
-
-        // subscribe to changes
         djimatManager.OnChanged += RefreshAll;
     }
 
@@ -48,26 +42,26 @@ public class DjimatUIManager : MonoBehaviour
         if (djimatManager != null) djimatManager.OnChanged -= RefreshAll;
     }
 
-    // Create fixed number of equipped slot UI elements once
     void BuildEquippedUI()
     {
-        // clean
-        foreach (Transform t in equippedParent) Destroy(t.gameObject);
         equippedUI.Clear();
 
-        int slots = djimatManager.equippedSlots.Length;
-        for (int i = 0; i < slots; i++)
+        // Loop through children of equippedParent
+        for (int i = 0; i < equippedParent.childCount; i++)
         {
-            GameObject go = Instantiate(slotPrefab, equippedParent);
-            SimpleSlotUI ui = go.GetComponent<SimpleSlotUI>();
-            int index = i;
-            ui.button.onClick.RemoveAllListeners();
-            ui.button.onClick.AddListener(() => OnEquippedSlotClicked(index));
-            equippedUI.Add(go);
+            var child = equippedParent.GetChild(i);
+            var ui = child.GetComponent<SimpleSlotUI>();
+
+            if (ui != null)
+            {
+                int index = i;
+                ui.button.onClick.RemoveAllListeners();
+                ui.button.onClick.AddListener(() => OnEquippedSlotClicked(index));
+                equippedUI.Add(ui);
+            }
         }
     }
 
-    // Refresh whole UI
     public void RefreshAll()
     {
         RefreshEquippedUI();
@@ -80,17 +74,15 @@ public class DjimatUIManager : MonoBehaviour
     {
         for (int i = 0; i < equippedUI.Count; i++)
         {
-            SimpleSlotUI ui = equippedUI[i].GetComponent<SimpleSlotUI>();
+            var ui = equippedUI[i];
             var item = djimatManager.equippedSlots[i];
             ui.UpdateIcon(item);
             ui.SetHighlight(selectedEquippedIndex == i);
-            // optionally set tooltip/label
         }
     }
 
     void RefreshInventoryUI()
     {
-        // destroy old children
         foreach (var go in inventoryUI) Destroy(go);
         inventoryUI.Clear();
 
@@ -98,7 +90,7 @@ public class DjimatUIManager : MonoBehaviour
         {
             var item = djimatManager.inventory[i];
             GameObject go = Instantiate(slotPrefab, inventoryParent);
-            SimpleSlotUI ui = go.GetComponent<SimpleSlotUI>();
+            var ui = go.GetComponent<SimpleSlotUI>();
             int index = i;
             ui.UpdateIcon(item);
             ui.button.onClick.RemoveAllListeners();
@@ -117,7 +109,7 @@ public class DjimatUIManager : MonoBehaviour
             if (i < capacity)
             {
                 diamondIcons[i].gameObject.SetActive(true);
-                diamondIcons[i].color = (i < used) ? Color.white : new Color(1, 1, 1, 0.25f); // filled vs empty look
+                diamondIcons[i].color = (i < used) ? Color.white : new Color(1, 1, 1, 0.25f);
             }
             else
             {
@@ -126,45 +118,35 @@ public class DjimatUIManager : MonoBehaviour
         }
     }
 
-    // ======= Interaction (two-click) =======
     public void OnEquippedSlotClicked(int index)
     {
-        // If player clicked same selected slot -> deselect (or unequip if occupied)
         if (selectedEquippedIndex == index)
         {
-            // If you want clicking same slot to unequip, uncomment next line:
-            // djimatManager.UnequipSlot(index);
             ClearSelection();
             return;
         }
 
-        // select target equipped slot
         selectedEquippedIndex = index;
         RefreshEquippedUI();
-        // Optionally give hint to player: "Now click a djimat in inventory to place here."
-        Debug.Log("Selected equip slot " + index + ". Now click an inventory item to place.");
+        Debug.Log("Selected equip slot " + index);
     }
 
     public void OnInventoryItemClicked(int inventoryIndex)
     {
         if (selectedEquippedIndex == -1)
         {
-            // no target selected — optionally show preview or select the item
-            Debug.Log("Select an equipped slot first (click a red slot), then pick an item.");
+            Debug.Log("Select an equipped slot first.");
             return;
         }
 
         var item = djimatManager.inventory[inventoryIndex];
         if (item == null)
-        {
-            Debug.Log("Invalid inventory item");
             return;
-        }
 
         bool ok = djimatManager.EquipToSlot(selectedEquippedIndex, item);
         if (!ok)
         {
-            Debug.Log("Could not equip item (not enough capacity?)");
+            Debug.Log("Could not equip item.");
         }
         else
         {
@@ -179,6 +161,4 @@ public class DjimatUIManager : MonoBehaviour
         selectedEquippedIndex = -1;
         RefreshEquippedUI();
     }
-
-
 }
