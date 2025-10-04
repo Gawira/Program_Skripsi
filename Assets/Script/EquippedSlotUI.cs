@@ -10,6 +10,7 @@ public class EquippedSlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
     [Header("Assigned Djimat")]
     public DjimatItem equippedDjimat;
+    private DjimatSystem djimatSystem;
 
     private static EquippedSlotUI selectedSlot;
 
@@ -17,6 +18,12 @@ public class EquippedSlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnter
     {
         UpdateUI();
         if (highlight != null) highlight.enabled = false;
+    }
+
+    private void Awake()
+    {
+        if (djimatSystem == null)
+            djimatSystem = FindObjectOfType<DjimatSystem>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
