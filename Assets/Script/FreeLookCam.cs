@@ -26,6 +26,7 @@ namespace UnityStandardAssets.Cameras
         [SerializeField] private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
         [SerializeField] private float k_LookDistance = 200f;
         [SerializeField] private PauseSetting pauseSetting;
+        [SerializeField] private MerchantSetting merchantSetting;
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
@@ -56,6 +57,12 @@ namespace UnityStandardAssets.Cameras
         {
             // Check pause state first
             if (pauseSetting != null && pauseSetting.isPaused)
+            {
+                // Stop camera movement
+                return;
+            }
+
+            if (merchantSetting != null && merchantSetting.isMerchant)
             {
                 // Stop camera movement
                 return;

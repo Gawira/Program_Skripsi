@@ -30,6 +30,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         
         [SerializeField] private PlayerManager playerManager;
         [SerializeField] private PauseSetting pauseSetting;
+        [SerializeField] private MerchantSetting merchantSetting;
 
 
         Rigidbody m_Rigidbody;
@@ -61,7 +62,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Update()
         {
 
-            if (pauseSetting.isPaused == false)
+            if (pauseSetting.isPaused == false && merchantSetting.isMerchant == false)
             {
                 if (Input.GetMouseButtonDown(0))
                 {

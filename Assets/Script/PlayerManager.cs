@@ -23,8 +23,23 @@ namespace UnityEngine
 
         void Start()
         {
-            currentHealth = playerHealth;
             anim = GetComponent<Animator>();
+
+            if (SaveManager.SaveExists())
+            {
+                SaveData data = SaveManager.LoadGame();
+                transform.position = data.checkpointPosition;
+                currentHealth = data.playerHealth;
+                money = data.playerMoney;
+                Debug.Log("Player loaded from save file.");
+            }
+            else
+            {
+                Debug.Log("No save found, starting fresh.");
+                currentHealth = playerHealth;
+            }
+            
+            
         }
 
         //public void Knockback(Vector3 knockbackDir, float force, float upward)
@@ -55,15 +70,33 @@ namespace UnityEngine
 
         private void Die()
         {
-            // Optional: death animation
+            Debug.Log("Player has died!");
+
             if (anim != null)
                 anim.SetTrigger("Die");
 
-            Debug.Log("Player has died!");
+            StartCoroutine(RespawnAfterDelay(2f)); // delay for death animation
+        }
 
-            // You could reload scene or disable controls here
-            // Example:
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        private System.Collections.IEnumerator RespawnAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            SaveData data = SaveManager.LoadGame();
+            if (data != null)
+            {
+                transform.position = data.checkpointPosition;
+                playerHealth = data.playerHealth;
+                currentHealth = playerHealth;
+                money = data.playerMoney;
+            }
+
+            // Respawn all enemies again
+            EnemyRespawner respawner = FindObjectOfType<EnemyRespawner>();
+            if (respawner != null)
+                respawner.RespawnEnemy();
+
+            Debug.Log("Player respawned at last checkpoint!");
         }
 
 
