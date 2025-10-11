@@ -11,10 +11,14 @@ namespace UnityStandardAssets.Cameras
         public GameObject inventoryPanel;
         public GameObject settingsPanel;
 
-        [SerializeField] private FreeLookCam freeLookCam;
+        [SerializeField] public FreeLookCam freeLookCam;
 
         public bool isPaused = false;
-
+        void Start()
+        {
+            if (freeLookCam == null)
+                freeLookCam = FindObjectOfType<FreeLookCam>();
+        }
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))

@@ -30,7 +30,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         
         [SerializeField] private PlayerManager playerManager;
         [SerializeField] private PauseSetting pauseSetting;
-        [SerializeField] private MerchantSetting merchantSetting;
+        [SerializeField] private MerchantManager merchantSetting;
 
 
         Rigidbody m_Rigidbody;
@@ -57,12 +57,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
-		}
+
+            if (merchantSetting == null)
+                merchantSetting = FindObjectOfType<MerchantManager>();
+        }
 
         private void Update()
         {
 
-            if (pauseSetting.isPaused == false && merchantSetting.isMerchant == false)
+            if (pauseSetting.isPaused == false && merchantSetting.isMerchantOpen == false)
             {
                 if (Input.GetMouseButtonDown(0))
                 {

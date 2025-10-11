@@ -26,14 +26,13 @@ namespace UnityStandardAssets.Cameras
         [SerializeField] private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
         [SerializeField] private float k_LookDistance = 200f;
         [SerializeField] private PauseSetting pauseSetting;
-        [SerializeField] private MerchantSetting merchantSetting;
+        [SerializeField] private MerchantManager merchantSetting;
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
         private Vector3 m_PivotEulers;
         private Quaternion m_PivotTargetRot;
         private Quaternion m_TransformTargetRot;
-
 
         protected override void Awake()
         {
@@ -50,8 +49,11 @@ namespace UnityStandardAssets.Cameras
 
             if (m_Cam == null)
                 m_Cam = GetComponentInChildren<Camera>().transform;
-        }
 
+            if (merchantSetting == null)
+                merchantSetting = FindObjectOfType<MerchantManager>();
+        }
+        
 
         protected void Update()
         {
@@ -62,7 +64,7 @@ namespace UnityStandardAssets.Cameras
                 return;
             }
 
-            if (merchantSetting != null && merchantSetting.isMerchant)
+            if (merchantSetting != null && merchantSetting.isMerchantOpen)
             {
                 // Stop camera movement
                 return;

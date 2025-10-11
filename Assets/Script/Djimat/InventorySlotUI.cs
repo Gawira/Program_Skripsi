@@ -12,10 +12,13 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public DjimatItem assignedDjimat;
     private DjimatSystem djimatSystem;
 
+    private ItemInfoDisplay infoDisplay;
+
     private void Start()
     {
         UpdateUI();
         if (highlight != null) highlight.enabled = false;
+        infoDisplay = FindObjectOfType<ItemInfoDisplay>();
     }
 
     private void Awake()
@@ -74,11 +77,15 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (highlight != null) highlight.enabled = true;
+        if (infoDisplay != null && assignedDjimat != null)
+            infoDisplay.ShowInfo(assignedDjimat);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (highlight != null) highlight.enabled = false;
+        if (infoDisplay != null)
+            infoDisplay.ClearInfo();
     }
 
     public void UpdateUI()

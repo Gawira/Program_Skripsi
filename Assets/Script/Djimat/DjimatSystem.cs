@@ -42,7 +42,17 @@ public class DjimatSystem : MonoBehaviour
         }
     }
 
-    public int SlotCapacity => (playerManager != null) ? playerManager.slotMax : 2;
+
+    public int SlotCapacity
+    {
+        get
+        {
+            if (playerManager != null)
+                return playerManager.slotMax;
+            else
+                return 2;
+        }
+    }
 
     public int GetCurrentUsedSlots()
     {
@@ -85,7 +95,7 @@ public class DjimatSystem : MonoBehaviour
     {
         if (slot == null || slot.equippedDjimat == null) return;
 
-        gridMaker.AddToInventory(slot.equippedDjimat);
+        //gridMaker.AddToInventory(slot.equippedDjimat); THIS!!!!!!!!! I HATE YOU I HATE YOU I HATE YOU
         slot.AssignDjimat(null);
 
         ApplyBonuses();

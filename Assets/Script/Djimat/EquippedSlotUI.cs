@@ -13,11 +13,13 @@ public class EquippedSlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnter
     private DjimatSystem djimatSystem;
 
     private static EquippedSlotUI selectedSlot;
+    private ItemInfoDisplay infoDisplay;
 
     private void Start()
     {
         UpdateUI();
         if (highlight != null) highlight.enabled = false;
+        infoDisplay = FindObjectOfType<ItemInfoDisplay>(); // auto find
     }
 
     private void Awake()
@@ -33,6 +35,7 @@ public class EquippedSlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnter
             // Deselect if clicked again
             selectedSlot = null;
             if (highlight != null) highlight.enabled = false;
+            
         }
         else
         {
@@ -49,12 +52,18 @@ public class EquippedSlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnter
     {
         if (highlight != null && selectedSlot != this)
             highlight.enabled = true;
+ 
+        if (infoDisplay != null && equippedDjimat != null)
+            infoDisplay.ShowInfo(equippedDjimat); //ngasih tauin panel info
+
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (highlight != null && selectedSlot != this)
             highlight.enabled = false;
+        if (infoDisplay != null)
+            infoDisplay.ClearInfo();
     }
 
     public void AssignDjimat(DjimatItem newDjimat)
