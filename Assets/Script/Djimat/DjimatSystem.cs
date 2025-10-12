@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -8,10 +8,12 @@ public class DjimatSystem : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private GridMaker gridMaker;
-    [SerializeField] private DjimatLimitUI limitUI; // NEW
+    [SerializeField] private DjimatLimitUI limitUI;
 
     private int baseHealth;
     private int baseDamage;
+    private int baseLifesteal;
+    private int baseDefense;
 
     public event Action OnChanged;
 
@@ -30,6 +32,8 @@ public class DjimatSystem : MonoBehaviour
         {
             baseHealth = playerManager.playerHealth;
             baseDamage = playerManager.damage;
+            baseLifesteal = playerManager.lifesteal;
+            baseDefense = playerManager.defense;
         }
     }
 
@@ -42,15 +46,11 @@ public class DjimatSystem : MonoBehaviour
         }
     }
 
-
     public int SlotCapacity
     {
         get
         {
-            if (playerManager != null)
-                return playerManager.slotMax;
-            else
-                return 2;
+            return playerManager != null ? playerManager.slotMax : 2;
         }
     }
 
@@ -87,7 +87,7 @@ public class DjimatSystem : MonoBehaviour
         ApplyBonuses();
 
         OnChanged?.Invoke();
-        UpdateLimitUI(); // NEW
+        UpdateLimitUI();
         return true;
     }
 
@@ -95,31 +95,40 @@ public class DjimatSystem : MonoBehaviour
     {
         if (slot == null || slot.equippedDjimat == null) return;
 
-        //gridMaker.AddToInventory(slot.equippedDjimat); THIS!!!!!!!!! I HATE YOU I HATE YOU I HATE YOU
         slot.AssignDjimat(null);
 
         ApplyBonuses();
         OnChanged?.Invoke();
-        UpdateLimitUI(); // NEW
+        UpdateLimitUI();
     }
 
     private void ApplyBonuses()
     {
         if (playerManager == null) return;
 
+        // Reset to base stats
         playerManager.playerHealth = baseHealth;
         playerManager.damage = baseDamage;
+        playerManager.lifesteal = baseLifesteal;
+        playerManager.defense = baseDefense;
 
+        // Add bonuses from equipped Djimats
         foreach (var eqSlot in gridMaker.equippedGridParent.GetComponentsInChildren<EquippedSlotUI>())
         {
             if (eqSlot.equippedDjimat == null) continue;
 
-            playerManager.playerHealth += eqSlot.equippedDjimat.healthBonus;
-            playerManager.damage += eqSlot.equippedDjimat.damageBonus;
+            DjimatItem item = eqSlot.equippedDjimat;
+            playerManager.playerHealth += item.healthBonus;
+            playerManager.damage += item.damageBonus;
+            playerManager.lifesteal += item.lifestealBonus;
+            playerManager.defense += item.defenseBonus;
         }
 
+        // Clamp health so it doesn't exceed the new max
         if (playerManager.currentHealth > playerManager.playerHealth)
             playerManager.currentHealth = playerManager.playerHealth;
+
+        Debug.Log($"[DjimatSystem] Final Stats → HP: {playerManager.playerHealth}, DMG: {playerManager.damage}, LS: {playerManager.lifesteal}, DEF: {playerManager.defense}");
     }
 
     private void UpdateLimitUI()

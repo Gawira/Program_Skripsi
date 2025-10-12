@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class SacredStoneGridMaker : MonoBehaviour
@@ -6,57 +6,94 @@ public class SacredStoneGridMaker : MonoBehaviour
     [Header("Grid Settings")]
     public GameObject stoneSlotPrefab;
     public Transform stoneGridParent;
-    public DjimatItem[] startingStones; // assign in inspector
+    public SacredStoneInventory stoneInventory; // reference ScriptableObject
 
     [Header("Grid Layout")]
     public Vector2Int gridSize = new Vector2Int(1, 4);
 
-    void Start()
+    private void OnEnable()
     {
+        // Subscribe to inventory updates
+        if (stoneInventory != null)
+            stoneInventory.OnInventoryChanged += RefreshGrid;
+
         SetupGridLayout(stoneGridParent.GetComponent<GridLayoutGroup>(), gridSize);
-        BuildGrid();
+        RefreshGrid();
     }
 
-    void SetupGridLayout(GridLayoutGroup grid, Vector2Int size)
+    private void OnDisable()
+    {
+        if (stoneInventory != null)
+            stoneInventory.OnInventoryChanged -= RefreshGrid;
+    }
+
+    private void SetupGridLayout(GridLayoutGroup grid, Vector2Int size)
     {
         if (grid == null) return;
         grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
         grid.constraintCount = size.y;
     }
 
-    void BuildGrid()
+    public void RefreshGrid()
     {
-        int totalSlots = gridSize.x * gridSize.y;
-        int itemIndex = 0;
+        // Clear existing slots
+        foreach (Transform child in stoneGridParent)
+            Destroy(child.gameObject);
 
-        for (int i = 0; i < totalSlots; i++)
+        if (stoneInventory == null) return;
+
+        // Fill UI with current stones in the inventory
+        foreach (var stone in stoneInventory.stones)
         {
             GameObject go = Instantiate(stoneSlotPrefab, stoneGridParent);
             SacredStoneSlotUI ui = go.GetComponent<SacredStoneSlotUI>();
+            ui.AssignStone(stone);
+        }
 
-            if (startingStones != null && itemIndex < startingStones.Length)
-            {
-                ui.AssignStone(startingStones[itemIndex]);
-                itemIndex++;
-            }
-            else
-            {
-                ui.AssignStone(null);
-            }
+        // Fill remaining empty slots
+        int maxSlots = gridSize.x * gridSize.y;
+        int emptySlots = maxSlots - stoneInventory.stones.Count;
+        for (int i = 0; i < emptySlots; i++)
+        {
+            GameObject go = Instantiate(stoneSlotPrefab, stoneGridParent);
+            SacredStoneSlotUI ui = go.GetComponent<SacredStoneSlotUI>();
+            ui.AssignStone(null);
         }
     }
 
     public void AddToInventory(DjimatItem item)
     {
+        if (stoneInventory == null) return;
+
+        stoneInventory.AddStone(item);  // Update ScriptableObject instead of direct UI
+    }
+
+    public void RemoveFromInventory(DjimatItem item)
+    {
+        if (stoneInventory == null) return;
+
+        stoneInventory.RemoveStone(item);  // Inventory updates will auto-refresh UI
+    }
+
+    public bool HasStone(DjimatItem stone)
+    {
         foreach (var slot in stoneGridParent.GetComponentsInChildren<SacredStoneSlotUI>())
         {
-            if (slot.assignedStone == null)
+            if (slot.assignedStone == stone)
+                return true;
+        }
+        return false;
+    }
+
+    public void RemoveStone(DjimatItem stone)
+    {
+        foreach (var slot in stoneGridParent.GetComponentsInChildren<SacredStoneSlotUI>())
+        {
+            if (slot.assignedStone == stone)
             {
-                slot.AssignStone(item);
+                slot.AssignStone(null);
                 return;
             }
         }
-
-        Debug.LogWarning("No empty Sacred Stone slot available!");
     }
 }

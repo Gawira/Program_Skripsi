@@ -63,19 +63,13 @@ public class MerchantManager : MonoBehaviour
             pauseSetting.freeLookCam.UpdateCursorState();
         }
 
-        // Close merchant with Escape
-        if (isMerchantOpen && Input.GetKeyDown(KeyCode.Escape))
-        {
-            CloseMerchantUI();
-            return;
-        }
 
         // Open merchant with E
         if (isPlayerNear && Input.GetKeyDown(KeyCode.E))
             OpenMerchantUI();
     }
 
-    private void OpenMerchantUI()
+    public void OpenMerchantUI()
     {
         isMerchantOpen = true;
 
@@ -89,7 +83,7 @@ public class MerchantManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    private void CloseMerchantUI()
+    public void CloseMerchantUI()
     {
         isMerchantOpen = false;
 

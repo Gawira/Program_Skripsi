@@ -17,6 +17,7 @@ public class PickableManager : MonoBehaviour
     private DjimatLimitUI limitUI;
 
     private bool isNotificationActive = false;
+    private bool isPickedUp = false;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class PickableManager : MonoBehaviour
 
         if (notificationUI != null)
             notificationUI.SetActive(false);
+
 
         playerManager = FindObjectOfType<PlayerManager>();
         gridMaker = FindObjectOfType<GridMaker>();
@@ -35,10 +37,19 @@ public class PickableManager : MonoBehaviour
 
     private void Update()
     {
-        if (isNotificationActive && Input.GetKeyDown(KeyCode.E))
+        if (isPickedUp && !isNotificationActive && Input.GetKeyDown(KeyCode.E))
+        {
+            notificationUI.SetActive(true);
+            isNotificationActive = true;
+            isPickedUp = false;
+            
+        }
+
+        if (isNotificationActive && Input.GetMouseButtonDown(0))
         {
             notificationUI.SetActive(false);
             isNotificationActive = false;
+            Debug.Log("HELP WHY IS IT NOT DOING IT");
         }
     }
 
@@ -50,6 +61,8 @@ public class PickableManager : MonoBehaviour
 
     public void HandlePickup(DjimatItem itemData)
     {
+        isPickedUp =true;
+
         if (itemData == null) return;
 
         switch (itemData.itemType)

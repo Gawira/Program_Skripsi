@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
@@ -10,18 +9,23 @@ namespace UnityEngine
         [Header("Player Stats")]
         public int playerHealth = 100;
         public int currentHealth;
+        public int lifesteal = 8;
+        public int defense = 5;
 
         public int money = 0;
         public int damage = 20;
         public int slotMax = 2;
 
+        [Header("Respawn Settings")]
+        private Vector3 respawnPoint;
+        private Quaternion respawnRotation;
+
         private Animator anim;
         private bool canTakeDamage = true;
 
         public TPCharacter thirdPersonCharacter;
-        
 
-        void Start()
+        private void Start()
         {
             anim = GetComponent<Animator>();
 
@@ -31,30 +35,30 @@ namespace UnityEngine
                 transform.position = data.checkpointPosition;
                 currentHealth = data.playerHealth;
                 money = data.playerMoney;
+
+                respawnPoint = data.checkpointPosition;
+                respawnRotation = transform.rotation;
+
                 Debug.Log("Player loaded from save file.");
             }
             else
             {
                 Debug.Log("No save found, starting fresh.");
                 currentHealth = playerHealth;
+                respawnPoint = transform.position;
+                respawnRotation = transform.rotation;
             }
-            
-            
         }
 
-        //public void Knockback(Vector3 knockbackDir, float force, float upward)
-        //{
-        //    Rigidbody rb = GetComponent<Rigidbody>();
-        //    rb.AddForce(knockbackDir * force + Vector3.up * upward, ForceMode.Impulse);
-        //}
         public void TakeDamage(int amount)
         {
-
-
-            currentHealth -= amount;
-            Debug.Log("current health" + currentHealth);
-
             if (!canTakeDamage) return;
+
+            // Apply defense
+            int finalDamage = Mathf.Max(0, amount - defense);
+            currentHealth -= finalDamage;
+
+            Debug.Log($"Player took {finalDamage} damage (blocked {amount - finalDamage}). Current HP: {currentHealth}");
 
             if (currentHealth <= 0)
             {
@@ -62,10 +66,23 @@ namespace UnityEngine
             }
             else
             {
-                // Optional: play hurt animation
                 if (anim != null)
                     anim.SetTrigger("Hurt");
             }
+        }
+
+        /// <summary>
+        /// Heal player for lifesteal when dealing damage to an enemy.
+        /// </summary>
+        public void ApplyLifesteal()
+        {
+            if (lifesteal <= 0) return;
+
+            currentHealth += lifesteal;
+            if (currentHealth > playerHealth)
+                currentHealth = playerHealth;
+
+            Debug.Log($"Lifesteal +{lifesteal} HP. Current HP: {currentHealth}");
         }
 
         private void Die()
@@ -75,23 +92,27 @@ namespace UnityEngine
             if (anim != null)
                 anim.SetTrigger("Die");
 
-            StartCoroutine(RespawnAfterDelay(2f)); // delay for death animation
+            StartCoroutine(RespawnAfterDelay(2f));
         }
 
-        private System.Collections.IEnumerator RespawnAfterDelay(float delay)
+        private IEnumerator RespawnAfterDelay(float delay)
         {
             yield return new WaitForSeconds(delay);
+            Respawn();
+        }
 
-            SaveData data = SaveManager.LoadGame();
-            if (data != null)
-            {
-                transform.position = data.checkpointPosition;
-                playerHealth = data.playerHealth;
-                currentHealth = playerHealth;
-                money = data.playerMoney;
-            }
+        public void Respawn()
+        {
+            CharacterController controller = GetComponent<CharacterController>();
+            if (controller != null) controller.enabled = false;
 
-            // Respawn all enemies again
+            transform.position = respawnPoint;
+            transform.rotation = respawnRotation;
+
+            if (controller != null) controller.enabled = true;
+
+            currentHealth = playerHealth;
+
             EnemyRespawner respawner = FindObjectOfType<EnemyRespawner>();
             if (respawner != null)
                 respawner.RespawnEnemy();
@@ -99,6 +120,12 @@ namespace UnityEngine
             Debug.Log("Player respawned at last checkpoint!");
         }
 
+        public void SetCheckpoint(Vector3 position, Quaternion rotation)
+        {
+            respawnPoint = position;
+            respawnRotation = rotation;
+            Debug.Log($"Checkpoint set at: {position}");
+        }
 
         public void AddMoney(int amount)
         {
@@ -121,6 +148,8 @@ namespace UnityEngine
 
         public int DealDamage()
         {
+            // when dealing damage to an enemy, apply lifesteal here or in the enemy’s damage receiver
+            ApplyLifesteal();
             return damage;
         }
 
@@ -130,12 +159,10 @@ namespace UnityEngine
             Debug.Log("Player is now INVINCIBLE");
         }
 
-        //  Turn damage back on
         public void SetVulnerable()
         {
             canTakeDamage = true;
             Debug.Log("Player is now VULNERABLE");
         }
     }
-
 }

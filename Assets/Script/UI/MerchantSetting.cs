@@ -41,7 +41,7 @@ namespace UnityStandardAssets.Cameras
         {
             merchantMenu.SetActive(false);
             merchantMenuPanel.SetActive(false);
-            merchantManager.isMerchantOpen =false;
+            //merchantManager.isMerchantOpen =false;
         }
 
         public void OpenBuy()
