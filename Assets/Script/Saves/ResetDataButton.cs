@@ -19,7 +19,7 @@ public class ResetDataButton : MonoBehaviour
     public void OnResetClicked()
     {
         // You can add your own confirmation UI here before deleting
-        SaveManager.DeleteSave();
+        SaveManager.DeleteSaveForActiveSlot();
 
         // Optional: reload scene so runtime state resets
         if (reloadSceneAfterDelete)

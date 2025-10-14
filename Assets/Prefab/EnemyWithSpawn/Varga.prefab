@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7150586936602594698}
+  - component: {fileID: 3334262154400195306}
   m_Layer: 0
   m_Name: Varga
   m_TagString: Untagged
@@ -64,6 +65,22 @@ Transform:
   - {fileID: 4523178657861288606}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3334262154400195306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6863759745487352940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015a6999072f4d94fb8386b2ed50fe2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 6965882209585184444, guid: 4408b32df6deeb641a5ca60d4d838c71, type: 3}
+  spawnPoint: {fileID: 4523178657861288606}
+  respawnDelay: 3
+  currentEnemy: {fileID: 3129890569954139830}
 --- !u!1001 &5459578900818403338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -121,6 +138,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4408b32df6deeb641a5ca60d4d838c71, type: 3}
+--- !u!1 &3129890569954139830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6965882209585184444, guid: 4408b32df6deeb641a5ca60d4d838c71, type: 3}
+  m_PrefabInstance: {fileID: 5459578900818403338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5410600146885855135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 59112216035682197, guid: 4408b32df6deeb641a5ca60d4d838c71, type: 3}

@@ -110,7 +110,7 @@ public class EnemyAI : MonoBehaviour
     {
         float rand = Random.Range(0f, 100f);
 
-        if (Random.value < 0.5f) // attack bias
+        if (Random.value < 0.7f) // attack bias
         {
             if (rand < 90f)
                 SetState("Attack", "Attack1");
