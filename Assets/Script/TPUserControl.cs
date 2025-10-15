@@ -1,26 +1,37 @@
-using System;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-    [RequireComponent(typeof (TPCharacter))]
+    [RequireComponent(typeof(TPCharacter))]
     public class TPUserControl : MonoBehaviour
     {
-        
+
         private TPCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
         [SerializeField] private LockOnTarget lockOnSystem;
-       
+
+        [SerializeField] private float dashForce = 15f;
+        [SerializeField] private float dashTime = 0.2f;
+        [SerializeField] private float dashCooldown = 0.5f;
+        [SerializeField] private LayerMask dashCollisionMask;
+
+        public bool isDashing = false;
+        private bool canDash = true;
+        private Rigidbody rb;
+
         Animator m_Animator;
         public PlayerManager playermanager;
 
         private void Start()
         {
+            rb = GetComponent<Rigidbody>();
             m_Animator = GetComponent<Animator>();
             // get the transform of the main camera
             if (Camera.main != null)
@@ -36,7 +47,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<TPCharacter>();
-            
+
         }
 
 
@@ -45,26 +56,54 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (!m_Jump)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space) && canDash && m_Move != Vector3.zero)
                 {
-                // Only dash if we have some movement input
-                    if (m_Move != Vector3.zero)
-                    {
-                       float dashDistance = 2f;    // How far to dash
-                       float dashSpeed = 10f;      // How fast to dash
-
-                        // Calculate dash target
-                        Vector3 dashTarget = transform.position + m_Move.normalized * dashDistance;
-
-                        
-                        // Instantly move or lerp over time
-                        StartCoroutine(DashTo(dashTarget, dashSpeed));
-                    }
+                    StartCoroutine(DashRoutine(m_Move));
                 }
             }
 
         }
+        private IEnumerator DashRoutine(Vector3 direction)
+        {
+            isDashing = true;
+            canDash = false;
 
+            // Optional: make player invincible
+            playermanager?.SetInvincible();
+
+            // play dash animation if needed
+            m_Animator.SetTrigger("Dash");
+
+            // zero Y component to avoid weird vertical movement
+            direction.y = 0;
+            direction.Normalize();
+
+            float elapsed = 0f;
+
+            // keep dashing for dashTime
+            while (elapsed < dashTime)
+            {
+                // Check if we will collide in front during dash
+                if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f, dashCollisionMask))
+                {
+                    // Stop dash if we hit something
+                    Debug.Log("Hit wall during dash");
+                    break;
+                }
+
+                rb.velocity = direction * dashForce;
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            // stop dash
+            rb.velocity = Vector3.zero;
+            isDashing = false;
+            playermanager?.SetVulnerable();  // make player vulnerable again
+
+            yield return new WaitForSeconds(dashCooldown);
+            canDash = true;
+        }
         private System.Collections.IEnumerator DashTo(Vector3 target, float speed)
         {
             // Optionally disable character movement during dash
@@ -93,7 +132,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 {
                     Transform target = lockOnSystem.currentTarget;
 
-                    
+
                     // Arah ke musuh
                     Vector3 directionToEnemy = (target.position - transform.position).normalized;
                     directionToEnemy.y = 0f;
