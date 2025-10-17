@@ -1,4 +1,3 @@
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,56 +6,81 @@ public class KeyItemGridMaker : MonoBehaviour
     [Header("Grid Settings")]
     public GameObject keyItemSlotPrefab;
     public Transform keyItemGridParent;
-    public DjimatItem[] startingKeyItems; // assign in inspector
+    public KeyItemInventory keyItemInventory;   // Reference to ScriptableObject
 
     [Header("Grid Layout")]
     public Vector2Int gridSize = new Vector2Int(1, 4);
 
-    void Start()
+    private void OnEnable()
     {
+        // Subscribe to inventory updates
+        if (keyItemInventory != null)
+            keyItemInventory.OnInventoryChanged += RefreshGrid;
+
         SetupGridLayout(keyItemGridParent.GetComponent<GridLayoutGroup>(), gridSize);
-        BuildGrid();
+        RefreshGrid();
     }
 
-    void SetupGridLayout(GridLayoutGroup grid, Vector2Int size)
+    private void OnDisable()
+    {
+        if (keyItemInventory != null)
+            keyItemInventory.OnInventoryChanged -= RefreshGrid;
+    }
+
+    private void SetupGridLayout(GridLayoutGroup grid, Vector2Int size)
     {
         if (grid == null) return;
         grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
         grid.constraintCount = size.y;
     }
 
-    void BuildGrid()
+    public void RefreshGrid()
     {
-        int totalSlots = gridSize.x * gridSize.y;
-        int itemIndex = 0;
+        // Clear existing slots
+        foreach (Transform child in keyItemGridParent)
+            Destroy(child.gameObject);
 
-        for (int i = 0; i < totalSlots; i++)
+        if (keyItemInventory == null) return;
+
+        // Fill UI with current key items in inventory
+        foreach (var key in keyItemInventory.keyItems)
         {
             GameObject go = Instantiate(keyItemSlotPrefab, keyItemGridParent);
             KeyItemSlotUI ui = go.GetComponent<KeyItemSlotUI>();
+            ui.AssignKeyItem(key);
+        }
 
-            if (startingKeyItems != null && itemIndex < startingKeyItems.Length)
-            {
-                ui.AssignKeyItem(startingKeyItems[itemIndex]);
-                itemIndex++;
-            }
-            else
-            {
-                ui.AssignKeyItem(null);
-            }
+        // Fill remaining empty slots
+        int maxSlots = gridSize.x * gridSize.y;
+        int emptySlots = maxSlots - keyItemInventory.keyItems.Count;
+        for (int i = 0; i < emptySlots; i++)
+        {
+            GameObject go = Instantiate(keyItemSlotPrefab, keyItemGridParent);
+            KeyItemSlotUI ui = go.GetComponent<KeyItemSlotUI>();
+            ui.AssignKeyItem(null);
         }
     }
+
     public void AddToInventory(DjimatItem item)
     {
-        foreach (var slot in keyItemGridParent.GetComponentsInChildren<KeyItemSlotUI>())
-        {
-            if (slot.assignedKeyItem == null)
-            {
-                slot.AssignKeyItem(item);
-                return;
-            }
-        }
+        if (keyItemInventory == null) return;
+        keyItemInventory.AddKeyItem(item);
+    }
 
-        Debug.LogWarning("No empty Key Item slot available!");
+    public void RemoveFromInventory(DjimatItem item)
+    {
+        if (keyItemInventory == null) return;
+        keyItemInventory.RemoveKeyItem(item);
+    }
+
+    public bool HasKey(DjimatItem key)
+    {
+        return keyItemInventory != null && keyItemInventory.HasKeyItem(key);
+    }
+
+    public void RemoveKey(DjimatItem key)
+    {
+        if (keyItemInventory == null) return;
+        keyItemInventory.RemoveKeyItem(key);
     }
 }

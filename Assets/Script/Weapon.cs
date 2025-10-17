@@ -17,6 +17,14 @@ public class Weapon : MonoBehaviour
                 enemy.TakeDamage(dmg);
                 Debug.Log("Hit enemy for " + dmg + " damage!");
             }
+
+            BossManager boss = other.GetComponent<BossManager>();
+            if (boss != null)
+            {
+                int dmg = playerManager.DealDamage();
+                boss.TakeDamage(dmg);
+                Debug.Log("Hit enemy for " + dmg + " damage!");
+            }
         }
     }
 }

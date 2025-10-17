@@ -9,26 +9,29 @@ public class LockedDoorInteraction : MonoBehaviour
     public string openParameter = "isOpen";
     public bool startOpen = false;
 
-    [Header("Trigger Zones")]
+    [Header("Trigger Zone")]
     public Collider doorTrigger;
-    public GameObject something; // Optional: hide object after open
+    public GameObject something; // Optional: deactivate object after opening
 
     [Header("Interaction Settings")]
     public string playerTag = "Player";
-    public string requiredKeyName = "Silver Key"; // the key name to check
+    [Tooltip("The required key item to unlock this door")]
+    public DjimatItem requiredKeyItem;   // reference the actual ScriptableObject
     public string lockedMessage = "The door is locked. You need a key.";
     public string openedMessage = "[E] Open / Close Door";
 
+    [Header("Inventory Reference")]
+    public KeyItemInventory keyItemInventory;
+
     private bool isOpen = false;
     private bool isInsideTrigger = false;
-
-    private KeyItemGridMaker playerKeyInventory;
 
     private void Start()
     {
         if (doorTrigger != null)
             doorTrigger.isTrigger = true;
 
+        // Set initial door state
         isOpen = startOpen;
         if (doorAnimator != null)
             doorAnimator.SetBool(openParameter, isOpen);
@@ -36,7 +39,7 @@ public class LockedDoorInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (isInsideTrigger && Input.GetKeyDown(KeyCode.E))
+        if (isInsideTrigger)
         {
             if (HasRequiredKey())
             {
@@ -46,23 +49,22 @@ public class LockedDoorInteraction : MonoBehaviour
             }
             else
             {
-                PromptUIManager.Instance?.ShowPrompt(lockedMessage);
+                PromptUIManagerDoorKey.Instance?.ShowPrompt(lockedMessage);
             }
         }
     }
 
     private bool HasRequiredKey()
     {
-        if (playerKeyInventory == null) return false;
+        if (keyItemInventory == null || requiredKeyItem == null) return false;
 
-        foreach (var slot in playerKeyInventory.keyItemGridParent.GetComponentsInChildren<KeyItemSlotUI>())
+        foreach (var key in keyItemInventory.keyItems)
         {
-            if (slot.assignedKeyItem != null && slot.assignedKeyItem.itemName == requiredKeyName)
+            if (key == requiredKeyItem)
             {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -71,9 +73,9 @@ public class LockedDoorInteraction : MonoBehaviour
         isOpen = !isOpen;
 
         if (doorAnimator != null)
-            doorAnimator.SetBool(openParameter, isOpen);
+            doorAnimator.SetBool("isOpen", true);
 
-        PromptUIManager.Instance?.HidePrompt();
+        PromptUIManagerDoorKey.Instance?.HidePrompt();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,12 +83,11 @@ public class LockedDoorInteraction : MonoBehaviour
         if (!other.CompareTag(playerTag)) return;
 
         isInsideTrigger = true;
-        playerKeyInventory = other.GetComponentInChildren<KeyItemGridMaker>();
 
         if (HasRequiredKey())
-            PromptUIManager.Instance?.ShowPrompt(openedMessage);
+            PromptUIManagerDoorKey.Instance?.ShowPrompt(openedMessage);
         else
-            PromptUIManager.Instance?.ShowPrompt("[E] Check Door");
+            PromptUIManagerDoorKey.Instance?.ShowPrompt("[E] Check Door");
     }
 
     private void OnTriggerExit(Collider other)
@@ -94,7 +95,6 @@ public class LockedDoorInteraction : MonoBehaviour
         if (!other.CompareTag(playerTag)) return;
 
         isInsideTrigger = false;
-        playerKeyInventory = null;
-        PromptUIManager.Instance?.HidePrompt();
+        PromptUIManagerDoorKey.Instance?.HidePrompt();
     }
 }
