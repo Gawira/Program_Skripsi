@@ -1,0 +1,575 @@
+Using pre-set license
+Built from '2022.3/release' branch; Version is '2022.3.61f1 (6c53ebaf375d) revision 7099371'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'en' Physical Memory: 15742 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.61f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker18
+-projectPath
+C:/Users/tigaw/Unity Files/Program_Skripsi
+-logFile
+Logs/AssetImportWorker18.log
+-srvPort
+53410
+Successfully changed project path to: C:/Users/tigaw/Unity Files/Program_Skripsi
+C:/Users/tigaw/Unity Files/Program_Skripsi
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [16952]  Target information:
+
+Player connection [16952]  * "[IP] 192.168.100.24 [Port] 0 [Flags] 2 [Guid] 1258840328 [EditorId] 1258840328 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-TI38AGV) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [16952] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [16952] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+Refreshing native plugins compatible for Editor in 10.61 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.61f1 (6c53ebaf375d)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/tigaw/Unity Files/Program_Skripsi/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 960 (ID=0x1401)
+    Vendor:   NVIDIA
+    VRAM:     4040 MB
+    Driver:   32.0.15.8088
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56384
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
+Registered in 0.013691 seconds.
+- Loaded All Assemblies, in  0.306 seconds
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+Native extension for iOS target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 236 ms
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.494 seconds
+Domain Reload Profiling: 799ms
+	BeginReloadAssembly (91ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (58ms)
+	LoadAllAssembliesAndSetupDomain (121ms)
+		LoadAssemblies (91ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (117ms)
+			TypeCache.Refresh (116ms)
+				TypeCache.ScanAssembly (105ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (494ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (458ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (314ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (100ms)
+			ProcessInitializeOnLoadMethodAttributes (37ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.658 seconds
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.886 seconds
+Domain Reload Profiling: 1541ms
+	BeginReloadAssembly (122ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (20ms)
+	RebuildCommonClasses (26ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (35ms)
+	LoadAllAssembliesAndSetupDomain (465ms)
+		LoadAssemblies (367ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (167ms)
+			TypeCache.Refresh (143ms)
+				TypeCache.ScanAssembly (128ms)
+			ScanForSourceGeneratedMonoScriptInfo (16ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (886ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (759ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (30ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (62ms)
+			ProcessInitializeOnLoadAttributes (592ms)
+			ProcessInitializeOnLoadMethodAttributes (64ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 3.35 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4087 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 26 unused Assets / (439.9 KB). Loaded Objects now: 4575.
+Memory consumption went from 181.0 MB to 180.5 MB.
+Total: 3.707900 ms (FindLiveObjects: 0.279400 ms CreateObjectMapping: 0.250900 ms MarkObjects: 2.927100 ms  DeleteObjects: 0.249800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:scripting/monoscript/fileName/MainMenu.cs: c093076ba5753d7bec74a8a751ffb653 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:scripting/monoscript/fileName/HowToPlayer.cs: dfbf507b638936ed9f55f04747b3b2dd -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 2006672.660850 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/BOXOPHOBIC/VolcanoSky.png
+  artifactKey: Guid(5e14362d89ed0ff438cd79d8be7037be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/BOXOPHOBIC/VolcanoSky.png using Guid(5e14362d89ed0ff438cd79d8be7037be) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'c7d44c54d140e1a90eee36e97bbb6d73') in 0.358924 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 6.717984 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/Cafofo/Magic Spells Sounds/Ice Spell 02.wav
+  artifactKey: Guid(e125c225f7013664b8ca16a787ca03fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/Cafofo/Magic Spells Sounds/Ice Spell 02.wav using Guid(e125c225f7013664b8ca16a787ca03fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '52038eb0637327a109234166f4125216') in 0.049697 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.450837 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/Cafofo/Fantasy Interface Sounds/UI Tight 08.wav
+  artifactKey: Guid(792683467acb3cc438fb5fb2ad939aaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/Cafofo/Fantasy Interface Sounds/UI Tight 08.wav using Guid(792683467acb3cc438fb5fb2ad939aaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '598e4620cb1ba6447afbffb3c5a884b0') in 0.025289 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 4.295248 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/DanielShervheim/Stylized Water/Materials/Stylized Water 2.mat
+  artifactKey: Guid(f72d6d75185f842e498cbecf8339192c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/DanielShervheim/Stylized Water/Materials/Stylized Water 2.mat using Guid(f72d6d75185f842e498cbecf8339192c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '1f9949944ae9ce8c1d816ebe75178c25') in 0.146753 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 5.827424 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/DanielShervheim/Stylized Water/Textures/GentleWaves.bmp
+  artifactKey: Guid(ed512d00c2b0c0748bcb5cf3fce1a4c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/DanielShervheim/Stylized Water/Textures/GentleWaves.bmp using Guid(ed512d00c2b0c0748bcb5cf3fce1a4c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '1c2fb3c5ea68505c24e0fa3c33ef2abf') in 0.023881 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.061334 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/DanielShervheim/Stylized Water/Textures/SmallWaves.TGA
+  artifactKey: Guid(fab6b5b579fb24c1aa6ddc2fa68e4333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/DanielShervheim/Stylized Water/Textures/SmallWaves.TGA using Guid(fab6b5b579fb24c1aa6ddc2fa68e4333) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '7b35d063537b1fe468e512aa6c34154e') in 0.016978 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 6.828767 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Spike01.fbx
+  artifactKey: Guid(f4b78a5f92c56a742bceadbf3a154206) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Spike01.fbx using Guid(f4b78a5f92c56a742bceadbf3a154206) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '24e2d7fc492a9c266bbc2d9fce54772e') in 0.050132 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/UniqueMagicAbilities01_AB_8x8.mat
+  artifactKey: Guid(970c6945cbe4c77419b89cfd5a47f209) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/UniqueMagicAbilities01_AB_8x8.mat using Guid(970c6945cbe4c77419b89cfd5a47f209) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '7acd06a9785fc8dfe4434c1ded6f3769') in 0.101111 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 8.263168 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Models/Cylinder02.fbx
+  artifactKey: Guid(2f0822a46b0e6c74faa93a8dbf5bce80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Models/Cylinder02.fbx using Guid(2f0822a46b0e6c74faa93a8dbf5bce80) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '3ccbd5f51a3ccfd2594f5706d47e9aac') in 0.026366 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.015145 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Models/Swirl02.fbx
+  artifactKey: Guid(40c2b5618148fbf499d7f9889e0f7c95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Models/Swirl02.fbx using Guid(40c2b5618148fbf499d7f9889e0f7c95) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '5a417be1090a2c416e95f8cc6dbc5177') in 0.008391 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 42.683183 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Prefabs/vfx_Hit_Fireball05_Orange.prefab
+  artifactKey: Guid(2c03c1f1817cd3646b167c96f413a1f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Prefabs/vfx_Hit_Fireball05_Orange.prefab using Guid(2c03c1f1817cd3646b167c96f413a1f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '84a265e25622bcafe1037da70beefe7f') in 0.103553 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 67
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Prefabs/vfx_Muzzle_Fireball01.prefab
+  artifactKey: Guid(51bd01b23e91fda4bad128a9d11ac143) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Prefabs/vfx_Muzzle_Fireball01.prefab using Guid(51bd01b23e91fda4bad128a9d11ac143) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '7228ff1f7e737f6b39950f34b593b458') in 0.086631 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 29
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Prefabs/vfx_MagicAbility_ProjComet.prefab
+  artifactKey: Guid(56f889e7dceb6e148ab2898b0ad71857) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Prefabs/vfx_MagicAbility_ProjComet.prefab using Guid(56f889e7dceb6e148ab2898b0ad71857) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'cee0c690528aba35570ec9126ac122aa') in 0.075261 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 139
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Prefabs/vfx_Muzzle_Fireball05_Orange.prefab
+  artifactKey: Guid(36b9d80e2a0c8f64bac12e9f94852fc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Prefabs/vfx_Muzzle_Fireball05_Orange.prefab using Guid(36b9d80e2a0c8f64bac12e9f94852fc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '1140c1b1f1e99257c2dff62d36be7f16') in 0.025698 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 41
+========================================================================
+Received Import Request.
+  Time since last request: 79.241564 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Circle06.png
+  artifactKey: Guid(58e3a0bde9baa69438ff362ec85c73b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Circle06.png using Guid(58e3a0bde9baa69438ff362ec85c73b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '96378652489759c225c0bb0f7b5a8341') in 0.022470 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/CircleShatter05.png
+  artifactKey: Guid(edf0a7091b5b5824cbe015b1fb2513b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/CircleShatter05.png using Guid(edf0a7091b5b5824cbe015b1fb2513b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '90dccecd302e9c3ad901101ed92affd6') in 0.017326 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/CylinderTex01.PNG
+  artifactKey: Guid(d0b6872b499d2fd4aaf7e9de5f90859d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/CylinderTex01.PNG using Guid(d0b6872b499d2fd4aaf7e9de5f90859d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a71b305927c8f8f03a2f2b1be429c0ca') in 0.018304 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/ElectricStrike_Circles02.png
+  artifactKey: Guid(b8b6ef3e36efeb244870d3d07b57544e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/ElectricStrike_Circles02.png using Guid(b8b6ef3e36efeb244870d3d07b57544e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '20ba852d99aed2632fd22a90407c5d56') in 0.010454 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Circle17.png
+  artifactKey: Guid(739988d8668a32847a89cefcdf81f443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Circle17.png using Guid(739988d8668a32847a89cefcdf81f443) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '3a4133301c1db38884a8e959fcc83d0c') in 0.016268 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000111 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Flame01.PNG
+  artifactKey: Guid(12628b707e4e7384fa80a2a1d9db9c8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Flame01.PNG using Guid(12628b707e4e7384fa80a2a1d9db9c8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'c2c392635dc7315d88bbb81ef135407f') in 0.014257 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Gradient_blue.PNG
+  artifactKey: Guid(d886c0cb73a19514a8be80f38031dd73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Gradient_blue.PNG using Guid(d886c0cb73a19514a8be80f38031dd73) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a65d323041c44f105dfa6cd4c08dae65') in 0.013420 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/GradientCenter02.PNG
+  artifactKey: Guid(5f93b0c60bfdbd746b4706db2c61b7e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/GradientCenter02.PNG using Guid(5f93b0c60bfdbd746b4706db2c61b7e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '9bf1a573ad6561d0422b25ca7d4f0eb5') in 0.013986 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Flames01_4x4.png
+  artifactKey: Guid(d8639b974fee7e64baa6e9c8d0b85c30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Flames01_4x4.png using Guid(d8639b974fee7e64baa6e9c8d0b85c30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '98cb77f7854fc41a275624abae61b484') in 0.014597 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Noise02.png
+  artifactKey: Guid(28c7aad1372ff114b90d330f8a2dd938) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Noise02.png using Guid(28c7aad1372ff114b90d330f8a2dd938) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '0abe5ee7476a85be9e6297c5463ed6ac') in 0.015820 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Noise03.TGA
+  artifactKey: Guid(7abc4a3e0daadb54db6e7cab23f2d71e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Noise03.TGA using Guid(7abc4a3e0daadb54db6e7cab23f2d71e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '114d1d5e6ccf1aff6b005f4268dba17f') in 0.013433 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Rays01.png
+  artifactKey: Guid(c9b7ca48adee42b48b57dc30890c22c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Rays01.png using Guid(c9b7ca48adee42b48b57dc30890c22c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'cd5e783e212418bf577acdd1ac060f48') in 0.014255 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Impact01.png
+  artifactKey: Guid(f77eeb8247119344186c8123ee98f96d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Impact01.png using Guid(f77eeb8247119344186c8123ee98f96d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '5fb5ca13339dfe6d32e01482d91b5a4d') in 0.005269 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Spike01.png
+  artifactKey: Guid(c07f6b521ff5d6a42a5dc8faeb348ece) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Spike01.png using Guid(c07f6b521ff5d6a42a5dc8faeb348ece) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '083c64f1651f2c8491430e34d192fc82') in 0.015265 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Square04.PNG
+  artifactKey: Guid(d6442e8fcfb54df4c81ec507807288a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Square04.PNG using Guid(d6442e8fcfb54df4c81ec507807288a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'e7600a91ef2fdfd650699fd992cdbbbe') in 0.013491 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Trail06.png
+  artifactKey: Guid(77daeea872d48cb4db7e099d5c948a5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Trail06.png using Guid(77daeea872d48cb4db7e099d5c948a5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'ef95c44ba60433195f2d64fb06c9b367') in 0.017767 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/UniqueMagicAbilities_8x8_Mobile.png
+  artifactKey: Guid(a2420519ef041644dac69dfc00660f64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/UniqueMagicAbilities_8x8_Mobile.png using Guid(a2420519ef041644dac69dfc00660f64) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '592b29f313c5234ba8baf11a43993f64') in 0.015576 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/UniqueProjectiles_8x8.PNG
+  artifactKey: Guid(566d351cfa19ae74f9a7a3391be6f903) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/UniqueProjectiles_8x8.PNG using Guid(566d351cfa19ae74f9a7a3391be6f903) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '7b8d9468c700266f36c38e863eb1c4a0') in 0.029664 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/GradientCenter04.PNG
+  artifactKey: Guid(b3a2a74664dda6f44b5aaaccac83bbfc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/GradientCenter04.PNG using Guid(b3a2a74664dda6f44b5aaaccac83bbfc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '907d8e5b18fbfd6e2bd3462d95081c1e') in 0.008564 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Trail03.PNG
+  artifactKey: Guid(1d853f1f75c64464fa710478fc99e06c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Trail03.PNG using Guid(1d853f1f75c64464fa710478fc99e06c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '9b84cb3e183acde518aaaac4f530f3b4') in 0.017789 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/CircleShatter02.png
+  artifactKey: Guid(c81faf860eada7245bdc6df9f9289685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/CircleShatter02.png using Guid(c81faf860eada7245bdc6df9f9289685) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '64fba150164c6046d6f4fc036e02da39') in 0.013356 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Noise09.png
+  artifactKey: Guid(137630b98fb8ca14994287aeddeb8b75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/Noise09.png using Guid(137630b98fb8ca14994287aeddeb8b75) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '13ef0e83b33de226e7e301bf50a78e00') in 0.015917 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/RealisticSmoke02_4x4.png
+  artifactKey: Guid(1a357cb7fc76605428c086055335d6c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Textures/RealisticSmoke02_4x4.png using Guid(1a357cb7fc76605428c086055335d6c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '598e3a7e29740eb29afa6646c89ed53a') in 0.015029 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

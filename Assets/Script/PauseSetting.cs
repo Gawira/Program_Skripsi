@@ -10,6 +10,7 @@ namespace UnityStandardAssets.Cameras
         public GameObject pauseMenuPanel;
         public GameObject inventoryPanel;
         public GameObject settingsPanel;
+        public GameObject HTPScreen;
 
         [SerializeField] public FreeLookCam freeLookCam;
 
@@ -43,6 +44,7 @@ namespace UnityStandardAssets.Cameras
             pauseMenuPanel.SetActive(true);
             inventoryPanel.SetActive(false);
             settingsPanel.SetActive(false);
+            HTPScreen.SetActive(false);
 
             isPaused = true;
         }
@@ -59,11 +61,20 @@ namespace UnityStandardAssets.Cameras
         {
             inventoryPanel.SetActive(true);
             pauseMenuPanel.SetActive(false);
+            HTPScreen.SetActive(false);
         }
 
         public void OpenSettings()
         {
             settingsPanel.SetActive(true);
+            pauseMenuPanel.SetActive(false);
+            HTPScreen.SetActive(false);
+        }
+
+        public void OpenHTP()
+        {
+            HTPScreen.SetActive(true);
+            settingsPanel.SetActive(false);
             pauseMenuPanel.SetActive(false);
         }
 
@@ -71,6 +82,7 @@ namespace UnityStandardAssets.Cameras
         {
             inventoryPanel.SetActive(false);
             settingsPanel.SetActive(false);
+            HTPScreen.SetActive(false);
         }
 
         public void QuitGame()

@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638884233062538050
-    m_Hash: 2017233687
+      ticks: 638963568224099665
+    m_Hash: 1184581513
   m_LockFileStatus:
     m_FilePath: C:/Users/tigaw/Unity Files/Program_Skripsi/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638884233062578088
-    m_Hash: 2790471856
+      ticks: 638963568224139697
+    m_Hash: 2397702438
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -22,6 +22,65 @@ m_LocalPackages:
 m_ProjectPath: C:/Users/tigaw/Unity Files/Program_Skripsi/Packages
 m_EditorVersion: 2022.3.61f1 (6c53ebaf375d)
 m_ResolvedPackages:
+- packageId: com.unity.2d.sprite@1.0.0
+  testable: 0
+  isDirectDependency: 1
+  version: 1.0.0
+  source: 2
+  resolvedPath: C:\Users\tigaw\Unity Files\Program_Skripsi\Library\PackageCache\com.unity.2d.sprite@1.0.0
+  assetPath: Packages/com.unity.2d.sprite
+  name: com.unity.2d.sprite
+  displayName: 2D Sprite
+  author:
+    name: 
+    email: 
+    url: 
+  category: 2D
+  type: 
+  description: Use Unity Sprite Editor Window to create and edit Sprite asset properties
+    like pivot, borders and Physics shape
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 1.0.0
+    compatible:
+    - 1.0.0
+    recommended: 1.0.0
+    deprecated: []
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - 2d
+  - sprite
+  - sprite editor window
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 1.0.0
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+  fingerprint: 
 - packageId: com.unity.ai.navigation@1.1.7
   testable: 0
   isDirectDependency: 1
@@ -63,6 +122,7 @@ m_ResolvedPackages:
     - 2.0.6
     - 2.0.7
     - 2.0.8
+    - 2.0.9
     compatible:
     - 1.1.5
     - 1.1.6
@@ -222,10 +282,18 @@ m_ResolvedPackages:
     - 2.7.1
     - 2.8.1
     - 2.8.2
+    - 2.9.1
+    - 2.9.2
+    - 2.9.3
+    - 2.10.0
     compatible:
     - 2.7.1
     - 2.8.1
     - 2.8.2
+    - 2.9.1
+    - 2.9.2
+    - 2.9.3
+    - 2.10.0
     recommended: 2.7.1
     deprecated: []
   dependencies: []
@@ -452,6 +520,7 @@ m_ResolvedPackages:
     - 6.0.4
     - 6.0.5
     - 6.0.6
+    - 6.0.7
     compatible:
     - 5.2.4
     recommended: 5.2.4
@@ -652,6 +721,8 @@ m_ResolvedPackages:
     - 3.2.0-pre.10
     - 3.2.0-pre.11
     - 3.2.0-pre.12
+    - 3.2.0-pre.13
+    - 3.2.0-pre.14
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     compatible:
@@ -670,6 +741,8 @@ m_ResolvedPackages:
     - 3.2.0-pre.10
     - 3.2.0-pre.11
     - 3.2.0-pre.12
+    - 3.2.0-pre.13
+    - 3.2.0-pre.14
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     recommended: 3.0.9
@@ -3038,9 +3111,11 @@ m_ResolvedPackages:
     - 2.0.0
     - 2.0.1
     - 2.1.0
+    - 2.1.1
     compatible:
     - 2.0.1
     - 2.1.0
+    - 2.1.1
     recommended: 2.0.1
     deprecated: []
   dependencies: []
@@ -3120,10 +3195,12 @@ m_ResolvedPackages:
     - 2.0.21
     - 2.0.22
     - 2.0.23
+    - 2.0.25
     compatible:
     - 2.0.22
     - 2.0.23
-    recommended: 2.0.23
+    - 2.0.25
+    recommended: 2.0.25
     deprecated: []
   dependencies:
   - name: com.unity.test-framework
@@ -3233,11 +3310,16 @@ m_ResolvedPackages:
     - 3.0.34
     - 3.0.35
     - 3.0.36
+    - 3.0.37
+    - 3.0.38
     compatible:
     - 3.0.35
     - 3.0.36
-    recommended: 3.0.36
-    deprecated: []
+    - 3.0.37
+    - 3.0.38
+    recommended: 3.0.38
+    deprecated:
+    - 3.0.37
   dependencies:
   - name: com.unity.ext.nunit
     version: 1.0.6
@@ -3370,9 +3452,11 @@ m_ResolvedPackages:
     - 0.1.0-preview.1
     - 0.1.0-preview.2
     - 1.0.0
+    - 1.0.1
     compatible:
     - 1.0.0
-    recommended: 1.0.0
+    - 1.0.1
+    recommended: 1.0.1
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -3446,9 +3530,11 @@ m_ResolvedPackages:
     - 1.1.1
     - 1.2.2
     - 1.2.3
+    - 1.2.4
     compatible:
     - 1.2.3
-    recommended: 1.2.3
+    - 1.2.4
+    recommended: 1.2.4
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -3677,9 +3763,11 @@ m_ResolvedPackages:
     - 1.2.4
     - 1.2.5
     - 1.2.6
+    - 1.2.7
     compatible:
     - 1.2.6
-    recommended: 1.2.6
+    - 1.2.7
+    recommended: 1.2.7
     deprecated: []
   dependencies:
   - name: com.unity.test-framework
