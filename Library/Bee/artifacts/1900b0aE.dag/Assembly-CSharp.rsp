@@ -119,6 +119,8 @@
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:CROSS_PLATFORM_INPUT
+-define:UNITY_POST_PROCESSING_STACK_V2
+-define:PROBUILDER_EXPERIMENTAL_FEATURES
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
@@ -334,6 +336,7 @@
 -r:"Library/PackageCache/com.unity.testtools.codecoverage@1.2.6/lib/ReportGenerator/ReportGeneratorMerged.dll"
 -r:"Library/PackageCache/com.unity.visualscripting@1.9.4/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-firstpass.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Polyperfect.Common.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.2D.Sprite.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.AI.Navigation.Editor.ConversionSystem.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.AI.Navigation.Editor.ref.dll"
@@ -342,6 +345,8 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.EditorCoroutines.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Performance.Profile-Analyzer.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Postprocessing.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Postprocessing.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.ProBuilder.AddOns.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.ProBuilder.AssetIdRemapUtility.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.ProBuilder.Editor.ref.dll"
@@ -589,6 +594,8 @@
 "Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/RDR/Particles/Fantasy_Portal/Script/Exit.cs"
 "Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/RDR/Particles/Fantasy_Portal/Script/NextPrefab.cs"
 "Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/RDR/Particles/Fantasy_Portal/Script/UserCamera.cs"
+"Assets/Polytope Studio/Lowpoly_Demos/Environment_Free/Helpers/MouseLook.cs"
+"Assets/Polytope Studio/Lowpoly_Demos/Environment_Free/Helpers/PlayerMovement.cs"
 "Assets/SampleScenes/Menu/Scripts/MenuSceneLoader.cs"
 "Assets/SampleScenes/Menu/Scripts/PauseMenu.cs"
 "Assets/SampleScenes/Menu/Scripts/SceneAndURLLoader.cs"
@@ -625,6 +632,7 @@
 "Assets/Script/PauseSetting.cs"
 "Assets/Script/PickableItem.cs"
 "Assets/Script/PickableManager.cs"
+"Assets/Script/PlayerDetector.cs"
 "Assets/Script/PlayerManager.cs"
 "Assets/Script/PromptTrigger.cs"
 "Assets/Script/PromptUIManagerDoor.cs"
@@ -655,6 +663,13 @@
 "Assets/Script/UI/SimpleSlotUI.cs"
 "Assets/Script/Weapon.cs"
 "Assets/Script/WeaponUpgradeManager.cs"
+"Assets/ThirdPart/48 Particle Effect Pack/Script/csDestroyEffect.cs"
+"Assets/ThirdPart/48 Particle Effect Pack/Script/csMouseOrbit.cs"
+"Assets/ThirdPart/48 Particle Effect Pack/Script/csParticleEffectPackLightControl.cs"
+"Assets/ThirdPart/48 Particle Effect Pack/Script/csParticleMove.cs"
+"Assets/ThirdPart/48 Particle Effect Pack/Script/csShowAllEffect.cs"
+"Assets/ThirdPart/Piloto Studio/Readme/Scripts/Readme.cs"
+"Assets/ThirdPart/Piloto Studio/Readme/Scripts/ReadmeBehaviour.cs"
 -langversion:9.0
 /deterministic
 /optimize+
