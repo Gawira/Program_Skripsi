@@ -1182,6 +1182,10 @@
       <Project>{07896BA3-790B-82CB-6E4E-D064962B3A00}</Project>
       <Name>XNode</Name>
     </ProjectReference>
+    <ProjectReference Include="Polyperfect.Common.csproj">
+      <Project>{ED1915F3-5148-E5C4-A938-DE33BDD2190F}</Project>
+      <Name>Polyperfect.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

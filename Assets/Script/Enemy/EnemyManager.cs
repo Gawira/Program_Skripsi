@@ -18,8 +18,8 @@ public class EnemyManager : MonoBehaviour
     private Animator anim;
 
     public GameObject healthBarCanvas;
-    public LockOnTarget lockOnTarget;
-    public PlayerManager playerManager;
+    private LockOnTarget lockOnTarget;
+    private PlayerManager playerManager;
 
     void Start()
     {
