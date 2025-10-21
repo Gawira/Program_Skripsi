@@ -60,6 +60,10 @@ namespace UnityStandardAssets.Cameras
             {
                 FollowTarget(Time.deltaTime);
             }
+
+            if (m_UpdateType == UpdateType.LateUpdate)
+                FollowTarget(Time.deltaTime);
+
         }
 
 

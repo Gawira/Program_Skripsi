@@ -34,6 +34,9 @@ namespace UnityStandardAssets.Cameras
         private Quaternion m_PivotTargetRot;
         private Quaternion m_TransformTargetRot;
 
+        // add near top of class (inside the class, not inside methods)
+        
+
         protected override void Awake()
         {
             base.Awake();
@@ -73,6 +76,7 @@ namespace UnityStandardAssets.Cameras
             HandleRotationMovement();
         }
 
+        
 
         private void OnDisable()
         {

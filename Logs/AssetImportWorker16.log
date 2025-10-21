@@ -15,7 +15,7 @@ C:/Users/tigaw/Unity Files/Program_Skripsi
 -logFile
 Logs/AssetImportWorker16.log
 -srvPort
-51919
+65430
 Successfully changed project path to: C:/Users/tigaw/Unity Files/Program_Skripsi
 C:/Users/tigaw/Unity Files/Program_Skripsi
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,15 +49,15 @@ C:/Users/tigaw/Unity Files/Program_Skripsi
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [3200]  Target information:
+Player connection [10664]  Target information:
 
-Player connection [3200]  * "[IP] 192.168.100.24 [Port] 0 [Flags] 2 [Guid] 3337803294 [EditorId] 3337803294 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-TI38AGV) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [10664]  * "[IP] 192.168.100.24 [Port] 0 [Flags] 2 [Guid] 1494473195 [EditorId] 1494473195 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-TI38AGV) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [3200] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [3200] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [10664] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [10664] Host joined alternative multi-casting on [225.0.0.222:34997]...
 Input System module state changed to: Initialized.
 [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-Refreshing native plugins compatible for Editor in 9.87 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 147.30 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.61f1 (6c53ebaf375d)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/Resources/UnitySubsystems
@@ -73,7 +73,7 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56876
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56840
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
@@ -81,47 +81,47 @@ Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.61f1/
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
-Registered in 0.023285 seconds.
-- Loaded All Assemblies, in  0.416 seconds
+Registered in 0.019320 seconds.
+- Loaded All Assemblies, in  0.737 seconds
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 [usbmuxd] Start listen thread
 [usbmuxd] Listen thread started
 Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 257 ms
+Android Extension - Scanning For ADB Devices 423 ms
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.531 seconds
-Domain Reload Profiling: 945ms
-	BeginReloadAssembly (120ms)
+- Finished resetting the current domain, in  0.764 seconds
+Domain Reload Profiling: 1499ms
+	BeginReloadAssembly (116ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (33ms)
-	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (78ms)
-	LoadAllAssembliesAndSetupDomain (173ms)
-		LoadAssemblies (125ms)
+	RebuildCommonClasses (233ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (64ms)
+	LoadAllAssembliesAndSetupDomain (315ms)
+		LoadAssemblies (117ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (164ms)
-			TypeCache.Refresh (162ms)
-				TypeCache.ScanAssembly (149ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (0ms)
-	FinalizeReload (532ms)
+		AnalyzeDomain (310ms)
+			TypeCache.Refresh (307ms)
+				TypeCache.ScanAssembly (295ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (764ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (496ms)
+		SetupLoadedEditorAssemblies (724ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (350ms)
+			InitializePlatformSupportModulesInManaged (564ms)
 			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (102ms)
-			ProcessInitializeOnLoadMethodAttributes (37ms)
+			ProcessInitializeOnLoadAttributes (107ms)
+			ProcessInitializeOnLoadMethodAttributes (47ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -130,54 +130,54 @@ Domain Reload Profiling: 945ms
 Worker process is ready to serve import requests
 Caller must complete domain reload
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.667 seconds
+- Loaded All Assemblies, in  0.676 seconds
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.221 seconds
-Domain Reload Profiling: 1884ms
-	BeginReloadAssembly (127ms)
+- Finished resetting the current domain, in  1.324 seconds
+Domain Reload Profiling: 1998ms
+	BeginReloadAssembly (133ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (6ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (20ms)
-	RebuildCommonClasses (26ms)
-	RebuildNativeTypeToScriptingClass (8ms)
+		CreateAndSetChildDomain (22ms)
+	RebuildCommonClasses (29ms)
+	RebuildNativeTypeToScriptingClass (9ms)
 	initialDomainReloadingComplete (39ms)
 	LoadAllAssembliesAndSetupDomain (463ms)
-		LoadAssemblies (375ms)
+		LoadAssemblies (376ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (161ms)
-			TypeCache.Refresh (138ms)
-				TypeCache.ScanAssembly (122ms)
-			ScanForSourceGeneratedMonoScriptInfo (15ms)
-			ResolveRequiredComponents (7ms)
-	FinalizeReload (1222ms)
+		AnalyzeDomain (166ms)
+			TypeCache.Refresh (139ms)
+				TypeCache.ScanAssembly (125ms)
+			ScanForSourceGeneratedMonoScriptInfo (16ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (1325ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1095ms)
+		SetupLoadedEditorAssemblies (1193ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (28ms)
+			InitializePlatformSupportModulesInManaged (30ms)
 			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (59ms)
-			ProcessInitializeOnLoadAttributes (933ms)
-			ProcessInitializeOnLoadMethodAttributes (65ms)
+			BeforeProcessingInitializeOnLoad (58ms)
+			ProcessInitializeOnLoadAttributes (1022ms)
+			ProcessInitializeOnLoadMethodAttributes (74ms)
 			AfterProcessingInitializeOnLoad (7ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (5ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 3.30 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 3.43 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 4266 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 38 unused Assets / (2.2 MB). Loaded Objects now: 4765.
-Memory consumption went from 247.3 MB to 245.2 MB.
-Total: 6.485400 ms (FindLiveObjects: 0.337700 ms CreateObjectMapping: 0.332100 ms MarkObjects: 5.171600 ms  DeleteObjects: 0.643000 ms)
+Unloading 38 unused Assets / (2.2 MB). Loaded Objects now: 4766.
+Memory consumption went from 247.7 MB to 245.5 MB.
+Total: 4.898000 ms (FindLiveObjects: 0.310000 ms CreateObjectMapping: 0.310800 ms MarkObjects: 3.612800 ms  DeleteObjects: 0.663500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -194,387 +194,94 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 2203336.718804 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Space_M/asteroid.fbx
-  artifactKey: Guid(d4a62d24394e94c32ae623e5edbc0584) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Space_M/asteroid.fbx using Guid(d4a62d24394e94c32ae623e5edbc0584) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+  Time since last request: 2267399.354082 seconds.
+  path: Assets/assetsthiung/Materials/floortile.mat
+  artifactKey: Guid(1d4746ef6a60d5e4d92d4bdb82320c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/assetsthiung/Materials/floortile.mat using Guid(1d4746ef6a60d5e4d92d4bdb82320c63) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
 [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '77265cfa518a9636bf44d323d6eea0f4') in 0.117349 seconds
+ -> (artifact id: '4cea6714109105da51ab00792bd0741d') in 0.129451 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
+Number of asset objects unloaded after import = 3
 ========================================================================
-Received Import Request.
-  Time since last request: 0.318066 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Food_T/banana-peel.fbx
-  artifactKey: Guid(8256229bd9b924045aef4356e7e1d905) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Food_T/banana-peel.fbx using Guid(8256229bd9b924045aef4356e7e1d905) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '47a6744a1a3adacd5bf494adccf83273') in 0.016650 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.015217 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Western_T/bank-western.fbx
-  artifactKey: Guid(4ae37c71ef2a14dbe99925d019ed90f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Western_T/bank-western.fbx using Guid(4ae37c71ef2a14dbe99925d019ed90f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '94df59b737c5a55308fe2c0348c0dcea') in 0.016634 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.108258 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Western_M/barrel-old.fbx
-  artifactKey: Guid(d3fe446af3c13864995931e40d4b9ca4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Western_M/barrel-old.fbx using Guid(d3fe446af3c13864995931e40d4b9ca4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: 'd35e4d302291f17ae2d8a280761099c5') in 0.019375 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.022970 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/barricade-window.fbx
-  artifactKey: Guid(dd898cda74db64a6596c7409da169233) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/barricade-window.fbx using Guid(dd898cda74db64a6596c7409da169233) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '420812191e27669783323c83a5f9e878') in 0.018061 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.112444 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Apocalypse_M/barrier-concrete-tank.fbx
-  artifactKey: Guid(457d0639c53bb466bb7ddf22e5005398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Apocalypse_M/barrier-concrete-tank.fbx using Guid(457d0639c53bb466bb7ddf22e5005398) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '64b6e818c51fc7125fc1f57fb0997dc7') in 0.021272 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.147220 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Fantasy_T/bed-wood.prefab
-  artifactKey: Guid(063a04615f0d544caa94d9ee3a5c046c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Fantasy_T/bed-wood.prefab using Guid(063a04615f0d544caa94d9ee3a5c046c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: 'b3d24420567ec378b58885abc95a0eb6') in 0.024835 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 0.002705 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Food_T/beer.prefab
-  artifactKey: Guid(d36a7288cf87dd94fa81d2abb39132d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Food_T/beer.prefab using Guid(d36a7288cf87dd94fa81d2abb39132d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '793d824e5a0986955c2cf8c944fe9fe1') in 0.021738 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 0.236292 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Scifi_T/belt-moving-curve-up.fbx
-  artifactKey: Guid(b3e023c0f5c179b46805a4e34bd6ccca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Scifi_T/belt-moving-curve-up.fbx using Guid(b3e023c0f5c179b46805a4e34bd6ccca) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '8a14cf0e830c357301463297847216ff') in 0.016176 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 1.651957 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Scifi_M/scifi-solar-panel-triangle.fbx
-  artifactKey: Guid(d1697648042b76c46950837587f449a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Scifi_M/scifi-solar-panel-triangle.fbx using Guid(d1697648042b76c46950837587f449a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: 'e3a51cdc3aa0fa5a120be1fc2d9f61a1') in 0.021093 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.027670 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Scifi_T/scifi-traffic-lights-corner-a.fbx
-  artifactKey: Guid(cece6c8af94ec0c428461407a4d7c3bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Scifi_T/scifi-traffic-lights-corner-a.fbx using Guid(cece6c8af94ec0c428461407a4d7c3bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '09a27e1ce6e0a1a5c4a034bc640d93fa') in 0.018065 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.037788 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Scifi_T/Scifi City_T/scifi-traffic-lights-corner-b.prefab
-  artifactKey: Guid(cd730a6d913916346be08772597da274) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Scifi_T/Scifi City_T/scifi-traffic-lights-corner-b.prefab using Guid(cd730a6d913916346be08772597da274) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '4e5a070b8712edfbb2e515cb0cd191e9') in 0.020195 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 0.095450 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Scifi_T/Scifi City_T/scifi-traffic-lights-long-b.prefab
-  artifactKey: Guid(d8820066932e8c642941bddcf942667d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Scifi_T/Scifi City_T/scifi-traffic-lights-long-b.prefab using Guid(d8820066932e8c642941bddcf942667d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '9b6d6a04f92c6009e75ed647e624eefe') in 0.017429 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 0.010098 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Prefabs_M/Scifi_M/Scifi City_M/scifi-traffic-lights-long-corner-a.prefab
-  artifactKey: Guid(c8d766e566c41fd4e8004d2c9cab1355) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Prefabs_M/Scifi_M/Scifi City_M/scifi-traffic-lights-long-corner-a.prefab using Guid(c8d766e566c41fd4e8004d2c9cab1355) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '0f6a1800d216fb933d9e10190da6c851') in 0.021912 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 14
-========================================================================
-Received Import Request.
-  Time since last request: 0.004983 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Scifi_T/Scifi City_T/scifi-traffic-lights-long-corner-b.prefab
-  artifactKey: Guid(9ec1b720d5a325948b5fef6b423de742) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Scifi_T/Scifi City_T/scifi-traffic-lights-long-corner-b.prefab using Guid(9ec1b720d5a325948b5fef6b423de742) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: 'ab71b1f9095c520ef9f1aa4682a4cca5') in 0.017991 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 0.037336 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Scifi_M/scifi-traffic-lights-pedestrian-stop.fbx
-  artifactKey: Guid(b8c6951a7382e584288cb456aa59e996) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Scifi_M/scifi-traffic-lights-pedestrian-stop.fbx using Guid(b8c6951a7382e584288cb456aa59e996) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: 'b2a28c37bc2a42f00ff9f60900da5e02') in 0.026450 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.002547 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Scifi_M/scifi-traffic-lights-stop.fbx
-  artifactKey: Guid(46317e8b7f17c6140be48b8fc31c95ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Scifi_M/scifi-traffic-lights-stop.fbx using Guid(46317e8b7f17c6140be48b8fc31c95ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '5b8e60b671bebe217bbdae0f95559e33') in 0.018074 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.007826 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Prefabs_M/Scifi_M/scifi-tree-crown-big.prefab
-  artifactKey: Guid(9e6fb7029b161e4429ce535a78199b92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Prefabs_M/Scifi_M/scifi-tree-crown-big.prefab using Guid(9e6fb7029b161e4429ce535a78199b92) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '1a5059ff4f0eeb0614959ca033ab4f47') in 0.024771 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 10
-========================================================================
-Received Import Request.
-  Time since last request: 0.039269 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Scifi_M/scifi-tree-crown-small.fbx
-  artifactKey: Guid(64e6155868d920f4fa81d07c3d1cb334) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Scifi_M/scifi-tree-crown-small.fbx using Guid(64e6155868d920f4fa81d07c3d1cb334) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '3acc4e80f7d3fa48877ed9d4f016ee6b') in 0.018667 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 4.218779 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/building-burger-joint-apocalypse.fbx
-  artifactKey: Guid(facc74733a783784fa14e975c764d189) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/building-burger-joint-apocalypse.fbx using Guid(facc74733a783784fa14e975c764d189) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: 'e0da4c9b9b857c767d5e7b28a81c1809') in 0.016132 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.200432 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/building-house-block-old-apocalypse.prefab
-  artifactKey: Guid(906ac1504e08abb488ef2fcf0c391d7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/building-house-block-old-apocalypse.prefab using Guid(906ac1504e08abb488ef2fcf0c391d7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '899c905ee5090262dfddf47f3343c42e') in 0.025672 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 20
-========================================================================
-Received Import Request.
-  Time since last request: 0.012001 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/building-house-family-large-apocalypse.prefab
-  artifactKey: Guid(c5514ae16ec3d424cab87d279e692bf7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/building-house-family-large-apocalypse.prefab using Guid(c5514ae16ec3d424cab87d279e692bf7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '2d98f62a0464ec85cc5ee5375ac082af') in 0.018689 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 2.699765 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/building-office-tall-apocalypse-a.prefab
-  artifactKey: Guid(5282c5878c72da04c837c242efb35dda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/building-office-tall-apocalypse-a.prefab using Guid(5282c5878c72da04c837c242efb35dda) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '69684d801b0abd355f2c93b3eeef3513') in 0.017291 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 0.036306 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Apocalypse_M/building-policestation-apocalypse.fbx
-  artifactKey: Guid(a409bbc816669da4ea5386984a910334) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Apocalypse_M/building-policestation-apocalypse.fbx using Guid(a409bbc816669da4ea5386984a910334) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '676590ff76298a0e8518112610dda6ea') in 0.018880 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.389138 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/car-broken-apocalypse.fbx
-  artifactKey: Guid(e4653d1af87993a4b84af3b0e40ddf34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/car-broken-apocalypse.fbx using Guid(e4653d1af87993a4b84af3b0e40ddf34) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '6124f7a6e9499dd092e9347785829ec9') in 0.027184 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 14
-========================================================================
-Received Import Request.
-  Time since last request: 0.239358 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Apocalypse_M/car-truck-tanker-destroyed-apocalypse.fbx
-  artifactKey: Guid(fa3de0ae4d096d149a9623fcb73344f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Apocalypse_M/car-truck-tanker-destroyed-apocalypse.fbx using Guid(fa3de0ae4d096d149a9623fcb73344f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '1cd40489be54e693aff5a887df632812') in 0.018471 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.008271 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/car-truck-tanker-destroyed-apocalypse.prefab
-  artifactKey: Guid(363f23343115a4b4ea504e40afdc6b83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/car-truck-tanker-destroyed-apocalypse.prefab using Guid(363f23343115a4b4ea504e40afdc6b83) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '7744a6f28da47984bcc4b5e6d5772fc7') in 0.018298 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 1.632755 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/lamp-city-apocalypse-b.fbx
-  artifactKey: Guid(a0bdac6d9321a2d419e82bf1d013888e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/lamp-city-apocalypse-b.fbx using Guid(a0bdac6d9321a2d419e82bf1d013888e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '90d9c0be54d1768bf1715fa3c5091577') in 0.015581 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 1.638643 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/plane-passenger-apocalypse.prefab
-  artifactKey: Guid(3df18ae182ac5f84dadf4e719ddc7356) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/plane-passenger-apocalypse.prefab using Guid(3df18ae182ac5f84dadf4e719ddc7356) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: 'fca0d40a18ea713cd9ef092c2f77f440') in 0.019087 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 20
-========================================================================
-Received Import Request.
-  Time since last request: 0.008316 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/pole-electric-apocalypse-a.fbx
-  artifactKey: Guid(f5d36bf441dfa1643b5565d3445e672b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/pole-electric-apocalypse-a.fbx using Guid(f5d36bf441dfa1643b5565d3445e672b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '1b1d5a4115e55534cad8c31458462b3d') in 0.017472 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.540608 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/road-sign-green-apocalypse.fbx
-  artifactKey: Guid(0814e1fd371c2854ca1070e616ea44e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Apocalypse_T/road-sign-green-apocalypse.fbx using Guid(0814e1fd371c2854ca1070e616ea44e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '6c2cc2dd1bc1ccf68fc0b35bfcae0764') in 0.019803 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.111832 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Apocalypse_M/rubble-apocalypse-c.fbx
-  artifactKey: Guid(aa720633a1e26244f9ffba2bdc091d2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Apocalypse_M/rubble-apocalypse-c.fbx using Guid(aa720633a1e26244f9ffba2bdc091d2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '8bb8dd2b03ddad2f38e86c1c9509afed') in 0.019161 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.074534 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/rubble-apocalypse-e.prefab
-  artifactKey: Guid(bd6c3f3fe8f61d24eba8c9701c8520fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Apocalypse_T/rubble-apocalypse-e.prefab using Guid(bd6c3f3fe8f61d24eba8c9701c8520fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '5ffc355c8ee097fe9f7c3a0991ca2aed') in 0.025257 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 38.973581 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Prefabs_M/Fantasy_M/rubble-stone.prefab
-  artifactKey: Guid(aef5d5918ac6944e0ad20f6131e31506) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Prefabs_M/Fantasy_M/rubble-stone.prefab using Guid(aef5d5918ac6944e0ad20f6131e31506) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: '4f91d0c5a99e4fb93734b850354056e7') in 0.015795 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Furniture_T/rug-circle.prefab
-  artifactKey: Guid(082f45c12eb32064b9901cdfcde6cc97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Furniture_T/rug-circle.prefab using Guid(082f45c12eb32064b9901cdfcde6cc97) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: 'f88193c82c92f0e4f793b2dcc070045e') in 0.032753 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 12
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/polyperfect/Low Poly Ultimate Pack/M/- Prefabs_M/Furniture_M/rug-rounded.prefab
-  artifactKey: Guid(4f4d4d4083ee5004398f89e1fb7ce6ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/polyperfect/Low Poly Ultimate Pack/M/- Prefabs_M/Furniture_M/rug-rounded.prefab using Guid(4f4d4d4083ee5004398f89e1fb7ce6ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
-[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
- -> (artifact id: 'f236d1c007ae9d1aa46b4a4496339e59') in 0.018741 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.474 seconds
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for WebGL target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004b] in C:\Users\tigaw\Unity Files\Program_Skripsi\Assets\Blink\Tools\RPGBuilder\ThirdPartyAssets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <a914fa9a61f4426cb02cfb4156a1024d>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <a914fa9a61f4426cb02cfb4156a1024d>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <a914fa9a61f4426cb02cfb4156a1024d>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <1378b88fef4c46d398a0261fcd723ab7>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.448 seconds
+Domain Reload Profiling: 1919ms
+	BeginReloadAssembly (175ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (45ms)
+	RebuildCommonClasses (29ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (229ms)
+		LoadAssemblies (303ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (16ms)
+			TypeCache.Refresh (5ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (1448ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (896ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (35ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (71ms)
+			ProcessInitializeOnLoadAttributes (624ms)
+			ProcessInitializeOnLoadMethodAttributes (156ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 3.34 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4118 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 33 unused Assets / (2.1 MB). Loaded Objects now: 4810.
+Memory consumption went from 215.9 MB to 213.7 MB.
+Total: 4.147400 ms (FindLiveObjects: 0.328400 ms CreateObjectMapping: 0.288200 ms MarkObjects: 2.928100 ms  DeleteObjects: 0.601800 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
 AssetImportWorker is now disconnected from the server

@@ -2700,8 +2700,13 @@ MonoBehaviour:
   playerTag: Player
   checkInterval: 0.4
   decisionInterval: 0.2
+  moveSpeed: 3
   strafeSpeed: 1.03
-  m_Animator: {fileID: 6657929877881809409}
+  rotationSpeed: 8
+  groundRayLength: 1.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!54 &4690261761737721406
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2747,8 +2752,6 @@ MonoBehaviour:
   damage: 14
   playerTag: Player
   healthBarCanvas: {fileID: 7285022214324030207}
-  lockOnTarget: {fileID: 0}
-  playerManager: {fileID: 0}
 --- !u!136 &3469662497961048953
 CapsuleCollider:
   m_ObjectHideFlags: 0

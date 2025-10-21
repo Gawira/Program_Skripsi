@@ -1,0 +1,3958 @@
+ScriptsOnlyBuild:
+  usedScripts:
+    Assembly-CSharp:
+    - BLINK.RPGBuilder.AI.NPCSpawner
+    - BLINK.RPGBuilder.Character.PlayerAnimatorLayerHandler
+    - BLINK.RPGBuilder.Character.PlayerAppearanceHandler
+    - BLINK.RPGBuilder.Character.RPGBThirdPersonCharacterControllerEssentials
+    - BLINK.RPGBuilder.LogicMono.CombatNode
+    - BLINK.RPGBuilder.LogicMono.GroundIndicator
+    - BLINK.RPGBuilder.Managers.GroundIndicatorManager
+    - CameraParticleObject
+    - CharacterAnimator
+    - NodeSockets
+    - PlayerController
+    - ProjectileMoveScript
+    - RPGAbility
+    - RPGBCharacterWorldInteraction
+    - RPGBThirdPersonController
+    - RPGBonus
+    - RPGBuilderEditorDATA
+    - RPGBuilderEditorFilters
+    - RPGClass
+    - RPGCombatDATA
+    - RPGCombo
+    - RPGCraftingRecipe
+    - RPGCraftingStation
+    - RPGCurrency
+    - RPGDialogue
+    - RPGDialogueGraph
+    - RPGDialogueTextNode
+    - RPGEffect
+    - RPGEnchantment
+    - RPGFaction
+    - RPGGameModifier
+    - RPGGameScene
+    - RPGGearSet
+    - RPGGeneralDATA
+    - RPGItem
+    - RPGItemDATA
+    - RPGLevelsTemplate
+    - RPGLootTable
+    - RPGMerchantTable
+    - RPGNpc
+    - RPGQuest
+    - RPGRace
+    - RPGResourceNode
+    - RPGSkill
+    - RPGSpecies
+    - RPGSpellbook
+    - RPGStat
+    - RPGTalentTree
+    - RPGTask
+    - RPGTreePoint
+    - RPGWeaponTemplate
+    - RPGWorldPosition
+    - SpawnCometsScript
+    Assembly-CSharp-Editor.dll:
+    - MStudio.ColorPalette
+    Assembly-CSharp-firstpass.dll:
+    - UnityStandardAssets.Cameras.ProtectCameraFromWallClip
+    Assembly-CSharp.dll:
+    - BossAI
+    - BossAreaTrigger
+    - BossManager
+    - BossWeapon
+    - Checkpoint
+    - DjimatItem
+    - DjimatLimitSlotUI
+    - DjimatLimitUI
+    - DjimatSystem
+    - DoorInteraction
+    - EnemyAI
+    - EnemyHealthBar
+    - EnemyManager
+    - EnemyRespawner
+    - EnemyWeapon
+    - EquippedSlotUI
+    - GameManager
+    - GridMaker
+    - HowToPlayUIManager
+    - InventorySlotUI
+    - ItemInfoDisplay
+    - ItemInfoDisplayCatalog
+    - KeyItemGridMaker
+    - KeyItemInventory
+    - KeyItemSlotUI
+    - LockedDoorInteraction
+    - MerchantCatalog
+    - MerchantManager
+    - MerchantSlotUI
+    - MoneyUI
+    - PickableItem
+    - PickableManager
+    - PlayerDetector
+    - PlayerHealthUI
+    - PlayerInput
+    - PromptTrigger
+    - PromptUIManager
+    - PromptUIManagerCheckpoint
+    - PromptUIManagerDoor
+    - PromptUIManagerDoorKey
+    - ResetDataButton
+    - SacredStoneGridMaker
+    - SacredStoneInventory
+    - SacredStoneSlotUI
+    - ShaderHandler
+    - SimpleSlotUI
+    - UnityEngine.PlayerManager
+    - UnityStandardAssets.Cameras.FreeLookCam
+    - UnityStandardAssets.Cameras.LockOnTarget
+    - UnityStandardAssets.Cameras.MerchantSetting
+    - UnityStandardAssets.Cameras.PauseSetting
+    - UnityStandardAssets.Characters.ThirdPerson.TPCharacter
+    - UnityStandardAssets.Characters.ThirdPerson.TPUserControl
+    - Weapon
+    - WeaponUpgradeManager
+    Unity.AI.Navigation.dll:
+    - Unity.AI.Navigation.NavMeshSurface
+    Unity.PlasticSCM.Editor.dll:
+    - Unity.PlasticSCM.Editor.PlasticWindow
+    Unity.Postprocessing.Runtime.dll:
+    - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
+    - UnityEngine.Rendering.PostProcessing.AutoExposure
+    - UnityEngine.Rendering.PostProcessing.Bloom
+    - UnityEngine.Rendering.PostProcessing.ChromaticAberration
+    - UnityEngine.Rendering.PostProcessing.ColorGrading
+    - UnityEngine.Rendering.PostProcessing.DepthOfField
+    - UnityEngine.Rendering.PostProcessing.Grain
+    - UnityEngine.Rendering.PostProcessing.LensDistortion
+    - UnityEngine.Rendering.PostProcessing.MotionBlur
+    - UnityEngine.Rendering.PostProcessing.PostProcessLayer
+    - UnityEngine.Rendering.PostProcessing.PostProcessProfile
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources
+    - UnityEngine.Rendering.PostProcessing.PostProcessVolume
+    - UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
+    - UnityEngine.Rendering.PostProcessing.Vignette
+    Unity.ProBuilder.Editor.dll:
+    - UnityEditor.ProBuilder.PositionToolContext
+    - UnityEditor.ProBuilder.ProBuilderEditor
+    - UnityEditor.ProBuilder.ProbuilderMoveTool
+    - UnityEditor.ProBuilder.ProbuilderRotateTool
+    - UnityEditor.ProBuilder.ProbuilderScaleTool
+    Unity.ProBuilder.dll:
+    - UnityEngine.ProBuilder.ColliderBehaviour
+    - UnityEngine.ProBuilder.ProBuilderMesh
+    Unity.Rider.Editor.dll:
+    - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
+    UnityEditor.TestRunner.dll:
+    - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
+    - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.GridLayoutGroup
+    - UnityEngine.UI.Image
+    - UnityEngine.UI.RawImage
+    - UnityEngine.UI.Slider
+  serializedClasses:
+    Assembly-CSharp:
+    - BLINK.RPGBuilder.AI.NPCSpawner/NPC_SPAWN_DATA
+    - BLINK.RPGBuilder.Character.PlayerAppearanceHandler/ArmorRenderer
+    - BLINK.RPGBuilder.Character.PlayerAppearanceHandler/BodyRenderer
+    - BLINK.RPGBuilder.LogicMono.CombatNode/AbilitiesDATA
+    - BLINK.RPGBuilder.Managers.RequirementsManager/AbilityUseRequirementDATA
+    - BLINK.RPGBuilder.Managers.RequirementsManager/RequirementDATA
+    - CameraSettings
+    - CharacterData/AllocatedStatEntry
+    - GravitySettings
+    - MovementSettings
+    - NodeSockets/NodeSocket
+    - RPGAbility/AbilityEffectsApplied
+    - RPGAbility/AbilityTagsData
+    - RPGAbility/HIT_SETTINGS
+    - RPGAbility/RPGAbilityRankData
+    - RPGBGameActions
+    - RPGBonus/RPGBonusRankDATA
+    - RPGBuilderEditorDATA/CategoriesDATA
+    - RPGBuilderEditorDATA/CategoriesDATA/SubCategoriesDATA
+    - RPGBuilderEditorDATA/SceneLoaderData
+    - RPGBuilderEditorFilters/AbilityModuleSection
+    - RPGBuilderEditorFilters/BonusModuleSection
+    - RPGBuilderEditorFilters/CategoryFieldData
+    - RPGBuilderEditorFilters/ClassModuleSection
+    - RPGBuilderEditorFilters/CombatSettingsModuleSection
+    - RPGBuilderEditorFilters/ComboModuleSection
+    - RPGBuilderEditorFilters/CraftingRecipeModuleSection
+    - RPGBuilderEditorFilters/CraftingStationModuleSection
+    - RPGBuilderEditorFilters/CurrencyModuleSection
+    - RPGBuilderEditorFilters/DialogueModuleSection
+    - RPGBuilderEditorFilters/EditorSettingsModuleSection
+    - RPGBuilderEditorFilters/EffectModuleSection
+    - RPGBuilderEditorFilters/EnchantmentModuleSection
+    - RPGBuilderEditorFilters/FactionModuleSection
+    - RPGBuilderEditorFilters/GameModifierModuleSection
+    - RPGBuilderEditorFilters/GameSceneModuleSection
+    - RPGBuilderEditorFilters/GearSetModuleSection
+    - RPGBuilderEditorFilters/GeneralSettingsModuleSection
+    - RPGBuilderEditorFilters/ItemModuleSection
+    - RPGBuilderEditorFilters/ItemsSettingsModuleSection
+    - RPGBuilderEditorFilters/LevelTemplateModuleSection
+    - RPGBuilderEditorFilters/LootTableModuleSection
+    - RPGBuilderEditorFilters/MerchantTableModuleSection
+    - RPGBuilderEditorFilters/ModuleCategory
+    - RPGBuilderEditorFilters/ModuleContentData
+    - RPGBuilderEditorFilters/NPCModuleSection
+    - RPGBuilderEditorFilters/QuestModuleSection
+    - RPGBuilderEditorFilters/RaceModuleSection
+    - RPGBuilderEditorFilters/ResourceNodeModuleSection
+    - RPGBuilderEditorFilters/SkillModuleSection
+    - RPGBuilderEditorFilters/SpeciesModuleSection
+    - RPGBuilderEditorFilters/SpellbookModuleSection
+    - RPGBuilderEditorFilters/StatModuleSection
+    - RPGBuilderEditorFilters/TalentTreeModuleSection
+    - RPGBuilderEditorFilters/TaskModuleSection
+    - RPGBuilderEditorFilters/TreePointModuleSection
+    - RPGBuilderEditorFilters/WeaponTemplateModuleSection
+    - RPGBuilderEditorFilters/WorldPositionModuleSection
+    - RPGCombatDATA/ActionAbilityDATA
+    - RPGCombatDATA/CombatVisualAnimation
+    - RPGCombatDATA/CombatVisualEffect
+    - RPGCombatDATA/Faction_Reward_DATA
+    - RPGCraftingRecipe/ComponentsRequired
+    - RPGCraftingRecipe/CraftedItemsDATA
+    - RPGCraftingRecipe/RPGCraftingRecipeRankData
+    - RPGCraftingStation/CraftSkillsDATA
+    - RPGEffect/ON_BLOCK_ACTION
+    - RPGEffect/RPGEffectRankData
+    - RPGEffect/STAT_EFFECTS_DATA
+    - RPGEnchantment/EnchantmentTier
+    - RPGEnchantment/TierStat
+    - RPGFaction/Faction_Interaction_DATA
+    - RPGFaction/Faction_Stance_DATA
+    - RPGGameModifier/GameModifierDATA
+    - RPGGameModifier/ModuleAmountModifier
+    - RPGGameScene/REGION_DATA
+    - RPGGearSet/GearSetTier
+    - RPGGearSet/GearSetTier/GearSetTierStat
+    - RPGGearSet/itemInSet
+    - RPGGeneralDATA/ActionKey
+    - RPGItem/GEM_DATA
+    - RPGItem/GEM_DATA/GEM_STATS
+    - RPGItem/ITEM_STATS
+    - RPGItem/OnUseActionDATA
+    - RPGItem/SOCKETS_DATA
+    - RPGItem/WeaponPositionData
+    - RPGItem/WeaponPositionData/GenderPositionData
+    - RPGItemDATA/StartingItemsDATA
+    - RPGItemDATA/WeaponAnimatorOverride
+    - RPGLevelsTemplate/LEVELS_DATA
+    - RPGLootTable/LOOT_ITEMS
+    - RPGMerchantTable/ON_SALE_ITEMS_DATA
+    - RPGNpc/LOOT_TABLES
+    - RPGNpc/NPC_ABILITY_DATA
+    - RPGNpc/NPC_AGGRO_LINK
+    - RPGNpc/NPC_QUEST_DATA
+    - RPGNpc/NPC_STATS_DATA
+    - RPGQuest/QuestItemsGivenDATA
+    - RPGQuest/QuestObjectiveDATA
+    - RPGQuest/QuestRewardDATA
+    - RPGRace/WEAPON_TEMPLATES_DATA
+    - RPGResourceNode/RPGResourceNodeRankData
+    - RPGSpellbook/Node_DATA
+    - RPGStat/OnHitEffectsData
+    - RPGStat/StatBonusData
+    - RPGStat/VitalityActions
+    - RPGTalentTree/Node_DATA
+    - RPGTreePoint/GainRequirements
+    - RPGWeaponTemplate/TalentTreesDATA
+    - RPGWeaponTemplate/WeaponDATA
+    - RotationSettings
+    Unity.Postprocessing.Runtime:
+    - UnityEngine.Rendering.PostProcessing.AmbientOcclusionModeParameter
+    - UnityEngine.Rendering.PostProcessing.AmbientOcclusionQualityParameter
+    - UnityEngine.Rendering.PostProcessing.BoolParameter
+    - UnityEngine.Rendering.PostProcessing.ColorParameter
+    - UnityEngine.Rendering.PostProcessing.EyeAdaptationParameter
+    - UnityEngine.Rendering.PostProcessing.FastApproximateAntialiasing
+    - UnityEngine.Rendering.PostProcessing.FloatParameter
+    - UnityEngine.Rendering.PostProcessing.Fog
+    - UnityEngine.Rendering.PostProcessing.GradingModeParameter
+    - UnityEngine.Rendering.PostProcessing.HistogramMonitor
+    - UnityEngine.Rendering.PostProcessing.KernelSizeParameter
+    - UnityEngine.Rendering.PostProcessing.LightMeterMonitor
+    - UnityEngine.Rendering.PostProcessing.PostProcessDebugLayer
+    - UnityEngine.Rendering.PostProcessing.PostProcessDebugLayer/OverlaySettings
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources/ComputeShaders
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources/SMAALuts
+    - UnityEngine.Rendering.PostProcessing.PostProcessResources/Shaders
+    - UnityEngine.Rendering.PostProcessing.Spline
+    - UnityEngine.Rendering.PostProcessing.SplineParameter
+    - UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing
+    - UnityEngine.Rendering.PostProcessing.TemporalAntialiasing
+    - UnityEngine.Rendering.PostProcessing.TextureParameter
+    - UnityEngine.Rendering.PostProcessing.TonemapperParameter
+    - UnityEngine.Rendering.PostProcessing.Vector2Parameter
+    - UnityEngine.Rendering.PostProcessing.Vector4Parameter
+    - UnityEngine.Rendering.PostProcessing.VectorscopeMonitor
+    - UnityEngine.Rendering.PostProcessing.VignetteModeParameter
+    - UnityEngine.Rendering.PostProcessing.WaveformMonitor
+    Unity.TextMeshPro:
+    - TMPro.FaceInfo_Legacy
+    - TMPro.FontAssetCreationSettings
+    - TMPro.KerningTable
+    - TMPro.TMP_Character
+    - TMPro.TMP_FontFeatureTable
+    - TMPro.TMP_FontWeightPair
+    - TMPro.TMP_GlyphAdjustmentRecord
+    - TMPro.TMP_GlyphPairAdjustmentRecord
+    - TMPro.TMP_GlyphValueRecord
+    - TMPro.TMP_Sprite
+    - TMPro.TMP_SpriteCharacter
+    - TMPro.TMP_SpriteGlyph
+    - TMPro.TMP_Style
+    - TMPro.VertexGradient
+    UnityEngine.CoreModule:
+    - UnityEngine.Events.ArgumentCache
+    - UnityEngine.Events.PersistentCallGroup
+    - UnityEngine.Events.PersistentListenerMode
+    - UnityEngine.RectOffset
+    UnityEngine.IMGUIModule:
+    - UnityEngine.GUISettings
+    - UnityEngine.GUIStyle
+    UnityEngine.TextCoreFontEngineModule:
+    - UnityEngine.TextCore.FaceInfo
+    - UnityEngine.TextCore.Glyph
+    - UnityEngine.TextCore.GlyphMetrics
+    - UnityEngine.TextCore.GlyphRect
+    UnityEngine.UI:
+    - UnityEngine.UI.AnimationTriggers
+    - UnityEngine.UI.Button/ButtonClickedEvent
+    - UnityEngine.UI.ColorBlock
+    - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+    - UnityEngine.UI.Navigation
+    - UnityEngine.UI.Slider/SliderEvent
+    - UnityEngine.UI.SpriteState
+    XNode:
+    - XNode.Node/NodePortDictionary
+    - XNode.NodePort
+    - XNode.NodePort/PortConnection
+  methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: MerchantSlotUI
+    methodName: OnClickBuy
+  - assembly: Assembly-CSharp
+    fullTypeName: HowToPlayUIManager
+    methodName: ShowCombat
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.MerchantSetting
+    methodName: Enter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.MerchantSetting
+    methodName: OpenUpgrade
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.PauseSetting
+    methodName: Pause
+  - assembly: Assembly-CSharp
+    fullTypeName: HowToPlayUIManager
+    methodName: ShowMovement
+  - assembly: Assembly-CSharp
+    fullTypeName: HowToPlayUIManager
+    methodName: ShowLockOn
+  - assembly: Assembly-CSharp
+    fullTypeName: ResetDataButton
+    methodName: OnResetClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.PauseSetting
+    methodName: OpenSettings
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.PauseSetting
+    methodName: Pause
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.PauseSetting
+    methodName: OpenHTP
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.MerchantSetting
+    methodName: OpenBuy
+  - assembly: Assembly-CSharp
+    fullTypeName: MerchantManager
+    methodName: CloseMerchantUI
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.MerchantSetting
+    methodName: Enter
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.PauseSetting
+    methodName: OpenInventory
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.PauseSetting
+    methodName: BackToMainMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: UnityStandardAssets.Cameras.PauseSetting
+    methodName: OpenSettings
+  - assembly: Assembly-CSharp
+    fullTypeName: HowToPlayUIManager
+    methodName: ShowEvade
+  sceneClasses:
+    Assets/Scenes/SampleScene.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 29
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 72
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 96
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 888}
+    - Class: 114
+      Script: {instanceID: 16976}
+    - Class: 114
+      Script: {instanceID: 16982}
+    - Class: 114
+      Script: {instanceID: 16984}
+    - Class: 114
+      Script: {instanceID: 16994}
+    - Class: 114
+      Script: {instanceID: 17052}
+    - Class: 114
+      Script: {instanceID: 17054}
+    - Class: 114
+      Script: {instanceID: 17172}
+    - Class: 114
+      Script: {instanceID: 17246}
+    - Class: 114
+      Script: {instanceID: 17250}
+    - Class: 114
+      Script: {instanceID: 17266}
+    - Class: 114
+      Script: {instanceID: 17322}
+    - Class: 114
+      Script: {instanceID: 17334}
+    - Class: 114
+      Script: {instanceID: 17668}
+    - Class: 114
+      Script: {instanceID: 17786}
+    - Class: 114
+      Script: {instanceID: 17792}
+    - Class: 114
+      Script: {instanceID: 17802}
+    - Class: 114
+      Script: {instanceID: 17952}
+    - Class: 114
+      Script: {instanceID: 17968}
+    - Class: 114
+      Script: {instanceID: 17972}
+    - Class: 114
+      Script: {instanceID: 17974}
+    - Class: 114
+      Script: {instanceID: 18062}
+    - Class: 114
+      Script: {instanceID: 18068}
+    - Class: 114
+      Script: {instanceID: 18154}
+    - Class: 114
+      Script: {instanceID: 18264}
+    - Class: 114
+      Script: {instanceID: 18270}
+    - Class: 114
+      Script: {instanceID: 18272}
+    - Class: 114
+      Script: {instanceID: 18334}
+    - Class: 114
+      Script: {instanceID: 18340}
+    - Class: 114
+      Script: {instanceID: 18442}
+    - Class: 114
+      Script: {instanceID: 18456}
+    - Class: 114
+      Script: {instanceID: 18500}
+    - Class: 114
+      Script: {instanceID: 18576}
+    - Class: 114
+      Script: {instanceID: 18580}
+    - Class: 114
+      Script: {instanceID: 18602}
+    - Class: 114
+      Script: {instanceID: 18612}
+    - Class: 114
+      Script: {instanceID: 18626}
+    - Class: 114
+      Script: {instanceID: 18644}
+    - Class: 114
+      Script: {instanceID: 18760}
+    - Class: 114
+      Script: {instanceID: 18864}
+    - Class: 114
+      Script: {instanceID: 19008}
+    - Class: 114
+      Script: {instanceID: 19086}
+    - Class: 114
+      Script: {instanceID: 19128}
+    - Class: 114
+      Script: {instanceID: 19146}
+    - Class: 114
+      Script: {instanceID: 19222}
+    - Class: 114
+      Script: {instanceID: 19232}
+    - Class: 114
+      Script: {instanceID: 19240}
+    - Class: 114
+      Script: {instanceID: 19282}
+    - Class: 114
+      Script: {instanceID: 19404}
+    - Class: 114
+      Script: {instanceID: 19480}
+    - Class: 114
+      Script: {instanceID: 19528}
+    - Class: 114
+      Script: {instanceID: 19558}
+    - Class: 114
+      Script: {instanceID: 19582}
+    - Class: 114
+      Script: {instanceID: 19590}
+    - Class: 114
+      Script: {instanceID: 19606}
+    - Class: 114
+      Script: {instanceID: 19664}
+    - Class: 114
+      Script: {instanceID: 19682}
+    - Class: 114
+      Script: {instanceID: 19738}
+    - Class: 114
+      Script: {instanceID: 19782}
+    - Class: 114
+      Script: {instanceID: 19796}
+    - Class: 114
+      Script: {instanceID: 19980}
+    - Class: 114
+      Script: {instanceID: 19992}
+    - Class: 114
+      Script: {instanceID: 20004}
+    - Class: 114
+      Script: {instanceID: 20010}
+    - Class: 114
+      Script: {instanceID: 20088}
+    - Class: 114
+      Script: {instanceID: 20126}
+    - Class: 114
+      Script: {instanceID: 20202}
+    - Class: 114
+      Script: {instanceID: 20210}
+    - Class: 114
+      Script: {instanceID: 20302}
+    - Class: 114
+      Script: {instanceID: 20344}
+    - Class: 114
+      Script: {instanceID: 20350}
+    - Class: 114
+      Script: {instanceID: 20468}
+    - Class: 114
+      Script: {instanceID: 20518}
+    - Class: 114
+      Script: {instanceID: 20542}
+    - Class: 114
+      Script: {instanceID: 20614}
+    - Class: 114
+      Script: {instanceID: 20688}
+    - Class: 114
+      Script: {instanceID: 20724}
+    - Class: 114
+      Script: {instanceID: 20890}
+    - Class: 114
+      Script: {instanceID: 20960}
+    - Class: 114
+      Script: {instanceID: 21130}
+    - Class: 114
+      Script: {instanceID: 21166}
+    - Class: 114
+      Script: {instanceID: 21170}
+    - Class: 114
+      Script: {instanceID: 21182}
+    - Class: 114
+      Script: {instanceID: 21212}
+    - Class: 114
+      Script: {instanceID: 21222}
+    - Class: 114
+      Script: {instanceID: 21238}
+    - Class: 114
+      Script: {instanceID: 21288}
+    - Class: 114
+      Script: {instanceID: 21302}
+    - Class: 114
+      Script: {instanceID: 21338}
+    - Class: 114
+      Script: {instanceID: 21374}
+    - Class: 114
+      Script: {instanceID: 21430}
+    - Class: 114
+      Script: {instanceID: 21450}
+    - Class: 114
+      Script: {instanceID: 21520}
+    - Class: 114
+      Script: {instanceID: 21540}
+    - Class: 114
+      Script: {instanceID: 21564}
+    - Class: 114
+      Script: {instanceID: 21586}
+    - Class: 114
+      Script: {instanceID: 21614}
+    - Class: 114
+      Script: {instanceID: 21704}
+    - Class: 114
+      Script: {instanceID: 21752}
+    - Class: 114
+      Script: {instanceID: 21800}
+    - Class: 114
+      Script: {instanceID: 21824}
+    - Class: 114
+      Script: {instanceID: 21938}
+    - Class: 114
+      Script: {instanceID: 22282}
+    - Class: 114
+      Script: {instanceID: 22354}
+    - Class: 114
+      Script: {instanceID: 22366}
+    - Class: 114
+      Script: {instanceID: 22454}
+    - Class: 114
+      Script: {instanceID: 22510}
+    - Class: 114
+      Script: {instanceID: 22538}
+    - Class: 114
+      Script: {instanceID: 22544}
+    - Class: 114
+      Script: {instanceID: 22564}
+    - Class: 114
+      Script: {instanceID: 22622}
+    - Class: 114
+      Script: {instanceID: 22680}
+    - Class: 114
+      Script: {instanceID: 22758}
+    - Class: 114
+      Script: {instanceID: 22812}
+    - Class: 114
+      Script: {instanceID: 22896}
+    - Class: 114
+      Script: {instanceID: 23174}
+    - Class: 114
+      Script: {instanceID: 23266}
+    - Class: 114
+      Script: {instanceID: 23288}
+    - Class: 114
+      Script: {instanceID: 23330}
+    - Class: 114
+      Script: {instanceID: 23344}
+    - Class: 114
+      Script: {instanceID: 23358}
+    - Class: 114
+      Script: {instanceID: 23384}
+    - Class: 114
+      Script: {instanceID: 23468}
+    - Class: 114
+      Script: {instanceID: 23874}
+    - Class: 114
+      Script: {instanceID: 23928}
+    - Class: 114
+      Script: {instanceID: 24042}
+    - Class: 114
+      Script: {instanceID: 24142}
+    - Class: 114
+      Script: {instanceID: 24210}
+    - Class: 114
+      Script: {instanceID: 24264}
+    - Class: 114
+      Script: {instanceID: 24266}
+    - Class: 114
+      Script: {instanceID: 24294}
+    - Class: 114
+      Script: {instanceID: 24352}
+    - Class: 114
+      Script: {instanceID: 24462}
+    - Class: 114
+      Script: {instanceID: 24638}
+    - Class: 114
+      Script: {instanceID: 24720}
+    - Class: 114
+      Script: {instanceID: 24748}
+    - Class: 114
+      Script: {instanceID: 25016}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 119
+      Script: {instanceID: 0}
+    - Class: 120
+      Script: {instanceID: 0}
+    - Class: 124
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 137
+      Script: {instanceID: 0}
+    - Class: 143
+      Script: {instanceID: 0}
+    - Class: 154
+      Script: {instanceID: 0}
+    - Class: 156
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 193
+      Script: {instanceID: 0}
+    - Class: 195
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 205
+      Script: {instanceID: 0}
+    - Class: 208
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 218
+      Script: {instanceID: 0}
+    - Class: 221
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 226
+      Script: {instanceID: 0}
+    - Class: 227
+      Script: {instanceID: 0}
+    - Class: 228
+      Script: {instanceID: 0}
+    - Class: 328
+      Script: {instanceID: 0}
+    - Class: 363
+      Script: {instanceID: 0}
+    - Class: 850595691
+      Script: {instanceID: 0}
+    - Class: 1953259897
+      Script: {instanceID: 0}
+  scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 915204dac8acad99f076d6e72ada0a0f
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Button
+  - hash:
+      serializedVersion: 2
+      Hash: b5007673bbbdb9d12597a1d8201370f5
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Text
+  - hash:
+      serializedVersion: 2
+      Hash: b747f5d40674055dd70e18552f1b0447
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Mask
+  - hash:
+      serializedVersion: 2
+      Hash: 540882762544409cc4530e60db00e951
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
+  - hash:
+      serializedVersion: 2
+      Hash: dd9dda1dfd39e605c49e72003342ef5d
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: 8dff8e9853297d341afa0c11f9091b59
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: LayoutElement
+  - hash:
+      serializedVersion: 2
+      Hash: d0cdd713f9bf4e6a625d9e7804deca42
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.EventSystems
+    className: EventTrigger
+  - hash:
+      serializedVersion: 2
+      Hash: a90f6a00b23520788be7d89ee3b0773d
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Scrollbar
+  - hash:
+      serializedVersion: 2
+      Hash: d41ab9b5ea92474f9c0a6937a0607ce1
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: ContentSizeFitter
+  - hash:
+      serializedVersion: 2
+      Hash: 8dc40a01667ca02b3354a4e7a61be082
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 4fcf0bb4aff1d14a1dfcdedc4b07bd05
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.EventSystems
+    className: TouchInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: 5221c9e5b8c1c4ba45813b2cbc1c63ce
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: BossUISlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 55060a7bf226ac385ce19ebd450f199f
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UIElements
+    className: PanelRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 3cc5f5f21645da9c003c3a10378f29f2
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGSkill
+  - hash:
+      serializedVersion: 2
+      Hash: 5dd420ee9b96e0eceb85556acad0e89e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGCraftingStation
+  - hash:
+      serializedVersion: 2
+      Hash: e6407632949b370d64acea47a4c0c769
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: ClassSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: ecac9bf37883d41183302f0360b2487c
+    assemblyName: Polyperfect.Common
+    namespaceName: Polyperfect.Common
+    className: AnimationDelay
+  - hash:
+      serializedVersion: 2
+      Hash: f45600bcc886206dd55a3208474aad61
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnScrollbarValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: a3901985eb076c1c9b7562fca82ca3e0
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: SignalAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 981f52e3ac58143e31bc3197fc66213b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGDialogueTextNode
+  - hash:
+      serializedVersion: 2
+      Hash: 424074d3010ce4ec3d155fbdba52a3b3
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: Grain
+  - hash:
+      serializedVersion: 2
+      Hash: 95848db7298455a94ff31bd171516ac2
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: WheelEffects
+  - hash:
+      serializedVersion: 2
+      Hash: 00bbd9db8634496d079d17711b2ff7c4
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: d288b91e589b158993de63a45b54fe6b
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: CarSelfRighting
+  - hash:
+      serializedVersion: 2
+      Hash: 61bc504d16d946db6469286356c871e9
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGResourceNode
+  - hash:
+      serializedVersion: 2
+      Hash: 8898d1537710719270db391edbb86c9c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DjimatItem
+  - hash:
+      serializedVersion: 2
+      Hash: 8fa4225c7d675e2ecf67062c4b772e17
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CharacterAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: a7d5961bd2b4b89223ef2e5bd326840b
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: Mudguard
+  - hash:
+      serializedVersion: 2
+      Hash: ca52963b3af4a8c430c4e5d130166fa9
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: UserCamera
+  - hash:
+      serializedVersion: 2
+      Hash: 8703b6ae2b0eefd9dafbc44d8d333fb1
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Shadow
+  - hash:
+      serializedVersion: 2
+      Hash: f778e23b6ff26b8de4721be0eb1fa240
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnCollisionStayMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: e4d05c8956e63ade91ddb8af130fcac6
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Effects
+    className: Explosive
+  - hash:
+      serializedVersion: 2
+      Hash: 22b9b2fc527c32b5d5d5062562d38823
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ItemInfoDisplay
+  - hash:
+      serializedVersion: 2
+      Hash: 5c8869601d71a4688a52b943a3dcba7a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnemyRespawner
+  - hash:
+      serializedVersion: 2
+      Hash: 732579212a256c2101e2960fce252b52
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerCamera
+  - hash:
+      serializedVersion: 2
+      Hash: e002a9041fc9ebe47ebd805b7abba19a
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: MeshParticleManager
+  - hash:
+      serializedVersion: 2
+      Hash: f854af586011dd194574f89546642e29
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnMouseExitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 35255e2dda170c31e1a12e7b2b22b209
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: DynamicShadowSettings
+  - hash:
+      serializedVersion: 2
+      Hash: 95319c71805d9cd15787c10c64964797
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.LogicMono
+    className: ProjectileHitDetection
+  - hash:
+      serializedVersion: 2
+      Hash: f39094a5239fdf31a5597f0793594cf3
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.DisplayHandler
+    className: StatBarDisplayHandler
+  - hash:
+      serializedVersion: 2
+      Hash: fad0a612fded537eb319d93b830c98b1
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: LootPanelDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: ea1d7a985d10a604de40565fe37327b0
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.CrossPlatformInput
+    className: ButtonHandler
+  - hash:
+      serializedVersion: 2
+      Hash: aea8b83c73d49d660d0e7247d18e0081
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: AbilityTooltipElement
+  - hash:
+      serializedVersion: 2
+      Hash: 0dd3441794baf3330fcada6fff895aa2
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: PlatformSpecificContent
+  - hash:
+      serializedVersion: 2
+      Hash: 1cb956d561fe9f0ff0c4782a9de660bb
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Character
+    className: PlayerAnimatorLayerHandler
+  - hash:
+      serializedVersion: 2
+      Hash: afd95466b2ce150f5a50438371278b67
+    assemblyName: Assembly-CSharp
+    namespaceName: UnityStandardAssets.SceneUtils
+    className: SlowMoButton
+  - hash:
+      serializedVersion: 2
+      Hash: b12640dfdb5966813e9dd838893e6c4a
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnTriggerEnterMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: c25cbb896211fc253d317b28f3606eba
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Weapon
+  - hash:
+      serializedVersion: 2
+      Hash: 0c6de72eaf8c1070da824268c4bfad9d
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_StyleSheet
+  - hash:
+      serializedVersion: 2
+      Hash: fcc8c67e4654a3e812f1d8dc9a4972b6
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: RequirementsManager
+  - hash:
+      serializedVersion: 2
+      Hash: a12b7b6607227c1851cc13529842e747
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Cameras
+    className: ProtectCameraFromWallClip
+  - hash:
+      serializedVersion: 2
+      Hash: ad49e20f31ed572e586aa8bbaafb591b
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnDropMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: edb23c0589b8020f3de6df2f00ad93e9
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LevelReset
+  - hash:
+      serializedVersion: 2
+      Hash: 0cb617436f3b900302d4e4ff26a2eceb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SceneAndURLLoader
+  - hash:
+      serializedVersion: 2
+      Hash: 1bc6ff8d02d2d68019aa6a028f8d409d
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnPointerUpMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 087519abd5fa2a0fa3057a0da18822da
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: SkillBookDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: cd3a07925ec49c786a607ca281708a26
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: NodeStateSlot
+  - hash:
+      serializedVersion: 2
+      Hash: 7e93247d600e115dac0cdd880de94e99
+    assemblyName: UnityEngine.TestRunner
+    namespaceName: UnityEngine.TestTools.TestRunner
+    className: PlaymodeTestsController
+  - hash:
+      serializedVersion: 2
+      Hash: 83cfda82082c233d96cc677c19f57e07
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnJointBreakMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 1ca8278159dc01bc2ca863a48c7df4a2
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.DisplayHandler
+    className: EXPBarDisplayHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 1f40194245e77e87b2cd90a6acb6fc71
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Water
+    className: Displace
+  - hash:
+      serializedVersion: 2
+      Hash: e723840b9116528cebe3e011cf448730
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: FactionManager
+  - hash:
+      serializedVersion: 2
+      Hash: f5d97f820d95919426890904bf3fbe1a
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Cameras
+    className: HandHeldCam
+  - hash:
+      serializedVersion: 2
+      Hash: 034c09c519b2568d46a9f81e63c54a8c
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
+    className: AeroplanePropellerAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: 76ff479dbb837073ee264e9606d7c9eb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SacredStoneInventory
+  - hash:
+      serializedVersion: 2
+      Hash: 1ab136900c0edaeeb49424c852595030
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: cba5c711d6efc5426ba93ed7e73cc746
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGBuilderEditorDATA
+  - hash:
+      serializedVersion: 2
+      Hash: b60d14915365852b0542e5f79202c212
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: HowToPlayUIManager
+  - hash:
+      serializedVersion: 2
+      Hash: 2ac1a822a4f987d22eb5f91ce27c01e6
+    assemblyName: Assembly-CSharp
+    namespaceName: ReadmeSystem
+    className: ReadmeBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: fd52bf7340bc1507237dadc0b6dc3494
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Cameras
+    className: FreeLookcam
+  - hash:
+      serializedVersion: 2
+      Hash: ff086b2fc4609f8b094e7c0435c6db0a
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessLayer
+  - hash:
+      serializedVersion: 2
+      Hash: aa058b004cc8a3404007a39d9a2d3707
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DjimatLimitSlotUI
+  - hash:
+      serializedVersion: 2
+      Hash: cb06ab2ce80c7fc5c115ed7d63497817
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.World
+    className: WorldDroppedItem
+  - hash:
+      serializedVersion: 2
+      Hash: 44be7205871efe00070efa30bc64478a
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: QuestManager
+  - hash:
+      serializedVersion: 2
+      Hash: 4f89c04b7b772b4be7c50f1bdbf5ae5f
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: SocketingPanelDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 46f24051bcc3a2cb9b6cec3ec8ca03c6
+    assemblyName: Assembly-CSharp
+    namespaceName: UnityStandardAssets.Cameras
+    className: FreeLookCam
+  - hash:
+      serializedVersion: 2
+      Hash: 98340b137b2c68765166d90824831f52
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Effects
+    className: AfterburnerPhysicsForce
+  - hash:
+      serializedVersion: 2
+      Hash: 00e357d528c566a888d2bc1887ff27d6
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
+    className: AeroplaneController
+  - hash:
+      serializedVersion: 2
+      Hash: 1321993db8249e1e05e1e0492b2bbdc3
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnBecameVisibleMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 0ccd15bdf4510af6390f44b05294753c
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: ScreenSpaceStateDisplay
+  - hash:
+      serializedVersion: 2
+      Hash: b64144b75852b773a021e31f5b1c4fa1
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Effects
+    className: ExplosionPhysicsForce
+  - hash:
+      serializedVersion: 2
+      Hash: c512c746cde23bb0ec778180672faded
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Water
+    className: PlanarReflection
+  - hash:
+      serializedVersion: 2
+      Hash: 7e72843d67e438d95df7e34deb69259b
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: DialogueDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 79cf728ac6121795fe4e87c17dd78a06
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGClass
+  - hash:
+      serializedVersion: 2
+      Hash: 61a487bc0d56aebdb9f666ef46440f65
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGMerchantTable
+  - hash:
+      serializedVersion: 2
+      Hash: 8631d8c5a23a2ce79a87d22ad3473f4c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGAbility
+  - hash:
+      serializedVersion: 2
+      Hash: c94c04d8d29f5c835b84fae0781c374b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerHealthUI
+  - hash:
+      serializedVersion: 2
+      Hash: e987953190eb4c12cf19df790566dc2c
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.EventSystems
+    className: EventSystem
+  - hash:
+      serializedVersion: 2
+      Hash: 8c1feeec2ad5467318ea2a9376c14ab4
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: TimedObjectActivator
+  - hash:
+      serializedVersion: 2
+      Hash: 4ec0914b169c326ce0c3af870833f00a
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: BrakeLight
+  - hash:
+      serializedVersion: 2
+      Hash: 52db48e3be0a2b4f8b06f918fd1ebfbc
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_Dropdown
+  - hash:
+      serializedVersion: 2
+      Hash: f295412bc00b58b9095a71e9764cc886
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: AudioTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 04b6685b6f724c0d6024e6b6f96c8202
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: TimelineAsset
+  - hash:
+      serializedVersion: 2
+      Hash: ada873da50974d1e7ce247ffb296b0f3
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnCollisionEnterMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 6a2c4b5b4f822c61534871adc17cab0b
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
+    className: JetParticleEffect
+  - hash:
+      serializedVersion: 2
+      Hash: 7e12302f66e3c8ed5bcfea4ce65fccea
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 932f371ce161869bb64e829af44f270c
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Water
+    className: WaterBasic
+  - hash:
+      serializedVersion: 2
+      Hash: db79736741eab4b57f517a51185b9563
+    assemblyName: Unity.ProBuilder
+    namespaceName: UnityEngine.ProBuilder.Shapes
+    className: ProBuilderShape
+  - hash:
+      serializedVersion: 2
+      Hash: e3d13f80f07d95f02b1255dcebf6238d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PromptUIManagerDoor
+  - hash:
+      serializedVersion: 2
+      Hash: ab6f4a5a3266fad1c8216796009f50e9
+    assemblyName: Assembly-CSharp
+    namespaceName: UnityStandardAssets.Cameras
+    className: LockOnTarget
+  - hash:
+      serializedVersion: 2
+      Hash: 626f31a392bdaa6f0b7bf8be3f533f81
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: PetPanelDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 7cbaca348e0a53aa6f6aba8828caa570
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: NodeSockets
+  - hash:
+      serializedVersion: 2
+      Hash: 2ab05bc9d8e506afc8905ee07de802b6
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Exit
+  - hash:
+      serializedVersion: 2
+      Hash: fce9b835d1e8b08e7ecea8da19f21986
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: CoroutineRunner
+  - hash:
+      serializedVersion: 2
+      Hash: fe111e830148f07e5735ebe7620f752e
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: ChromaticAberration
+  - hash:
+      serializedVersion: 2
+      Hash: 3d86b703ebc45eca1e1c3e8f6abaadc6
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: MinimapDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 980f2b379cc5459c5ffe324e5bab13eb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: BossAreaTrigger
+  - hash:
+      serializedVersion: 2
+      Hash: fddc1d0815370c41972670aaf78cbc9a
+    assemblyName: Unity.ProBuilder
+    namespaceName: UnityEngine.ProBuilder
+    className: ColorPalette
+  - hash:
+      serializedVersion: 2
+      Hash: 7ceb2f5585428e34114b184321067971
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.CrossPlatformInput
+    className: Joystick
+  - hash:
+      serializedVersion: 2
+      Hash: 6ddf94363c6ce4b02d9fdd51290cb0f9
+    assemblyName: UnityEngine.TestRunner
+    namespaceName: UnityEngine.TestRunner.Utils
+    className: TestRunCallbackListener
+  - hash:
+      serializedVersion: 2
+      Hash: 68723e39e1b463364b5a40adfe2416c8
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: MainMenuManager
+  - hash:
+      serializedVersion: 2
+      Hash: 5a4aa2850fe11587f47e34c270c7fd22
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 09d71142dee63d90885132ec7f3bb302
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameManager
+  - hash:
+      serializedVersion: 2
+      Hash: ea8eb1e8344f18a225b8788787fa7283
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SpawnCometsScript
+  - hash:
+      serializedVersion: 2
+      Hash: 9c5d1b4e4b510f3ed1317316f9a81f2a
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.CrossPlatformInput
+    className: TouchPad
+  - hash:
+      serializedVersion: 2
+      Hash: 8f9a4353271bb419d944dcd8a22380ab
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnchantSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: e6aa005db4d3e6de4aad0fa128201d98
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MerchantSlotUI
+  - hash:
+      serializedVersion: 2
+      Hash: 3b5263a98bcc71d9a9d1d78a31b34ced
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_SelectionCaret
+  - hash:
+      serializedVersion: 2
+      Hash: 28fd3d045acc780719a17f02073eb448
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: InputField
+  - hash:
+      serializedVersion: 2
+      Hash: 8e6dc3d79712ca4934f6d50c80f010b1
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: 6d394de691f6d0187f61c08889353d0e
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnButtonClickMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: e23d2210701e34e6850023cabe554c1f
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnInputFieldEndEditMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: bf40c7a9dc15bc219687c9838aa9b41f
+    assemblyName: UnityEngine.TestRunner
+    namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
+    className: TestResultRendererCallback
+  - hash:
+      serializedVersion: 2
+      Hash: bfc7ee93def4e03e6d2ce2b3769bdcad
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: CursorManager
+  - hash:
+      serializedVersion: 2
+      Hash: 8d28a4da45e2154268ca6a6574da8957
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MainMenuUI
+  - hash:
+      serializedVersion: 2
+      Hash: 1606f222c62cf68dd1eb16414656ba76
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: StatAllocationDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: bdd4a11f4ea946f4285fd9166334e3fa
+    assemblyName: Assembly-CSharp
+    namespaceName: UnityStandardAssets.Cameras
+    className: PauseSetting
+  - hash:
+      serializedVersion: 2
+      Hash: 90343c7a5bd61095376074f2b4ee1af7
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Effects
+    className: SmokeParticles
+  - hash:
+      serializedVersion: 2
+      Hash: b98001682cba83786775c9e415b89a61
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnDropdownValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 2702845f2e3ff99eab3737feb2995c3c
+    assemblyName: Assembly-CSharp
+    namespaceName: UnityStandardAssets.Cameras
+    className: MerchantSetting
+  - hash:
+      serializedVersion: 2
+      Hash: f7bae98e9fdd303bcc4ec609a33b5e7e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: csParticleMove
+  - hash:
+      serializedVersion: 2
+      Hash: 19c7094e1c1b151057c372890e57f46f
+    assemblyName: Unity.ProBuilder
+    namespaceName: UnityEngine.ProBuilder
+    className: BezierShape
+  - hash:
+      serializedVersion: 2
+      Hash: d1cdda2a3f17cc21b35f075e1a00a429
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.CrossPlatformInput
+    className: TiltInput
+  - hash:
+      serializedVersion: 2
+      Hash: 3d2f244791e764d5feaae6f5703c48c8
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameSettingsData
+  - hash:
+      serializedVersion: 2
+      Hash: 24633f06c7c1abdbf43663925bb0b06a
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: CharacterPanelDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: a1ac4c50e55874de16eee3db71aa9784
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: ToggleGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 39938217d83b9cd1bb1227d7a4817b7e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGLootTable
+  - hash:
+      serializedVersion: 2
+      Hash: 756b50f7edd80535bc2b16a7c2752034
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: SettingsPanelDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 53d5e494b6582199f36c5fb37fb4aa03
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RotateToMouseScript
+  - hash:
+      serializedVersion: 2
+      Hash: d90629714fa6b0145fcaffc87f5c6559
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnInputFieldValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: bb8d968ef4474e71aaad4a4dce279f90
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnMouseDownMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 497ce46b1972723f3598d945c232d6ff
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: BossWeapon
+  - hash:
+      serializedVersion: 2
+      Hash: b6307dfc54cca9ba44f47185c578b0ce
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnMouseDragMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 47026dcb9703919a95c1a803296347c1
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnemyHealthBar
+  - hash:
+      serializedVersion: 2
+      Hash: 7b55d16193ffac20e5db61b339b25401
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: CustomInputManager
+  - hash:
+      serializedVersion: 2
+      Hash: e9bfee93ebf3a7afacd9b5a36a892fc0
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: AutoExposure
+  - hash:
+      serializedVersion: 2
+      Hash: 4b2b35332d32a6a7404d5dc79ea5d4fc
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.World
+    className: ObjectActionTrigger
+  - hash:
+      serializedVersion: 2
+      Hash: d7c8092511063e0dae8106bfc8ed63dd
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnScrollMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 715f7928b39881049ce8c46350cb8681
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnTransformParentChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 06e31872661180dadc70e80b94ea5bfd
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Cameras
+    className: AutoCam
+  - hash:
+      serializedVersion: 2
+      Hash: 22941e22f5a762fc6364ab03b97aa5d1
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: CarAIControl
+  - hash:
+      serializedVersion: 2
+      Hash: b5d2dc36007a4bda820387efbdc8da13
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
+    className: AeroplaneUserControl4Axis
+  - hash:
+      serializedVersion: 2
+      Hash: 48325ccc3415536a80f1ead1aa138eb7
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: csParticleEffectPackLightControl
+  - hash:
+      serializedVersion: 2
+      Hash: 30e7bc63a1cb22a86299e2dcc105debb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: InventoryBagSlot
+  - hash:
+      serializedVersion: 2
+      Hash: 2a658bddf4d61379ec98f4569e6ad24a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGTask
+  - hash:
+      serializedVersion: 2
+      Hash: 70277efe79cfe2f5fe73edb9199c4452
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGItemDATA
+  - hash:
+      serializedVersion: 2
+      Hash: c6369b4cc3be620d6c9300e920bc3d52
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: VariablesAsset
+  - hash:
+      serializedVersion: 2
+      Hash: ace677cd1114f9d036c9e23ecbb067ed
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MoneyUI
+  - hash:
+      serializedVersion: 2
+      Hash: 3ddf1962b845088fcc652c46359ef7ba
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EquippedSlotUI
+  - hash:
+      serializedVersion: 2
+      Hash: ac1519e6d64aa0970781a02bf631504b
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: SkidTrail
+  - hash:
+      serializedVersion: 2
+      Hash: 552ac6f1cca2c035d7c06e55f443aeb7
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: ActionBarManager
+  - hash:
+      serializedVersion: 2
+      Hash: 7bdff9e91edfd9600f92a185def7e34a
+    assemblyName: Unity.VisualScripting.Flow
+    namespaceName: Unity.VisualScripting
+    className: ScriptMachine
+  - hash:
+      serializedVersion: 2
+      Hash: 43ebd945b04bced376c791411cf5a289
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnSelectMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 909a5ff928cd9785fd612ea9c5926a5c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ComboSlot
+  - hash:
+      serializedVersion: 2
+      Hash: 47ee1b321158a4c8a4be7db19a09f24f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CameraSwitch
+  - hash:
+      serializedVersion: 2
+      Hash: 5b8b7230ad968399f6726aa1269dcdcb
+    assemblyName: UnityEngine.TestRunner
+    namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
+    className: PlayerQuitHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 93a51433c3446dddeca5ea1b41a11e17
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGBonus
+  - hash:
+      serializedVersion: 2
+      Hash: d8b4974766f73a71841c8dbbe57f8a62
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UI
+    className: ScreenSpaceNameplates
+  - hash:
+      serializedVersion: 2
+      Hash: cf32d98954e63b8e30e9334b152e9b8e
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.EventSystems
+    className: BaseInput
+  - hash:
+      serializedVersion: 2
+      Hash: 777f18f119bf56b8dc5928e0742afd34
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: RegionManager
+  - hash:
+      serializedVersion: 2
+      Hash: 53bba7c72fe8a832c362944b5657bb6f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: BossAI
+  - hash:
+      serializedVersion: 2
+      Hash: 068b2e93db3167c60fc4865e6a79ed26
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: WeaponTemplatesDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: e6f8333cc8a800e2866870a5ef7efc35
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnControllerColliderHitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: dfc5d6d6b645dfe2b977d0255d733ff8
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UI
+    className: Toolbar
+  - hash:
+      serializedVersion: 2
+      Hash: 4e7d70fd08a9733644044022ba90d3a6
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Character
+    className: RPGBCharacterControllerEssentials
+  - hash:
+      serializedVersion: 2
+      Hash: b8a37473e565d69d1ec2a99a5c8119b2
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: GroundIndicatorManager
+  - hash:
+      serializedVersion: 2
+      Hash: 1974dfb365de2d473faea6e03b9968ca
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SpawnProjectilesScript
+  - hash:
+      serializedVersion: 2
+      Hash: 960935b102b3064f4b924de16426e340
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TextMeshPro
+  - hash:
+      serializedVersion: 2
+      Hash: 385bee3223a6f04b88eec9803e182e22
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: TreeNodeHolder
+  - hash:
+      serializedVersion: 2
+      Hash: f1f93e2f629bd7e6ba7040bea6e9413e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ActionBarSlot
+  - hash:
+      serializedVersion: 2
+      Hash: b462ce9b96d7f3f3a8a18557fbf44071
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: Bloom
+  - hash:
+      serializedVersion: 2
+      Hash: b2d2a01a2a85d9ed12e80cb33a9a6044
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: AnimationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 0ace21018663327aa6e6944f2117485b
+    assemblyName: Assembly-CSharp
+    namespaceName: UnityStandardAssets.Characters.ThirdPerson
+    className: TPCharacter
+  - hash:
+      serializedVersion: 2
+      Hash: 6217b1287eca7eed313cf0b864249a30
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnCollisionExit2DMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 82378cf034c9c681c13e3fc3c2c2f43b
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: WorldDroppedItemDataHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 8f906609e3f0ef8bbd10c6abd7bc2a0a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGFaction
+  - hash:
+      serializedVersion: 2
+      Hash: 6d83a67d75deaaf45336ecee2a597d99
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGEnchantment
+  - hash:
+      serializedVersion: 2
+      Hash: 713349786b79d8797a823ea8015b2adb
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.LogicMono
+    className: GroundHitDetection
+  - hash:
+      serializedVersion: 2
+      Hash: 40538490fca1d0bf7330998b06e49d96
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: GetItemSlot
+  - hash:
+      serializedVersion: 2
+      Hash: 5f65ac59e784004173f33f498aa88493
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGDialogue
+  - hash:
+      serializedVersion: 2
+      Hash: 25f16db11f32f42c0389595ff70d7e38
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UI
+    className: ScreenSpaceWorldDroppedItems
+  - hash:
+      serializedVersion: 2
+      Hash: c0c526972fb81fe8b70385c603caea05
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: InventorySlotUI
+  - hash:
+      serializedVersion: 2
+      Hash: 30beb0133b07753a4e72aea990ceb638
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: LootItemSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: c4c551515db00302686b5186347c5cd1
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGTalentTree
+  - hash:
+      serializedVersion: 2
+      Hash: 6738c030a3850f69c6d4fb756614e972
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ScreenOverlayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 0a3f328f3ea906bbbcf794f4c27ee59d
+    assemblyName: Unity.VisualScripting.Flow
+    namespaceName: Unity.VisualScripting
+    className: ScriptGraphAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 7cf3b11a2813f4369482bfe97882a9d6
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerController
+  - hash:
+      serializedVersion: 2
+      Hash: e68b16c76497c5ace707b651c4d2e7ea
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGCurrency
+  - hash:
+      serializedVersion: 2
+      Hash: edc534bae116aa71efcc6588e5dfbc89
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.DisplayHandler
+    className: EquipmentItemSlotDisplayHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 2855aa65ce93bbf44bbde2ce7e8165b5
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerMovement
+  - hash:
+      serializedVersion: 2
+      Hash: cc0f5bf6a4e30afd85d791817ac6b0b2
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnchantCostSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 3b32b3d10bfd3b22e7097efef08595d9
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Effects
+    className: ParticleSystemMultiplier
+  - hash:
+      serializedVersion: 2
+      Hash: fb79e95da8891fc7ac6c36ca6967af23
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: ActivationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 44bac1665297a414742127e548f7823f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MenuSceneLoader
+  - hash:
+      serializedVersion: 2
+      Hash: bf16f3f7cc6924018428428f7664a0d0
+    assemblyName: Unity.ProBuilder
+    namespaceName: UnityEngine.ProBuilder
+    className: PolyShape
+  - hash:
+      serializedVersion: 2
+      Hash: 552dca338f20933ce362ebbe559a6aa6
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnPointerExitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 885cbe2695f020540adf79125b7654a3
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.AI
+    className: RPGBAIAgent
+  - hash:
+      serializedVersion: 2
+      Hash: f93daa39e0b18a5ffa784a425737a870
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: LevelingManager
+  - hash:
+      serializedVersion: 2
+      Hash: d889dfaccb726bbb28f18b61a1176d36
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
+    className: AeroplaneControlSurfaceAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: 316d59abbab0f5f3f18dbc568518257f
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: ErrorEventsDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 426a6cc5d8478f970ad4aafff7684187
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Characters.FirstPerson
+    className: RigidbodyFirstPersonController
+  - hash:
+      serializedVersion: 2
+      Hash: 417b22943b59dba693fc01c44391e608
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MerchantCatalog
+  - hash:
+      serializedVersion: 2
+      Hash: ae1fadd874ef849a39afb7f88dd9e58a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SacredStoneGridMaker
+  - hash:
+      serializedVersion: 2
+      Hash: ec20a261d2ca25a8a52ec6830a6fa262
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGCombatDATA
+  - hash:
+      serializedVersion: 2
+      Hash: b3c3d2f900328d1b7221a37bb8a85103
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerInput
+  - hash:
+      serializedVersion: 2
+      Hash: 178c48ace9f41a0a361cff476633ecb2
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Water
+    className: GerstnerDisplace
+  - hash:
+      serializedVersion: 2
+      Hash: 110aa327d5a5138dcfcbacb388ae0acc
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessEffectSettings
+  - hash:
+      serializedVersion: 2
+      Hash: d880ff05e6091213ca4036fdf2dd08ee
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGBuilderEditorFilters
+  - hash:
+      serializedVersion: 2
+      Hash: 88dbe1da7a1698a5e2861f350fe00b75
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.AI
+    className: NPCSpawner
+  - hash:
+      serializedVersion: 2
+      Hash: 80913aa4de45af840229f43a348e0699
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: AutoMoveAndRotate
+  - hash:
+      serializedVersion: 2
+      Hash: 4718916586b3818eb69bf65df61f0f3a
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnCollisionStay2DMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 3a76170da0c1a4314585f80700759373
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: RaceSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 185e7bacfbbc5defefa609c70f7ff4ce
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_ColorGradient
+  - hash:
+      serializedVersion: 2
+      Hash: 682dfc653b22feea53b38adb3bc66414
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: SignalReceiver
+  - hash:
+      serializedVersion: 2
+      Hash: 5c2a5f24486ce822de2585eb155d9fa6
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CameraShakeSimpleScript
+  - hash:
+      serializedVersion: 2
+      Hash: 2c6d961541888fb0c2378998f8627b5e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PromptTrigger
+  - hash:
+      serializedVersion: 2
+      Hash: d8e0c64f4c3ec7338588ab352e0acd6a
+    assemblyName: Assembly-CSharp
+    namespaceName: UnityStandardAssets.Characters.ThirdPerson
+    className: TPUserControl
+  - hash:
+      serializedVersion: 2
+      Hash: c78ed13f6b5a632d70d4f73f56ad81f2
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: VariablesSaver
+  - hash:
+      serializedVersion: 2
+      Hash: 7053e305cdc1eb560f4c3be49d3b5136
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.EventSystems
+    className: PhysicsRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 042785b832afb73fd0585521aa7baf43
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: ControlPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 1a680d9a08de79b0d2c779e78c9843b4
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: RectMask2D
+  - hash:
+      serializedVersion: 2
+      Hash: d022c4975b63b919962b6a575c2856f1
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: DevUIManager
+  - hash:
+      serializedVersion: 2
+      Hash: 497ddd61211656ab335eadb658a38707
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ProjectileSlowZone
+  - hash:
+      serializedVersion: 2
+      Hash: c933b590b3badb5918fa01e73cd5cc0c
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_Settings
+  - hash:
+      serializedVersion: 2
+      Hash: ca7965796a6fc0e5baad4cb19f5b5ded
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnJointBreak2DMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 77fccc335d0c175574c50755c0947b12
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PickableManager
+  - hash:
+      serializedVersion: 2
+      Hash: 189eb17ffd391fe2542f340721ee1991
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGCraftingRecipe
+  - hash:
+      serializedVersion: 2
+      Hash: 7d3aa15fef5e7f8aeb5c68c2996587a4
+    assemblyName: Assembly-CSharp
+    namespaceName: GAP_ParticleSystemController
+    className: ParticleSystemControllerEditor
+  - hash:
+      serializedVersion: 2
+      Hash: 9ebc0a3016506a0cbb7e0306dfcb9497
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: DictionaryAsset
+  - hash:
+      serializedVersion: 2
+      Hash: a00b6eadf6719b561164b3182f12803b
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UI
+    className: FPSCounter
+  - hash:
+      serializedVersion: 2
+      Hash: 9481dfa654d1089e70bba225daaf9957
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGQuest
+  - hash:
+      serializedVersion: 2
+      Hash: e4a68cd2c6c4726cdcb01e0fd0327648
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: KeybindSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: e7e95903ca66d58e1a7cbd71f824e16d
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_SubMeshUI
+  - hash:
+      serializedVersion: 2
+      Hash: 687fae5d3cdbeb219b5d11ecc4edfdbc
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGItem
+  - hash:
+      serializedVersion: 2
+      Hash: ebdda2b8f61aca682fa5aae29346e897
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SimpleSlotUI
+  - hash:
+      serializedVersion: 2
+      Hash: 9f92e751d2286296361a1d06b9e90c1e
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: MotionBlur
+  - hash:
+      serializedVersion: 2
+      Hash: bbd945a192376a2802bf184fb7b064a3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameActionsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 9078325c2a6f6a2d9612ade897511860
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_SpriteAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 96e7bcfd2d072992dab64ac44058b930
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnCancelMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 09cf7f918902aa105de67974980da90c
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Cameras
+    className: LockOntarget
+  - hash:
+      serializedVersion: 2
+      Hash: 765552272a0328d3a2959745db73a0f7
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: ItemSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 2adc547ae10bf311c52908c171eb210d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGBThirdPersonController
+  - hash:
+      serializedVersion: 2
+      Hash: 3bb4174cf65fe6df205ec2a38d214ac4
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DoorInteraction
+  - hash:
+      serializedVersion: 2
+      Hash: 53b5ba236f4467ba80d0b53ee8adce3e
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: PlayerInfoDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: ad22400faed915a8e9b5ea301049853b
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: CombatTreeSlot
+  - hash:
+      serializedVersion: 2
+      Hash: 80a72b656b55a7a1fc92e1a02151ea22
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: ScreenSpaceReflections
+  - hash:
+      serializedVersion: 2
+      Hash: 7e9cad7f71f9cc52f699bbd2d2a75734
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnPointerClickMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: e847cca9a584f2cdb8c78b5c36a728f6
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DjimatLimitUI
+  - hash:
+      serializedVersion: 2
+      Hash: 5f6df7bc3970921c2d9870c52fd9bc67
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGBDemoTutorialDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: f2f280ea21d6b73386d1650acfe01c89
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: GatheringManager
+  - hash:
+      serializedVersion: 2
+      Hash: 233f5411d570842a45fd2f7d607a42f1
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGDialogueBaseNode
+  - hash:
+      serializedVersion: 2
+      Hash: 492e9f38876d6b6f29f99ccb3c937a72
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: CarAudio
+  - hash:
+      serializedVersion: 2
+      Hash: ffaaa6b08bc8a8928411e8e402432358
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessVolume
+  - hash:
+      serializedVersion: 2
+      Hash: 0e8642dfed5c709cb32e4405f27abb94
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SpringArm
+  - hash:
+      serializedVersion: 2
+      Hash: 0b63f6d3335e11939ce8790b904c8691
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: ActivationPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: e402a382f213255c22bda9254dd831b3
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: SceneVariables
+  - hash:
+      serializedVersion: 2
+      Hash: e88d71ef93aba4e7faf243430f6a10ce
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: MacroScriptableObject
+  - hash:
+      serializedVersion: 2
+      Hash: 32e45e9321b32487564fbc9be7df51eb
+    assemblyName: Unity.ProBuilder
+    namespaceName: UnityEngine.ProBuilder
+    className: ProBuilderMesh
+  - hash:
+      serializedVersion: 2
+      Hash: 6f4217d0c4c288297cbb2c86bb554640
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: AbilityManager
+  - hash:
+      serializedVersion: 2
+      Hash: 8ad3ef270ef774fa736e2d9150923104
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: CraftingManager
+  - hash:
+      serializedVersion: 2
+      Hash: b6792907b61f32faaf3e23f55e750107
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessResources
+  - hash:
+      serializedVersion: 2
+      Hash: 07dc736e2cf20de5918349ac2fce6765
+    assemblyName: Assembly-CSharp
+    namespaceName: GAP_ParticleSystemController
+    className: ParticleSystemController
+  - hash:
+      serializedVersion: 2
+      Hash: 8a2f78c25d5e92eb97ee5544a162a2e9
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshLink
+  - hash:
+      serializedVersion: 2
+      Hash: f2098fcd8ee983a05ec192f63904298f
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnEndDragMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 8bd03042ccca0f251ae4945db3aab0c8
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGStat
+  - hash:
+      serializedVersion: 2
+      Hash: 76aa43cc6adae8454a66255a8113266d
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: AmbientOcclusion
+  - hash:
+      serializedVersion: 2
+      Hash: e00a40a18274727b483cc2afbf336404
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Character
+    className: PlayerAppearanceHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 6b89f51bce2dc664cf69abff9f734991
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: FPSCounter
+  - hash:
+      serializedVersion: 2
+      Hash: 17acf003ed08d5b69265921a8e3e510e
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: SimpleActivatorMenu
+  - hash:
+      serializedVersion: 2
+      Hash: db9b308769d19e1f9e161df0392c23ca
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnTransformChildrenChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: ea34ae7c2f940cbf4b7054f26c555014
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnemyManager
+  - hash:
+      serializedVersion: 2
+      Hash: 6d94138b60a9299798dda96c1ee6725f
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnBeginDragMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: a711dbe8d4158c88f852d662b9595ca7
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGNpc
+  - hash:
+      serializedVersion: 2
+      Hash: 51b80d3734ea86b38e3101db98029e15
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: AnimationPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: e3e8664035357fc3cb2713a5c719e060
+    assemblyName: Unity.ProBuilder
+    namespaceName: UnityEngine.ProBuilder
+    className: ColliderBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: 59e66cd428017def3c405891401ac4f4
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: LootBagHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 9f647976fddd662513c4620120ef3518
+    assemblyName: Assembly-CSharp
+    namespaceName: UnityStandardAssets.SceneUtils
+    className: ParticleSceneControls
+  - hash:
+      serializedVersion: 2
+      Hash: 47ee34eb8b6021efa0289dbbb17a5a85
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: ec6cf673540b2d4e42c612611eeafe4d
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnTriggerStayMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 56093de34bdaaba000b776e57a7b158b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: BossManager
+  - hash:
+      serializedVersion: 2
+      Hash: b8c338ee2faf7630dabfc5bf8f333aa8
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGSpecies
+  - hash:
+      serializedVersion: 2
+      Hash: df79ccb4cd3f3f8a5449fcd589774b35
+    assemblyName: Unity.ProBuilder
+    namespaceName: UnityEngine.ProBuilder
+    className: PreferenceDictionary
+  - hash:
+      serializedVersion: 2
+      Hash: 22059c15d69fbcdeb378a847ae55fe64
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGGameModifier
+  - hash:
+      serializedVersion: 2
+      Hash: e126ee9c3101f2e9f8fd9694dfad14d3
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Characters.FirstPerson
+    className: FirstPersonController
+  - hash:
+      serializedVersion: 2
+      Hash: 10c17b309bdca62b4d7fbaf113ed4ca0
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Toggle
+  - hash:
+      serializedVersion: 2
+      Hash: 922bc19532e2933bd57e971edeffb66f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LockedDoorInteraction
+  - hash:
+      serializedVersion: 2
+      Hash: 50d37ace6a6026db244296ae970a97b9
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: ScreenTextObject
+  - hash:
+      serializedVersion: 2
+      Hash: 522f6865b4ec12522e602206785309f8
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: GlobalMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 53e329840e6d03aebec76623c3b054db
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Slider
+  - hash:
+      serializedVersion: 2
+      Hash: 33f160a5c07e580c29aba2bd1e4db811
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: HorizontalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 0f79a98090eba6ce1f8f3e981afebdb4
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: QuestTrackerDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 58d5201ecd4181e6f9e468952454e99a
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: CurrencyDisplaySlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 9a5c12434b827701f74fa248dab1af21
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DjimatSystem
+  - hash:
+      serializedVersion: 2
+      Hash: 416485a0ebeef390f3de04021e361db6
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: GameModifierManager
+  - hash:
+      serializedVersion: 2
+      Hash: 191cd500c627cd6682ef6f70b8e47f2c
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnCollisionEnter2DMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 5c31bb86f666ee22f88f4525103e871d
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: RegionMessageDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 0c0b64d103fe555d830e8ca206abd12a
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnTriggerExitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: cc007f1d3b28cbe30e833c928a709f6b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DjimatManager
+  - hash:
+      serializedVersion: 2
+      Hash: 44c6b9d434b8164f45e030cfacb1f9ba
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: csShowAllEffect
+  - hash:
+      serializedVersion: 2
+      Hash: 17f82e3e7d8f8b07a270a4aad9bfe79d
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_FontAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 4ea1bf258a208f00f70cf744bd7e56ce
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: Vignette
+  - hash:
+      serializedVersion: 2
+      Hash: 061a5d77ce0aa52a60c21c566c6d8af2
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshModifierVolume
+  - hash:
+      serializedVersion: 2
+      Hash: a00c9ba50c843677a9199dd7c850bd98
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Cameras
+    className: TargetFieldOfView
+  - hash:
+      serializedVersion: 2
+      Hash: 71eb34f88311cb43dd01bba4e5c4ba5b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SocketSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 4dc618d53e813d8cd07099a9a6ace14f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGGeneralDATA
+  - hash:
+      serializedVersion: 2
+      Hash: bac7691e31059c69298e0fef6a031074
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: SimpleMouseRotator
+  - hash:
+      serializedVersion: 2
+      Hash: c65fb8f721cc4462e7a642974c37d3c0
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: DepthOfField
+  - hash:
+      serializedVersion: 2
+      Hash: 35e3b94d079261d35b4602c55c0da166
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGBCharacterWorldInteraction
+  - hash:
+      serializedVersion: 2
+      Hash: ce9c447e25d30b7f566a5f61d02bb923
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: WeaponTemplateSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 15e2d2de2b2ad7aa8332c7a228dcfaa2
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Effects
+    className: ExplosionFireAndDebris
+  - hash:
+      serializedVersion: 2
+      Hash: cc3d55a081149a64f687105b26f98107
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: csMouseOrbit
+  - hash:
+      serializedVersion: 2
+      Hash: 03d37b63e21effdd2307af17b433f539
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: TargetInfoDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 5a2b76da30fedd771c29539cc53754d4
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MerchantManager
+  - hash:
+      serializedVersion: 2
+      Hash: d82086405f46de14829f6b4bcbdd8fc9
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnBecameInvisibleMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 8c31bd1458524288dbbad77428b0381d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: InterpolationCurve
+  - hash:
+      serializedVersion: 2
+      Hash: 5874b789cd9832847c61ebfa803213af
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UIElements
+    className: PanelEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: d55992199bd2f5a5502658391cdf8ba7
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshSurface
+  - hash:
+      serializedVersion: 2
+      Hash: 1b29870446557237038070b815b9e074
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: TreesDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 9dd54ce33440072d6692a67e0c384ad1
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: GroupTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 86e2b1ab271b99474d91d83fb181ed05
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.LogicMono
+    className: GroundIndicator
+  - hash:
+      serializedVersion: 2
+      Hash: a669fbe6bbe965db9e3e6d699100edec
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGWorldPosition
+  - hash:
+      serializedVersion: 2
+      Hash: c06a498c85264813911203cdcaf5333b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: NextPrefab
+  - hash:
+      serializedVersion: 2
+      Hash: bf0842d88681628b29beb00b5e2ab785
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnDeselectMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: a08d4eb30feb8783c47c1d1db7d33474
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: MusicManager
+  - hash:
+      serializedVersion: 2
+      Hash: 04851de7c6fb56884e3fd306c414c794
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: Suspension
+  - hash:
+      serializedVersion: 2
+      Hash: 2806cffb9647abb1295bc7e8f40aaf30
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: InventoryManager
+  - hash:
+      serializedVersion: 2
+      Hash: 376522eef2e65f68725e095631539ef8
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGLevelsTemplate
+  - hash:
+      serializedVersion: 2
+      Hash: bf39636527f061da47ce1d45b7c87feb
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: GameOptionsDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: e88d30f5844979760e06a11264b70994
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Utility
+    className: UILineRenderer
+  - hash:
+      serializedVersion: 2
+      Hash: d864cded70a0c88677b18a10ad55f521
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FactionSlotDataHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 8715090994899b2875fabbeccd62b388
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: CarController
+  - hash:
+      serializedVersion: 2
+      Hash: ed082afcfef18fec789113cfac89aa1d
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UI
+    className: AbilityTooltip
+  - hash:
+      serializedVersion: 2
+      Hash: 1ce63d97d1ca25cba2d91d5f32fd5f79
+    assemblyName: Unity.VisualScripting.State
+    namespaceName: Unity.VisualScripting
+    className: StateGraphAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 00f2ccf6092e979f4baaf0bd01b694c4
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: SmoothFollow
+  - hash:
+      serializedVersion: 2
+      Hash: c385c39c2af48b7da5d3beef7a0e15a3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestHelper
+  - hash:
+      serializedVersion: 2
+      Hash: fe0b2e05e2eca45b8df9c2716c3a5f45
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MouseLook
+  - hash:
+      serializedVersion: 2
+      Hash: 32ef665c6dc6ebbcf4d9fdcc75f0df9a
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: CraftingRecipeSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 0e3bbe6b0da4c876aa77ab5edc06fab5
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Utility
+    className: PolytopeCharacterCustomizer
+  - hash:
+      serializedVersion: 2
+      Hash: d9370fc963625f42a6df1fdbb8fbb309
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SpellbookDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 3b805a451fd1e2fb708fbd5a3a841b73
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: CraftingPanelDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 21ddfef59632f9b4ceb49225f13a3332
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: QuestItemSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: d9372f0e987ba861e6456c52dc22e20b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGTreePoint
+  - hash:
+      serializedVersion: 2
+      Hash: 30dc90e5f1f8215756dbe44434194b69
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ShapeshiftingSlotsDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 3ebf8b580900234f7dd1e93b4c677ceb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FpsCounter
+  - hash:
+      serializedVersion: 2
+      Hash: bbd955aae1ed24939a142a2d2bc7c307
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGGameScene
+  - hash:
+      serializedVersion: 2
+      Hash: ef38c1407dba8c1f5d69f5db61a694fe
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: AnimatorMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: ca0ee0abae702463a46f29c90ebf11a9
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnemyWeapon
+  - hash:
+      serializedVersion: 2
+      Hash: 33656f83bb0079184b2206a69690ec46
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: AspectRatioFitter
+  - hash:
+      serializedVersion: 2
+      Hash: 9637dcdf3068a91dfe653e61bb82f13d
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TextMeshProUGUI
+  - hash:
+      serializedVersion: 2
+      Hash: c98ae3467e2c21e018cfd77be9caaf8a
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
+    className: AeroplaneUserControl2Axis
+  - hash:
+      serializedVersion: 2
+      Hash: 8f9be8b7657ec1b1502d7ad636ac6dbb
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: CrosshairDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 503399d6516a18888c00114cdd712395
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGSpellbook
+  - hash:
+      serializedVersion: 2
+      Hash: c3c4570b570f65c4d9b6da7eb357fb73
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: CharacterEventsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 4c44db73804f6c12ee934332c5e5d6cd
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Character
+    className: RPGBCharacterController
+  - hash:
+      serializedVersion: 2
+      Hash: 4f41084f16b63cb890842901d2c04487
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PromptUIManagerCheckpoint
+  - hash:
+      serializedVersion: 2
+      Hash: e4fbb63f616fb316aaeacfa79b731f11
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PromptUIManager
+  - hash:
+      serializedVersion: 2
+      Hash: e7311668ce80a341c3737e94994322b5
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Checkpoint
+  - hash:
+      serializedVersion: 2
+      Hash: 510c05b7992604d47c50a09d620f059d
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: WaypointCircuit
+  - hash:
+      serializedVersion: 2
+      Hash: a9708fb8381b7be8ea60400ba12c5485
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: KeyItemSlotUI
+  - hash:
+      serializedVersion: 2
+      Hash: 795fb569b8439a260e53a9562884326e
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: TimedObjectDestructor
+  - hash:
+      serializedVersion: 2
+      Hash: 0920d0f997bee4274f20f2ac65c99255
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: QuestTrackerSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 156dd2aac4fc2d32f162bed1471621ad
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: NameplatesDATAHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 8052da6fa26dcfbda012237142d33401
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGDialogueGraph
+  - hash:
+      serializedVersion: 2
+      Hash: cf492897b063258addc96832612114cd
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: BonusManager
+  - hash:
+      serializedVersion: 2
+      Hash: da5a949a0bbd2ff91bc51c5805c2c41f
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnMouseUpAsButtonMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: c181b4a8a50b3a5a0a8e807056ef56eb
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: StatDataHolder
+  - hash:
+      serializedVersion: 2
+      Hash: c9ea7fc6e584a91f99e24369a904c607
+    assemblyName: Unity.ProBuilder
+    namespaceName: UnityEngine.ProBuilder
+    className: Entity
+  - hash:
+      serializedVersion: 2
+      Hash: f756086dfec9d10d4a39f34d87117c4a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SpellbookNodeSlot
+  - hash:
+      serializedVersion: 2
+      Hash: 768b2700c7d0c5b799d55bb7eaf9ae69
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Ball
+    className: Ball
+  - hash:
+      serializedVersion: 2
+      Hash: 5aa7e12c7132e529766bae0ad0bedd2c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ItemInfoDisplayCatalog
+  - hash:
+      serializedVersion: 2
+      Hash: 84d80266c01a50d019053c1ad8ece535
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Water
+    className: WaterTile
+  - hash:
+      serializedVersion: 2
+      Hash: cdb26a24c8a6e54d02bb8a4a0f63b589
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: KeyItemGridMaker
+  - hash:
+      serializedVersion: 2
+      Hash: 070332bf99afd28ae43b2c45ec1c060f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ActiveBlockingDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: fdb3ed135fba7bbaa909a946208dc2bf
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.World
+    className: GraveyardHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 4f353524ce6564e40764f1ea080b2d85
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnTriggerStay2DMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: e8790d817ac76d4b84b25848603fab29
+    assemblyName: Assembly-CSharp
+    namespaceName: ReadmeSystem
+    className: Readme
+  - hash:
+      serializedVersion: 2
+      Hash: ab49c3830f4a370d336295082ba4ec77
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Characters.ThirdPerson
+    className: ThirdPersonUserControl
+  - hash:
+      serializedVersion: 2
+      Hash: 9104447b683bf70406fa01f12ecb564a
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.EventSystems
+    className: StandaloneInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: 13f262cc0741566a7ab72682984bc3e1
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_SubMesh
+  - hash:
+      serializedVersion: 2
+      Hash: febcfbf0a0d85e37808a3740e3c2c6fa
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: MarkerTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 68f2cb287af2eee1f639824485a3402b
+    assemblyName: Unity.AI.Navigation
+    namespaceName: Unity.AI.Navigation
+    className: NavMeshModifier
+  - hash:
+      serializedVersion: 2
+      Hash: 672716ae97f6ddb615fa5ac3ec9da349
+    assemblyName: UnityEngine.TestRunner
+    namespaceName: UnityEngine.TestTools
+    className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: 07c34f244acb3091b111051d0afbc63f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: WorldInteractableDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: df55e74b6499eac42b8da731bd5f3210
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: SkillSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 015ff8f24c94016440cc2c879d29f09e
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Water
+    className: SpecularLighting
+  - hash:
+      serializedVersion: 2
+      Hash: bd83bd0cf5aafc5106a3cf9e6b2fd19a
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: MerchantItemSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 8bbce9932f67ad8e7f4eefec87800f94
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TextContainer
+  - hash:
+      serializedVersion: 2
+      Hash: 2a0c988f68e3311d5a21b2ee8ea7ac31
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PauseMenu
+  - hash:
+      serializedVersion: 2
+      Hash: 616a6b39513e2150ecfe07ef3906a445
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PickableItem
+  - hash:
+      serializedVersion: 2
+      Hash: ba4afaca87874054a954bb8c30589075
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SpellbookSlot
+  - hash:
+      serializedVersion: 2
+      Hash: ab146b9b456a0ac8917d892a3f2e3f4b
+    assemblyName: Unity.ProBuilder
+    namespaceName: UnityEngine.ProBuilder
+    className: TriggerBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: 7729355740749ecd7caca505e4ca07c9
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder._THMSV.RPGBuilder.Scripts.World
+    className: Region
+  - hash:
+      serializedVersion: 2
+      Hash: 7e1109dcc1fabb5d18b188dde1c18186
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: QuestStateSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: a919200968b54c7d8ed40499cbdfab44
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: WaypointProgressTracker
+  - hash:
+      serializedVersion: 2
+      Hash: da905c8c479c38c58e23a3347a9678ad
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ObjectActionDestroyTrigger
+  - hash:
+      serializedVersion: 2
+      Hash: 29df0402e6fdf310ca0dc66a42b2c43a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: csDestroyEffect
+  - hash:
+      serializedVersion: 2
+      Hash: 85e4ba758c6f3c7384f7beec83d1a4f4
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ShaderHandler
+  - hash:
+      serializedVersion: 2
+      Hash: d3ed3ba13ad89b7f1cd6e7c009c124fb
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: DragRigidbody
+  - hash:
+      serializedVersion: 2
+      Hash: c1a8dd6603ade5f763d62ac76e25d8c5
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGRace
+  - hash:
+      serializedVersion: 2
+      Hash: 28534eba54250bc0fd447595d4a56442
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
+    className: AeroplaneAudio
+  - hash:
+      serializedVersion: 2
+      Hash: f669be52680c88846b2093fd41d1e06e
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnDragMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 8220ec935aea2330ffeb81479c5a7316
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: ScreenTextDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: f7293c250006a0a9ec49e78f5285aa11
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Effects
+    className: FireLight
+  - hash:
+      serializedVersion: 2
+      Hash: 877c91d70578fce7a202c2eceacfa8fc
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: WeaponUpgradeManager
+  - hash:
+      serializedVersion: 2
+      Hash: 20a120e55ad3ab65556328d5fd8309dd
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Outline
+  - hash:
+      serializedVersion: 2
+      Hash: da6cc1695ee565a65e6ef3b52b4e1a43
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGWeaponTemplate
+  - hash:
+      serializedVersion: 2
+      Hash: cbeb67b8e5683f520175b53fc972d11c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGEffect
+  - hash:
+      serializedVersion: 2
+      Hash: 3f14fdb37c3da0abcefca5239d05ef17
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PromptUIManagerDoorKey
+  - hash:
+      serializedVersion: 2
+      Hash: 17142b03663387290480c82303274c02
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnPointerEnterMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: f2305da2400dfe6f069770a1a63f0f7c
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: b8ee2e84221f0ec850075d84cad55002
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Utility
+    className: UIGridRenderer
+  - hash:
+      serializedVersion: 2
+      Hash: 0c1fc3ed413d8cee0b24d8c499a44bd0
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder._THMSV.RPGBuilder.Scripts.UIElements
+    className: NPCSpawnSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 4878e735441f4041539853759559c86f
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: ab8f0f42a4106c12cc10951d3e3fcd89
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: CraftingItemSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 787a26d41c5e49c445776007d285d969
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerDetector
+  - hash:
+      serializedVersion: 2
+      Hash: 742037f837c8ddcca95b2e1ad6a7525c
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Water
+    className: WaterBase
+  - hash:
+      serializedVersion: 2
+      Hash: c4b85a67513b4f0cf7b5fb2d5ded04b0
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnCollisionExitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: d2ecd94550edf1b56aff07b1f4e41c57
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnTriggerEnter2DMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 0363260e69dfdcf6e1a2ddd5f7b40d9b
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: CombatManager
+  - hash:
+      serializedVersion: 2
+      Hash: 349f344f75ce6ad15eef15489fca75d4
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: TreePointsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 7bb32d6e4c7614a97d9723ce7e26588c
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: BasicPlayableBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: 114a6cda2e10ba652ec3ffda2e8996db
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: TaskCheckerManager
+  - hash:
+      serializedVersion: 2
+      Hash: e8d390bd9ecacc453a7500b90d0c0292
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.EventSystems
+    className: Physics2DRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 19824dd35debb3fff0983df49f8359ab
+    assemblyName: UnityEngine.TestRunner
+    namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
+    className: PlayModeRunnerCallback
+  - hash:
+      serializedVersion: 2
+      Hash: afb7b65d28d5a7423e69a1b076be0064
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: PositionAsUV1
+  - hash:
+      serializedVersion: 2
+      Hash: ed0f6c922884a9f5523ee9a852a48959
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: FollowTarget
+  - hash:
+      serializedVersion: 2
+      Hash: 6a0b5b415c00f783202fd1ae2d556cb2
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: AudioPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 8923f9f5eeca6d5059aaf4c91d5b0261
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
+    className: AeroplaneAiControl
+  - hash:
+      serializedVersion: 2
+      Hash: b14e186823458f549289789cccbb77ce
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnPointerDownMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: e1b8824aa429009f357f4d39fe02171a
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Effects
+    className: ExtinguishableParticleSystem
+  - hash:
+      serializedVersion: 2
+      Hash: feac88cd36b6f3350d3f03bb9791ee8e
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: InventoryDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: ee34255e3e86289bde9bad5e07b84cbc
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnScrollRectValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 830c3b545f6e6ee60a4cebab90516f2c
+    assemblyName: UnityEngine.TestRunner
+    namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
+    className: RemoteTestResultSender
+  - hash:
+      serializedVersion: 2
+      Hash: 1f08f85db547f777a8404ca718b78330
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: 
+    className: ForcedReset
+  - hash:
+      serializedVersion: 2
+      Hash: a89b0448af4e1cd103a77f9fec0a961f
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnSubmitMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: c908bc973de30e0bd6d9b37972f687e8
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: ParticleSystemDestroyer
+  - hash:
+      serializedVersion: 2
+      Hash: c8cf4d2a60a4845946bbb533918b1bf3
+    assemblyName: Assembly-CSharp
+    namespaceName: UnityStandardAssets.SceneUtils
+    className: PlaceTargetWithMouse
+  - hash:
+      serializedVersion: 2
+      Hash: 6fe8b8f0cccf5733f17749e7beeb0bc5
+    assemblyName: Assembly-CSharp
+    namespaceName: UnityEngine
+    className: PlayerManager
+  - hash:
+      serializedVersion: 2
+      Hash: 5ebc58ec194dd44630b25fcc270ad4af
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Dropdown
+  - hash:
+      serializedVersion: 2
+      Hash: e7ce5baa309e8898669cc1a1bc66e955
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
+    className: LandingGear
+  - hash:
+      serializedVersion: 2
+      Hash: 577220cf7df9828374e59a07dc48baad
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: CharacterSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 48770240e3bc952c255b967633454124
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: ObjectResetter
+  - hash:
+      serializedVersion: 2
+      Hash: d36e6a0e012959c5957a5814b1c1ab19
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ResetDataButton
+  - hash:
+      serializedVersion: 2
+      Hash: 316b1f6dbb13b9f156ab0852195c0a32
+    assemblyName: XNode
+    namespaceName: XNode
+    className: SceneGraph
+  - hash:
+      serializedVersion: 2
+      Hash: 687ff828b9988fd700f473cbf261ac46
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: AutoMobileShaderSwitch
+  - hash:
+      serializedVersion: 2
+      Hash: ea1eb070728d532bc82ff2e2ce83f4b6
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UI
+    className: ItemTooltip
+  - hash:
+      serializedVersion: 2
+      Hash: 4728e3d21cc2a12e391e71ec9b7eed0b
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: SignalTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 0898c2ed28887da61babbfc25651593b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGCombo
+  - hash:
+      serializedVersion: 2
+      Hash: bea41ae2e34e712048b8b5ff5a38804e
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: 
+    className: AlphaButtonClickMask
+  - hash:
+      serializedVersion: 2
+      Hash: 197296dc3b0761a72cb0b76a081229e0
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ProjectileMoveScript
+  - hash:
+      serializedVersion: 2
+      Hash: 67272c9c30c50b68ef1ce72ac0191c57
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnMoveMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: a9deb2bf0aea9484add4384b419983c3
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.LogicMono
+    className: CombatNode
+  - hash:
+      serializedVersion: 2
+      Hash: d0392b7f3f52d5af537ade186b4f51f1
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: ControlTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 7c131ed8bd947c41f2e938327cb926cb
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: EnemyAI
+  - hash:
+      serializedVersion: 2
+      Hash: 2fd42819c69acefd80a2bbcd49cbe8cf
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessProfile
+  - hash:
+      serializedVersion: 2
+      Hash: 1a4b4b4dadb59fd89bf46c8e0b9f1b46
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: StatAllocationSlotDataHolder
+  - hash:
+      serializedVersion: 2
+      Hash: cdb3e59d23bb58a845ffd1081483d458
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameModifierSlotDataHolder
+  - hash:
+      serializedVersion: 2
+      Hash: 429ce0b58f9d2275bbc4ed740bee78ec
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: PostProcessDebug
+  - hash:
+      serializedVersion: 2
+      Hash: 0ca6017af9d813d8c32ae8cb63fc348a
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.World
+    className: CraftingStation
+  - hash:
+      serializedVersion: 2
+      Hash: 221e44594809b2531f7119a7ac78c551
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Character
+    className: RPGBThirdPersonCharacterControllerEssentials
+  - hash:
+      serializedVersion: 2
+      Hash: 2a10a957030dbe211599835fef9a6b46
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: QuestInteractionDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 49f9d77ac4235e91e5c8bbc5c6009705
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SaveSlotButton
+  - hash:
+      serializedVersion: 2
+      Hash: d5cd7f207e91ca8336c65a577a6fb2a0
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: aafd1e22a0542e4ab1593e9a63d307ca
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SacredStoneSlotUI
+  - hash:
+      serializedVersion: 2
+      Hash: ef826e28580d7b10025d4b853959186f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DevStatSlotHolder
+  - hash:
+      serializedVersion: 2
+      Hash: a3052f357725db883c949689fde3fe1f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RPGGearSet
+  - hash:
+      serializedVersion: 2
+      Hash: 3321b78cf130dbb2f6583dd9251571af
+    assemblyName: Polyperfect.Common
+    namespaceName: Polyperfect.Common
+    className: AnimationOffset
+  - hash:
+      serializedVersion: 2
+      Hash: c50527593dcdf86ecfe5bb4548ccb411
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Effects
+    className: WaterHoseParticles
+  - hash:
+      serializedVersion: 2
+      Hash: 46eb42463a48095b8b848dd92d828d03
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: EnchantingManager
+  - hash:
+      serializedVersion: 2
+      Hash: 9a174471d4db2c0c6d3ac47d2f818db1
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnParticleCollisionMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: ed87794927a7c621f2630ea89dc43ce7
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Car
+    className: CarUserControl
+  - hash:
+      serializedVersion: 2
+      Hash: ffcd64439f288450e15b064175ef47af
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: LoadingScreenManager
+  - hash:
+      serializedVersion: 2
+      Hash: c554cce9b8f6a0a524ddcc5a4885400a
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: EnchantingPanelDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 6fd60442bca13b3235808e3bc7282f05
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerDialogueOptionSlot
+  - hash:
+      serializedVersion: 2
+      Hash: 3e1c217230eca6e2a65362683d48f915
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SpawnMagicAbilityScript
+  - hash:
+      serializedVersion: 2
+      Hash: 0f5a086d4d028363983ba6ca30a01397
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnMouseOverMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 5b7df65ca5853b920a77e3ccf26c058f
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.World
+    className: InteractiveNode
+  - hash:
+      serializedVersion: 2
+      Hash: 0237607a3a697cf130c195c13cb63a88
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: ColorGrading
+  - hash:
+      serializedVersion: 2
+      Hash: 2c583ad0ac85d03e8700dd05fdcb46cb
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: Variables
+  - hash:
+      serializedVersion: 2
+      Hash: 50279e55047ad5d512c6711aaa3b1c1c
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.CrossPlatformInput
+    className: InputAxisScrollbar
+  - hash:
+      serializedVersion: 2
+      Hash: 88692a060a85abfa62d3f91eabbcc8c9
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: 
+    className: EventSystemChecker
+  - hash:
+      serializedVersion: 2
+      Hash: b30c8635462e66ac20f4241106119f77
+    assemblyName: Unity.VisualScripting.State
+    namespaceName: Unity.VisualScripting
+    className: StateMachine
+  - hash:
+      serializedVersion: 2
+      Hash: fb91b0f531b5adecb53c856ab1c2f0aa
+    assemblyName: Unity.Postprocessing.Runtime
+    namespaceName: UnityEngine.Rendering.PostProcessing
+    className: LensDistortion
+  - hash:
+      serializedVersion: 2
+      Hash: e0b2b5dea91dc3815015f8de64b28fcc
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DjimatUIManager
+  - hash:
+      serializedVersion: 2
+      Hash: ebb0b5c845e14c4ec306e1c3e3fb3ce8
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CameraParticleObject
+  - hash:
+      serializedVersion: 2
+      Hash: 52f17a35cb78b86d5c563ff9444e1282
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: KeyItemInventory
+  - hash:
+      serializedVersion: 2
+      Hash: f87b660d46ef0de69ef8ffd0b9b5befe
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Utility
+    className: ActivateTrigger
+  - hash:
+      serializedVersion: 2
+      Hash: 568292fb7ea6c4f7a667e5ff76bc7e85
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnMouseUpMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 1553f209ae0b2d5d3a35685fca55f9c3
+    assemblyName: Unity.TextMeshPro
+    namespaceName: TMPro
+    className: TMP_ScrollbarEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 85e13764fb7bf49fdc0ed9cdbb33de90
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Water
+    className: Water
+  - hash:
+      serializedVersion: 2
+      Hash: eb1a002cef8aebd19c0e14f103e6eb99
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: ItemsGainEventDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: e24ef647f61cad6138872fe1f18e2580
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: StatAllocationManager
+  - hash:
+      serializedVersion: 2
+      Hash: a903211ca24f764b18c6cda26633290d
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Characters.ThirdPerson
+    className: ThirdPersonCharacter
+  - hash:
+      serializedVersion: 2
+      Hash: fd9368d24a3057d6f531682e73f407d4
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.CrossPlatformInput
+    className: MobileControlRig
+  - hash:
+      serializedVersion: 2
+      Hash: 37028afd4ce572ef0539e92f85d432ad
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: MerchantPanelDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 44e808042f6937e8ff6c670211853509
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.DisplayHandler
+    className: PlayerStatesDisplayHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 517af1a362de76e7a054250199a40f67
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Characters.FirstPerson
+    className: HeadBob
+  - hash:
+      serializedVersion: 2
+      Hash: 173a1f99e9768b03c43896f0474f2048
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Cameras
+    className: LookatTarget
+  - hash:
+      serializedVersion: 2
+      Hash: 540c04516088247672e5bc8d94950c59
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.LogicMono
+    className: RPGBuilderEssentials
+  - hash:
+      serializedVersion: 2
+      Hash: 514f8ae2d292f3e26d8f5f82b134c6d7
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GridMaker
+  - hash:
+      serializedVersion: 2
+      Hash: d6e556dd8d5405a43ed30b86d854ed2c
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Vehicles.Ball
+    className: BallUserControl
+  - hash:
+      serializedVersion: 2
+      Hash: 0af302b9c0cc691243cb7af0ac7cddd6
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.CrossPlatformInput
+    className: AxisTouchButton
+  - hash:
+      serializedVersion: 2
+      Hash: ff76cf6cf52b4db7b95af6ffadca9288
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: SignalEmitter
+  - hash:
+      serializedVersion: 2
+      Hash: d940ff6ffc8cbd9345eabbb954cc98ac
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ShapeshiftSlot
+  - hash:
+      serializedVersion: 2
+      Hash: 8ab8dc99d83a6e527940351745a84a43
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: QuestJournalDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 75e537dfe19d7964b4f9d2d7ebe7ff19
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.Managers
+    className: ConfirmationPopupManager
+  - hash:
+      serializedVersion: 2
+      Hash: 02a47340661d2ea7c6d30e292cfef403
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnToggleValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 297aef046cf513336ab8c3da5ec57de1
+    assemblyName: Assembly-CSharp-firstpass
+    namespaceName: UnityStandardAssets.Effects
+    className: Hose
+  - hash:
+      serializedVersion: 2
+      Hash: 8bf800a764665b085fe469e8aea7f167
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnMouseEnterMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 86767381e7726a941d87096440e5f98c
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CombosDisplayManager
+  - hash:
+      serializedVersion: 2
+      Hash: 4c3e05c4152415f6f21a31cc9c912b3b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CharacterData
+  - hash:
+      serializedVersion: 2
+      Hash: 00eef92bf387da2c9009267123d9d674
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnTriggerExit2DMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 8b15e35eb98fc258ec2e839df7c3c9b0
+    assemblyName: Unity.VisualScripting.Core
+    namespaceName: Unity.VisualScripting
+    className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 27c5ae9ed128d388b6e2b7dc3a03bca7
+    assemblyName: Assembly-CSharp
+    namespaceName: BLINK.RPGBuilder.UIElements
+    className: QuestObjectiveTextSlot
+  platform: 19
+  scenePathNames:
+  - Assets/Scenes/SampleScene.unity
+  playerPath: C:/Users/tigaw/Unity Files/Program_Skripsi/Build/NightreinDLC.exe

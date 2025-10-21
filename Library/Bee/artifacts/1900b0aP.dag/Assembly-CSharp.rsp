@@ -1,0 +1,628 @@
+-target:library
+-out:"Library/Bee/artifacts/1900b0aP.dag/Assembly-CSharp.dll"
+-refout:"Library/Bee/artifacts/1900b0aP.dag/Assembly-CSharp.ref.dll"
+-define:UNITY_2022_3_61
+-define:UNITY_2022_3
+-define:UNITY_2022
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_5_OR_NEWER
+-define:UNITY_5_6_OR_NEWER
+-define:UNITY_2017_1_OR_NEWER
+-define:UNITY_2017_2_OR_NEWER
+-define:UNITY_2017_3_OR_NEWER
+-define:UNITY_2017_4_OR_NEWER
+-define:UNITY_2018_1_OR_NEWER
+-define:UNITY_2018_2_OR_NEWER
+-define:UNITY_2018_3_OR_NEWER
+-define:UNITY_2018_4_OR_NEWER
+-define:UNITY_2019_1_OR_NEWER
+-define:UNITY_2019_2_OR_NEWER
+-define:UNITY_2019_3_OR_NEWER
+-define:UNITY_2019_4_OR_NEWER
+-define:UNITY_2020_1_OR_NEWER
+-define:UNITY_2020_2_OR_NEWER
+-define:UNITY_2020_3_OR_NEWER
+-define:UNITY_2021_1_OR_NEWER
+-define:UNITY_2021_2_OR_NEWER
+-define:UNITY_2021_3_OR_NEWER
+-define:UNITY_2022_1_OR_NEWER
+-define:UNITY_2022_2_OR_NEWER
+-define:UNITY_2022_3_OR_NEWER
+-define:PLATFORM_ARCH_64
+-define:UNITY_64
+-define:ENABLE_AR
+-define:ENABLE_AUDIO
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_EVENT_QUEUE
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_TEXTURE_STREAMING
+-define:ENABLE_VIRTUALTEXTURING
+-define:ENABLE_LZMA
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_VR
+-define:ENABLE_WEBCAM
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_EDITOR_GAME_SERVICES
+-define:ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_HUB_LICENSE
+-define:ENABLE_WEBSOCKET_CLIENT
+-define:ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API
+-define:ENABLE_DIRECTOR_AUDIO
+-define:ENABLE_DIRECTOR_TEXTURE
+-define:ENABLE_MANAGED_JOBS
+-define:ENABLE_MANAGED_TRANSFORM_JOBS
+-define:ENABLE_MANAGED_ANIMATION_JOBS
+-define:ENABLE_MANAGED_AUDIO_JOBS
+-define:ENABLE_MANAGED_UNITYTLS
+-define:INCLUDE_DYNAMIC_GI
+-define:ENABLE_SCRIPTING_GC_WBARRIERS
+-define:PLATFORM_SUPPORTS_MONO
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_VIDEO
+-define:ENABLE_ACCELERATOR_CLIENT_DEBUGGING
+-define:ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION
+-define:ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT
+-define:ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE
+-define:PLATFORM_STANDALONE
+-define:TEXTCORE_1_0_OR_NEWER
+-define:PLATFORM_STANDALONE_WIN
+-define:UNITY_STANDALONE_WIN
+-define:UNITY_STANDALONE
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_MOVIES
+-define:ENABLE_NETWORK
+-define:ENABLE_NVIDIA
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_OUT_OF_PROCESS_CRASH_HANDLER
+-define:ENABLE_CLUSTER_SYNC
+-define:ENABLE_CLUSTERINPUT
+-define:PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP
+-define:GFXDEVICE_WAITFOREVENT_MESSAGEPUMP
+-define:PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY
+-define:ENABLE_MONO
+-define:NET_STANDARD_2_0
+-define:NET_STANDARD
+-define:NET_STANDARD_2_1
+-define:NETSTANDARD
+-define:NETSTANDARD2_1
+-define:ENABLE_CUSTOM_RENDER_TEXTURE
+-define:ENABLE_DIRECTOR
+-define:ENABLE_LOCALIZATION
+-define:ENABLE_SPRITES
+-define:ENABLE_TERRAIN
+-define:ENABLE_TILEMAP
+-define:ENABLE_TIMELINE
+-define:ENABLE_LEGACY_INPUT_MANAGER
+-define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
+-define:CROSS_PLATFORM_INPUT
+-define:UNITY_POST_PROCESSING_STACK_V2
+-define:PROBUILDER_EXPERIMENTAL_FEATURES
+-define:CSHARP_7_OR_LATER
+-define:CSHARP_7_3_OR_NEWER
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.ComponentModel.Composition.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Core.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Data.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Drawing.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.IO.Compression.FileSystem.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Net.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Numerics.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Runtime.Serialization.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.ServiceModel.Web.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Transactions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Web.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Windows.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Xml.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Xml.Linq.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Xml.Serialization.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/Microsoft.Win32.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.AppContext.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Buffers.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.Concurrent.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.NonGeneric.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.Specialized.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.EventBasedAsync.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.TypeConverter.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Console.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Data.Common.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Contracts.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Debug.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.FileVersionInfo.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Process.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.StackTrace.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.TextWriterTraceListener.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Tools.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.TraceSource.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Tracing.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Drawing.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Dynamic.Runtime.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Globalization.Calendars.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Globalization.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Globalization.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Compression.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Compression.ZipFile.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.DriveInfo.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.Watcher.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.IsolatedStorage.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.MemoryMappedFiles.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Pipes.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.UnmanagedMemoryStream.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.Expressions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.Parallel.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.Queryable.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Memory.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Http.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.NameResolution.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.NetworkInformation.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Ping.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Requests.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Security.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Sockets.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.WebHeaderCollection.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.WebSockets.Client.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.WebSockets.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Numerics.Vectors.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ObjectModel.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.DispatchProxy.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Emit.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Emit.ILGeneration.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Emit.Lightweight.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Resources.Reader.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Resources.ResourceManager.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Resources.Writer.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.CompilerServices.VisualC.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Handles.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.InteropServices.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.InteropServices.RuntimeInformation.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Numerics.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Formatters.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Json.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Xml.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Claims.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Algorithms.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Csp.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Encoding.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.X509Certificates.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Principal.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.SecureString.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Text.Encoding.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Text.Encoding.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Text.RegularExpressions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Overlapped.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Tasks.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Tasks.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Tasks.Parallel.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Thread.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.ThreadPool.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Timer.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ValueTuple.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.ReaderWriter.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XDocument.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XmlDocument.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XmlSerializer.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XPath.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XPath.XDocument.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/NetStandard/ref/2.1.0/netstandard.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AccessibilityModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AndroidJNIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AnimationModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ARModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AssetBundleModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.AudioModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ClothModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ClusterInputModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ClusterRendererModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ContentLoadModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.CoreModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.CrashReportingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.DirectorModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.DSPGraphModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.GameCenterModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.GIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.GridModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.HotReloadModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ImageConversionModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.IMGUIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.InputLegacyModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.InputModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.JSONSerializeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.LocalizationModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ParticleSystemModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.PerformanceReportingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.Physics2DModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.PhysicsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ProfilerModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.PropertiesModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.ScreenCaptureModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.SharedInternalsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.SpriteMaskModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.SpriteShapeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.StreamingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.SubstanceModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.SubsystemsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TerrainModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TerrainPhysicsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TextCoreFontEngineModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TextCoreTextEngineModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TextRenderingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TilemapModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.TLSModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UIElementsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UmbraModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityAnalyticsCommonModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityAnalyticsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityConnectModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityCurlModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityTestProtocolModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestAudioModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestTextureModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.UnityWebRequestWWWModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VehiclesModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VFXModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VideoModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VirtualTexturingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VRModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.WindModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.XRModule.dll"
+-r:"Library/PackageCache/com.unity.visualscripting@1.9.4/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Assembly-CSharp-firstpass.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Polyperfect.Common.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.AI.Navigation.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Postprocessing.Runtime.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.ProBuilder.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.TextMeshPro.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Timeline.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.Core.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.Flow.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.State.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/UnityEngine.UI.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/XNode.ref.dll"
+-analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
+-analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.61f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/assetsthiung/Shader/ShaderHandler.cs"
+"Assets/Blink/Tools/RPGBuilder/Resources/EditorData/RPGBuilderEditorDATA.cs"
+"Assets/Blink/Tools/RPGBuilder/Resources/EditorData/RPGBuilderEditorFilters.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/AI/NPCSpawner.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/AI/RPGBAIAgent.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/PlayerAnimatorLayerHandler.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/PlayerAppearanceHandler.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/RPGBCharacterController.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/RPGBCharacterControllerEssentials.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/RPGBCharacterWorldInteraction.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/RPGBThirdPersonCharacterControllerEssentials.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/ThirdPerson/CharacterAnimator.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/ThirdPerson/Controller.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/ThirdPerson/InterpolationCurve.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/ThirdPerson/PlayerCamera.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/ThirdPerson/PlayerController.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/ThirdPerson/PlayerInput.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/ThirdPerson/RPGBThirdPersonController.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/ThirdPerson/SpringArm.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/ThirdPerson/TestHelper.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Character/ThirdPerson/Util.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/CustomAttributes/RPGBCustomAttributes.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/DataHandling/AssetIDHandler.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/DataHandling/CharacterData.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/DataHandling/DataSavingSystem.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/DataHandling/GameSettingsData.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/DataHandling/RPGBuilderJsonSaver.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/DataHandling/RPGBuilderUtilities.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/DisplayHandler/EquipmentItemSlotDisplayHandler.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/DisplayHandler/EXPBarDisplayHandler.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/DisplayHandler/PlayerStatesDisplayHandler.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/DisplayHandler/StatBarDisplayHandler.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Interfaces/IDisplayPanel.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Interfaces/IPlayerInteractable.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Logic/AILogic.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Logic/StatCalculator.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/LogicMono/CombatNode.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/LogicMono/GroundHitDetection.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/LogicMono/GroundIndicator.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/LogicMono/NodeSockets.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/LogicMono/ObjectActionDestroyTrigger.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/LogicMono/ProjectileHitDetection.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/LogicMono/ProjectileSlowZone.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/LogicMono/RPGBuilderEssentials.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/AbilityManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/ActionBarManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/ActiveBlockingDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/BonusManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/CharacterEventsManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/CharacterPanelDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/CombatManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/CombosDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/ConfirmationPopupManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/CraftingManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/CraftingPanelDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/CrosshairDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/CursorManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/CustomInputManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/DevUIManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/DialogueDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/EnchantingManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/EnchantingPanelDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/ErrorEventsDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/FactionManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/GameActionsManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/GameModifierManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/GameOptionsDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/GatheringManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/GroundIndicatorManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/InventoryDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/InventoryManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/ItemsGainEventDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/LevelingManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/LoadingScreenManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/LootPanelDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/MainMenuManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/MerchantPanelDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/MeshParticleManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/MinimapDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/MusicManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/PetPanelDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/PlayerInfoDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/QuestInteractionDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/QuestJournalDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/QuestManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/QuestTrackerDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/RegionManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/RegionMessageDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/RequirementsManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/RPGBDemoTutorialDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/ScreenOverlayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/ScreenTextDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/SettingsPanelDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/ShapeshiftingSlotsDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/SkillBookDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/SocketingPanelDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/SpellbookDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/StatAllocationDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/StatAllocationManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/TargetInfoDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/TaskCheckerManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/TreePointsManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/TreesDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/WeaponTemplatesDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Managers/WorldInteractableDisplayManager.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Nodes/RPGDialogueBaseNode.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Nodes/RPGDialogueTextNode.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGAbility.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGBGameActions.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGBonus.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGClass.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGCombatDATA.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGCombo.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGCraftingRecipe.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGCraftingStation.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGCurrency.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGDialogue.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGDialogueGraph.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGDialogueGraphUtilities.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGEffect.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGEnchantment.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGFaction.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGGameModifier.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGGameScene.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGGearSet.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGGeneralDATA.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGItem.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGItemDATA.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGLevelsTemplate.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGLootTable.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGMerchantTable.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGNpc.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGQuest.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGRace.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGResourceNode.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGSkill.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGSpecies.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGSpellbook.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGStat.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGTalentTree.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGTask.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGTreePoint.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGWeaponTemplate.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/RPGData/RPGWorldPosition.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UI/AbilityTooltip.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UI/FPSCounter.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UI/ItemTooltip.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UI/ScreenSpaceNameplates.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UI/ScreenSpaceWorldDroppedItems.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UI/Toolbar.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/AbilityTooltipElement.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/ActionBarSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/BossUISlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/CharacterSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/ClassSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/CombatTreeSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/ComboSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/CraftingItemSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/CraftingRecipeSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/CurrencyDisplaySlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/DevStatSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/EnchantCostSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/EnchantSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/FactionSlotDataHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/GameModifierSlotDataHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/GetItemSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/InventoryBagSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/ItemSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/KeybindSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/LootBagHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/LootItemSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/MerchantItemSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/NameplatesDATAHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/NodeStateSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/NPCSpawnSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/PlayerDialogueOptionSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/QuestItemSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/QuestObjectiveTextSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/QuestStateSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/QuestTrackerSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/RaceSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/ScreenSpaceStateDisplay.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/ScreenTextObject.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/ShapeshiftSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/SkillSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/SocketSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/SpellbookNodeSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/SpellbookSlot.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/StatAllocationSlotDataHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/StatDataHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/TreeNodeHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/WeaponTemplateSlotHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/UIElements/WorldDroppedItemDataHolder.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Utility/MathParabola.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Utility/PolytopeCharacterCustomizer.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Utility/RendererExtension.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Utility/UIGridRenderer.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Utility/UILineRenderer.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/Utility/Win32.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/World/CameraParticleObject.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/World/CraftingStation.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/World/GraveyardHandler.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/World/InteractiveNode.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/World/ObjectActionTrigger.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/World/Region.cs"
+"Assets/Blink/Tools/RPGBuilder/Scripts/World/WorldDroppedItem.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Scripts/ParticleSystemController/ParticleSystemController.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Scripts/ParticleSystemController/ParticleSystemControllerEditor.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Scripts/ParticleSystemController/SaveParticleSystemScript.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Scripts/ParticleSystemController/Serializables.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Scripts/UniqueMagicAbilities/SpawnCometsScript.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Scripts/UniqueMagicAbilities/SpawnMagicAbilityScript.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Scripts/UniqueProjectiles/CameraShakeSimpleScript.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Scripts/UniqueProjectiles/ProjectileMoveScript.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Scripts/UniqueProjectiles/RotateToMouseScript.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/GabrielAguiarProductions/Scripts/UniqueProjectiles/SpawnProjectilesScript.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/NaughtyCharacter/Scripts/Helpers/FpsCounter.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/RDR/Particles/Fantasy_Portal/Script/Exit.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/RDR/Particles/Fantasy_Portal/Script/NextPrefab.cs"
+"Assets/Blink/Tools/RPGBuilder/ThirdPartyAssets/RDR/Particles/Fantasy_Portal/Script/UserCamera.cs"
+"Assets/Polytope Studio/Lowpoly_Demos/Environment_Free/Helpers/MouseLook.cs"
+"Assets/Polytope Studio/Lowpoly_Demos/Environment_Free/Helpers/PlayerMovement.cs"
+"Assets/SampleScenes/Menu/Scripts/MenuSceneLoader.cs"
+"Assets/SampleScenes/Menu/Scripts/PauseMenu.cs"
+"Assets/SampleScenes/Menu/Scripts/SceneAndURLLoader.cs"
+"Assets/SampleScenes/Scripts/CameraSwitch.cs"
+"Assets/SampleScenes/Scripts/LevelReset.cs"
+"Assets/SampleScenes/Scripts/ParticleSceneControls.cs"
+"Assets/SampleScenes/Scripts/PlaceTargetWithMouse.cs"
+"Assets/SampleScenes/Scripts/SlowMoButton.cs"
+"Assets/Script/Boss/BossAI.cs"
+"Assets/Script/Boss/BossAreaTrigger.cs"
+"Assets/Script/Boss/BossManager.cs"
+"Assets/Script/Boss/BossWeapon.cs"
+"Assets/Script/Djimat/DjimatItem.cs"
+"Assets/Script/Djimat/DjimatLimitSlotUI.cs"
+"Assets/Script/Djimat/DjimatLimitUI.cs"
+"Assets/Script/Djimat/DjimatManager.cs"
+"Assets/Script/Djimat/DjimatSystem.cs"
+"Assets/Script/Djimat/DjimatUIManager.cs"
+"Assets/Script/Djimat/EquippedSlotUI.cs"
+"Assets/Script/Djimat/InventorySlotUI.cs"
+"Assets/Script/Djimat/ItemInfoDisplay.cs"
+"Assets/Script/Djimat/ItemInfoDisplayCatalog.cs"
+"Assets/Script/DoorInteraction.cs"
+"Assets/Script/Enemy/EnemyAI.cs"
+"Assets/Script/Enemy/EnemyHealthBar.cs"
+"Assets/Script/Enemy/EnemyManager.cs"
+"Assets/Script/Enemy/EnemyWeapon.cs"
+"Assets/Script/EnemyRespawner.cs"
+"Assets/Script/FreeLookCam.cs"
+"Assets/Script/GameManager.cs"
+"Assets/Script/KeyItemInventory.cs"
+"Assets/Script/LockedDoorInteraction.cs"
+"Assets/Script/LockOnTarget.cs"
+"Assets/Script/PauseSetting.cs"
+"Assets/Script/PickableItem.cs"
+"Assets/Script/PickableManager.cs"
+"Assets/Script/PlayerDetector.cs"
+"Assets/Script/PlayerManager.cs"
+"Assets/Script/PromptTrigger.cs"
+"Assets/Script/PromptUIManagerDoor.cs"
+"Assets/Script/PromptUIManagerDoorKey.cs"
+"Assets/Script/SacredStoneInventory.cs"
+"Assets/Script/Saves/Checkpoint.cs"
+"Assets/Script/Saves/ResetDataButton.cs"
+"Assets/Script/Saves/SaveData.cs"
+"Assets/Script/Saves/SaveManager.cs"
+"Assets/Script/Saves/SaveSlotButton.cs"
+"Assets/Script/TPCharacter.cs"
+"Assets/Script/TPUserControl.cs"
+"Assets/Script/UI/GridMaker.cs"
+"Assets/Script/UI/KeyItemGridMaker.cs"
+"Assets/Script/UI/KeyItemSlotUI.cs"
+"Assets/Script/UI/MainMenu/HowToPlayerUIManager.cs"
+"Assets/Script/UI/MainMenu/MainMenuUI.cs"
+"Assets/Script/UI/MerchantCatalog.cs"
+"Assets/Script/UI/MerchantManager.cs"
+"Assets/Script/UI/MerchantSetting.cs"
+"Assets/Script/UI/MerchantSlotUI.cs"
+"Assets/Script/UI/MoneyUI.cs"
+"Assets/Script/UI/PlayerHealthUI.cs"
+"Assets/Script/UI/PromptUIManager.cs"
+"Assets/Script/UI/PromptUIManagerCheckpoint.cs"
+"Assets/Script/UI/SacredStoneGridMaker.cs"
+"Assets/Script/UI/SacredStoneSlotUI.cs"
+"Assets/Script/UI/SimpleSlotUI.cs"
+"Assets/Script/Weapon.cs"
+"Assets/Script/WeaponUpgradeManager.cs"
+"Assets/ThirdPart/48 Particle Effect Pack/Script/csDestroyEffect.cs"
+"Assets/ThirdPart/48 Particle Effect Pack/Script/csMouseOrbit.cs"
+"Assets/ThirdPart/48 Particle Effect Pack/Script/csParticleEffectPackLightControl.cs"
+"Assets/ThirdPart/48 Particle Effect Pack/Script/csParticleMove.cs"
+"Assets/ThirdPart/48 Particle Effect Pack/Script/csShowAllEffect.cs"
+"Assets/ThirdPart/Piloto Studio/Readme/Scripts/Readme.cs"
+"Assets/ThirdPart/Piloto Studio/Readme/Scripts/ReadmeBehaviour.cs"
+-langversion:9.0
+/deterministic
+/optimize+
+/debug:portable
+/nologo
+/RuntimeMetadataVersion:v4.0.30319
+/nowarn:0169
+/nowarn:0649
+/nowarn:0282
+/nowarn:1701
+/nowarn:1702
+/utf8output
+/preferreduilang:en-US
+/additionalfile:"Library/Bee/artifacts/1900b0aP.dag/Assembly-CSharp.UnityAdditionalFile.txt"
