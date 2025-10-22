@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2591837910418474553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7573359179393541934}
+  - component: {fileID: 4602516910732687090}
+  m_Layer: 0
+  m_Name: Penjaga
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7573359179393541934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591837910418474553}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -54.715424, y: -4.598474, z: -37.016968}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8008559680760181033}
+  - {fileID: 428997488779949134}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4602516910732687090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591837910418474553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015a6999072f4d94fb8386b2ed50fe2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 6064476004454440417, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+  spawnPoint: {fileID: 8008559680760181033}
+  respawnDelay: 3
+  currentEnemy: {fileID: 2591837910418474553}
+--- !u!1 &7393922654049807824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8008559680760181033}
+  m_Layer: 0
+  m_Name: SpawnPointPenjaga
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8008559680760181033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393922654049807824}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.845, y: 2.072, z: -0.53}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7573359179393541934}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5568241073023145169
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7573359179393541934}
+    m_Modifications:
+    - target: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.9112997
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.33679986
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064476004454440417, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+      propertyPath: m_Name
+      value: Penjaga2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+--- !u!4 &428997488779949134 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5238327590167224479, guid: 1be6d845370e5d140a99062a254aeb9c, type: 3}
+  m_PrefabInstance: {fileID: 5568241073023145169}
+  m_PrefabAsset: {fileID: 0}

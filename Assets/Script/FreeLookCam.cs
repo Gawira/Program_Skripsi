@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
@@ -33,9 +32,10 @@ namespace UnityStandardAssets.Cameras
         private Vector3 m_PivotEulers;
         private Quaternion m_PivotTargetRot;
         private Quaternion m_TransformTargetRot;
+        private float unlockCooldown = 0f;
 
         // add near top of class (inside the class, not inside methods)
-        
+
 
         protected override void Awake()
         {
@@ -56,7 +56,7 @@ namespace UnityStandardAssets.Cameras
             if (merchantSetting == null)
                 merchantSetting = FindObjectOfType<MerchantManager>();
         }
-        
+
 
         protected void Update()
         {
@@ -74,9 +74,19 @@ namespace UnityStandardAssets.Cameras
             }
 
             HandleRotationMovement();
+            //Debug.Log($"Tilt={m_TiltAngle}, Look={m_LookAngle}");
+            //Debug.Log(
+            //            $"[Camera Debug] " +
+            //            $"Pos: {m_Pivot.position}, " +
+            //            $"Rot: {m_Pivot.rotation.eulerAngles}, " +
+            //            $"Forward: {m_Pivot.forward}, " +
+            //            $"Right: {m_Pivot.right}, " +
+            //            $"Up: {m_Pivot.up}"
+            //        );
+
         }
 
-        
+
 
         private void OnDisable()
         {
@@ -110,61 +120,47 @@ namespace UnityStandardAssets.Cameras
             if (Time.timeScale < float.Epsilon)
                 return;
 
-
+            // Disable camera input during lock-on
             if (lockontarget != null && lockontarget.LockOn)
             {
-                if (m_Pivot != null)
-                {
-                    Transform pivot = m_Pivot;
-                    //Debug.Log(
-                    //    $"[Camera Debug] " +
-                    //    $"Pos: {pivot.position}, " +
-                    //    $"Rot: {pivot.rotation.eulerAngles}, " +
-                    //    $"Forward: {pivot.forward}, " +
-                    //    $"Right: {pivot.right}, " +
-                    //    $"Up: {pivot.up}"
-                    //);
-                    
-                }
-
-                //disables inputs
-                //Debug.Log("Lock-on active == disable mouse!");
+                // When locked, camera rotation is handled by LockOnTarget
                 return;
             }
 
-            // Read the user input
-            var x = CrossPlatformInputManager.GetAxis("Mouse X");
-            var y = CrossPlatformInputManager.GetAxis("Mouse Y");
-            // Adjust the look angle by an amount proportional to the turn speed and horizontal input.
+            // Read mouse input
+            float x = CrossPlatformInputManager.GetAxis("Mouse X");
+            float y = CrossPlatformInputManager.GetAxis("Mouse Y");
+
+            // Horizontal look (Y-axis rotation)
             m_LookAngle += x * m_TurnSpeed;
 
-            // Rotate the rig (the root object) around Y axis only:
+            // Vertical look (X-axis rotation)
+            m_TiltAngle -= y * m_TurnSpeed;
+            m_TiltAngle = Mathf.Clamp(m_TiltAngle, -m_TiltMin, m_TiltMax);
+
+            // Apply rotations
             m_TransformTargetRot = Quaternion.Euler(0f, m_LookAngle, 0f);
-
-            m_Cam.localPosition = new Vector3(0f, 0f, -k_LookDistance);
-
-            if (m_VerticalAutoReturn)
-            {
-                // For tilt input, we need to behave differently depending on whether we're using mouse or touch input:
-                // on mobile, vertical input is directly mapped to tilt value, so it springs back automatically when the look input is released
-                // we have to test whether above or below zero because we want to auto-return to zero even if min and max are not symmetrical.
-                m_TiltAngle = y > 0 ? Mathf.Lerp(0, -m_TiltMin, y) : Mathf.Lerp(0, m_TiltMax, -y);
-            }
-            else
-            {
-                // on platforms with a mouse, we adjust the current angle based on Y mouse input and turn speed
-                m_TiltAngle -= y * m_TurnSpeed;
-                // and make sure the new value is within the tilt range
-                m_TiltAngle = Mathf.Clamp(m_TiltAngle, -m_TiltMin, m_TiltMax);
-            }
-
-            // Tilt input around X is applied to the pivot (the child of this object)
             m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, m_PivotEulers.y, m_PivotEulers.z);
 
-            if (m_TurnSmoothing > 0)
+            
+
+            // Adjust camera distance (backwards from pivot)
+            m_Cam.localPosition = new Vector3(0f, 0f, -k_LookDistance);
+
+            // Apply rotation smoothing (if any)
+            if (m_TurnSmoothing > 0f)
             {
-                m_Pivot.localRotation = Quaternion.Slerp(m_Pivot.localRotation, m_PivotTargetRot, m_TurnSmoothing * Time.deltaTime);
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, m_TransformTargetRot, m_TurnSmoothing * Time.deltaTime);
+                m_Pivot.localRotation = Quaternion.Slerp(
+                    m_Pivot.localRotation,
+                    m_PivotTargetRot,
+                    m_TurnSmoothing * Time.deltaTime
+                );
+
+                transform.localRotation = Quaternion.Slerp(
+                    transform.localRotation,
+                    m_TransformTargetRot,
+                    m_TurnSmoothing * Time.deltaTime
+                );
             }
             else
             {
@@ -173,25 +169,27 @@ namespace UnityStandardAssets.Cameras
             }
         }
 
+
         public void SyncFromPivot()
         {
             if (m_Pivot == null || lockontarget == null) return;
+            
+            // Restore from saved local rotation
+            m_Pivot.localRotation = lockontarget.savedPivotRotation;
 
-            //  Use the saved pivot rotation directly
-            Quaternion spr = lockontarget.savedPivotRotation;
+            // Extract tilt/look from the pivot
+            Vector3 euler = m_Pivot.localRotation.eulerAngles;
+            m_TiltAngle = -euler.x;
+            m_LookAngle = euler.y;
 
-            // Convert to Euler for tilt/look separation
-            Vector3 pivotEuler = spr.eulerAngles;
-
-            //  Use saved rotation instead of live transform
-            m_TiltAngle = pivotEuler.x;                      // X = tilt
-            m_LookAngle = pivotEuler.y;                      // Y = look
-
-            //  Apply saved rotation as targets
-            m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, 0f, 0f);
+            // Reset target rotations
+            m_PivotTargetRot = m_Pivot.localRotation;
             m_TransformTargetRot = Quaternion.Euler(0f, m_LookAngle, 0f);
 
-            Debug.Log($"[FreeLookCam] Synced from saved rotation: Tilt={m_TiltAngle}, Look={m_LookAngle}");
+            //  Update base pivot eulers to stop overwrite flipping
+            m_PivotEulers = m_Pivot.localRotation.eulerAngles;
+
+            Debug.Log($"[FreeLookCam] Synced and stabilized from saved rotation: Tilt={m_TiltAngle}, Look={m_LookAngle}");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using UnityEngine;
 using UnityStandardAssets.Cameras;
 
@@ -18,7 +19,6 @@ namespace UnityStandardAssets.Cameras
         private Camera mainCam;
         public bool LockOn;
 
-        public Vector3 savedPivot;
         public Quaternion savedPivotRotation;
 
         void Start()
@@ -94,6 +94,15 @@ namespace UnityStandardAssets.Cameras
             if (freelookcam != null)
                 freelookcam.SyncFromPivot();
 
+            if (freelookcam != null && freelookcam.m_Pivot != null)
+            {
+                // Align pivot so that camera faces the same direction again
+                Vector3 camForward = -freelookcam.m_Cam.forward;
+                Quaternion correctedRot = Quaternion.LookRotation(camForward, Vector3.up);
+                freelookcam.m_Pivot.rotation = correctedRot;
+                savedPivotRotation = correctedRot;
+            }
+
             currentTarget = null;
             LockOn = false;
         }
@@ -163,7 +172,8 @@ namespace UnityStandardAssets.Cameras
                 rotationSpeed * Time.deltaTime
             );
 
-            savedPivotRotation = pivot.rotation;
+            Vector3 camForward = freelookcam.m_Cam.forward;
+            savedPivotRotation = Quaternion.LookRotation(camForward, Vector3.up);
         }
         #endregion
 

@@ -2,46 +2,73 @@ using UnityEngine;
 
 public class BossAreaTrigger : MonoBehaviour
 {
-    [Header("Boss Reference")]
+    [Header("Boss References")]
     public BossManager bossManager;
-
     public BossAI bossAI;
 
-    [Header("Player Tag")]
+    [Header("Player Reference")]
     public string playerTag = "Player";
+    public PlayerManager playerManager;
+
+    [Header("Arena Barrier")]
+    public GameObject arenaBarrier;  // Drag your wall / box collider GameObject here in Inspector
+
     private bool bossActive = false;
+    private bool fightLocked = false;
     private Transform playerTransform;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(playerTag)) return;
+        if (fightLocked) return;
 
         playerTransform = other.transform;
 
-        // Toggle boss state
-        bossActive = !bossActive;
+        bossActive = true;
+        fightLocked = true;
 
-        if (bossActive)
+        // Activate boss AI
+        if (bossAI != null)
+            bossAI.ActivateBoss(playerTransform);
+
+        if (bossManager != null)
+            bossManager.ActivateBossUI();
+
+        // Activate the barrier
+        if (arenaBarrier != null)
+            arenaBarrier.SetActive(true);
+
+        Debug.Log("Boss fight started!");
+    }
+
+    private void Update()
+    {
+        if (!fightLocked) return;
+
+        bool bossDead = bossManager != null && bossManager.currentHealth <= 0;
+        bool playerDead = playerManager != null && playerManager.currentHealth <= 0;
+
+        if (bossDead || playerDead)
         {
-            // Activate boss fight
-            if (bossAI != null)
-                bossAI.ActivateBoss(playerTransform);
-
-            if (bossManager != null)
-                bossManager.ActivateBossUI();
-
-            Debug.Log("Boss activated!");
+            EndBossFight();
         }
-        else
-        {
-            // Deactivate boss fight
-            if (bossAI != null)
-                bossAI.DeactivateBoss();  // You can implement this method in BossAI
+    }
 
-            if (bossManager != null)
-                bossManager.DeactivateBossUI();
+    private void EndBossFight()
+    {
+        bossActive = false;
+        fightLocked = false;
 
-            Debug.Log("Boss deactivated!");
-        }
+        if (bossAI != null)
+            bossAI.DeactivateBoss();
+
+        if (bossManager != null)
+            bossManager.DeactivateBossUI();
+
+        // Deactivate the barrier so player can leave
+        if (arenaBarrier != null)
+            arenaBarrier.SetActive(false);
+
+        Debug.Log("Boss fight ended!");
     }
 }

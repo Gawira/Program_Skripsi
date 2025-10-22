@@ -17,7 +17,7 @@ public class EnemyManager : MonoBehaviour
     public event Action<EnemyManager> OnEnemyDied;
     private Animator anim;
 
-    public GameObject healthBarCanvas;
+    private GameObject healthBarCanvas;
     private LockOnTarget lockOnTarget;
     private PlayerManager playerManager;
 
@@ -39,10 +39,14 @@ public class EnemyManager : MonoBehaviour
     private void Update()
     {
         //Debug.Log(lockOnTarget.LockOn);
-        if (healthBarCanvas != null && lockOnTarget.LockOn == true || currentHealth != 100)
+        if (healthBarCanvas != null && lockOnTarget.LockOn == true || currentHealth != maxHealth)
         {
             //Debug.Log("helpme");
             healthBarCanvas.SetActive(true);
+        }
+        else
+        {  
+            healthBarCanvas.SetActive(false);
         }
     }
 

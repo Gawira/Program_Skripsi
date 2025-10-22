@@ -18,11 +18,14 @@ public class EnemyAI : MonoBehaviour
     public float strafeSpeed = 2f;
     public float rotationSpeed = 8f;
     public float groundRayLength = 1.2f;
+    private float verticalVelocity = 0f;
+    public float gravity = -20f;
     public LayerMask groundLayer;
 
     private Transform goal;
     private Rigidbody rb;
     private Animator anim;
+
 
     private float decisionTimer = 0f;
     private string currentState = "Idle";
@@ -33,8 +36,9 @@ public class EnemyAI : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ; // Prevent tipping
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        rb.isKinematic = true;
+        rb.useGravity = false;  // we’ll handle gravity manually
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
 
         FindPlayerOnce();
     }
@@ -49,12 +53,21 @@ public class EnemyAI : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, goal.position);
 
+        // If player is too far, idle
         if (dist > chaseRadius)
         {
-            if (currentState != "Attack")
-                SetState("Idle", "Idle");
+            SetState("Idle", "Idle");
+            return;
         }
-        else if (dist <= attackRadius)
+
+        // Stop all movement during attack
+        if (waitingForAttackFinish)
+        {
+            return;
+        }
+
+        // Decision handling
+        if (dist <= attackRadius)
         {
             decisionTimer -= Time.deltaTime;
             if (decisionTimer <= 0f && !waitingForAttackFinish)
@@ -87,9 +100,11 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Make sure enemy stays grounded
         AlignToGround();
     }
+
+    
+
 
     void FindPlayerOnce()
     {
@@ -138,7 +153,7 @@ public class EnemyAI : MonoBehaviour
         Vector3 dirToPlayer = transform.position - goal.position;
         dirToPlayer.y = 0;
         Vector3 strafeDir = Vector3.Cross(Vector3.up, dirToPlayer).normalized * strafeDirection;
-        rb.MovePosition(rb.position + strafeDir * strafeSpeed * Time.deltaTime);
+        transform.position += strafeDir * strafeSpeed * Time.deltaTime;
     }
 
     void FacePlayer()
@@ -159,16 +174,24 @@ public class EnemyAI : MonoBehaviour
     {
         Vector3 moveDir = (target - transform.position).normalized;
         moveDir.y = 0;
-        rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
+        transform.position += moveDir * moveSpeed * Time.deltaTime;
     }
 
     void AlignToGround()
     {
         if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, groundRayLength, groundLayer))
         {
-            Vector3 pos = rb.position;
+            // Grounded
+            verticalVelocity = 0f;
+            Vector3 pos = transform.position;
             pos.y = hit.point.y;
-            rb.MovePosition(pos);
+            transform.position = pos;
+        }
+        else
+        {
+            // 🪂 Not grounded - apply gravity
+            verticalVelocity += gravity * Time.deltaTime;
+            transform.position += new Vector3(0f, verticalVelocity * Time.deltaTime, 0f);
         }
     }
 
@@ -192,8 +215,25 @@ public class EnemyAI : MonoBehaviour
     IEnumerator WaitForAttackFinish()
     {
         waitingForAttackFinish = true;
+
+        //  Store the current movement speed
+        float originalMoveSpeed = moveSpeed;
+
+        //  Stop movement during attack
+        moveSpeed = 0f;
+
+        // Wait one frame to ensure animator updates to the attack state
+        yield return null;
+
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        yield return new WaitForSeconds(stateInfo.length);
+        float clipLength = stateInfo.length;
+
+        //  Wait for the attack animation to finish
+        yield return new WaitForSeconds(clipLength);
+
+        //  Restore the movement speed
+        moveSpeed = originalMoveSpeed;
+
         waitingForAttackFinish = false;
     }
 

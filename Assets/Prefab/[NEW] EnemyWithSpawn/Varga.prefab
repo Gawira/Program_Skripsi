@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &141632558882107210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3982266794326543159}
+  - component: {fileID: 6058757650145530956}
+  m_Layer: 0
+  m_Name: Varga
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3982266794326543159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141632558882107210}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -58.602463, y: -4.25, z: -12.188629}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 160888172345596495}
+  - {fileID: 5561482617176684102}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6058757650145530956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141632558882107210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015a6999072f4d94fb8386b2ed50fe2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 6072203293311217494, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+  spawnPoint: {fileID: 5561482617176684102}
+  respawnDelay: 3
+  currentEnemy: {fileID: 141632558882107210}
+--- !u!1 &4451139942249300771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5561482617176684102}
+  m_Layer: 0
+  m_Name: SpawnPointVarga
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5561482617176684102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451139942249300771}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.12, y: 2.07, z: -0.341}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3982266794326543159}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1180005088742654799
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3982266794326543159}
+    m_Modifications:
+    - target: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.13136005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.340034
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072203293311217494, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+      propertyPath: m_Name
+      value: Varga2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+--- !u!4 &160888172345596495 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1322842852997224704, guid: ae24c244f08804a4aa3c12e72b07ab08, type: 3}
+  m_PrefabInstance: {fileID: 1180005088742654799}
+  m_PrefabAsset: {fileID: 0}
