@@ -11,6 +11,7 @@ public class WeaponUpgradeManager : MonoBehaviour
 
     [Header("Damage Settings")]
     public int[] damagePerLevel = { 10, 20, 25, 28, 40 }; // index 0 = base damage
+    public string[] pricePerLevel = { "100", "150", "200", "400", };
 
     [Header("Required Stones Per Level")]
     public DjimatItem tarnishedStone;
@@ -21,6 +22,9 @@ public class WeaponUpgradeManager : MonoBehaviour
     [Header("References")]
     public Button upgradeButton;
     public TMP_Text feedbackText;
+    public TMP_Text weaponinfoText;
+    public TMP_Text weaponinfoText_Inventory;
+    public TMP_Text priceText;
 
     private PlayerManager playerManager;
     private SacredStoneGridMaker stoneInventory;
@@ -36,8 +40,13 @@ public class WeaponUpgradeManager : MonoBehaviour
         ApplyDamageForCurrentLevel();
     }
 
-    void TryUpgrade()
+    void Update()
     {
+        priceText.text = pricePerLevel[currentLevel];
+    }
+
+        void TryUpgrade()
+        {
         if (currentLevel >= maxLevel)
         {
             feedbackText.text = "Max level reached!";
@@ -45,6 +54,7 @@ public class WeaponUpgradeManager : MonoBehaviour
         }
 
         int cost = upgradeCosts[currentLevel];
+        
         if (playerManager.money < cost)
         {
             feedbackText.text = "Not enough money!";
@@ -65,6 +75,8 @@ public class WeaponUpgradeManager : MonoBehaviour
         ApplyDamageForCurrentLevel();
 
         feedbackText.text = $"Weapon upgraded to +{currentLevel}!";
+        weaponinfoText.text = $"Courteous+{currentLevel}";
+        weaponinfoText_Inventory.text = $"Courteous+{currentLevel}";
     }
 
     private void ApplyDamageForCurrentLevel()
@@ -79,11 +91,16 @@ public class WeaponUpgradeManager : MonoBehaviour
     {
         switch (level)
         {
-            case 1: return tarnishedStone;
-            case 2: return sacredStone;
-            case 3: return pureStone;
-            case 4: return divineStone;
-            default: return null;
+            case 1: 
+                return tarnishedStone;
+            case 2: 
+                return sacredStone;
+            case 3: 
+                return pureStone;
+            case 4: 
+                return divineStone;
+            default: 
+                return null;
         }
     }
 }

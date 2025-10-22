@@ -7,6 +7,7 @@ public class ItemInfoDisplayCatalog : MonoBehaviour
     [Header("UI References")]
     public Image iconImage;
     public TMP_Text nameText;
+    public TMP_Text priceText;
     public TMP_Text descriptionText;
     public TMP_Text statsText; // optional
 
@@ -29,6 +30,7 @@ public class ItemInfoDisplayCatalog : MonoBehaviour
         }
 
         if (nameText) nameText.text = item.itemName;
+        if (priceText) priceText.text = item.itemPrice;
         if (descriptionText) descriptionText.text = item.description;
         if (statsText)
             statsText.text = $"HP +{item.healthBonus}\nDMG +{item.damageBonus}\nSlots: {item.slotCost}";

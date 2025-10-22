@@ -26,6 +26,7 @@ public class DjimatItem : ScriptableObject
     public int plusslotCost = 0;     // buat limit slot
 
     public int plusMoney = 0;
+    public string itemPrice = "0";
 
     public int healthBonus = 0;
     public int damageBonus = 0;
