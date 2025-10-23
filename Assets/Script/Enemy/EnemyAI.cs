@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyAI : MonoBehaviour
@@ -31,6 +32,11 @@ public class EnemyAI : MonoBehaviour
     private string currentState = "Idle";
     private int strafeDirection = 1;
     private bool waitingForAttackFinish = false;
+
+    private bool isSuddenStepping = false;
+    public float suddenStepDistance = 2f; // tweak for how far the step moves
+    public float suddenStepSpeed = 10f;   // tweak for how fast the step happens
+    private Vector3 suddenStepTarget;
 
     void Start()
     {
@@ -69,6 +75,7 @@ public class EnemyAI : MonoBehaviour
         // Decision handling
         if (dist <= attackRadius)
         {
+            
             decisionTimer -= Time.deltaTime;
             if (decisionTimer <= 0f && !waitingForAttackFinish)
             {
@@ -93,8 +100,17 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
+            
             SetState("Chase", "Run");
             ChasePlayer();
+        }
+        if (isSuddenStepping)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                suddenStepTarget,
+                suddenStepSpeed * Time.deltaTime
+            );
         }
     }
 
@@ -103,8 +119,22 @@ public class EnemyAI : MonoBehaviour
         AlignToGround();
     }
 
-    
+    void SuddenStep()
+    {
+        if (isSuddenStepping) return;
+        
+        isSuddenStepping = true;
+        suddenStepTarget = transform.position + transform.forward * suddenStepDistance;
 
+
+    }
+
+    void SuddenStepStop()
+    {
+        isSuddenStepping = false;
+
+
+    }
 
     void FindPlayerOnce()
     {
@@ -208,33 +238,65 @@ public class EnemyAI : MonoBehaviour
         currentState = newState;
         anim.SetTrigger(animationTrigger);
 
-        if (newState == "Attack")
-            StartCoroutine(WaitForAttackFinish());
+        //if (newState == "Attack")
+        //    StartCoroutine(WaitForAttackFinish());
+    }
+
+    IEnumerator SuddenStepCoroutine()
+    {
+        float originalSpeed = moveSpeed;
+        float boostedSpeed = moveSpeed * 2.5f; //  You can tweak this multiplier
+        float duration = 0.2f;                 //  Duration of the step
+
+        moveSpeed = boostedSpeed;
+
+        // Move slightly forward in facing direction
+        float timer = 0f;
+        while (timer < duration)
+        {
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        moveSpeed = originalSpeed;
     }
 
     IEnumerator WaitForAttackFinish()
     {
-        waitingForAttackFinish = true;
+        if (isSuddenStepping)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                suddenStepTarget,
+                suddenStepSpeed * Time.deltaTime
+            );
+        }
+        else
+        {
 
-        //  Store the current movement speed
-        float originalMoveSpeed = moveSpeed;
+            waitingForAttackFinish = true;
 
-        //  Stop movement during attack
-        moveSpeed = 0f;
+            //  Store the current movement speed
+            float originalMoveSpeed = moveSpeed;
 
-        // Wait one frame to ensure animator updates to the attack state
-        yield return null;
+            //  Stop movement during attack
+            moveSpeed = 0f;
 
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        float clipLength = stateInfo.length;
+            // Wait one frame to ensure animator updates to the attack state
+            yield return null;
 
-        //  Wait for the attack animation to finish
-        yield return new WaitForSeconds(clipLength);
+            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            float clipLength = stateInfo.length;
 
-        //  Restore the movement speed
-        moveSpeed = originalMoveSpeed;
+            //  Wait for the attack animation to finish
+            yield return new WaitForSeconds(clipLength);
 
-        waitingForAttackFinish = false;
+            //  Restore the movement speed
+            moveSpeed = originalMoveSpeed;
+
+            waitingForAttackFinish = false;
+        }
     }
 
     void OnDrawGizmosSelected()

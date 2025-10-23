@@ -10,8 +10,8 @@ public class BossWeapon : MonoBehaviour
     public PlayerManager playerManager;
 
     [Header("Knockback Settings")]
-    public float knockbackForce = 15f;
-    public float knockbackUpward = 3f;
+    public float knockbackForce = 150f;
+    public float knockbackUpward = 30f;
 
     [Header("Damage Settings")]
     [SerializeField] private float damageCooldown = 0.3f;

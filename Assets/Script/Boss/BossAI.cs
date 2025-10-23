@@ -35,8 +35,22 @@ public class BossAI : MonoBehaviour
     private bool bossActive = false;
     private int strafeDirection = 1;
 
+    private bool isSuddenStepping = false;
+    public float suddenStepDistance = 2f; // tweak for how far the step moves
+    public float suddenStepSpeed = 10f;   // tweak for how fast the step happens
+    private Vector3 suddenStepTarget;
+
+    public ParticleSystem explodeEffect;
+
+    // --- Charge Attack ---
+    private bool isCharging = false;
+    public float chargeSpeed = 20f;        // how fast the boss charges
+    public float chargeDistance = 15f;     // how far the charge goes
+    private Vector3 chargeTarget;
+    private CapsuleCollider bossCollider;
     private void Start()
     {
+        bossCollider = GetComponent<CapsuleCollider>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -98,6 +112,30 @@ public class BossAI : MonoBehaviour
         {
             SetState("Chase", "Run");
             ChasePlayer();
+        }
+        if (isSuddenStepping)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                suddenStepTarget,
+                suddenStepSpeed * Time.deltaTime
+            );
+        }
+        if (isCharging)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                chargeTarget,
+                chargeSpeed * Time.deltaTime
+            );
+
+            // Stop charge once target reached
+            if (Vector3.Distance(transform.position, chargeTarget) < 0.2f)
+            {
+                ChargeAttackEnd();
+            }
+
+            return; // prevent other AI actions while charging
         }
     }
 
@@ -178,6 +216,61 @@ public class BossAI : MonoBehaviour
         transform.position += moveDir * moveSpeed * Time.deltaTime;
     }
 
+    void SuddenStep()
+    {
+        if (isSuddenStepping) return;
+
+        isSuddenStepping = true;
+        suddenStepTarget = transform.position + transform.forward * suddenStepDistance;
+
+
+    }
+
+    void SuddenStepStop()
+    {
+        isSuddenStepping = false;
+
+
+    }
+
+    void ChargeAttack()
+    {
+        if (isCharging || bossName != "Crazed Monkey" || goal == null) return;
+
+        isCharging = true;
+
+        // Make collider a trigger to avoid bumping into physics
+        if (bossCollider != null)
+            bossCollider.isTrigger = true;
+
+        // Calculate charge target — go past the player
+        Vector3 toPlayer = (goal.position - transform.position).normalized;
+        chargeTarget = transform.position + toPlayer * chargeDistance;
+
+        // Face the player before charging
+        FacePlayer();
+
+        Debug.Log("Crazed Monkey begins charging!");
+    }
+
+    void ChargeAttackEnd()
+    {
+        isCharging = false;
+
+        if (bossCollider != null)
+            bossCollider.isTrigger = false;
+
+        Debug.Log("Crazed Monkey finished charging.");
+    }
+
+    public void PlayExplodeEffect()
+    {
+        if (explodeEffect != null)
+        {
+            explodeEffect.Play();
+        }
+    }
+
     void DecideAction()
     {
         //  Area Attack priority if behind
@@ -192,11 +285,11 @@ public class BossAI : MonoBehaviour
         //  Gate Defender Anton
         if (bossName == "The Gate Defender, Anton")
         {
-            if (rand < 40f)
+            if (rand < 40f) //40
                 SetState("Attack1", "Attack1");
-            else if (rand < 70f)
+            else if (rand < 70f) //30
                 SetState("Attack2", "Attack2");
-            else if (rand < 90f)
+            else if (rand < 90f) //20
                 SetState("Strafe", "Strafe");
             else
                 SetState("Mundur", "Mundur");
@@ -204,12 +297,14 @@ public class BossAI : MonoBehaviour
         //  Crazed Monkey
         else if (bossName == "Crazed Monkey")
         {
-            if (rand < 30f)
+            if (rand < 30f) //30
                 SetState("Attack1", "Attack1");
-            else if (rand < 70f)
+            else if (rand < 70f) //40
                 SetState("Attack2", "Attack2");
-            else if (rand < 75f)
+            else if (rand < 75f) //5
                 SetState("Mundur", "Mundur");
+            else if (rand < 95f) //15
+                SetState("ChargeAttack", "ChargeAttack");
             else
                 SetState("Strafe", "Strafe");
         }
@@ -247,9 +342,9 @@ public class BossAI : MonoBehaviour
         currentState = newState;
         anim.SetTrigger(animTrigger);
 
-        if (newState == "Attack1" || newState == "Attack2" || newState == "Attack3" ||
-            newState == "AreaAttack" || newState == "ChargeAttack")
-            StartCoroutine(WaitForAttackFinish());
+        //if (newState == "Attack1" || newState == "Attack2" || newState == "Attack3" ||
+        //    newState == "AreaAttack" || newState == "ChargeAttack")
+        //    StartCoroutine(WaitForAttackFinish());
     }
 
     void ResetAllTriggers()

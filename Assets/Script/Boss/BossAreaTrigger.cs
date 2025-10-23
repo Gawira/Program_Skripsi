@@ -12,6 +12,7 @@ public class BossAreaTrigger : MonoBehaviour
 
     [Header("Arena Barrier")]
     public GameObject arenaBarrier;  // Drag your wall / box collider GameObject here in Inspector
+    public GameObject fullArena;
 
     private bool bossActive = false;
     private bool fightLocked = false;
@@ -43,14 +44,20 @@ public class BossAreaTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (!fightLocked) return;
+        
 
         bool bossDead = bossManager != null && bossManager.currentHealth <= 0;
         bool playerDead = playerManager != null && playerManager.currentHealth <= 0;
 
-        if (bossDead || playerDead)
+        if (bossDead)
         {
             EndBossFight();
+        }
+
+        if (playerDead)
+        {
+            if (arenaBarrier != null)
+                arenaBarrier.SetActive(false);
         }
     }
 
@@ -66,8 +73,8 @@ public class BossAreaTrigger : MonoBehaviour
             bossManager.DeactivateBossUI();
 
         // Deactivate the barrier so player can leave
-        if (arenaBarrier != null)
-            arenaBarrier.SetActive(false);
+        if (fullArena != null)
+            fullArena.SetActive(false);
 
         Debug.Log("Boss fight ended!");
     }
