@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using UnityEngine;
 using UnityStandardAssets.Cameras;
 
@@ -23,19 +22,18 @@ namespace UnityStandardAssets.Cameras
 
         void Start()
         {
-            mainCam = Camera.main;
+            // Use freelook camera if available, else fallback
+            mainCam = freelookcam != null && freelookcam.m_Cam != null
+                ? freelookcam.m_Cam.GetComponent<Camera>()
+                : Camera.main;
 
             // Subscribe to existing enemies
             foreach (EnemyManager enemy in FindObjectsOfType<EnemyManager>())
-            {
                 enemy.OnEnemyDied += HandleEnemyDeath;
-            }
 
             // Subscribe to existing bosses
             foreach (BossManager boss in FindObjectsOfType<BossManager>())
-            {
                 boss.OnBossDied += HandleBossDeath;
-            }
         }
 
         void Update()
@@ -43,24 +41,14 @@ namespace UnityStandardAssets.Cameras
             if (Input.GetMouseButtonDown(1))
             {
                 if (currentTarget != null)
-                {
                     UnlockTarget();
-                }
                 else
-                {
                     LockOntoNewTarget();
-                }
             }
 
             LockOn = currentTarget != null;
 
             if (LockOn)
-                LockOnToTarget();
-        }
-
-        void LateUpdate()
-        {
-            if (currentTarget != null)
                 LockOnToTarget();
         }
 
@@ -89,70 +77,27 @@ namespace UnityStandardAssets.Cameras
         #endregion
 
         #region 🔸 Lock-On Logic
-        private void UnlockTarget()
+        public void UnlockTarget()
         {
-            if (freelookcam != null)
-                freelookcam.SyncFromPivot();
+            //if (freelookcam != null)
+            //    freelookcam.SyncFromPivot();
 
-            if (freelookcam != null && freelookcam.m_Pivot != null)
-            {
-                // Align pivot so that camera faces the same direction again
-                Vector3 camForward = -freelookcam.m_Cam.forward;
-                Quaternion correctedRot = Quaternion.LookRotation(camForward, Vector3.up);
-                freelookcam.m_Pivot.rotation = correctedRot;
-                savedPivotRotation = correctedRot;
-            }
+            //if (freelookcam != null && freelookcam.m_Pivot != null)
+            //{
+            //    Vector3 camForward = freelookcam.m_Cam.forward;
+            //    Quaternion correctedRot = Quaternion.LookRotation(camForward, Vector3.up);
+            //    freelookcam.m_Pivot.rotation = correctedRot;
+            //    savedPivotRotation = correctedRot;
+            //}
 
-            currentTarget = null;
-            LockOn = false;
+            //currentTarget = null;
+            //LockOn = false;
         }
 
-        private void LockOntoNewTarget()
+        public void LockOntoNewTarget()
         {
             currentTarget = FindVisibleTarget();
             LockOn = currentTarget != null;
-        }
-
-        public Transform FindVisibleTarget()
-        {
-            Transform bestTarget = null;
-            float closestAngle = 30f;
-
-            // 🔹 Check Bosses first (priority)
-            foreach (BossManager boss in FindObjectsOfType<BossManager>())
-            {
-                if (!boss.IsAlive()) continue;
-                if (TryCandidate(boss.transform, ref bestTarget, ref closestAngle)) continue;
-            }
-
-            // 🔹 Check Enemies
-            foreach (EnemyManager enemy in FindObjectsOfType<EnemyManager>())
-            {
-                if (!enemy.IsAlive()) continue;
-                TryCandidate(enemy.transform, ref bestTarget, ref closestAngle);
-            }
-
-            return bestTarget;
-        }
-
-        private bool TryCandidate(Transform candidate, ref Transform bestTarget, ref float closestAngle)
-        {
-            Vector3 viewportPos = mainCam.WorldToViewportPoint(candidate.position);
-            if (viewportPos.z <= 0 || viewportPos.x <= 0 || viewportPos.x >= 1 || viewportPos.y <= 0 || viewportPos.y >= 1)
-                return false;
-
-            float distance = Vector3.Distance(transform.position, candidate.position);
-            if (distance > lockOnRange) return false;
-
-            Vector3 dirToTarget = candidate.position - mainCam.transform.position;
-            float angle = Vector3.Angle(mainCam.transform.forward, dirToTarget);
-
-            if (angle < closestAngle)
-            {
-                closestAngle = angle;
-                bestTarget = candidate;
-            }
-            return true;
         }
 
         public void LockOnToTarget()
@@ -175,6 +120,57 @@ namespace UnityStandardAssets.Cameras
             Vector3 camForward = freelookcam.m_Cam.forward;
             savedPivotRotation = Quaternion.LookRotation(camForward, Vector3.up);
         }
+
+        public Transform FindVisibleTarget()
+        {
+            Transform bestTarget = null;
+            float closestAngle = 30f;
+
+            // Prefer bosses
+            foreach (BossManager boss in FindObjectsOfType<BossManager>())
+            {
+                if (!boss.IsAlive()) continue;
+                if (TryCandidate(boss.transform, ref bestTarget, ref closestAngle)) continue;
+            }
+
+            // Then normal enemies
+            foreach (EnemyManager enemy in FindObjectsOfType<EnemyManager>())
+            {
+                if (!enemy.IsAlive()) continue;
+                TryCandidate(enemy.transform, ref bestTarget, ref closestAngle);
+            }
+
+            return bestTarget;
+        }
+
+        private bool TryCandidate(Transform candidate, ref Transform bestTarget, ref float closestAngle)
+        {
+            if (freelookcam == null || freelookcam.m_Cam == null)
+                return false;
+
+            Camera cam = freelookcam.m_Cam.GetComponent<Camera>();
+            if (cam == null)
+                return false;
+
+            // Use freelook camera position/orientation instead of mainCam
+            Vector3 viewportPos = cam.WorldToViewportPoint(candidate.position);
+            if (viewportPos.z <= 0 || viewportPos.x <= 0 || viewportPos.x >= 1 || viewportPos.y <= 0 || viewportPos.y >= 1)
+                return false;
+
+            float distance = Vector3.Distance(transform.position, candidate.position);
+            if (distance > lockOnRange) return false;
+
+            Vector3 dirToTarget = candidate.position - cam.transform.position;
+            float angle = Vector3.Angle(cam.transform.forward, dirToTarget);
+
+            if (angle < closestAngle)
+            {
+                closestAngle = angle;
+                bestTarget = candidate;
+            }
+            return true;
+        }
+
         #endregion
 
         #region 🔸 Gizmos
@@ -186,7 +182,6 @@ namespace UnityStandardAssets.Cameras
             {
                 Gizmos.color = Color.cyan;
                 Gizmos.DrawWireSphere(freelookcam.m_Pivot.position, 0.2f);
-
                 Gizmos.color = Color.blue;
                 Gizmos.DrawRay(freelookcam.m_Pivot.position, freelookcam.m_Pivot.forward * 2f);
             }
@@ -196,9 +191,9 @@ namespace UnityStandardAssets.Cameras
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(currentTarget.position, 0.3f);
 
-                Gizmos.color = Color.yellow;
                 if (freelookcam.m_Pivot != null)
                 {
+                    Gizmos.color = Color.yellow;
                     Gizmos.DrawLine(freelookcam.m_Pivot.position, currentTarget.position);
                 }
             }

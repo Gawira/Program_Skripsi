@@ -82,7 +82,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 Debug.Log("dashed");
                 playerManager.SetInvincible();
-                m_Animator.SetTrigger("Dash");
             }
 
         }

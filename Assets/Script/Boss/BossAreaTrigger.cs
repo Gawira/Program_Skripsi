@@ -58,6 +58,8 @@ public class BossAreaTrigger : MonoBehaviour
         {
             if (arenaBarrier != null)
                 arenaBarrier.SetActive(false);
+            bossActive = false;
+            fightLocked = false;
         }
     }
 

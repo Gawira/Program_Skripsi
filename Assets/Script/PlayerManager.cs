@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityStandardAssets.Cameras;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 namespace UnityEngine
@@ -25,11 +26,18 @@ namespace UnityEngine
 
         public TPCharacter thirdPersonCharacter;
 
+        [Header("UI References")]
+        public CanvasGroup youDiedCanvas; // Assign in inspector
+        public float fadeDuration = 2f;   // how long the fade takes
+
+        // --- internal guard ---
+        private bool isDead = false;
+
         private void Start()
         {
             anim = GetComponent<Animator>();
 
-            // ✅ Load data based on active save slot
+            // Load data based on active save slot
             if (SaveManager.SaveExistsForActiveSlot())
             {
                 SaveData data = SaveManager.LoadGame();
@@ -49,10 +57,27 @@ namespace UnityEngine
                 respawnPoint = transform.position;
                 respawnRotation = transform.rotation;
             }
+
+            // Ensure death UI is hidden at start
+            if (youDiedCanvas != null)
+            {
+
+                youDiedCanvas.alpha = 0f;
+                youDiedCanvas.gameObject.SetActive(false);
+            }
+        }
+
+        private void Update()
+        {
+            // Only trigger Die once when health reaches 0
+            if (!isDead && currentHealth <= 0)
+            {
+                Die();
+            }
         }
 
         // =======================
-        // 📌 Checkpoint & Respawn
+        // Checkpoint & Respawn
         // =======================
         public void SetCheckpoint(Vector3 position, Quaternion rotation)
         {
@@ -61,22 +86,86 @@ namespace UnityEngine
             Debug.Log($"Checkpoint set at: {position}");
         }
 
-        public void Respawn()
+        private void Die()
         {
-            CharacterController controller = GetComponent<CharacterController>();
+            // guard to prevent multiple calls
+            if (isDead) return;
+            isDead = true;
+
+            Debug.Log("Player has died!");
+            if (anim != null)
+                anim.SetTrigger("Die");
+
+            // Disable player control and movement
+            TPUserControl controller = GetComponent<TPUserControl>();
             if (controller != null) controller.enabled = false;
 
+            TPCharacter character = GetComponent<TPCharacter>();
+            if (character != null) character.enabled = false;
+
+            // Disable physical collision temporarily (keep invincible)
+            SetInvincible();
+
+            // Turn off lock-on if present
+            LockOnTarget lockontarget = GetComponent<LockOnTarget>();
+            if (lockontarget != null)
+            { 
+                lockontarget.LockOn = false;
+                lockontarget.UnlockTarget();
+                lockontarget.LockOntoNewTarget();
+            }
+
+            // Reset money on death
+            money = 0;
+
+            // 🔹 Start the full death flow — fade in, respawn, then fade out
+            StartCoroutine(HandleDeathSequence());
+        }
+
+        private IEnumerator HandleDeathSequence()
+        {
+            // Step 1: Fade In the death screen
+            yield return StartCoroutine(FadeIn());
+
+            // Step 2: Wait a bit while screen is fully visible
+            yield return new WaitForSeconds(1f);
+
+            // Step 3: Respawn player
+            Respawn();
+
+            // Step 4: Wait a moment before fade-out (optional)
+            yield return new WaitForSeconds(0.5f);
+
+            // Step 5: Fade Out the death screen
+            yield return StartCoroutine(FadeOut());
+        }
+
+        public void Respawn()
+        {
+            // Move player to checkpoint and restore states
             transform.position = respawnPoint;
             transform.rotation = respawnRotation;
 
+            currentHealth = playerHealth;
+
+            // Re-enable player controls
+            TPUserControl controller = GetComponent<TPUserControl>();
             if (controller != null) controller.enabled = true;
 
-            currentHealth = playerHealth;
+            TPCharacter character = GetComponent<TPCharacter>();
+            if (character != null) character.enabled = true;
+
+            // Re-enable vulnerability after respawn
+            SetVulnerable();
 
             EnemyRespawner respawner = FindObjectOfType<EnemyRespawner>();
             if (respawner != null)
                 respawner.RespawnEnemy();
 
+            if (anim != null)
+                anim.SetTrigger("Respawned");
+
+            isDead = false; // allow future deaths
             Debug.Log("Player respawned at last checkpoint!");
         }
 
@@ -87,7 +176,7 @@ namespace UnityEngine
         }
 
         // =======================
-        // 💥 Damage & Defense
+        // Damage & Defense
         // =======================
         public void TakeDamage(int amount)
         {
@@ -96,29 +185,52 @@ namespace UnityEngine
             int finalDamage = Mathf.Max(0, amount - defense);
             currentHealth -= finalDamage;
 
+            // Prevent health from going below 0
+            if (currentHealth < 0)
+                currentHealth = 0;
+
             Debug.Log($"Player took {finalDamage} damage (blocked {amount - finalDamage}). Current HP: {currentHealth}");
 
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-            else if (anim != null)
-            {
+            if (anim != null)
                 anim.SetTrigger("Hurt");
-            }
         }
 
-        private void Die()
+        private IEnumerator FadeIn()
         {
-            Debug.Log("Player has died!");
-            if (anim != null)
-                anim.SetTrigger("Die");
+            if (youDiedCanvas == null)
+                yield break;
 
-            StartCoroutine(RespawnAfterDelay(2f));
+            youDiedCanvas.gameObject.SetActive(true);
+            float timer = 0f;
+
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+                youDiedCanvas.alpha = Mathf.Lerp(0f, 1f, timer / fadeDuration);
+                yield return null;
+            }
+
+            youDiedCanvas.alpha = 1f;
+        }
+        private IEnumerator FadeOut()
+        {
+            if (youDiedCanvas == null)
+                yield break;
+
+            float timer = 0f;
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+                youDiedCanvas.alpha = Mathf.Lerp(1f, 0f, timer / fadeDuration);
+                yield return null;
+            }
+
+            youDiedCanvas.alpha = 0f;
+            youDiedCanvas.gameObject.SetActive(false);
         }
 
         // =======================
-        // 🩸 Lifesteal
+        // Lifesteal
         // =======================
         public void ApplyLifesteal()
         {
@@ -139,7 +251,7 @@ namespace UnityEngine
         }
 
         // =======================
-        // 💰 Money & Damage
+        // Money & Damage
         // =======================
         public void AddMoney(int amount)
         {
@@ -167,7 +279,7 @@ namespace UnityEngine
         }
 
         // =======================
-        // 🛡️ Invincibility
+        // Invincibility
         // =======================
         public void SetInvincible()
         {

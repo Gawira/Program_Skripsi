@@ -85,14 +85,14 @@ public class EnemyManager : MonoBehaviour
     {
         // Optional: play death animation
         if (anim != null)
-            anim.SetTrigger("Die");
+            anim.SetTrigger("Death");
 
         
 
         OnEnemyDied?.Invoke(this);
 
         // Destroy after small delay (so death anim plays)
-        Destroy(gameObject, 1f);       
+        Destroy(gameObject, 2f);       
     }
 
     private void OnTriggerEnter(Collider other)

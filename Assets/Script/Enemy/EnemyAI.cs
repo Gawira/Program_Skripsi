@@ -57,6 +57,18 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
+        // Get playerManager directly from the player object
+        PlayerManager playerManager = goal.GetComponent<PlayerManager>();
+        if (playerManager == null)
+            return;
+
+        // Stop attacking completely if player is dead
+        if (playerManager.currentHealth <= 0)
+        {
+            SetState("Idle", "Idle");
+            return;
+        }
+
         float dist = Vector3.Distance(transform.position, goal.position);
 
         // If player is too far, idle

@@ -179,7 +179,7 @@ namespace UnityStandardAssets.Cameras
 
             // Extract tilt/look from the pivot
             Vector3 euler = m_Pivot.localRotation.eulerAngles;
-            m_TiltAngle = -euler.x;
+            m_TiltAngle = euler.x;
             m_LookAngle = euler.y;
 
             // Reset target rotations

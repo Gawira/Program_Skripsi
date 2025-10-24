@@ -68,8 +68,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             isDashing = true;
             canDash = false;
 
-            // Optional: make player invincible
-            playermanager?.SetInvincible();
+            //// Optional: make player invincible
+            //playermanager?.SetInvincible();
 
             // play dash animation if needed
             m_Animator.SetTrigger("Dash");

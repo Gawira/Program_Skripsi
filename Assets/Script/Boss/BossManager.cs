@@ -86,6 +86,8 @@ public class BossManager : MonoBehaviour
         if (currentHealth <= 0)
         {
             playerManager?.AddMoney(moneyDrop);
+            if (anim != null)
+                anim.SetTrigger("Death");
             Die();
         }
     }
@@ -93,14 +95,14 @@ public class BossManager : MonoBehaviour
     private void Die()
     {
         if (anim != null)
-            anim.SetTrigger("Die");
+            anim.SetTrigger("Death");
 
         OnBossDied?.Invoke(this);
 
         if (bossHealthBarUI != null)
             bossHealthBarUI.SetActive(false);
 
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 3f);
     }
 
     public void ActivateBossUI()
