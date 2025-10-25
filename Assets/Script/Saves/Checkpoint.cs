@@ -46,50 +46,113 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    private void Interact()
+    public void Interact()
     {
         PlayerManager playerManager = player.GetComponent<PlayerManager>();
         if (playerManager == null) return;
 
-        // === Heal Player ===
+        // Heal player to max
         playerManager.currentHealth = playerManager.playerHealth;
 
-        // === Update respawn point ===
+        // Update respawn point
         playerManager.SetCheckpoint(transform.position, transform.rotation);
         Debug.Log($"Checkpoint updated at {transform.position}");
 
-        // === Respawn enemies ===
+        // Respawn enemies
         if (respawner != null)
             respawner.RespawnEnemy();
 
-        // === Save Djimat setup + player data ===
-        SaveData data = new SaveData
-        {
-            playerHealth = playerManager.currentHealth,
-            playerMoney = playerManager.money,
-            checkpointPosition = transform.position
-        };
+        // Build save data
+        SaveData data = new SaveData();
 
-        if (djimatSystem != null)
+        // --- Player Stats ---
+        data.playerHealth = playerManager.playerHealth;
+        data.currentHealth = playerManager.currentHealth;
+        data.playerMoney = playerManager.money;
+        data.damage = playerManager.damage;
+        data.lifesteal = playerManager.lifesteal;
+        data.defense = playerManager.defense;
+        data.slotMax = playerManager.slotMax;
+
+        data.checkpointPosition = transform.position;
+        data.checkpointRotation = transform.rotation;
+
+        // --- Djimat System (equipped + bag) ---
+        GridMaker gridMaker = FindObjectOfType<GridMaker>();
+        if (gridMaker != null)
         {
-            foreach (var eqSlot in FindObjectsOfType<EquippedSlotUI>())
+            foreach (var eqSlot in gridMaker.equippedGridParent.GetComponentsInChildren<EquippedSlotUI>())
             {
                 if (eqSlot.equippedDjimat != null)
                     data.equippedDjimatIDs.Add(eqSlot.equippedDjimat.itemName);
             }
 
-            foreach (var invSlot in FindObjectsOfType<InventorySlotUI>())
+            foreach (var invSlot in gridMaker.inventoryGridParent.GetComponentsInChildren<InventorySlotUI>())
             {
                 if (invSlot.assignedDjimat != null)
                     data.inventoryDjimatIDs.Add(invSlot.assignedDjimat.itemName);
             }
         }
 
-        SaveManager.SaveGame(data);
-        Debug.Log("Checkpoint saved, enemies respawned, and respawn point set!");
+        // --- Sacred Stones ---
+        SacredStoneInventory sacredInv = FindObjectOfType<SacredStoneGridMaker>()?.stoneInventory;
+        if (sacredInv != null)
+        {
+            foreach (var stone in sacredInv.stones)
+                data.sacredStoneIDs.Add(stone.itemName);
+        }
 
+        // --- Key Items ---
+        KeyItemInventory keyInv = FindObjectOfType<KeyItemGridMaker>()?.keyItemInventory;
+        if (keyInv != null)
+        {
+            foreach (var keyItem in keyInv.keyItems)
+                data.keyItemIDs.Add(keyItem.itemName);
+        }
+
+        
+        // --- Merchant State (sold out items) ---
+        MerchantCatalog merchant = FindObjectOfType<MerchantCatalog>();
+        if (merchant != null)
+        {
+            // use its memory instead of scanning UI children
+            foreach (var soldName in merchant.GetSoldOutItemNames())
+            {
+                data.soldOutItems.Add(soldName);
+            }
+        }
+
+
+
+        // --- Weapon Upgrade ---
+        WeaponUpgradeManager wum = FindObjectOfType<WeaponUpgradeManager>();
+        if (wum != null)
+        {
+            data.weaponUpgradeLevel = wum.currentLevel;
+        }
+
+        // --- World State (doors opened, pickups collected) ---
+        if (GameManager.Instance != null)
+        {
+            foreach (var doorId in GameManager.Instance.GetOpenedDoors())
+                data.openedDoorIDs.Add(doorId);
+
+            foreach (var pickupId in GameManager.Instance.GetCollectedPickups())
+                data.collectedPickupIDs.Add(pickupId);
+        }
+
+
+        // Save it once
+        SaveManager.SaveGame(data);
+        Debug.Log("Checkpoint saved — Player + Djimat + Stones + Keys + Merchant + WeaponUpgrade");
+
+        // Hide prompt UIs
         PromptUIManager.Instance?.HidePrompt();
+        PromptUIManagerCheckpoint.Instance?.HidePrompt();
+
+
     }
+    
 
     private void OnDrawGizmosSelected()
     {

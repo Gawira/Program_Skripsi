@@ -101,4 +101,10 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
             iconImage.enabled = false;
         }
     }
+
+    public void AssignDjimat(DjimatItem item)
+    {
+        assignedDjimat = item;
+        UpdateUI();
+    }
 }

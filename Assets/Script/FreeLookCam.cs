@@ -172,24 +172,26 @@ namespace UnityStandardAssets.Cameras
 
         public void SyncFromPivot()
         {
-            if (m_Pivot == null || lockontarget == null) return;
-            
-            // Restore from saved local rotation
-            m_Pivot.localRotation = lockontarget.savedPivotRotation;
+            if (m_Pivot == null)
+                return;
 
-            // Extract tilt/look from the pivot
-            Vector3 euler = m_Pivot.localRotation.eulerAngles;
-            m_TiltAngle = euler.x;
-            m_LookAngle = euler.y;
+            // Get the current pivot (X) and rig (Y) rotations
+            Vector3 pivotEuler = m_Pivot.localRotation.eulerAngles;
+            Vector3 rigEuler = transform.rotation.eulerAngles;
 
-            // Reset target rotations
-            m_PivotTargetRot = m_Pivot.localRotation;
+            // Extract yaw (Y-axis) from the rig and pitch (X-axis) from the pivot
+            m_LookAngle = rigEuler.y;
+            m_TiltAngle = pivotEuler.x;
+
+            // Apply those as new targets so mouse control resumes smoothly
             m_TransformTargetRot = Quaternion.Euler(0f, m_LookAngle, 0f);
+            m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, 0f, 0f);
 
-            //  Update base pivot eulers to stop overwrite flipping
-            m_PivotEulers = m_Pivot.localRotation.eulerAngles;
+            // Store current Euler state to prevent flipping
+            m_PivotEulers = new Vector3(m_TiltAngle, 0f, 0f);
 
-            Debug.Log($"[FreeLookCam] Synced and stabilized from saved rotation: Tilt={m_TiltAngle}, Look={m_LookAngle}");
+            Debug.Log($"[FreeLookCam] Synced axis-separated — Tilt={m_TiltAngle}, Yaw={m_LookAngle}");
         }
+
     }
 }

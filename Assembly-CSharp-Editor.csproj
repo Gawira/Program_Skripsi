@@ -105,8 +105,8 @@
     <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassPainter.Instance.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\RPGBuilderEditorModuleFieldHandlerWindow.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\RPGBCharacterControllerEssentialsEditor.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\ObjectPainter\ObjectDetail.cs" />
     <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\TextureArrayPainter\TextureArrayManager.cs" />
+    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\ObjectPainter\ObjectDetail.cs" />
     <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\SplatPainter\TextureModifyGroup.cs" />
     <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassType.cs" />
     <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\ObjectPainter\ObjectDetailListBox.cs" />
@@ -491,6 +491,10 @@
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.8.2\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="MTE">
+      <HintPath>Assets\MeshTerrainEditor\Editor\MTE.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.8.2\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
@@ -509,10 +513,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MTE">
-      <HintPath>Assets\MeshTerrainEditor\Editor\MTE.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
@@ -1111,12 +1111,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Timeline">
@@ -1139,6 +1139,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
       <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
       <Private>False</Private>
@@ -1153,10 +1157,6 @@
     </Reference>
     <Reference Include="Autodesk.Fbx">
       <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">

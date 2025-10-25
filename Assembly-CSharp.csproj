@@ -61,8 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\NodeStateSlot.cs" />
-    <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGTalentTree.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Utility\UILineRenderer.cs" />
+    <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGTalentTree.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\FactionSlotDataHolder.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\CursorManager.cs" />
@@ -111,6 +111,7 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\ThirdPartyAssets\GabrielAguiarProductions\Scripts\UniqueProjectiles\SpawnProjectilesScript.cs" />
     <Compile Include="Assets\Script\UI\SacredStoneGridMaker.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\DevStatSlotHolder.cs" />
+    <Compile Include="Assets\Script\OutroTrigger.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\AbilityTooltipElement.cs" />
     <Compile Include="Assets\Script\PickableItem.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGGameScene.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\DataHandling\CharacterData.cs" />
     <Compile Include="Assets\Script\DoorInteraction.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\SkillBookDisplayManager.cs" />
+    <Compile Include="Assets\Script\Saves\ResetAllSavesButton.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\ScreenTextObject.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Nodes\RPGDialogueTextNode.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGLevelsTemplate.cs" />
@@ -195,6 +197,7 @@
     <Compile Include="Assets\Script\Djimat\InventorySlotUI.cs" />
     <Compile Include="Assets\Script\Djimat\EquippedSlotUI.cs" />
     <Compile Include="Assets\Script\Boss\BossAreaTrigger.cs" />
+    <Compile Include="Assets\Script\Saves\SceneSpawnManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGLootTable.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\ActionBarSlot.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\LogicMono\CombatNode.cs" />
@@ -229,8 +232,8 @@
     <Compile Include="Assets\Script\PromptTrigger.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Utility\UIGridRenderer.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UI\ScreenSpaceNameplates.cs" />
-    <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\BonusManager.cs" />
     <Compile Include="Assets\Script\Djimat\ItemInfoDisplayCatalog.cs" />
+    <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\BonusManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\RPGData\RPGCurrency.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\Managers\LootPanelDisplayManager.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Scripts\UIElements\QuestItemSlotHolder.cs" />
@@ -1489,12 +1492,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Timeline">
@@ -1517,6 +1520,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
       <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
       <Private>False</Private>
@@ -1531,10 +1538,6 @@
     </Reference>
     <Reference Include="Autodesk.Fbx">
       <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">

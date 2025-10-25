@@ -3,6 +3,10 @@
 [RequireComponent(typeof(Collider))]
 public class PickableItem : MonoBehaviour
 {
+    [Header("Pickup Identity")]
+    [Tooltip("Unique ID for persistence, e.g. 'pickup_room2_sacredstone'")]
+    public string pickupID = "pickup_01";
+
     [Header("Pickup Data")]
     public DjimatItem itemData;
     public string playerTag = "Player";
@@ -16,6 +20,14 @@ public class PickableItem : MonoBehaviour
         col.isTrigger = true;
 
         pickableManager = FindObjectOfType<PickableManager>();
+
+        // If already collected in this save, don't exist anymore
+        if (GameManager.Instance != null &&
+            GameManager.Instance.IsPickupCollected(pickupID))
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     private void Update()
@@ -48,9 +60,25 @@ public class PickableItem : MonoBehaviour
     {
         if (pickableManager == null) return;
 
+        // give the item to inventory / apply effect etc.
         pickableManager.HandlePickup(itemData);
+
+        // Remember it's collected forever
+        GameManager.Instance?.MarkPickupCollected(pickupID);
+
         pickableManager.TogglePrompt(false);
+
         Destroy(gameObject);
+    }
+
+    // called after load to force sync
+    public void ApplyWorldState()
+    {
+        if (GameManager.Instance != null &&
+            GameManager.Instance.IsPickupCollected(pickupID))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDrawGizmosSelected()

@@ -3,22 +3,26 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class LockedDoorInteraction : MonoBehaviour
 {
+    [Header("Door Identity")]
+    [Tooltip("Unique ID for persistence, e.g. 'castle_gate_A'")]
+    public string doorID = "door_01";
+
     [Header("Door Settings")]
     public Animator doorAnimator;
-    [Tooltip("Animator parameter controlling door open state")]
+    [Tooltip("Animator bool parameter to mark door open state")]
     public string openParameter = "isOpen";
     public bool startOpen = false;
 
     [Header("Trigger Zone")]
     public Collider doorTrigger;
-    public GameObject something; // Optional: deactivate object after opening
+    public GameObject something; // e.g. barrier object to hide once opened
 
     [Header("Interaction Settings")]
     public string playerTag = "Player";
-    [Tooltip("The required key item to unlock this door")]
-    public DjimatItem requiredKeyItem;   // reference the actual ScriptableObject
+    [Tooltip("Key item required to unlock this door first time")]
+    public DjimatItem requiredKeyItem;
     public string lockedMessage = "The door is locked. You need a key.";
-    public string openedMessage = "[E] Open / Close Door";
+    public string openedMessage = "[E] Open Door";
 
     [Header("Inventory Reference")]
     public KeyItemInventory keyItemInventory;
@@ -31,21 +35,32 @@ public class LockedDoorInteraction : MonoBehaviour
         if (doorTrigger != null)
             doorTrigger.isTrigger = true;
 
-        // Set initial door state
-        isOpen = startOpen;
-        if (doorAnimator != null)
-            doorAnimator.SetBool(openParameter, isOpen);
+        // Check if this door was already opened in this save
+        bool alreadyUnlocked = GameManager.Instance != null &&
+                               GameManager.Instance.IsDoorOpened(doorID);
+
+        isOpen = startOpen || alreadyUnlocked;
+        ApplyVisualDoorState();
+
+        if (alreadyUnlocked && something != null)
+            something.SetActive(false);
     }
 
     private void Update()
     {
-        if (isInsideTrigger)
+        if (!isInsideTrigger) return;
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (HasRequiredKey())
+            bool canOpenNow =
+                HasRequiredKey() ||
+                (GameManager.Instance != null &&
+                 GameManager.Instance.IsDoorOpened(doorID));
+
+            if (canOpenNow)
             {
-                ToggleDoor();
-                if (something != null)
-                    something.SetActive(false);
+                UnlockAndOpenDoor();
+                PromptUIManagerDoorKey.Instance?.HidePrompt();
             }
             else
             {
@@ -56,11 +71,14 @@ public class LockedDoorInteraction : MonoBehaviour
 
     private bool HasRequiredKey()
     {
-        if (keyItemInventory == null || requiredKeyItem == null) return false;
+        if (requiredKeyItem == null) return false;
+        if (keyItemInventory == null) return false;
 
         foreach (var key in keyItemInventory.keyItems)
         {
-            if (key == requiredKeyItem)
+            if (key == requiredKeyItem ||
+                (key != null && requiredKeyItem != null &&
+                 key.itemName == requiredKeyItem.itemName))
             {
                 return true;
             }
@@ -68,14 +86,40 @@ public class LockedDoorInteraction : MonoBehaviour
         return false;
     }
 
-    private void ToggleDoor()
+    private void UnlockAndOpenDoor()
     {
-        isOpen = !isOpen;
+        // remember it's unlocked forever
+        GameManager.Instance?.MarkDoorOpened(doorID);
 
-        if (doorAnimator != null)
-            doorAnimator.SetBool("isOpen", true);
+        isOpen = true;
+        ApplyVisualDoorState();
 
-        PromptUIManagerDoorKey.Instance?.HidePrompt();
+        if (something != null)
+            something.SetActive(false);
+    }
+
+    private void ApplyVisualDoorState()
+    {
+        if (doorAnimator != null && !string.IsNullOrEmpty(openParameter))
+        {
+            doorAnimator.SetBool(openParameter, isOpen);
+        }
+    }
+
+    // called after load to sync to save state
+    public void ApplyWorldState()
+    {
+        bool unlocked = GameManager.Instance != null &&
+                        GameManager.Instance.IsDoorOpened(doorID);
+
+        if (unlocked)
+        {
+            isOpen = true;
+            ApplyVisualDoorState();
+
+            if (something != null)
+                something.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -84,10 +128,16 @@ public class LockedDoorInteraction : MonoBehaviour
 
         isInsideTrigger = true;
 
-        if (HasRequiredKey())
+        if (HasRequiredKey() ||
+            (GameManager.Instance != null &&
+             GameManager.Instance.IsDoorOpened(doorID)))
+        {
             PromptUIManagerDoorKey.Instance?.ShowPrompt(openedMessage);
+        }
         else
+        {
             PromptUIManagerDoorKey.Instance?.ShowPrompt("[E] Check Door");
+        }
     }
 
     private void OnTriggerExit(Collider other)

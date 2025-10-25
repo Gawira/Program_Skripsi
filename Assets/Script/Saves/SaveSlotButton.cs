@@ -40,16 +40,39 @@ public class SaveSlotButton : MonoBehaviour
 
         if (!SaveManager.SaveExists(slotIndex))
         {
-            // Create new save data
             SaveData newData = new SaveData
             {
+                // --- Player base stats for a NEW GAME ---
                 playerHealth = 100,
+                currentHealth = 100,
                 playerMoney = 0,
-                checkpointPosition = Vector3.zero
+                damage = 20,
+                lifesteal = 8,
+                defense = 5,
+                slotMax = 2,          // starting diamond slots / capacity
+
+                // --- Spawn / checkpoint ---
+                checkpointPosition = Vector3.zero,
+                checkpointRotation = Quaternion.identity,
+
+                // --- Empty inventories ---
+                equippedDjimatIDs = new System.Collections.Generic.List<string>(),
+                inventoryDjimatIDs = new System.Collections.Generic.List<string>(),
+                sacredStoneIDs = new System.Collections.Generic.List<string>(),
+                keyItemIDs = new System.Collections.Generic.List<string>(),
+                soldOutItems = new System.Collections.Generic.List<string>()
             };
+
             SaveManager.SaveGame(newData);
         }
 
-        SceneManager.LoadScene(gameSceneName);
+
+        // Set desired spawn point
+        if (SceneSpawnManager.Instance != null)
+            SceneSpawnManager.Instance.SetSpawnPoint("SpawnPoint");
+
+
+        SceneSpawnManager.Instance?.SetSpawnPoint("SpawnPoint");
+        SceneManager.LoadScene("SampleScene");
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace UnityStandardAssets.Cameras
@@ -80,6 +81,7 @@ namespace UnityStandardAssets.Cameras
 
         public void BackToMainMenu()
         {
+            SceneManager.LoadScene("MainMenu");
             inventoryPanel.SetActive(false);
             settingsPanel.SetActive(false);
             HTPScreen.SetActive(false);

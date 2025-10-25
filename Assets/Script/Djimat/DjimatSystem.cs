@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System;
 using UnityEngine;
 
 public class DjimatSystem : MonoBehaviour
@@ -65,6 +63,33 @@ public class DjimatSystem : MonoBehaviour
         return used;
     }
 
+    // NEW: call this right after PlayerManager loads save data
+    public void SyncBaseStatsFromPlayer()
+    {
+        if (playerManager == null) return;
+        baseHealth = playerManager.playerHealth;
+        baseDamage = playerManager.damage;
+        baseLifesteal = playerManager.lifesteal;
+        baseDefense = playerManager.defense;
+    }
+
+    // NEW: external-friendly wrapper
+    public void ApplyBonusesAfterLoad()
+    {
+        ApplyBonuses();
+        UpdateLimitUI();
+    }
+
+    // NEW: force the diamond-slot bar (limitUI) to match loaded slotMax
+    public void RefreshLimitUIAfterLoad()
+    {
+        if (limitUI != null)
+        {
+            limitUI.GenerateSlots(SlotCapacity);
+            limitUI.UpdateUsage(GetCurrentUsedSlots());
+        }
+    }
+
     public bool EquipToSlot(EquippedSlotUI slot, DjimatItem item)
     {
         if (slot == null || item == null) return false;
@@ -85,7 +110,6 @@ public class DjimatSystem : MonoBehaviour
 
         slot.AssignDjimat(item);
         ApplyBonuses();
-
         OnChanged?.Invoke();
         UpdateLimitUI();
         return true;
@@ -102,6 +126,7 @@ public class DjimatSystem : MonoBehaviour
         UpdateLimitUI();
     }
 
+    // keep this private, logic unchanged
     private void ApplyBonuses()
     {
         if (playerManager == null) return;
@@ -124,7 +149,7 @@ public class DjimatSystem : MonoBehaviour
             playerManager.defense += item.defenseBonus;
         }
 
-        // Clamp health so it doesn't exceed the new max
+        // Clamp current health so it doesn't exceed new max
         if (playerManager.currentHealth > playerManager.playerHealth)
             playerManager.currentHealth = playerManager.playerHealth;
 

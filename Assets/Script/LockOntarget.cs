@@ -12,6 +12,7 @@ namespace UnityStandardAssets.Cameras
         [SerializeField] private float lockOnRange = 50f;
         [SerializeField] private float rotationSpeed = 5f;
         [SerializeField] private FreeLookCam freelookcam;
+        [SerializeField] public PlayerManager playerManager;
 
         [Header("Runtime")]
         public Transform currentTarget;
@@ -19,6 +20,8 @@ namespace UnityStandardAssets.Cameras
         public bool LockOn;
 
         public Quaternion savedPivotRotation;
+
+        private Vector3 lastTargetDirection;
 
         void Start()
         {
@@ -34,6 +37,9 @@ namespace UnityStandardAssets.Cameras
             // Subscribe to existing bosses
             foreach (BossManager boss in FindObjectsOfType<BossManager>())
                 boss.OnBossDied += HandleBossDeath;
+
+            if (playerManager == null)
+                playerManager = FindObjectOfType<PlayerManager>();
         }
 
         void Update()
@@ -50,6 +56,13 @@ namespace UnityStandardAssets.Cameras
 
             if (LockOn)
                 LockOnToTarget();
+
+            if (playerManager.isDead)
+            {
+                LockOn = false;
+                UnlockTarget(); 
+            }
+
         }
 
         #region 🔸 Target Death Handlers
@@ -79,19 +92,31 @@ namespace UnityStandardAssets.Cameras
         #region 🔸 Lock-On Logic
         public void UnlockTarget()
         {
-            //if (freelookcam != null)
-            //    freelookcam.SyncFromPivot();
+            if (freelookcam == null || freelookcam.m_Pivot == null)
+                return;
 
-            //if (freelookcam != null && freelookcam.m_Pivot != null)
-            //{
-            //    Vector3 camForward = freelookcam.m_Cam.forward;
-            //    Quaternion correctedRot = Quaternion.LookRotation(camForward, Vector3.up);
-            //    freelookcam.m_Pivot.rotation = correctedRot;
-            //    savedPivotRotation = correctedRot;
-            //}
+            Transform rig = freelookcam.transform;
+            Transform pivot = freelookcam.m_Pivot;
 
-            //currentTarget = null;
-            //LockOn = false;
+            // Keep facing the same direction you were during the lock
+            Vector3 direction = lastTargetDirection != Vector3.zero
+                ? lastTargetDirection
+                : rig.forward;
+
+            Quaternion lookRot = Quaternion.LookRotation(direction, Vector3.up);
+            Vector3 euler = lookRot.eulerAngles;
+
+            // Apply same split as before
+            rig.rotation = Quaternion.Euler(0f, euler.y, 0f);
+            pivot.localRotation = Quaternion.Euler(euler.x, 0f, 0f);
+
+            // Save the pivot for smooth manual control resync
+            savedPivotRotation = pivot.localRotation;
+            currentTarget = null;
+            LockOn = false;
+
+            // Resync FreeLookCam logic after restoring the split rotations
+            freelookcam.SyncFromPivot();
         }
 
         public void LockOntoNewTarget()
@@ -104,21 +129,40 @@ namespace UnityStandardAssets.Cameras
         {
             if (!currentTarget || freelookcam == null) return;
 
-            Transform pivot = freelookcam.m_Pivot;
+            Transform rig = freelookcam.transform;     // Handles Y (yaw)
+            Transform pivot = freelookcam.m_Pivot;     // Handles X (pitch)
+            Transform cam = freelookcam.m_Cam;         // For direction reference
 
+            // Direction from pivot to target
             Vector3 dirToTarget = currentTarget.position - pivot.position;
-            dirToTarget.y = -2f; // Optional offset
+            lastTargetDirection = dirToTarget.normalized;
 
-            Quaternion targetRotation = Quaternion.LookRotation(dirToTarget);
+            // Compute desired rotation
+            Quaternion lookRot = Quaternion.LookRotation(dirToTarget.normalized, Vector3.up);
+            Vector3 euler = lookRot.eulerAngles;
 
-            pivot.rotation = Quaternion.Slerp(
-                pivot.rotation,
-                targetRotation,
+            // Separate axes
+            float targetYaw = euler.y;   // Horizontal rotation (Y)
+            float targetPitch = euler.x; // Vertical tilt (X)
+
+            // Smoothly rotate Y-axis on the root
+            Quaternion rigTargetRot = Quaternion.Euler(0f, targetYaw, 0f);
+            rig.rotation = Quaternion.Slerp(
+                rig.rotation,
+                rigTargetRot,
                 rotationSpeed * Time.deltaTime
             );
 
-            Vector3 camForward = freelookcam.m_Cam.forward;
-            savedPivotRotation = Quaternion.LookRotation(camForward, Vector3.up);
+            // Smoothly rotate X-axis on the pivot
+            Quaternion pivotTargetRot = Quaternion.Euler(targetPitch, 0f, 0f);
+            pivot.localRotation = Quaternion.Slerp(
+                pivot.localRotation,
+                pivotTargetRot,
+                rotationSpeed * Time.deltaTime
+            );
+
+            // Save for unlocking stabilization
+            savedPivotRotation = pivot.localRotation;
         }
 
         public Transform FindVisibleTarget()

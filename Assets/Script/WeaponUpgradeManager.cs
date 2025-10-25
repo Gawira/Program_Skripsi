@@ -79,12 +79,18 @@ public class WeaponUpgradeManager : MonoBehaviour
         weaponinfoText_Inventory.text = $"Courteous+{currentLevel}";
     }
 
-    private void ApplyDamageForCurrentLevel()
+    public void ApplyDamageForCurrentLevel()
     {
         if (playerManager != null && currentLevel < damagePerLevel.Length)
         {
             playerManager.damage = damagePerLevel[currentLevel];
         }
+
+        // also update UI labels if you want them to reflect loaded level
+        if (weaponinfoText != null)
+            weaponinfoText.text = $"Courteous+{currentLevel}";
+        if (weaponinfoText_Inventory != null)
+            weaponinfoText_Inventory.text = $"Courteous+{currentLevel}";
     }
 
     DjimatItem GetRequiredStoneForLevel(int level)

@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-
 public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("UI References")]
@@ -18,10 +17,14 @@ public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private ItemInfoDisplayCatalog infoDisplay;
 
+    public DjimatItem item => itemData;
+    public bool isDarkened { get; private set; } = false;
+
     private void Start()
     {
-        infoDisplay = FindObjectOfType<ItemInfoDisplayCatalog>(); // auto find
+        infoDisplay = FindObjectOfType<ItemInfoDisplayCatalog>();
     }
+
     public void Setup(DjimatItem item, int price, MerchantCatalog catalog)
     {
         itemData = item;
@@ -50,18 +53,27 @@ public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnClickBuy()
     {
+        // Don't allow buying if already darkened
+        if (isDarkened)
+        {
+            Debug.Log("This item is already purchased / locked.");
+            return;
+        }
+
         merchantCatalog.TryPurchase(itemData, itemPrice, this);
         Debug.Log("Bought");
     }
 
     public void SetDarkened(bool state)
     {
-        if (iconImage != null)
-        {
-            iconImage.color = state ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white;
-        }
+        isDarkened = state;
 
-        // Optional: make button unclickable after buying
-        GetComponent<Button>().interactable = !state;
+        if (iconImage != null)
+            iconImage.color = state ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white;
+
+        // Disable the button so it can't be clicked anymore
+        var btn = GetComponent<Button>();
+        if (btn != null)
+            btn.interactable = !state;
     }
 }
