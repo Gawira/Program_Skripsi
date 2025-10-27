@@ -11,6 +11,12 @@ public class BossManager : MonoBehaviour
     public int damage = 20;
     public int moneyDrop = 1000;
 
+    [Header("Loot Drop")]
+    [Tooltip("Prefab dropped when boss dies (e.g. harta). Will be spawned once.")]
+    public GameObject lootPrefab;
+    public Vector3 lootDropOffset = new Vector3(0f, 1f, 0f); // spawn a bit above ground
+    private bool lootDropped = false;
+
     [Header("UI Settings")]
     public GameObject bossHealthBarUI;
     public Slider bossHealthSlider;
@@ -36,6 +42,7 @@ public class BossManager : MonoBehaviour
         if (bossHealthBarUI != null)
         {
             bossHealthBarUI.SetActive(false);
+
             if (bossHealthSlider != null)
                 bossHealthSlider.maxValue = maxHealth;
 
@@ -45,7 +52,9 @@ public class BossManager : MonoBehaviour
             if (bossNameText != null)
                 bossNameText.text = bossName;
 
-            bossHealthSlider.value = maxHealth;
+            if (bossHealthSlider != null)
+                bossHealthSlider.value = maxHealth;
+
             if (bossDelayedHealthSlider != null)
                 bossDelayedHealthSlider.value = maxHealth;
         }
@@ -58,18 +67,26 @@ public class BossManager : MonoBehaviour
     {
         if (bossHealthSlider == null) return;
 
-        // Target health value
+        // clamp target
         int targetHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        // Main health bar: fast update
-        bossHealthSlider.value = Mathf.Lerp(bossHealthSlider.value, targetHealth, Time.deltaTime * smoothSpeed);
+        // fast bar
+        bossHealthSlider.value = Mathf.Lerp(
+            bossHealthSlider.value,
+            targetHealth,
+            Time.deltaTime * smoothSpeed
+        );
 
-        // Delayed health bar: lag behind when losing HP
+        // delayed bar
         if (bossDelayedHealthSlider != null)
         {
             if (bossDelayedHealthSlider.value > targetHealth)
             {
-                bossDelayedHealthSlider.value = Mathf.Lerp(bossDelayedHealthSlider.value, targetHealth, Time.deltaTime * delaySpeed);
+                bossDelayedHealthSlider.value = Mathf.Lerp(
+                    bossDelayedHealthSlider.value,
+                    targetHealth,
+                    Time.deltaTime * delaySpeed
+                );
             }
             else
             {
@@ -85,23 +102,45 @@ public class BossManager : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            // reward player
             playerManager?.AddMoney(moneyDrop);
+
+            // play death anim
             if (anim != null)
                 anim.SetTrigger("Death");
+
             Die();
+        }
+    }
+
+    private void SpawnLootIfNeeded()
+    {
+        if (lootDropped) return;
+        lootDropped = true;
+
+        if (lootPrefab != null)
+        {
+            Vector3 dropPos = transform.position + lootDropOffset;
+            Instantiate(lootPrefab, dropPos, Quaternion.identity);
         }
     }
 
     private void Die()
     {
+        // trigger anim again just in case
         if (anim != null)
             anim.SetTrigger("Death");
 
+        // drop harta / loot
+        SpawnLootIfNeeded();
+
+        // notify listeners
         OnBossDied?.Invoke(this);
 
-        if (bossHealthBarUI != null)
-            bossHealthBarUI.SetActive(false);
+        // hide UI
+        DeactivateBossUI();
 
+        // cleanup boss after a delay
         Destroy(gameObject, 3f);
     }
 
@@ -117,6 +156,12 @@ public class BossManager : MonoBehaviour
             bossHealthBarUI.SetActive(false);
     }
 
+    // this is a public version so other scripts can hide the UI
+    public void ForceHideUI()
+    {
+        DeactivateBossUI();
+    }
+
     public bool IsAlive()
     {
         return currentHealth > 0;
@@ -127,7 +172,7 @@ public class BossManager : MonoBehaviour
         if (other.CompareTag(playerTag))
         {
             Debug.Log($"Boss hits player for {damage}");
-            // playerManager.TakeDamage(damage);
+            // playerManager.TakeDamage(damage); // if you hook player damage later
         }
     }
 }

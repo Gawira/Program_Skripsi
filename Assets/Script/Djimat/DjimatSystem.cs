@@ -63,7 +63,7 @@ public class DjimatSystem : MonoBehaviour
         return used;
     }
 
-    // NEW: call this right after PlayerManager loads save data
+    // called after load
     public void SyncBaseStatsFromPlayer()
     {
         if (playerManager == null) return;
@@ -73,14 +73,12 @@ public class DjimatSystem : MonoBehaviour
         baseDefense = playerManager.defense;
     }
 
-    // NEW: external-friendly wrapper
     public void ApplyBonusesAfterLoad()
     {
         ApplyBonuses();
         UpdateLimitUI();
     }
 
-    // NEW: force the diamond-slot bar (limitUI) to match loaded slotMax
     public void RefreshLimitUIAfterLoad()
     {
         if (limitUI != null)
@@ -126,34 +124,70 @@ public class DjimatSystem : MonoBehaviour
         UpdateLimitUI();
     }
 
-    // keep this private, logic unchanged
+    // ===== THE IMPORTANT PART =====
     private void ApplyBonuses()
     {
         if (playerManager == null) return;
 
-        // Reset to base stats
+        // 1. Reset player stats back to base (no Djimat)
         playerManager.playerHealth = baseHealth;
         playerManager.damage = baseDamage;
         playerManager.lifesteal = baseLifesteal;
         playerManager.defense = baseDefense;
 
-        // Add bonuses from equipped Djimats
+        // 2. Reset special Djimat effects
+        playerManager.canReviveOnce = false;
+        playerManager.hasRegen = false;
+        playerManager.regenPerSecond = 0;
+        playerManager.healthMultiplier = 1f;
+
+        // 3. Add bonuses from each equipped Djimat
         foreach (var eqSlot in gridMaker.equippedGridParent.GetComponentsInChildren<EquippedSlotUI>())
         {
             if (eqSlot.equippedDjimat == null) continue;
 
             DjimatItem item = eqSlot.equippedDjimat;
+
+            // flat stat bonuses
             playerManager.playerHealth += item.healthBonus;
             playerManager.damage += item.damageBonus;
             playerManager.lifesteal += item.lifestealBonus;
             playerManager.defense += item.defenseBonus;
+
+            // special passive logic based on itemName
+            switch (item.itemName)
+            {
+                case "Paper of Oath":
+                    // gives 1 free revive instead of dying
+                    playerManager.canReviveOnce = true;
+                    break;
+
+                case "Sacred Vest":
+                    // make health bar longer by multiplying max HP
+                    playerManager.healthMultiplier *= 0.5f;
+                    break;
+
+                case "Pure Water":
+                    // passive regen over time
+                    playerManager.hasRegen = true;
+                    playerManager.regenPerSecond += 2; // +2 HP/sec
+                    break;
+            }
         }
 
-        // Clamp current health so it doesn't exceed new max
+        // 4. Apply HP multiplier AFTER adding flat bonuses
+        playerManager.playerHealth = Mathf.RoundToInt(playerManager.playerHealth * playerManager.healthMultiplier);
+
+        // 5. Clamp current HP so it's not above new max
         if (playerManager.currentHealth > playerManager.playerHealth)
             playerManager.currentHealth = playerManager.playerHealth;
 
-        Debug.Log($"[DjimatSystem] Final Stats → HP: {playerManager.playerHealth}, DMG: {playerManager.damage}, LS: {playerManager.lifesteal}, DEF: {playerManager.defense}");
+        Debug.Log(
+            $"[DjimatSystem] Final Stats → HP:{playerManager.playerHealth}, DMG:{playerManager.damage}, " +
+            $"LS:{playerManager.lifesteal}, DEF:{playerManager.defense} | " +
+            $"Revive:{playerManager.canReviveOnce} Regen:{playerManager.hasRegen}({playerManager.regenPerSecond}/s) " +
+            $"HPx{playerManager.healthMultiplier}"
+        );
     }
 
     private void UpdateLimitUI()

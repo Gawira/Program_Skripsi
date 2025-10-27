@@ -122,8 +122,6 @@ public class Checkpoint : MonoBehaviour
             }
         }
 
-
-
         // --- Weapon Upgrade ---
         WeaponUpgradeManager wum = FindObjectOfType<WeaponUpgradeManager>();
         if (wum != null)

@@ -1059,6 +1059,8 @@ PlayableDirector:
     value: {fileID: 1720088750}
   - key: {fileID: -6927064965234821025, guid: 0e89d7590b7a9c6429ab45608c02e2b3, type: 2}
     value: {fileID: 919132149105097840}
+  - key: {fileID: 3045151418604453832, guid: 0e89d7590b7a9c6429ab45608c02e2b3, type: 2}
+    value: {fileID: 464511426}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &197047557
@@ -1338,6 +1340,9 @@ MonoBehaviour:
   damage: 200
   slotMax: 2
   thirdPersonCharacter: {fileID: 308874911}
+  youDiedCanvas: {fileID: 0}
+  fadeDuration: 2
+  isDead: 0
 --- !u!114 &308874911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1678,6 +1683,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61ac14a369d205e40abffe02b0d1480e, type: 3}
+--- !u!1 &464511426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 464511428}
+  - component: {fileID: 464511427}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &464511427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464511426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de857f0099c2cd54cb072dcc555b3b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: MainMenu
+  onlyOnce: 1
+--- !u!4 &464511428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464511426}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 200.33003, y: 72.11643, z: -107.11923}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &504433231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22912,3 +22963,4 @@ SceneRoots:
   - {fileID: 1720088749}
   - {fileID: 543450653399476594}
   - {fileID: 543450653649577685}
+  - {fileID: 464511428}

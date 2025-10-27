@@ -62,57 +62,23 @@
   <ItemGroup>
     <Compile Include="Assets\ThirdPart\Piloto Studio\Readme\Scripts\Editor\ReadmeEditorStyles.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\InteractiveNodeEditor.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\FlowPainter\FlowPainter.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassEditorUtilityWindow.cs" />
     <Compile Include="Assets\ThirdPart\Piloto Studio\Readme\Scripts\Editor\ReadmeEditor.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\PlayerAppearanceHandlerEditor.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\TextureArrayPainter\TextureArrayPainter.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\EditorFilterMode.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\RPGDialogueTextNodeEditor.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\NodeSocketsEditor.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\Blink_EditorSceneLoader.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassEditorUtil.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassDetailList.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\ObjectPainter\ObjectDetailEditorWindow.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassLoaderEditor.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\RPGBuilderThirdPersonControllerEssentialsEditor.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\SmoothHeightEditor\SmoothHeightEditor.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\NPCSpawnerEditor.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassMap.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\PaintHeightEditor\PaintHeightEditor.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\CombatNodeEditor.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\MeshToolbox\MeshToolbox.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\MeshModifyGroup.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassDetailListBox.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\RPGBuilderWindow.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\DetailListBox.cs" />
     <Compile Include="Assets\ThirdPart\Piloto Studio\Readme\Scripts\Editor\ReadmeBehaviourEditor.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassPainter.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\VertexColorPainter\VertexColorPainter.cs" />
     <Compile Include="Assets\ThirdPart\Piloto Studio\Readme\Scripts\Editor\ReadmeHierarchy.cs" />
     <Compile Include="Assets\M Studio\Colourful Hierarchy Category GameObject\Editor\StyleHierarchy.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\ObjectPainter\ObjectDetailList.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\Preview.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\RPGBAdvancedDialogueOptionsNodeSelector.cs" />
     <Compile Include="Assets\M Studio\Colourful Hierarchy Category GameObject\Editor\ColorPalette.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\SplatPainter\SplatPainter.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\ObjectPainter\ObjectPainter.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\Detail.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\RPGBAdvancedDialogueOptionsWindow.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassDetail.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassItem.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\RaiseLowerEditor\RaiseLowerEditor.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassPainter.Instance.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\RPGBuilderEditorModuleFieldHandlerWindow.cs" />
     <Compile Include="Assets\Blink\Tools\RPGBuilder\Editor\RPGBCharacterControllerEssentialsEditor.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\TextureArrayPainter\TextureArrayManager.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\ObjectPainter\ObjectDetail.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\SplatPainter\TextureModifyGroup.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\GrassPainter\GrassType.cs" />
-    <Compile Include="Assets\MeshTerrainEditor\Plugins\Editor\ObjectPainter\ObjectDetailListBox.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\MeshTerrainEditor\Editor\MTE.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -489,10 +455,6 @@
     </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.8.2\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MTE">
-      <HintPath>Assets\MeshTerrainEditor\Editor\MTE.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
@@ -1220,10 +1182,6 @@
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
       <Project>{BBAD5A05-AB32-ED66-BD2C-CD2F3007FE4B}</Project>
       <Name>Assembly-CSharp-Editor-firstpass</Name>
-    </ProjectReference>
-    <ProjectReference Include="MTE_script.csproj">
-      <Project>{A3B4116A-C211-CC1C-F5C3-0BD10D33981C}</Project>
-      <Name>MTE_script</Name>
     </ProjectReference>
     <ProjectReference Include="XNodeEditor.csproj">
       <Project>{AB8CE747-2BB4-7D25-FA66-92AE5F3F9B18}</Project>

@@ -46,8 +46,8 @@ public class SaveSlotButton : MonoBehaviour
                 playerHealth = 100,
                 currentHealth = 100,
                 playerMoney = 0,
-                damage = 20,
-                lifesteal = 8,
+                damage = 10,
+                lifesteal = 4,
                 defense = 5,
                 slotMax = 2,          // starting diamond slots / capacity
 

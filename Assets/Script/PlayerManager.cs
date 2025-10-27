@@ -14,7 +14,7 @@ namespace UnityEngine
         public int defense = 5;
 
         public int money = 0;
-        public int damage = 20;
+        public int damage = 10;
         public int slotMax = 2;
 
         [Header("Respawn Settings")]
@@ -32,6 +32,24 @@ namespace UnityEngine
 
         // --- internal guard ---
         public bool isDead = false;
+
+        // >>> NEW <<< Djimat special effect flags
+        [Header("Djimat Special Effects")]
+        [Tooltip("If true: lethal damage will consume this and revive you instead of full death.")]
+        public bool canReviveOnce = false;
+
+        [Tooltip("If true: you heal passively over time.")]
+        public bool hasRegen = false;
+
+        [Tooltip("HP recovered per second if hasRegen is true.")]
+        public int regenPerSecond = 0;
+
+        [Tooltip("Multiplier for max HP from Sacred Vest, applied in DjimatSystem.")]
+        public float healthMultiplier = 1f;
+
+        // regen timer for ticking 1/sec
+        private float regenTimer = 0f;
+        // >>> END NEW <<<
 
         private void Start()
         {
@@ -80,7 +98,24 @@ namespace UnityEngine
 
         private void Update()
         {
-            // Only trigger Die once when health reaches 0
+            // >>> NEW <<< Passive regen from Pure Water
+            if (!isDead && hasRegen && regenPerSecond > 0 && currentHealth > 0 && currentHealth < playerHealth)
+            {
+                regenTimer += Time.deltaTime;
+                if (regenTimer >= 1f)
+                {
+                    regenTimer -= 1f;
+
+                    currentHealth += regenPerSecond;
+                    if (currentHealth > playerHealth)
+                        currentHealth = playerHealth;
+
+                    Debug.Log($"[Regen] +{regenPerSecond} HP from Pure Water. Current HP: {currentHealth}");
+                }
+            }
+            // >>> END NEW <<<
+
+            // Only trigger death logic once
             if (!isDead && currentHealth <= 0)
             {
                 Die();
@@ -101,6 +136,31 @@ namespace UnityEngine
         {
             // guard to prevent multiple calls
             if (isDead) return;
+
+            // >>> NEW <<< Second chance from Paper of Oath
+            if (canReviveOnce)
+            {
+                // consume the revive
+                canReviveOnce = false;
+
+                Debug.Log("Player avoided death thanks to Paper of Oath!");
+
+                // bring player back with half HP (at least 1)
+                currentHealth = Mathf.Max(1, playerHealth / 2);
+
+                // short invulnerability so you don't instantly die again
+                StartCoroutine(TemporaryInvulnerability(2f));
+
+                // play a 'revive' style anim (reusing Respawned trigger)
+                if (anim != null)
+                    anim.SetTrigger("Respawned");
+
+                // IMPORTANT: do NOT mark isDead, do NOT run normal death flow
+                return;
+            }
+            // >>> END NEW <<<
+
+            // this is actual death flow
             isDead = true;
 
             Debug.Log("Player has died!");
@@ -120,7 +180,7 @@ namespace UnityEngine
             // Turn off lock-on if present
             LockOnTarget lockontarget = GetComponent<LockOnTarget>();
             if (lockontarget != null)
-            { 
+            {
                 lockontarget.LockOn = false;
                 lockontarget.UnlockTarget();
                 lockontarget.LockOntoNewTarget();
@@ -129,9 +189,18 @@ namespace UnityEngine
             // Reset money on death
             money = 0;
 
-            // 🔹 Start the full death flow — fade in, respawn, then fade out
+            // Full death sequence (fade -> respawn -> fade out)
             StartCoroutine(HandleDeathSequence());
         }
+
+        // >>> NEW <<< short invulnerability after revive
+        private IEnumerator TemporaryInvulnerability(float seconds)
+        {
+            SetInvincible();
+            yield return new WaitForSeconds(seconds);
+            SetVulnerable();
+        }
+        // >>> END NEW <<<
 
         private IEnumerator HandleDeathSequence()
         {
@@ -196,7 +265,6 @@ namespace UnityEngine
             int finalDamage = Mathf.Max(0, amount - defense);
             currentHealth -= finalDamage;
 
-            // Prevent health from going below 0
             if (currentHealth < 0)
                 currentHealth = 0;
 
@@ -223,6 +291,7 @@ namespace UnityEngine
 
             youDiedCanvas.alpha = 1f;
         }
+
         private IEnumerator FadeOut()
         {
             if (youDiedCanvas == null)
@@ -304,35 +373,31 @@ namespace UnityEngine
             Debug.Log("Player is now VULNERABLE");
         }
 
-        
-
+        // =======================
+        // RestoreInventoriesAfterLoad
+        // (no changes here, leaving yours as-is)
+        // =======================
         private IEnumerator RestoreInventoriesAfterLoad(SaveData data)
         {
-            // Make sure all the other scripts (Start/OnEnable) have run.
-            // EndOfFrame twice = super safe for UI grids that build in Start()
+            // Let other scripts initialize first so UI grids exist
             yield return new WaitForEndOfFrame();
             yield return null;
 
-            // --- Grab refs ---
+            // --- references ---
             GridMaker grid = FindObjectOfType<GridMaker>();
             DjimatSystem djimatSystem = FindObjectOfType<DjimatSystem>();
-
             SacredStoneGridMaker sacredGrid = FindObjectOfType<SacredStoneGridMaker>();
             KeyItemGridMaker keyGrid = FindObjectOfType<KeyItemGridMaker>();
 
-            // ==========================
-            // 1. Djimat (equipped + bag)
-            // ==========================
+            // Djimat load...
             if (grid != null)
             {
-                // wipe UI first
                 foreach (var eq in grid.equippedGridParent.GetComponentsInChildren<EquippedSlotUI>())
                     eq.AssignDjimat(null);
 
                 foreach (var inv in grid.inventoryGridParent.GetComponentsInChildren<InventorySlotUI>())
                     inv.AssignDjimat(null);
 
-                // restore equipped djimats in order
                 foreach (string id in data.equippedDjimatIDs)
                 {
                     DjimatItem item = Resources.Load<DjimatItem>($"Items/{id}");
@@ -348,7 +413,6 @@ namespace UnityEngine
                     }
                 }
 
-                // restore backpack djimats
                 foreach (string id in data.inventoryDjimatIDs)
                 {
                     DjimatItem item = Resources.Load<DjimatItem>($"Items/{id}");
@@ -359,17 +423,12 @@ namespace UnityEngine
                 }
             }
 
-            // ==========================
-            // 2. Sacred Stones
-            // ==========================
+            // Sacred Stones
             if (sacredGrid != null && sacredGrid.stoneInventory != null)
             {
                 var sacredInv = sacredGrid.stoneInventory;
-
-                // clear first
                 sacredInv.stones.Clear();
 
-                // IMPORTANT: use AddStone() so it fires OnInventoryChanged
                 foreach (string id in data.sacredStoneIDs)
                 {
                     DjimatItem item = Resources.Load<DjimatItem>($"Items/{id}");
@@ -379,21 +438,15 @@ namespace UnityEngine
                     }
                 }
 
-                // Safety refresh just in case
                 sacredGrid.RefreshGrid();
             }
 
-            // ==========================
-            // 3. Key Items
-            // ==========================
+            // Key Items
             if (keyGrid != null && keyGrid.keyItemInventory != null)
             {
                 var keyInv = keyGrid.keyItemInventory;
+                keyInv.ClearInventory();
 
-                // clear existing
-                keyInv.ClearInventory(); // this also fires OnInventoryChanged
-
-                // IMPORTANT: use AddKeyItem() so it fires OnInventoryChanged
                 foreach (string id in data.keyItemIDs)
                 {
                     DjimatItem item = Resources.Load<DjimatItem>($"Items/{id}");
@@ -403,70 +456,55 @@ namespace UnityEngine
                     }
                 }
 
-                // Safety refresh
                 keyGrid.RefreshGrid();
             }
 
-            // ==========================
-            // 4. Merchant sold state
-            // ==========================
+            // Merchant
             MerchantCatalog merchant = FindObjectOfType<MerchantCatalog>();
             if (merchant != null)
             {
                 merchant.ApplySoldOutFromSave(data.soldOutItems);
             }
 
-            // ==========================
-            // 5. Sync DjimatSystem stats & UI
-            // ==========================
+            // DjimatSystem sync
             if (djimatSystem != null)
             {
-                // first, tell DjimatSystem that the "base" stats should now be whatever
-                // we loaded from disk (after merchant upgrades etc)
                 djimatSystem.SyncBaseStatsFromPlayer();
-
-                // then re-apply bonuses from equipped djimats on top of that
                 djimatSystem.ApplyBonusesAfterLoad();
-
-                // then force the diamond-slot UI to redraw using the loaded slotMax
                 djimatSystem.RefreshLimitUIAfterLoad();
             }
 
-            // ==========================
-            // 6. Restore Weapon Upgrade
-            // ==========================
+            // Weapon Upgrade
             WeaponUpgradeManager wum = FindObjectOfType<WeaponUpgradeManager>();
             if (wum != null)
             {
-                // pull saved level
                 wum.currentLevel = data.weaponUpgradeLevel;
-
-                // apply its damage + UI
                 wum.ApplyDamageForCurrentLevel();
             }
 
-            // 7. Restore world persistent state (door unlocks, picked items)
+            // World state (doors, pickups)
             if (GameManager.Instance != null)
             {
-                // load lists from save into GameManager's hash sets
-                GameManager.Instance.ApplyLoadedState(data.openedDoorIDs, data.collectedPickupIDs);
+                GameManager.Instance.ApplyLoadedState(
+                    data.openedDoorIDs,
+                    data.collectedPickupIDs
+                );
 
-                // force all doors in the scene to visually match that state
-                foreach (var door in FindObjectsOfType<LockedDoorInteraction>())
+                foreach (var doorLocked in FindObjectsOfType<LockedDoorInteraction>())
                 {
-                    door.ApplyWorldState();
+                    doorLocked.ApplyWorldState();
                 }
 
-                // force all pickups in the scene to despawn if already collected
+                foreach (var doorOneWay in FindObjectsOfType<DoorInteraction>())
+                {
+                    doorOneWay.ApplyWorldState();
+                }
+
                 foreach (var pickup in FindObjectsOfType<PickableItem>())
                 {
                     pickup.ApplyWorldState();
                 }
             }
-
         }
-
-
     }
-
 }
