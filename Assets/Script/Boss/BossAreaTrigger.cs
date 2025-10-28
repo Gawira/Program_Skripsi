@@ -61,6 +61,9 @@ public class BossAreaTrigger : MonoBehaviour
         // unlock fight so they can re-trigger it after respawn.
         if (playerDead)
         {
+            if (fullArena != null)
+                fullArena.SetActive(true);
+
             if (arenaBarrier != null)
                 arenaBarrier.SetActive(false);
 
@@ -70,6 +73,11 @@ public class BossAreaTrigger : MonoBehaviour
 
             bossActive = false;
             fightLocked = false;
+
+            if (bossAI != null)
+                bossAI.DeactivateBoss();
+
+            bossManager.currentHealth = bossManager.maxHealth;
         }
     }
 
@@ -93,6 +101,9 @@ public class BossAreaTrigger : MonoBehaviour
         // just in case: make sure main barrier also opens
         if (arenaBarrier != null)
             arenaBarrier.SetActive(false);
+
+        AudioManager.Instance.StopBossMusic();
+        AudioManager.Instance.StopMusic();
 
         Debug.Log("Boss fight ended!");
     }

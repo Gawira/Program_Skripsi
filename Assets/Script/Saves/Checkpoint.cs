@@ -59,8 +59,12 @@ public class Checkpoint : MonoBehaviour
         Debug.Log($"Checkpoint updated at {transform.position}");
 
         // Respawn enemies
-        if (respawner != null)
-            respawner.RespawnEnemy();
+        // Respawn / reset ALL enemies in the scene
+        EnemyRespawner[] allRespawners = FindObjectsOfType<EnemyRespawner>();
+        foreach (var r in allRespawners)
+        {
+            r.ForceRespawnNow();
+        }
 
         // Build save data
         SaveData data = new SaveData();

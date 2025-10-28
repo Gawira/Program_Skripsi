@@ -32,6 +32,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         [SerializeField] private PauseSetting pauseSetting;
         [SerializeField] private MerchantManager merchantSetting;
 
+        [SerializeField] private PlayerAudioController audioController;
 
         Rigidbody m_Rigidbody;
         Animator m_Animator;
@@ -60,11 +61,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             if (merchantSetting == null)
                 merchantSetting = FindObjectOfType<MerchantManager>();
+
+            if (audioController == null)
+                audioController = GetComponent<PlayerAudioController>();
         }
 
         private void Update()
         {
-
             if (pauseSetting.isPaused == false && merchantSetting.isMerchantOpen == false)
             {
                 if (Input.GetMouseButtonDown(0))
@@ -75,15 +78,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                         m_Animator.SetTrigger("Attack1");
                     else
                         m_Animator.SetTrigger("Attack2");
+
+                    // >>> play sword swoosh immediately
+                    if (audioController != null)
+                        audioController.PlayAttackSFX();
                 }
             }
-            // Buat animasi Dash pake spasi
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("dashed");
                 playerManager.SetInvincible();
             }
-
         }
 
         public void Move(Vector3 move, bool crouch, bool jump)
@@ -279,6 +285,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
         }
 
+        public bool IsGrounded()
+        {
+            return m_IsGrounded;
+        }
+
+        public float GetHorizontalSpeed()
+        {
+            // how fast we're moving on XZ plane
+            Vector3 vel = m_Rigidbody.velocity;
+            vel.y = 0f;
+            return vel.magnitude;
+        }
         void CheckGroundStatus()
         {
             RaycastHit hitInfo;

@@ -6,7 +6,7 @@ public class EnemyRespawner : MonoBehaviour
     [Tooltip("The enemy prefab to spawn (e.g. Varga2)")]
     public GameObject enemyPrefab;
 
-    [Tooltip("Spawn point transform inside this prefab (e.g. SpawnPointVarga)")]
+    [Tooltip("Where the enemy should appear. This should be an EMPTY child under this respawner that never moves.")]
     public Transform spawnPoint;
 
     [Tooltip("Delay before respawning enemy after death (seconds)")]
@@ -16,7 +16,11 @@ public class EnemyRespawner : MonoBehaviour
     [SerializeField] private GameObject currentEnemy;
     private bool isRespawning = false;
 
-    void Start()
+    // We cache the ORIGINAL spawn transform on Start so it never drifts
+    private Vector3 fixedSpawnPos;
+    private Quaternion fixedSpawnRot;
+
+    private void Start()
     {
         if (enemyPrefab == null)
         {
@@ -30,22 +34,26 @@ public class EnemyRespawner : MonoBehaviour
             spawnPoint = transform;
         }
 
-        SpawnEnemy();
+        // Cache the intended spawn location at startup
+        fixedSpawnPos = spawnPoint.position;
+        fixedSpawnRot = spawnPoint.rotation;
+
+        SpawnEnemy(); // first spawn
     }
 
     private void SpawnEnemy()
     {
-        // Prevent double spawning
+        // Safety: don't double-spawn
         if (currentEnemy != null)
         {
             Debug.LogWarning($"EnemyRespawner on {name}: Tried to spawn but enemy already exists.");
             return;
         }
 
-        // Spawn enemy prefab at spawn point
-        currentEnemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        // Spawn at the cached original position, not at enemy's current body
+        currentEnemy = Instantiate(enemyPrefab, fixedSpawnPos, fixedSpawnRot);
 
-        // Listen for enemy death
+        // Hook death event
         EnemyManager enemyManager = currentEnemy.GetComponent<EnemyManager>();
         if (enemyManager != null)
         {
@@ -58,20 +66,22 @@ public class EnemyRespawner : MonoBehaviour
         if (isRespawning) return;
         isRespawning = true;
 
-        // Unsubscribe from the dead enemy
+        // Clean up subscription
         if (deadEnemy != null)
             deadEnemy.OnEnemyDied -= HandleEnemyDeath;
 
-        // Clear the current enemy reference
         currentEnemy = null;
-
+        // We are *not* immediately respawning here.
+        // Respawn actually happens when checkpoint calls ForceRespawnNow(),
+        // OR you could invoke a delayed spawn coroutine here if you want
+        // Souls-like "enemy comes back after rest only".
     }
 
     public void RespawnEnemy()
     {
+        // Old softer respawn (only if enemy was dead)
         isRespawning = false;
 
-        // Double safety check — don’t respawn if an enemy already exists
         if (currentEnemy != null)
         {
             Debug.LogWarning($"EnemyRespawner on {name}: Tried to respawn but current enemy still alive!");
@@ -81,7 +91,30 @@ public class EnemyRespawner : MonoBehaviour
         SpawnEnemy();
     }
 
-    // Optional: for external scripts (e.g. checkpoint)
+    // >>> This is the bonfire reset <<<
+    public void ForceRespawnNow()
+    {
+        // If there's still an enemy alive, wipe it
+        if (currentEnemy != null)
+        {
+            // Unhook its death event before destroying it, to avoid dangling listeners
+            EnemyManager mgr = currentEnemy.GetComponent<EnemyManager>();
+            if (mgr != null)
+            {
+                mgr.OnEnemyDied -= HandleEnemyDeath;
+            }
+
+            Destroy(currentEnemy);
+            currentEnemy = null;
+        }
+
+        isRespawning = false;
+
+        // Always spawn a fresh one at the ORIGINAL ground position
+        SpawnEnemy();
+    }
+
+    // Optional helper
     public bool HasAliveEnemy()
     {
         return currentEnemy != null;

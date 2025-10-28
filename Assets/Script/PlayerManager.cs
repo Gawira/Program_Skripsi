@@ -30,6 +30,8 @@ namespace UnityEngine
         public CanvasGroup youDiedCanvas; // Assign in inspector
         public float fadeDuration = 2f;   // how long the fade takes
 
+        [SerializeField] private PlayerAudioController audioController;
+
         // --- internal guard ---
         public bool isDead = false;
 
@@ -54,6 +56,8 @@ namespace UnityEngine
         private void Start()
         {
             anim = GetComponent<Animator>();
+            if (audioController == null)
+                audioController = GetComponent<PlayerAudioController>();
 
             // Prevent spawn conflict
             bool useSpawnManager = SceneSpawnManager.overrideSpawnThisScene;
@@ -262,17 +266,33 @@ namespace UnityEngine
         {
             if (!canTakeDamage) return;
 
-            int finalDamage = Mathf.Max(0, amount - defense);
-            currentHealth -= finalDamage;
+            float reduction = amount * (defense / 100f);
+            float dmgAfterReduction = amount - reduction;
+            int finalDamage = Mathf.Max(0, Mathf.RoundToInt(dmgAfterReduction));
 
+            // only bother doing hurt SFX if we actually lost HP > 0
+            bool actuallyTookDamage = finalDamage > 0;
+
+            currentHealth -= finalDamage;
             if (currentHealth < 0)
                 currentHealth = 0;
 
-            Debug.Log($"Player took {finalDamage} damage (blocked {amount - finalDamage}). Current HP: {currentHealth}");
+            Debug.Log(
+                $"Player took {finalDamage} damage " +
+                $"(raw {amount}, reduced by {reduction:0.0} from DEF {defense}). " +
+                $"Current HP: {currentHealth}"
+            );
 
-            if (anim != null)
-                anim.SetTrigger("Hurt");
+            if (actuallyTookDamage)
+            {
+                if (anim != null)
+                    anim.SetTrigger("Hurt");
+
+                if (audioController != null)
+                    audioController.PlayHurtSFX();
+            }
         }
+
 
         private IEnumerator FadeIn()
         {
