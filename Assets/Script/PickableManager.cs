@@ -37,13 +37,12 @@ public class PickableManager : MonoBehaviour
 
     private void Update()
     {
-        if (isPickedUp && !isNotificationActive && Input.GetKeyDown(KeyCode.E))
-        {
-            notificationUI.SetActive(true);
-            isNotificationActive = true;
-            isPickedUp = false;
-            
-        }
+        //if (isPickedUp && !isNotificationActive && Input.GetKeyDown(KeyCode.E))
+        //{
+        //    notificationUI.SetActive(true);
+        //    isNotificationActive = true;
+        //    isPickedUp = false;  
+        //}
 
         if (isNotificationActive && Input.GetMouseButtonDown(0))
         {

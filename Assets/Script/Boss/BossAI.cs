@@ -16,77 +16,120 @@ public class BossAI : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 4f;
     public float strafeSpeed = 4f;
-    private float verticalVelocity = 0f;
-    public float gravity = -20f;
     public float rotationSpeed = 8f;
+
+    [Tooltip("How far down we raycast to find ground height.")]
     public float groundRayLength = 1.2f;
+
+    public float gravity = -20f;
     public LayerMask groundLayer;
 
-    [Header("Behind Detection")]
-    [Range(0f, 180f)]
-    public float behindAngleThreshold = 120f;
+    [Header("Collision / Navigation")]
+    [Tooltip("Layers considered 'solid' for the boss (walls, props, etc).")]
+    public LayerMask obstacleLayers;
 
+    [Tooltip("How far to probe forward each frame for collision.")]
+    public float wallCheckDistance = 0.5f;
+
+    private float verticalVelocity = 0f;
     private Transform goal;
     private Rigidbody rb;
     private Animator anim;
+    private CapsuleCollider bossCollider;
+
+    // cached collider dims for capsule casts
+    private float capsuleRadius;
+    private float capsuleHalfHeight;
+    private Vector3 capsuleCenterLocal;
+
     private float decisionTimer = 0f;
     private string currentState = "Idle";
     private bool waitingForAttackFinish = false;
     private bool bossActive = false;
     private int strafeDirection = 1;
 
+    // --- Sudden Step (mini dash / lunge) ---
     private bool isSuddenStepping = false;
-    public float suddenStepDistance = 2f; // tweak for how far the step moves
-    public float suddenStepSpeed = 10f;   // tweak for how fast the step happens
+    public float suddenStepDistance = 2f;
+    public float suddenStepSpeed = 10f;
     private Vector3 suddenStepTarget;
-
-    public ParticleSystem explodeEffect;
 
     // --- Charge Attack ---
     private bool isCharging = false;
-    public float chargeSpeed = 20f;        // how fast the boss charges
-    public float chargeDistance = 15f;     // how far the charge goes
+    public float chargeSpeed = 20f;
+    public float chargeDistance = 15f;
     private Vector3 chargeTarget;
-    private CapsuleCollider bossCollider;
+
+    [Header("VFX")]
+    public ParticleSystem explodeEffect;
+
+    [Header("Behind Detection")]
+    [Range(0f, 180f)]
+    public float behindAngleThreshold = 120f; // angle where player counts as "behind me"
+
     private void Start()
     {
-        bossCollider = GetComponent<CapsuleCollider>();
-        anim = GetComponent<Animator>();
+        // refs
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
+        bossCollider = GetComponent<CapsuleCollider>();
+
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         rb.isKinematic = true;
-        rb.useGravity = false;  // we’ll handle gravity manually
+        rb.useGravity = false; // we do manual gravity
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        if (bossCollider != null)
+        {
+            capsuleRadius = bossCollider.radius;
+            capsuleHalfHeight = bossCollider.height * 0.5f;
+            capsuleCenterLocal = bossCollider.center;
+        }
     }
 
     private void Update()
     {
+        // no brain unless active
         if (!bossActive || goal == null) return;
+
+        // 1) always do dash step if in sudden step
+        DashStepTowardTarget();
+
+        // if still dashing, don't run normal AI for this frame
+        if (isSuddenStepping)
+            return;
+
+        // 2) handle charge movement
+        if (isCharging)
+        {
+            ChargeStep();
+            return; // no other logic while charging
+        }
 
         float dist = Vector3.Distance(transform.position, goal.position);
 
-        // Outside chase radius → idle
+        // hard leash
         if (dist > chaseRadius)
         {
             SetState("Idle", "Idle");
             return;
         }
 
-        // During attack, stop movement
+        // pause movement if mid-attack lock
         if (waitingForAttackFinish)
         {
             return;
         }
 
-        // Inside attack radius → make decisions
+        // in attack range: decide behavior
         if (dist <= attackRadius)
         {
             decisionTimer -= Time.deltaTime;
             if (decisionTimer <= 0f && !waitingForAttackFinish)
             {
                 decisionTimer = decisionInterval;
-                DecideAction();
                 FacePlayer();
+                DecideAction();
             }
 
             switch (currentState)
@@ -96,7 +139,7 @@ public class BossAI : MonoBehaviour
                 case "Attack3":
                 case "AreaAttack":
                 case "ChargeAttack":
-                    // Attack — movement handled by animation or pause
+                    // remain still, animation handles it
                     break;
 
                 case "Mundur":
@@ -110,32 +153,9 @@ public class BossAI : MonoBehaviour
         }
         else
         {
+            // chase
             SetState("Chase", "Run");
             ChasePlayer();
-        }
-        if (isSuddenStepping)
-        {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                suddenStepTarget,
-                suddenStepSpeed * Time.deltaTime
-            );
-        }
-        if (isCharging)
-        {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                chargeTarget,
-                chargeSpeed * Time.deltaTime
-            );
-
-            // Stop charge once target reached
-            if (Vector3.Distance(transform.position, chargeTarget) < 0.2f)
-            {
-                ChargeAttackEnd();
-            }
-
-            return; // prevent other AI actions while charging
         }
     }
 
@@ -143,6 +163,10 @@ public class BossAI : MonoBehaviour
     {
         AlignToGround();
     }
+
+    // -------------------------------------------------
+    // PUBLIC from arena trigger
+    // -------------------------------------------------
 
     public void ActivateBoss(Transform player)
     {
@@ -152,10 +176,20 @@ public class BossAI : MonoBehaviour
         Debug.Log("Boss activated!");
     }
 
+    public void DeactivateBoss()
+    {
+        bossActive = false;
+        SetState("Idle", "Idle");
+    }
+
+    // -------------------------------------------------
+    // HIGH-LEVEL ACTIONS
+    // -------------------------------------------------
+
     void ChasePlayer()
     {
         if (!goal) return;
-        MoveTowards(goal.position, moveSpeed);
+        MoveIntent(goal.position, moveSpeed);
         FacePlayer();
     }
 
@@ -163,17 +197,21 @@ public class BossAI : MonoBehaviour
     {
         if (!goal) return;
         Vector3 dirAway = (transform.position - goal.position).normalized;
-        MoveTowards(transform.position + dirAway, moveSpeed);
+        Vector3 retreatPoint = transform.position + dirAway;
+        MoveIntent(retreatPoint, moveSpeed);
         FacePlayer();
     }
 
     void StrafeAroundPlayer()
     {
         if (!goal) return;
-        Vector3 dirToPlayer = transform.position - goal.position;
-        dirToPlayer.y = 0;
-        Vector3 strafeDir = Vector3.Cross(Vector3.up, dirToPlayer).normalized * strafeDirection;
-        transform.position += strafeDir * strafeSpeed * Time.deltaTime;
+
+        Vector3 toBoss = transform.position - goal.position;
+        toBoss.y = 0f;
+
+        Vector3 strafeDir = Vector3.Cross(Vector3.up, toBoss).normalized * strafeDirection;
+
+        AttemptMove(strafeDir, strafeSpeed);
         FacePlayer();
     }
 
@@ -182,20 +220,33 @@ public class BossAI : MonoBehaviour
         if (!goal) return;
 
         Vector3 dir = (goal.position - transform.position);
-        dir.y = 0;
+        dir.y = 0f;
 
         if (dir.sqrMagnitude > 0.001f)
         {
             Quaternion targetRot = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                rotationSpeed * Time.deltaTime
+            );
         }
     }
 
+    // -------------------------------------------------
+    // GROUNDING / GRAVITY
+    // -------------------------------------------------
+
     void AlignToGround()
     {
-        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, groundRayLength, groundLayer))
+        // keep boss hugging terrain, with manual gravity fallback
+        if (Physics.Raycast(
+            transform.position + Vector3.up,
+            Vector3.down,
+            out RaycastHit hit,
+            groundRayLength,
+            groundLayer))
         {
-            // Grounded
             verticalVelocity = 0f;
             Vector3 pos = transform.position;
             pos.y = hit.point.y;
@@ -203,54 +254,170 @@ public class BossAI : MonoBehaviour
         }
         else
         {
-            // Not grounded - apply gravity
+            // falling
             verticalVelocity += gravity * Time.deltaTime;
-            transform.position += new Vector3(0f, verticalVelocity * Time.deltaTime, 0f);
+            transform.position += new Vector3(
+                0f,
+                verticalVelocity * Time.deltaTime,
+                0f
+            );
         }
     }
 
-    void MoveTowards(Vector3 target, float speed)
+    // -------------------------------------------------
+    // BASIC MOVEMENT *WITH* COLLISION
+    // -------------------------------------------------
+
+    void MoveIntent(Vector3 targetPos, float speed)
     {
-        Vector3 moveDir = (target - transform.position).normalized;
-        moveDir.y = 0;
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        Vector3 dir = (targetPos - transform.position);
+        dir.y = 0f;
+        AttemptMove(dir, speed);
     }
 
+    // smart move using capsule cast
+    // returns true if we actually moved
+    bool AttemptMove(Vector3 desiredDir, float speed)
+    {
+        if (desiredDir.sqrMagnitude < 0.0001f) return false;
+
+        Vector3 step = desiredDir.normalized * speed * Time.deltaTime;
+
+        // build capsule positions in world space
+        // we sample using the collider info
+        Vector3 worldCenter = transform.TransformPoint(capsuleCenterLocal);
+
+        float half = capsuleHalfHeight;
+        float rad = capsuleRadius;
+
+        // top/bottom points of capsule
+        Vector3 up = transform.up;
+        Vector3 p1 = worldCenter + up * (half - rad);
+        Vector3 p2 = worldCenter - up * (half - rad);
+
+        // cast ahead to see if blocked
+        if (Physics.CapsuleCast(
+            p1,
+            p2,
+            rad,
+            step.normalized,
+            out RaycastHit hit,
+            step.magnitude + wallCheckDistance,
+            obstacleLayers,
+            QueryTriggerInteraction.Ignore))
+        {
+            // blocked by wall/obstacle
+            return false;
+        }
+
+        // not blocked → move
+        transform.position += step;
+        return true;
+    }
+
+    // -------------------------------------------------
+    // SUDDEN STEP (short dash / lunge)
+    // -------------------------------------------------
+
+    // Animation event calls this at the dash frame
     void SuddenStep()
     {
         if (isSuddenStepping) return;
 
         isSuddenStepping = true;
         suddenStepTarget = transform.position + transform.forward * suddenStepDistance;
-
-
     }
 
+    // graceful cancel (optional animation event)
     void SuddenStepStop()
     {
         isSuddenStepping = false;
-
-
     }
 
+    // run every Update() before main AI logic
+    void DashStepTowardTarget()
+    {
+        if (!isSuddenStepping) return;
+
+        // figure out remaining direction
+        Vector3 dashDir = suddenStepTarget - transform.position;
+        dashDir.y = 0f;
+        float remaining = dashDir.magnitude;
+
+        // already basically there? stop
+        if (remaining < 0.05f)
+        {
+            isSuddenStepping = false;
+            return;
+        }
+
+        // try to move with collision
+        bool moved = AttemptMove(dashDir, suddenStepSpeed);
+
+        if (!moved)
+        {
+            // blocked instantly, abort dash
+            isSuddenStepping = false;
+            return;
+        }
+
+        // if after moving we are super close, stop
+        Vector3 after = suddenStepTarget - transform.position;
+        after.y = 0f;
+        if (after.magnitude < 0.05f)
+        {
+            isSuddenStepping = false;
+        }
+    }
+
+    // -------------------------------------------------
+    // CHARGE ATTACK (long rush)
+    // -------------------------------------------------
+
+    // Animation event at start of Crazed Monkey's charge anim
     void ChargeAttack()
     {
         if (isCharging || bossName != "Crazed Monkey" || goal == null) return;
 
         isCharging = true;
 
-        // Make collider a trigger to avoid bumping into physics
+        // OPTIONAL:
+        // turn collider into trigger so he can plow through, Souls-boss style
+        // comment this out if you WANT him to collide/stop on walls.
         if (bossCollider != null)
             bossCollider.isTrigger = true;
 
-        // Calculate charge target — go past the player
+        // chargeTarget goes forward past the player
         Vector3 toPlayer = (goal.position - transform.position).normalized;
         chargeTarget = transform.position + toPlayer * chargeDistance;
 
-        // Face the player before charging
+        // face player first
         FacePlayer();
 
         Debug.Log("Crazed Monkey begins charging!");
+    }
+
+    // per-frame charge movement
+    void ChargeStep()
+    {
+        Vector3 runDir = chargeTarget - transform.position;
+        runDir.y = 0f;
+
+        // if basically there, end it
+        if (runDir.magnitude < 0.2f)
+        {
+            ChargeAttackEnd();
+            return;
+        }
+
+        // try to move
+        bool moved = AttemptMove(runDir, chargeSpeed);
+
+        if (!moved)
+        {
+            // hit a wall early → stop the charge
+            ChargeAttackEnd();
+        }
     }
 
     void ChargeAttackEnd()
@@ -263,17 +430,13 @@ public class BossAI : MonoBehaviour
         Debug.Log("Crazed Monkey finished charging.");
     }
 
-    public void PlayExplodeEffect()
-    {
-        if (explodeEffect != null)
-        {
-            explodeEffect.Play();
-        }
-    }
+    // -------------------------------------------------
+    // DECISION MAKING
+    // -------------------------------------------------
 
     void DecideAction()
     {
-        //  Area Attack priority if behind
+        // If player is behind me → AreaAttack priority
         if (IsPlayerBehind())
         {
             SetState("AreaAttack", "AreaAttack");
@@ -282,33 +445,33 @@ public class BossAI : MonoBehaviour
 
         float rand = Random.Range(0f, 100f);
 
-        //  Gate Defender Anton
+        // Gate Defender Anton
         if (bossName == "The Gate Defender, Anton")
         {
-            if (rand < 40f) //40
+            if (rand < 40f)
                 SetState("Attack1", "Attack1");
-            else if (rand < 70f) //30
+            else if (rand < 70f)
                 SetState("Attack2", "Attack2");
-            else if (rand < 90f) //20
+            else if (rand < 90f)
                 SetState("Strafe", "Strafe");
             else
                 SetState("Mundur", "Mundur");
         }
-        //  Crazed Monkey
+        // Crazed Monkey
         else if (bossName == "Crazed Monkey")
         {
-            if (rand < 30f) //30
+            if (rand < 30f)
                 SetState("Attack1", "Attack1");
-            else if (rand < 70f) //40
+            else if (rand < 70f)
                 SetState("Attack2", "Attack2");
-            else if (rand < 75f) //5
+            else if (rand < 75f)
                 SetState("Mundur", "Mundur");
-            else if (rand < 95f) //15
+            else if (rand < 95f)
                 SetState("ChargeAttack", "ChargeAttack");
             else
                 SetState("Strafe", "Strafe");
         }
-        //  Batu
+        // Batu
         else if (bossName == "Batu")
         {
             if (rand < 30f)
@@ -334,6 +497,10 @@ public class BossAI : MonoBehaviour
         return angle > behindAngleThreshold;
     }
 
+    // -------------------------------------------------
+    // ANIMATION STATE MGMT
+    // -------------------------------------------------
+
     void SetState(string newState, string animTrigger)
     {
         if (currentState == newState) return;
@@ -342,9 +509,10 @@ public class BossAI : MonoBehaviour
         currentState = newState;
         anim.SetTrigger(animTrigger);
 
-        //if (newState == "Attack1" || newState == "Attack2" || newState == "Attack3" ||
-        //    newState == "AreaAttack" || newState == "ChargeAttack")
-        //    StartCoroutine(WaitForAttackFinish());
+        // if you want lockout movement during big attacks, uncomment:
+        // if (newState == "Attack1" || newState == "Attack2" || newState == "Attack3" ||
+        //     newState == "AreaAttack" || newState == "ChargeAttack")
+        //     StartCoroutine(WaitForAttackFinish());
     }
 
     void ResetAllTriggers()
@@ -364,48 +532,48 @@ public class BossAI : MonoBehaviour
     {
         waitingForAttackFinish = true;
 
-        //  Store the current movement speed
-        float originalMoveSpeed = moveSpeed;
-
-        //  Stop movement during attack
+        float originalSpeed = moveSpeed;
         moveSpeed = 0f;
 
-        // Wait one frame to ensure animator updates to the attack state
-        yield return null;
+        yield return null; // let animator enter the attack state
 
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        float clipLength = stateInfo.length;
+        AnimatorStateInfo st = anim.GetCurrentAnimatorStateInfo(0);
+        float clipLen = st.length;
 
-        //  Wait for the attack animation to finish
-        yield return new WaitForSeconds(clipLength);
+        yield return new WaitForSeconds(clipLen);
 
-        //  Restore the movement speed
-        moveSpeed = originalMoveSpeed;
-
+        moveSpeed = originalSpeed;
         waitingForAttackFinish = false;
     }
 
-    public void DeactivateBoss()
+    public void PlayExplodeEffect()
     {
-        bossActive = false;
-        SetState("Idle", "Idle");
+        if (explodeEffect != null)
+            explodeEffect.Play();
     }
 
-    // 🔹 Gizmos
+    // -------------------------------------------------
+    // GIZMOS (debug)
+    // -------------------------------------------------
+
     private void OnDrawGizmosSelected()
     {
+        // forward dir
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * 3f);
 
+        // ranges
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, chaseRadius);
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
 
+        // behind cone-ish
         Gizmos.color = new Color(1, 0, 0, 0.3f);
         DrawBehindCone();
 
+        // if we have target
         if (goal != null)
         {
             Gizmos.color = Color.cyan;
@@ -416,6 +584,20 @@ public class BossAI : MonoBehaviour
                 Gizmos.color = Color.magenta;
                 Gizmos.DrawWireSphere(goal.position, 1f);
             }
+        }
+
+        // sudden step debug
+        if (isSuddenStepping)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(suddenStepTarget, 0.2f);
+        }
+
+        // charge debug
+        if (isCharging)
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawSphere(chargeTarget, 0.3f);
         }
     }
 

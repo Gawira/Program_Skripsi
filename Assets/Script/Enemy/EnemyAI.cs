@@ -27,6 +27,19 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody rb;
     private Animator anim;
 
+    [Header("Collision / Obstacle Avoidance")]
+    [Tooltip("Which layers count as solid walls / props / level geometry.")]
+    public LayerMask obstacleMask;
+
+    [Tooltip("Radius of this enemy's body for collision checks (match your CapsuleCollider radius).")]
+    public float capsuleRadius = 0.4f;
+
+    [Tooltip("Height of the body cast (match your CapsuleCollider height).")]
+    public float capsuleHeight = 1.8f;
+
+    [Tooltip("How high off the ground to start the cast (usually half of radius).")]
+    public float capsuleBottomOffset = 0.5f;
+
 
     private float decisionTimer = 0f;
     private string currentState = "Idle";
@@ -57,12 +70,11 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        // Get playerManager directly from the player object
         PlayerManager playerManager = goal.GetComponent<PlayerManager>();
         if (playerManager == null)
             return;
 
-        // Stop attacking completely if player is dead
+        // Stop AI logic if player is dead
         if (playerManager.currentHealth <= 0)
         {
             SetState("Idle", "Idle");
@@ -71,23 +83,26 @@ public class EnemyAI : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, goal.position);
 
-        // If player is too far, idle
+        // Run dash step first so movement for this frame includes dash
+        DashStepTowardTarget();
+
+        // If still mid-dash, we don't do normal AI movement/decisions this frame
+        if (isSuddenStepping)
+            return;
+
+        // If player is super far: idle
         if (dist > chaseRadius)
         {
             SetState("Idle", "Idle");
             return;
         }
 
-        // Stop all movement during attack
+        // Don't walk/strafe while we're "locked in" an attack anim
         if (waitingForAttackFinish)
-        {
             return;
-        }
 
-        // Decision handling
         if (dist <= attackRadius)
         {
-            
             decisionTimer -= Time.deltaTime;
             if (decisionTimer <= 0f && !waitingForAttackFinish)
             {
@@ -100,10 +115,12 @@ public class EnemyAI : MonoBehaviour
                 case "Attack":
                     FacePlayer();
                     break;
+
                 case "Mundur":
                     RetreatFromPlayer();
                     FacePlayer();
                     break;
+
                 case "Strafe":
                     StrafeAroundPlayer();
                     FacePlayer();
@@ -112,17 +129,8 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            
             SetState("Chase", "Run");
             ChasePlayer();
-        }
-        if (isSuddenStepping)
-        {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                suddenStepTarget,
-                suddenStepSpeed * Time.deltaTime
-            );
         }
     }
 
@@ -134,11 +142,9 @@ public class EnemyAI : MonoBehaviour
     void SuddenStep()
     {
         if (isSuddenStepping) return;
-        
+
         isSuddenStepping = true;
         suddenStepTarget = transform.position + transform.forward * suddenStepDistance;
-
-
     }
 
     void SuddenStepStop()
@@ -185,17 +191,22 @@ public class EnemyAI : MonoBehaviour
     void RetreatFromPlayer()
     {
         if (!goal) return;
-        Vector3 dirAway = (transform.position - goal.position).normalized;
-        MoveTowards(transform.position + dirAway, moveSpeed);
+        Vector3 dirAway = (transform.position - goal.position);
+        dirAway.y = 0f;
+        AttemptMove(dirAway, moveSpeed);
     }
 
     void StrafeAroundPlayer()
     {
         if (!goal) return;
+
         Vector3 dirToPlayer = transform.position - goal.position;
-        dirToPlayer.y = 0;
+        dirToPlayer.y = 0f;
+
+        // perpendicular to player-facing vector
         Vector3 strafeDir = Vector3.Cross(Vector3.up, dirToPlayer).normalized * strafeDirection;
-        transform.position += strafeDir * strafeSpeed * Time.deltaTime;
+
+        AttemptMove(strafeDir, strafeSpeed);
     }
 
     void FacePlayer()
@@ -214,9 +225,105 @@ public class EnemyAI : MonoBehaviour
 
     void MoveTowards(Vector3 target, float speed)
     {
-        Vector3 moveDir = (target - transform.position).normalized;
-        moveDir.y = 0;
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        Vector3 moveDir = target - transform.position;
+        moveDir.y = 0f;
+        AttemptMove(moveDir, speed);
+    }
+
+    // Try to move in desiredDir (world space, horizontal), respecting obstacles.
+    // Returns true if we actually moved.
+    private bool AttemptMove(Vector3 desiredDir, float speed)
+    {
+        desiredDir.y = 0f;
+        if (desiredDir.sqrMagnitude < 0.0001f)
+            return false;
+
+        desiredDir.Normalize();
+
+        float stepDist = speed * Time.deltaTime;
+
+        // Build a capsule that matches the enemy's collider volume
+        Vector3 bottom = transform.position + Vector3.up * capsuleBottomOffset;
+        Vector3 top = bottom + Vector3.up * (capsuleHeight - capsuleBottomOffset);
+
+        // 1. Check straight ahead
+        if (!Physics.CapsuleCast(
+                bottom,
+                top,
+                capsuleRadius,
+                desiredDir,
+                out RaycastHit hit,
+                stepDist,
+                obstacleMask,
+                QueryTriggerInteraction.Ignore))
+        {
+            // path is clear, just move
+            transform.position += desiredDir * stepDist;
+            return true;
+        }
+
+        // 2. Blocked → try to slide along the surface normal
+        Vector3 slideDir = Vector3.ProjectOnPlane(desiredDir, hit.normal);
+        slideDir.y = 0f;
+
+        if (slideDir.sqrMagnitude > 0.0001f)
+        {
+            slideDir.Normalize();
+
+            if (!Physics.CapsuleCast(
+                    bottom,
+                    top,
+                    capsuleRadius,
+                    slideDir,
+                    stepDist,
+                    obstacleMask,
+                    QueryTriggerInteraction.Ignore))
+            {
+                transform.position += slideDir * stepDist;
+                return true;
+            }
+        }
+
+        // 3. Totally stuck this frame
+        return false;
+    }
+
+    private void DashStepTowardTarget()
+    {
+        // If we're not currently dashing, do nothing.
+        if (!isSuddenStepping) return;
+
+        // Figure out the flat direction to the suddenStepTarget
+        Vector3 dashDir = suddenStepTarget - transform.position;
+        dashDir.y = 0f;
+        float remainingDist = dashDir.magnitude;
+
+        // Safety: if we're basically already there, stop the dash
+        if (remainingDist < 0.05f)
+        {
+            isSuddenStepping = false;
+            return;
+        }
+
+        // Reuse the same collision logic, but with higher speed
+        bool moved = AttemptMove(dashDir, suddenStepSpeed);
+
+        if (!moved)
+        {
+            // We tried to dash but hit a wall immediately.
+            // End the dash so AI doesn't get stuck in 'isSuddenStepping = true'.
+            isSuddenStepping = false;
+            return;
+        }
+
+        // If we DID move, check if we basically reached the target this frame.
+        // We only care about horizontal distance because suddenStepTarget is horizontal.
+        Vector3 postMoveDelta = suddenStepTarget - transform.position;
+        postMoveDelta.y = 0f;
+        if (postMoveDelta.magnitude < 0.05f)
+        {
+            isSuddenStepping = false;
+        }
     }
 
     void AlignToGround()
