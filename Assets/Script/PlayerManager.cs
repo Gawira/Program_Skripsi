@@ -17,6 +17,10 @@ namespace UnityEngine
         public int damage = 10;
         public int slotMax = 2;
 
+        public float runSpeedMultiplier = 2f;
+
+        private const int SLOT_MAX_CAP = 6;
+
         [Header("Respawn Settings")]
         private Vector3 respawnPoint;
         private Quaternion respawnRotation;
@@ -53,14 +57,19 @@ namespace UnityEngine
         private float regenTimer = 0f;
         // >>> END NEW <<<
 
+        [SerializeField] private UnityStandardAssets.Cameras.LockOnTarget lockOnSystem;
+
         private void Start()
         {
             anim = GetComponent<Animator>();
             if (audioController == null)
                 audioController = GetComponent<PlayerAudioController>();
 
-            // Prevent spawn conflict
-            bool useSpawnManager = SceneSpawnManager.overrideSpawnThisScene;
+            if (lockOnSystem == null)
+                lockOnSystem = FindObjectOfType<UnityStandardAssets.Cameras.LockOnTarget>();
+
+                    // Prevent spawn conflict
+                    bool useSpawnManager = SceneSpawnManager.overrideSpawnThisScene;
 
             if (SaveManager.SaveExistsForActiveSlot() && !useSpawnManager)
             {
@@ -74,6 +83,8 @@ namespace UnityEngine
                 lifesteal = data.lifesteal;
                 defense = data.defense;
                 slotMax = data.slotMax;
+
+                slotMax = Mathf.Clamp(slotMax, 0, SLOT_MAX_CAP);
 
                 StartCoroutine(RestoreInventoriesAfterLoad(data));
 
@@ -93,13 +104,24 @@ namespace UnityEngine
                     : "No save found; starting fresh.");
             }
 
+            slotMax = Mathf.Clamp(slotMax, 0, SLOT_MAX_CAP);
+
             if (youDiedCanvas != null)
             {
                 youDiedCanvas.alpha = 0f;
                 youDiedCanvas.gameObject.SetActive(false);
             }
         }
+        private void OnValidate()
+        {
+            slotMax = Mathf.Clamp(slotMax, 0, SLOT_MAX_CAP);
+        }
 
+        // Optional: helper if other scripts want to set it safely
+        public void SetSlotMax(int value)
+        {
+            slotMax = Mathf.Clamp(value, 0, SLOT_MAX_CAP);
+        }
         private void Update()
         {
             // >>> NEW <<< Passive regen from Pure Water
@@ -123,6 +145,25 @@ namespace UnityEngine
             if (!isDead && currentHealth <= 0)
             {
                 Die();
+            }
+
+            if (thirdPersonCharacter != null && anim != null)
+            {
+                bool wantsRun = Input.GetKey(KeyCode.LeftShift);
+                bool isLockedOn = (lockOnSystem != null && lockOnSystem.LockOn);
+                
+
+                // Only run if: holding Shift, grounded, and NOT lock-on
+                if (wantsRun && !isLockedOn)
+                {
+                    thirdPersonCharacter.ApplySpeedMultiplier(runSpeedMultiplier);
+                    anim.SetBool("IsRunning", true);
+                }
+                else
+                {
+                    thirdPersonCharacter.ResetSpeedToBase();
+                    anim.SetBool("IsRunning", false);
+                }
             }
         }
 
@@ -187,7 +228,6 @@ namespace UnityEngine
             {
                 lockontarget.LockOn = false;
                 lockontarget.UnlockTarget();
-                lockontarget.LockOntoNewTarget();
             }
 
             // Reset money on death

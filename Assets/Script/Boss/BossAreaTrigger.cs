@@ -9,6 +9,8 @@ public class BossAreaTrigger : MonoBehaviour
     [Header("Player Reference")]
     public string playerTag = "Player";
     public PlayerManager playerManager;
+    public AudioClip areaMusicClip;
+    public AudioClip bossMusicClip;
 
     [Header("Arena Barrier")]
     public GameObject arenaBarrier;  // wall/door that locks you in
@@ -70,6 +72,8 @@ public class BossAreaTrigger : MonoBehaviour
             // hide HP UI when player is dead
             if (bossManager != null)
                 bossManager.ForceHideUI();
+
+            AudioManager.Instance?.StopBossMusic();
 
             bossActive = false;
             fightLocked = false;

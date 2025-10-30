@@ -11,6 +11,13 @@ public class MerchantCatalog : MonoBehaviour
     public DjimatItem[] itemsForSale;      // Assign items in Inspector
     public int[] itemPrices;               // Corresponding prices for each item
 
+    [Header("Diamond Slot Limit")]
+    [Tooltip("Maximum Diamond Slot purchases allowed in this catalog instance.")]
+    public int diamondSlotMaxPerCatalog = 4;
+
+    [SerializeField, Tooltip("Runtime count of Diamond Slots bought in this catalog.")]
+    private int diamondSlotsBoughtCount = 0;
+
     private PlayerManager playerManager;
     private GridMaker gridMaker;
     private SacredStoneGridMaker sacredStoneGridMaker;
@@ -33,7 +40,7 @@ public class MerchantCatalog : MonoBehaviour
         foreach (var id in savedSoldList)
             soldItemNames.Add(id);
 
-        // Now update all visible slot UIs
+        // Update all visible slot UIs
         foreach (var slot in GetComponentsInChildren<MerchantSlotUI>(true))
         {
             if (slot.item != null)
@@ -43,6 +50,10 @@ public class MerchantCatalog : MonoBehaviour
                 slot.SetDarkened(shouldBeDark);
             }
         }
+
+        // IMPORTANT: after restoring visuals, recompute diamond count & enforce cap
+        RecountDiamondSlotPurchases();
+        EnforceDiamondSlotCapIfNeeded();
     }
 
     void Start()
@@ -54,6 +65,10 @@ public class MerchantCatalog : MonoBehaviour
         limitUI = FindObjectOfType<DjimatLimitUI>();
 
         BuildCatalog();
+
+        // After building, compute how many diamond slots are already bought & enforce cap
+        RecountDiamondSlotPurchases();
+        EnforceDiamondSlotCapIfNeeded();
     }
 
     void BuildCatalog()
@@ -83,7 +98,6 @@ public class MerchantCatalog : MonoBehaviour
         switch (item.itemType)
         {
             case DjimatItem.ItemType.Djimat:
-                // Check equipped slots and backpack slots in GridMaker
                 if (gridMaker != null)
                 {
                     // equipped
@@ -91,11 +105,9 @@ public class MerchantCatalog : MonoBehaviour
                                       .GetComponentsInChildren<EquippedSlotUI>(true))
                     {
                         if (eq.equippedDjimat == item) return true;
-                        // fallback by name if you sometimes clone ScriptableObjects
                         if (eq.equippedDjimat != null &&
                             eq.equippedDjimat.itemName == item.itemName) return true;
                     }
-
                     // inventory
                     foreach (var inv in gridMaker.inventoryGridParent
                                        .GetComponentsInChildren<InventorySlotUI>(true))
@@ -132,8 +144,7 @@ public class MerchantCatalog : MonoBehaviour
                 return false;
 
             case DjimatItem.ItemType.DiamondSlot:
-                // For diamond slot upgrades, treat as one-time purchase.
-                // If we ever bought it (in soldItemNames), we won't let you again.
+                // We still treat by-name as sold, but cap logic is handled separately.
                 return soldItemNames.Contains(item.itemName);
 
             default:
@@ -145,6 +156,17 @@ public class MerchantCatalog : MonoBehaviour
     {
         if (playerManager == null) return;
         if (item == null) return;
+
+        // Global cap for Diamond Slots in this catalog
+        if (item.itemType == DjimatItem.ItemType.DiamondSlot)
+        {
+            if (diamondSlotsBoughtCount >= diamondSlotMaxPerCatalog)
+            {
+                Debug.Log("❌ Diamond Slot limit reached in this shop (cap hit).");
+                if (slotUI != null) slotUI.SetDarkened(true);
+                return;
+            }
+        }
 
         // Guard: can't buy if it's already darkened or already owned
         if (slotUI != null && slotUI.isDarkened)
@@ -188,6 +210,8 @@ public class MerchantCatalog : MonoBehaviour
 
             case DjimatItem.ItemType.DiamondSlot:
                 playerManager.slotMax += item.plusslotCost;
+                diamondSlotsBoughtCount++; // <-- count this purchase
+
                 if (limitUI != null)
                 {
                     // redraw diamonds after buying +slot
@@ -199,10 +223,51 @@ public class MerchantCatalog : MonoBehaviour
         // Mark sold in memory so it persists across save
         soldItemNames.Add(item.itemName);
 
-        // Mark sold in UI so you can't rebuy
+        // Mark sold in UI so you can't rebuy this entry
         if (slotUI != null)
             slotUI.SetDarkened(true);
 
+        // If Diamond Slot cap is now hit, darken remaining Diamond Slot entries
+        if (diamondSlotsBoughtCount >= diamondSlotMaxPerCatalog)
+        {
+            EnforceDiamondSlotCapIfNeeded();
+        }
+
         Debug.Log($"[Merchant] Sold {item.itemName} for {price}");
+    }
+
+    // ===== Helpers for the Diamond Slot cap =====
+    private void RecountDiamondSlotPurchases()
+    {
+        int count = 0;
+        foreach (var slot in GetComponentsInChildren<MerchantSlotUI>(true))
+        {
+            if (slot.item != null && slot.item.itemType == DjimatItem.ItemType.DiamondSlot)
+            {
+                // count any diamond slot already darkened (sold/owned) as purchased
+                if (slot.isDarkened ||
+                    soldItemNames.Contains(slot.item.itemName) ||
+                    PlayerAlreadyOwns(slot.item))
+                {
+                    count++;
+                }
+            }
+        }
+        diamondSlotsBoughtCount = count;
+    }
+
+    private void EnforceDiamondSlotCapIfNeeded()
+    {
+        if (diamondSlotsBoughtCount < diamondSlotMaxPerCatalog) return;
+
+        // Darken every Diamond Slot entry (remaining ones) in this catalog
+        foreach (var slot in GetComponentsInChildren<MerchantSlotUI>(true))
+        {
+            if (slot.item != null && slot.item.itemType == DjimatItem.ItemType.DiamondSlot)
+            {
+                slot.SetDarkened(true);
+            }
+        }
+        Debug.Log($"[Merchant] Diamond Slot limit reached ({diamondSlotsBoughtCount}/{diamondSlotMaxPerCatalog}) — further purchases disabled in this shop.");
     }
 }

@@ -25,6 +25,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         [SerializeField] float moveSpeed = 5f;
         [SerializeField] float strafeSpeed = 2f;
 
+        // === ADD to TPCharacter ===
+        [HideInInspector] public float baseMoveSpeed;
+        [HideInInspector] public float baseStrafeSpeed;
+
         [SerializeField] private LockOnTarget lockOnSystem;
         [SerializeField] private TPUserControl ThirdPersonControl;
 
@@ -47,7 +51,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         CapsuleCollider m_Capsule;
         bool m_Crouching;
 
-
+        private void Awake()
+        {
+            // if you already have Awake(), just add these 2 lines there
+            baseMoveSpeed = moveSpeed;
+            baseStrafeSpeed = strafeSpeed;
+        }
         void Start()
         {
             m_Animator = GetComponent<Animator>();
@@ -85,13 +94,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("dashed");
-                playerManager.SetInvincible();
-            }
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+            //    Debug.Log("dashed");
+            //    playerManager.SetInvincible();
+            //}
         }
 
+        
         public void Move(Vector3 move, bool crouch, bool jump)
         {
             if (ThirdPersonControl.isDashing) return;
@@ -192,7 +202,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
         }
 
+        public void ResetSpeedToBase()
+        {
+            moveSpeed = baseMoveSpeed;
+            strafeSpeed = baseStrafeSpeed;
+        }
 
+        public void ApplySpeedMultiplier(float mult)
+        {
+            moveSpeed = baseMoveSpeed * mult;
+            strafeSpeed = baseStrafeSpeed * mult;
+        }
         void HandleAirborneMovement()
         {
             // apply extra gravity from multiplier:

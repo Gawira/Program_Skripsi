@@ -133,15 +133,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6392157}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6392157}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 9fc9f922d71c81848994274eced93c54, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 4.02
 --- !u!1 &3844963670272026150
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,8 +180,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2060915106338479889}
   - {fileID: 3036886799876786345}
+  - {fileID: 2060915106338479889}
   - {fileID: 5916146139401362921}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -213,7 +213,10 @@ MonoBehaviour:
   iconImage: {fileID: 7258415681268082097}
   highlight: {fileID: 3721805120962945403}
   equippedDjimat: {fileID: 0}
-  djimatSystem: {fileID: 0}
+  hoverSFX: {fileID: 8300000, guid: bfda9d24c511d5d43b8c36c2ff2a1a92, type: 3}
+  clickSFX: {fileID: 8300000, guid: 28f8bd0ce9b4dad4f80315de8789f8e6, type: 3}
+  hoverCooldown: 0.01
+  playHoverWhenEmpty: 1
 --- !u!1 &4845601050200772102
 GameObject:
   m_ObjectHideFlags: 0

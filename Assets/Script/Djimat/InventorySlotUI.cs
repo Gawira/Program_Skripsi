@@ -14,12 +14,17 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     private ItemInfoDisplay infoDisplay;
 
-    private void Start()
-    {
-        UpdateUI();
-        if (highlight != null) highlight.enabled = false;
-        infoDisplay = FindObjectOfType<ItemInfoDisplay>();
-    }
+    [Header("Audio")]
+    [Tooltip("Played when mouse cursor enters this slot.")]
+    public AudioClip hoverSFX;
+    [Tooltip("Played when clicking this slot.")]
+    public AudioClip clickSFX;
+    [Tooltip("Avoid hover spam when UI re-fires enter events (seconds).")]
+    public float hoverCooldown = 0.05f;
+    [Tooltip("If false, hover SFX plays only when slot has an item.")]
+    public bool playHoverWhenEmpty = true;
+
+    private float _lastHoverTime = -999f;
 
     private void Awake()
     {
@@ -27,8 +32,17 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
             djimatSystem = FindObjectOfType<DjimatSystem>();
     }
 
+    private void Start()
+    {
+        UpdateUI();
+        if (highlight != null) highlight.enabled = false;
+        infoDisplay = FindObjectOfType<ItemInfoDisplay>();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
+        PlayClickSFX();
+
         EquippedSlotUI selected = EquippedSlotUI.GetSelectedSlot();
         if (selected != null)
         {
@@ -38,14 +52,13 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
                 DjimatItem itemToEquip = assignedDjimat;
                 DjimatItem previous = selected.equippedDjimat;
 
-                // Ask system to handle equip logic
                 if (djimatSystem.EquipToSlot(selected, itemToEquip))
                 {
-                    // If equip succeeded, clear this inventory slot
+                    // Clear this inventory slot
                     assignedDjimat = null;
                     UpdateUI();
 
-                    // If there was a previous Djimat in this slot, return it to inventory
+                    // Return previously equipped, if any, to inventory
                     if (previous != null)
                     {
                         GridMaker grid = FindObjectOfType<GridMaker>();
@@ -54,17 +67,15 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
                     }
                 }
             }
+            // CASE 2: Empty inventory slot clicked -> Unequip from selected slot into here
             else
             {
-                // CASE 2: Empty inventory slot clicked -> Unequip from selected slot into here
                 if (selected.equippedDjimat != null)
                 {
                     DjimatItem unequipped = selected.equippedDjimat;
 
-                    // Request unequip
                     djimatSystem.UnequipSlot(selected);
 
-                    // Place into this empty inventory slot
                     assignedDjimat = unequipped;
                     UpdateUI();
                 }
@@ -72,18 +83,26 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
         }
     }
 
-
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (highlight != null) highlight.enabled = true;
+
         if (infoDisplay != null && assignedDjimat != null)
             infoDisplay.ShowInfo(assignedDjimat);
+
+        if (Time.unscaledTime - _lastHoverTime >= hoverCooldown)
+        {
+            if (playHoverWhenEmpty || assignedDjimat != null)
+                PlayHoverSFX();
+
+            _lastHoverTime = Time.unscaledTime;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (highlight != null) highlight.enabled = false;
+
         if (infoDisplay != null)
             infoDisplay.ClearInfo();
     }
@@ -106,5 +125,18 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
     {
         assignedDjimat = item;
         UpdateUI();
+    }
+
+    // --- Audio helpers ---
+    private void PlayHoverSFX()
+    {
+        if (hoverSFX != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(hoverSFX); // 2D UI SFX
+    }
+
+    private void PlayClickSFX()
+    {
+        if (clickSFX != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(clickSFX); // 2D UI SFX
     }
 }

@@ -20,6 +20,18 @@ public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public DjimatItem item => itemData;
     public bool isDarkened { get; private set; } = false;
 
+    [Header("Audio")]
+    [Tooltip("Played when mouse cursor enters this slot.")]
+    public AudioClip hoverSFX;
+    [Tooltip("Played when buying / clicking this slot.")]
+    public AudioClip clickSFX;
+    [Tooltip("Avoid hover spam when UI re-fires enter events (seconds).")]
+    public float hoverCooldown = 0.05f;
+    [Tooltip("If false, hover SFX will not play when the item is already sold/darkened.")]
+    public bool playHoverWhenDarkened = false;
+
+    private float _lastHoverTime = -999f;
+
     private void Start()
     {
         infoDisplay = FindObjectOfType<ItemInfoDisplayCatalog>();
@@ -40,19 +52,32 @@ public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (highlight) highlight.enabled = true;
+
         if (infoDisplay != null && itemData != null)
             infoDisplay.ShowInfo(itemData);
+
+        if (Time.unscaledTime - _lastHoverTime >= hoverCooldown)
+        {
+            if (playHoverWhenDarkened || !isDarkened)
+                PlayHoverSFX();
+
+            _lastHoverTime = Time.unscaledTime;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (highlight) highlight.enabled = false;
+
         if (infoDisplay != null)
             infoDisplay.ClearInfo();
     }
 
     public void OnClickBuy()
     {
+        // Click sound first (feels snappier)
+        PlayClickSFX();
+
         // Don't allow buying if already darkened
         if (isDarkened)
         {
@@ -75,5 +100,18 @@ public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         var btn = GetComponent<Button>();
         if (btn != null)
             btn.interactable = !state;
+    }
+
+    // --- Audio helpers ---
+    private void PlayHoverSFX()
+    {
+        if (hoverSFX != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(hoverSFX); // 2D UI SFX
+    }
+
+    private void PlayClickSFX()
+    {
+        if (clickSFX != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(clickSFX); // 2D UI SFX
     }
 }

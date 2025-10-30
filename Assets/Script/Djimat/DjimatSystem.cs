@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class DjimatSystem : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class DjimatSystem : MonoBehaviour
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private GridMaker gridMaker;
     [SerializeField] private DjimatLimitUI limitUI;
+
+    // NEW: so we can control movement speed for Haste
+    [SerializeField] private TPCharacter tpChar;
+    [SerializeField] private float hasteMultiplier = 3f; // “super super fast”
 
     private int baseHealth;
     private int baseDamage;
@@ -26,6 +31,16 @@ public class DjimatSystem : MonoBehaviour
         if (limitUI == null)
             limitUI = FindObjectOfType<DjimatLimitUI>();
 
+        // pick up TPCharacter so we can scale speed
+        if (tpChar == null)
+        {
+            tpChar = playerManager != null
+                ? (playerManager.thirdPersonCharacter != null
+                    ? playerManager.thirdPersonCharacter
+                    : playerManager.GetComponent<TPCharacter>())
+                : FindObjectOfType<TPCharacter>();
+        }
+
         if (playerManager != null)
         {
             baseHealth = playerManager.playerHealth;
@@ -44,13 +59,7 @@ public class DjimatSystem : MonoBehaviour
         }
     }
 
-    public int SlotCapacity
-    {
-        get
-        {
-            return playerManager != null ? playerManager.slotMax : 2;
-        }
-    }
+    public int SlotCapacity => playerManager != null ? playerManager.slotMax : 2;
 
     public int GetCurrentUsedSlots()
     {
@@ -63,7 +72,6 @@ public class DjimatSystem : MonoBehaviour
         return used;
     }
 
-    // called after load
     public void SyncBaseStatsFromPlayer()
     {
         if (playerManager == null) return;
@@ -71,6 +79,7 @@ public class DjimatSystem : MonoBehaviour
         baseDamage = playerManager.damage;
         baseLifesteal = playerManager.lifesteal;
         baseDefense = playerManager.defense;
+        // speeds: TPCharacter caches its own base on Awake; nothing to do here
     }
 
     public void ApplyBonusesAfterLoad()
@@ -129,64 +138,86 @@ public class DjimatSystem : MonoBehaviour
     {
         if (playerManager == null) return;
 
-        // 1. Reset player stats back to base (no Djimat)
+        // 1) Reset player base stats
         playerManager.playerHealth = baseHealth;
         playerManager.damage = baseDamage;
         playerManager.lifesteal = baseLifesteal;
         playerManager.defense = baseDefense;
 
-        // 2. Reset special Djimat effects
+        // 2) Reset special flags
         playerManager.canReviveOnce = false;
         playerManager.hasRegen = false;
         playerManager.regenPerSecond = 0;
         playerManager.healthMultiplier = 1f;
 
-        // 3. Add bonuses from each equipped Djimat
+        // NEW: movement reset
+        if (tpChar != null) tpChar.ResetSpeedToBase();
+
+        // track effects we need to apply after scanning all items
+        bool wantGodMode = false;
+        bool wantHaste = false;
+
+        // 3) Scan equipped items
         foreach (var eqSlot in gridMaker.equippedGridParent.GetComponentsInChildren<EquippedSlotUI>())
         {
             if (eqSlot.equippedDjimat == null) continue;
 
             DjimatItem item = eqSlot.equippedDjimat;
 
-            // flat stat bonuses
+            // flat stats
             playerManager.playerHealth += item.healthBonus;
             playerManager.damage += item.damageBonus;
             playerManager.lifesteal += item.lifestealBonus;
             playerManager.defense += item.defenseBonus;
 
-            // special passive logic based on itemName
+            // specials
             switch (item.itemName)
             {
                 case "Paper of Oath":
-                    // gives 1 free revive instead of dying
                     playerManager.canReviveOnce = true;
                     break;
 
                 case "Sacred Vest":
-                    // make health bar longer by multiplying max HP
                     playerManager.healthMultiplier *= 0.5f;
                     break;
 
                 case "Pure Water":
-                    // passive regen over time
                     playerManager.hasRegen = true;
-                    playerManager.regenPerSecond += 2; // +2 HP/sec
+                    playerManager.regenPerSecond += 2;
+                    break;
+
+                // === NEW ===
+                case "Haste":
+                    wantHaste = true;
+                    break;
+
+                case "God Mode":
+                    wantGodMode = true;
                     break;
             }
         }
 
-        // 4. Apply HP multiplier AFTER adding flat bonuses
+        // 4) Apply HP multiplier after flats
         playerManager.playerHealth = Mathf.RoundToInt(playerManager.playerHealth * playerManager.healthMultiplier);
 
-        // 5. Clamp current HP so it's not above new max
+        // 5) Clamp current HP
         if (playerManager.currentHealth > playerManager.playerHealth)
             playerManager.currentHealth = playerManager.playerHealth;
+
+        // 6) Apply movement + invincibility toggles
+        if (tpChar != null && wantHaste)
+            tpChar.ApplySpeedMultiplier(hasteMultiplier);
+
+        if (wantGodMode)
+            playerManager.SetInvincible();
+        else
+            playerManager.SetVulnerable();
 
         Debug.Log(
             $"[DjimatSystem] Final Stats → HP:{playerManager.playerHealth}, DMG:{playerManager.damage}, " +
             $"LS:{playerManager.lifesteal}, DEF:{playerManager.defense} | " +
             $"Revive:{playerManager.canReviveOnce} Regen:{playerManager.hasRegen}({playerManager.regenPerSecond}/s) " +
-            $"HPx{playerManager.healthMultiplier}"
+            $"HPx{playerManager.healthMultiplier} | Haste:{wantHaste} GodMode:{wantGodMode}"
         );
     }
 

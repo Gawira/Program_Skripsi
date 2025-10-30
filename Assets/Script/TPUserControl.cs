@@ -56,7 +56,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (!m_Jump)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-                if (Input.GetKeyDown(KeyCode.Space) && canDash && m_Move != Vector3.zero)
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
                     StartCoroutine(DashRoutine(m_Move));
                 }
@@ -162,7 +162,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 }
 
 #if !MOBILE_INPUT
-                if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
+                if (Input.GetKey(KeyCode.RightShift)) m_Move *= 0.5f;
 #endif
                 m_Character.Move(m_Move, crouch, m_Jump);
                 m_Jump = false;

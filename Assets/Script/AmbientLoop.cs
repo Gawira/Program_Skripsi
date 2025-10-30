@@ -11,15 +11,17 @@ public class AmbientLoop : MonoBehaviour
     public bool is3DSound = true;
 
     [Header("Volume")]
-    [Range(0f, 1f)]
-    public float volume = 1f;
+    [Range(0f, 1f)] public float volume = 1f;   // local multiplier for this loop
 
-    [Header("3D Settings (used only if is3DSound = true)")]
+    [Header("Follow SFX Slider")]
+    [Tooltip("If ON, this loop is scaled by AudioManager.sfxVolume.")]
+    public bool useSFXVolume = true;
+
+    [Header("3D Settings (if is3DSound = true)")]
     [Tooltip("How far the sound can be heard at full volume.")]
     public float minDistance = 2f;
     [Tooltip("Beyond this distance it fades out to 0.")]
     public float maxDistance = 25f;
-
     [Tooltip("Linear = nice for ambience. Logarithmic = default Unity falloff.")]
     public AudioRolloffMode rolloffMode = AudioRolloffMode.Linear;
 
@@ -28,17 +30,17 @@ public class AmbientLoop : MonoBehaviour
     private void Awake()
     {
         src = GetComponent<AudioSource>();
-
-        // make sure we don't accidentally fight with AudioManager
         src.playOnAwake = false;
         src.loop = true;
+        Apply3DSettings();
     }
 
     private void Start()
     {
         if (loopClip != null)
         {
-            SetupSource();
+            src.clip = loopClip;
+            UpdateVolumeFromAudioManager();
             src.Play();
         }
         else
@@ -47,34 +49,47 @@ public class AmbientLoop : MonoBehaviour
         }
     }
 
-    private void OnValidate()
+    private void Update()
     {
-        // This runs in editor too, so you can preview settings live.
-        if (src == null)
-            src = GetComponent<AudioSource>();
-
-        SetupSource();
+        // Continuously follow AudioManager SFX volume in real time
+        UpdateVolumeFromAudioManager();
     }
 
-    private void SetupSource()
+    private void OnValidate()
+    {
+        if (src == null) src = GetComponent<AudioSource>();
+        Apply3DSettings();
+        UpdateVolumeFromAudioManager();
+    }
+
+    private void Apply3DSettings()
     {
         if (src == null) return;
 
-        src.clip = loopClip;
-        src.volume = volume;
-
         if (is3DSound)
         {
-            // positional / spatial sound
-            src.spatialBlend = 1f; // 1 = 3D
+            src.spatialBlend = 1f; // 3D
             src.minDistance = minDistance;
             src.maxDistance = maxDistance;
             src.rolloffMode = rolloffMode;
         }
         else
         {
-            // global / screen-space sound
-            src.spatialBlend = 0f; // 0 = 2D
+            src.spatialBlend = 0f; // 2D
         }
+    }
+
+    private void UpdateVolumeFromAudioManager()
+    {
+        if (src == null) return;
+
+        float sfx = 1f;
+        if (useSFXVolume && AudioManager.Instance != null)
+        {
+            sfx = Mathf.Clamp01(AudioManager.Instance.sfxVolume);
+        }
+
+        // Final output = local volume * global SFX volume
+        src.volume = Mathf.Clamp01(volume * sfx);
     }
 }

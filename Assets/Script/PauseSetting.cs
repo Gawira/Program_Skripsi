@@ -12,6 +12,7 @@ namespace UnityStandardAssets.Cameras
         public GameObject inventoryPanel;
         public GameObject settingsPanel;
         public GameObject HTPScreen;
+        public GameObject inventoryhelpPanel;
 
         [SerializeField] public FreeLookCam freeLookCam;
 
@@ -61,6 +62,15 @@ namespace UnityStandardAssets.Cameras
         public void OpenInventory()
         {
             inventoryPanel.SetActive(true);
+            pauseMenuPanel.SetActive(false);
+            HTPScreen.SetActive(false);
+            inventoryhelpPanel.SetActive(false);
+        }
+
+        public void OpenInventoryHelp()
+        {
+            inventoryhelpPanel.SetActive(true);
+            inventoryPanel.SetActive(false);
             pauseMenuPanel.SetActive(false);
             HTPScreen.SetActive(false);
         }

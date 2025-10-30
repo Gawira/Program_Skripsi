@@ -14,6 +14,9 @@ public class BossMusicTrigger : MonoBehaviour
     // public BossAI bossAI;
     // public BossManager bossManager;
 
+    [Header("Music (fallback after fight)")]
+    public AudioClip areaMusicClip;
+
     private bool hasTriggered = false;
 
     private void Reset()
