@@ -1339,10 +1339,17 @@ MonoBehaviour:
   money: 0
   damage: 200
   slotMax: 2
+  runSpeedMultiplier: 2
   thirdPersonCharacter: {fileID: 308874911}
   youDiedCanvas: {fileID: 0}
   fadeDuration: 2
+  audioController: {fileID: 0}
   isDead: 0
+  canReviveOnce: 0
+  hasRegen: 0
+  regenPerSecond: 0
+  healthMultiplier: 1
+  lockOnSystem: {fileID: 0}
 --- !u!114 &308874911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,11 +1372,14 @@ MonoBehaviour:
   m_GroundCheckDistance: 0.1
   moveSpeed: 5
   strafeSpeed: 2
+  baseMoveSpeed: 0
+  baseStrafeSpeed: 0
   lockOnSystem: {fileID: 0}
   ThirdPersonControl: {fileID: 308874912}
   playerManager: {fileID: 308874910}
   pauseSetting: {fileID: 0}
   merchantSetting: {fileID: 0}
+  audioController: {fileID: 0}
 --- !u!114 &308874912
 MonoBehaviour:
   m_ObjectHideFlags: 0
