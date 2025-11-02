@@ -19,55 +19,56 @@ public class AreaMusicTrigger : MonoBehaviour
     [Tooltip("Scene name to treat as Main Menu.")]
     public string mainMenuSceneName = "MainMenu";
 
+    [Header("Fade")]
+    public bool useFade = true;
+    [Tooltip("Seconds to fade out the current music.")]
+    public float fadeOut = 0.5f;
+    [Tooltip("Seconds to fade in the new music.")]
+    public float fadeIn = 0.5f;
+
     private void Awake()
     {
-        // Make sure collider is trigger for in-game use; harmless in menu.
         var col = GetComponent<Collider>();
         if (col) col.isTrigger = true;
     }
 
     private void Start()
     {
-        // If restricted to Main Menu, auto-play once on scene load (no Player needed)
         if (mainMenuOnly)
         {
             string active = SceneManager.GetActiveScene().name;
             if (string.Equals(active, mainMenuSceneName, System.StringComparison.OrdinalIgnoreCase))
             {
-                if (AudioManager.Instance != null && areaMusic != null)
-                {
-                    AudioManager.Instance.PlayAreaMusic(areaMusic, true);
-                }
-                else
-                {
-                    Debug.LogWarning("[AreaMusicTrigger] Missing AudioManager or clip for Main Menu playback.");
-                }
+                Play(areaMusic);
             }
-
             // In Main Menu mode we don't use trigger logic at all.
-            return;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Trigger logic is only for in-game use
         if (mainMenuOnly) return;
         if (!other.CompareTag("Player")) return;
         if (oneTimeOnly && hasTriggered) return;
 
         hasTriggered = true;
-
-        if (AudioManager.Instance != null && areaMusic != null)
-        {
-            AudioManager.Instance.PlayAreaMusic(areaMusic, true);
-        }
-        else
-        {
-            Debug.LogWarning("[AreaMusicTrigger] No AudioManager or clip assigned.");
-        }
+        Play(areaMusic);
 
         if (oneTimeOnly && destroyAfterTrigger)
             Destroy(gameObject);
+    }
+
+    private void Play(AudioClip clip)
+    {
+        if (AudioManager.Instance == null || clip == null)
+        {
+            Debug.LogWarning("[AreaMusicTrigger] Missing AudioManager or clip.");
+            return;
+        }
+
+        if (useFade)
+            AudioManager.Instance.PlayAreaMusicWithFade(clip, fadeOut, fadeIn, true);
+        else
+            AudioManager.Instance.PlayAreaMusic(clip, true);
     }
 }

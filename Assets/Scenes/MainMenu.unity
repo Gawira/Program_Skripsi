@@ -427,6 +427,9 @@ MonoBehaviour:
   destroyAfterTrigger: 0
   mainMenuOnly: 1
   mainMenuSceneName: MainMenu
+  useFade: 1
+  fadeOut: 0.5
+  fadeIn: 0.5
 --- !u!65 &29051182
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11332,8 +11335,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 771823173}
   sfxSource: {fileID: 500265954}
-  musicVolume: 1
-  sfxVolume: 1
+  musicVolume: 0.236
+  sfxVolume: 0.236
   currentMusicClip: {fileID: 0}
   bossMusicActive: 0
   muteScenes:

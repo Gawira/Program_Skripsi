@@ -124,6 +124,7 @@ public class BossAI : MonoBehaviour
         // in attack range: decide behavior
         if (dist <= attackRadius)
         {
+            FacePlayer();
             decisionTimer -= Time.deltaTime;
             if (decisionTimer <= 0f && !waitingForAttackFinish)
             {

@@ -16,6 +16,11 @@ public class BossManager : MonoBehaviour
     [Tooltip("Prefab dropped when boss dies (e.g. harta). Will be spawned once.")]
     public GameObject lootPrefab;
     public Vector3 lootDropOffset = new Vector3(0f, 1f, 0f);
+
+    [Tooltip("Optional second prefab to also drop on death.")]
+    public GameObject lootPrefab2;
+    public Vector3 lootDropOffset2 = new Vector3(0.5f, 1f, 0f);  // tweak to avoid overlap
+
     private bool lootDropped = false;
 
     [Header("UI Settings")]
@@ -195,6 +200,12 @@ public class BossManager : MonoBehaviour
         {
             Vector3 dropPos = transform.position + lootDropOffset;
             Instantiate(lootPrefab, dropPos, Quaternion.identity);
+        }
+
+        if (lootPrefab2 != null)
+        {
+            Vector3 dropPos2 = transform.position + lootDropOffset2;
+            Instantiate(lootPrefab2, dropPos2, Quaternion.identity);
         }
     }
 

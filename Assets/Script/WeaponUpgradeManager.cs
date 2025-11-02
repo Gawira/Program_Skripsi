@@ -28,85 +28,88 @@ public class WeaponUpgradeManager : MonoBehaviour
 
     private PlayerManager playerManager;
     private SacredStoneGridMaker stoneInventory;
+    private DjimatSystem djimatSystem; // <-- to recompute final stats
 
     void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
         stoneInventory = FindObjectOfType<SacredStoneGridMaker>();
+        djimatSystem = FindObjectOfType<DjimatSystem>();
 
         if (upgradeButton != null)
             upgradeButton.onClick.AddListener(TryUpgrade);
 
+        // no longer sets damage directly; just refreshes UI and asks DjimatSystem to recompute
         ApplyDamageForCurrentLevel();
     }
 
     void Update()
     {
-        priceText.text = pricePerLevel[currentLevel];
+        if (priceText != null && currentLevel < pricePerLevel.Length)
+            priceText.text = pricePerLevel[currentLevel];
     }
 
-        void TryUpgrade()
-        {
+    void TryUpgrade()
+    {
         if (currentLevel >= maxLevel)
         {
-            feedbackText.text = "Max level reached!";
+            if (feedbackText) feedbackText.text = "Max level reached!";
             return;
         }
 
-        int cost = upgradeCosts[currentLevel];
-        
+        int cost = (currentLevel < upgradeCosts.Length) ? upgradeCosts[currentLevel] : 0;
         if (playerManager.money < cost)
         {
-            feedbackText.text = "Not enough money!";
+            if (feedbackText) feedbackText.text = "Not enough money!";
             return;
         }
 
         DjimatItem requiredStone = GetRequiredStoneForLevel(currentLevel + 1);
         if (requiredStone == null || !stoneInventory.HasStone(requiredStone))
         {
-            feedbackText.text = "Missing required stone!";
+            if (feedbackText) feedbackText.text = "Missing required stone!";
             return;
         }
 
+        // pay + consume
         playerManager.money -= cost;
         stoneInventory.RemoveStone(requiredStone);
 
+        // level up
         currentLevel++;
+
+        // refresh labels + recompute stats (now additive with Djimat)
         ApplyDamageForCurrentLevel();
 
-        feedbackText.text = $"Weapon upgraded to +{currentLevel}!";
-        weaponinfoText.text = $"Courteous+{currentLevel}";
-        weaponinfoText_Inventory.text = $"Courteous+{currentLevel}";
+        if (feedbackText) feedbackText.text = $"Weapon upgraded to +{currentLevel}!";
+        if (weaponinfoText) weaponinfoText.text = $"Courteous+{currentLevel}";
+        if (weaponinfoText_Inventory) weaponinfoText_Inventory.text = $"Courteous+{currentLevel}";
     }
 
+    /// <summary>
+    /// Now only updates UI and tells DjimatSystem to rebuild totals.
+    /// The actual damage math lives in DjimatSystem so it stacks with items.
+    /// </summary>
     public void ApplyDamageForCurrentLevel()
     {
-        if (playerManager != null && currentLevel < damagePerLevel.Length)
-        {
-            playerManager.damage = damagePerLevel[currentLevel];
-        }
+        // Update labels
+        if (weaponinfoText) weaponinfoText.text = $"Courteous+{currentLevel}";
+        if (weaponinfoText_Inventory) weaponinfoText_Inventory.text = $"Courteous+{currentLevel}";
 
-        // also update UI labels if you want them to reflect loaded level
-        if (weaponinfoText != null)
-            weaponinfoText.text = $"Courteous+{currentLevel}";
-        if (weaponinfoText_Inventory != null)
-            weaponinfoText_Inventory.text = $"Courteous+{currentLevel}";
+        // Ask DjimatSystem to recompute final stats (base + upgrade bonus + djimat)
+        if (djimatSystem == null) djimatSystem = FindObjectOfType<DjimatSystem>();
+        djimatSystem?.RecomputeNow();
     }
 
     DjimatItem GetRequiredStoneForLevel(int level)
     {
         switch (level)
         {
-            case 1: 
-                return tarnishedStone;
-            case 2: 
-                return sacredStone;
-            case 3: 
-                return pureStone;
-            case 4: 
-                return divineStone;
-            default: 
-                return null;
+            case 1: return tarnishedStone;
+            case 2: return sacredStone;
+            case 3: return pureStone;
+            case 4: return divineStone;
+            default: return null;
         }
     }
 }

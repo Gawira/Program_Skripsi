@@ -175,6 +175,91 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
+    // === Add to fields (near your other privates) ===
+    private Coroutine _musicFadeRoutine;
+
+    // === Add these public helpers ===
+    public void PlayAreaMusicWithFade(AudioClip clip, float fadeOut = 0.5f, float fadeIn = 0.5f, bool loop = true)
+    {
+        if (clip == null) return;
+
+        // remember "area" music so StopBossMusic can return to it
+        lastAreaMusicClip = clip;
+        lastAreaMusicLoop = loop;
+        bossMusicActive = false;
+
+        // cancel any previous fade and start a new one
+        if (_musicFadeRoutine != null) StopCoroutine(_musicFadeRoutine);
+        _musicFadeRoutine = StartCoroutine(FadeToClipRoutine(clip, fadeOut, fadeIn, loop));
+    }
+
+    // Optional helper if you want to fade stop
+    public void StopMusicWithFade(float fadeOut = 0.5f)
+    {
+        if (_musicFadeRoutine != null) StopCoroutine(_musicFadeRoutine);
+        _musicFadeRoutine = StartCoroutine(FadeToClipRoutine(null, fadeOut, 0f, false));
+    }
+
+    // === Add this private coroutine ===
+    private System.Collections.IEnumerator FadeToClipRoutine(AudioClip nextClip, float fadeOut, float fadeIn, bool loopNext)
+    {
+        if (musicSource == null)
+            yield break;
+
+        float targetVol = musicVolume;         // where to end up after fade-in
+        float startVol = musicSource.volume;  // where we start fading from
+
+        // --- Fade OUT current ---
+        if (fadeOut > 0f && musicSource.isPlaying && startVol > 0f)
+        {
+            float t = 0f;
+            while (t < fadeOut)
+            {
+                t += Time.deltaTime;
+                float k = 1f - Mathf.Clamp01(t / fadeOut);
+                musicSource.volume = startVol * k;
+                yield return null;
+            }
+        }
+        else
+        {
+            musicSource.volume = 0f;
+        }
+
+        // --- Swap / stop ---
+        if (nextClip == null)
+        {
+            musicSource.Stop();
+            currentMusicClip = null;
+            _musicFadeRoutine = null;
+            yield break;
+        }
+
+        currentMusicClip = nextClip;
+        musicSource.clip = nextClip;
+        musicSource.loop = loopNext;
+        musicSource.volume = 0f;
+        musicSource.Play();
+
+        // --- Fade IN new ---
+        if (fadeIn > 0f && targetVol > 0f)
+        {
+            float t = 0f;
+            while (t < fadeIn)
+            {
+                t += Time.deltaTime;
+                float k = Mathf.Clamp01(t / fadeIn);
+                musicSource.volume = targetVol * k;
+                yield return null;
+            }
+        }
+
+        // snap to final (in case volume changed during fade via slider)
+        musicSource.volume = musicVolume;
+        _musicFadeRoutine = null;
+    }
+
+
     // -------- SFX helpers --------
     public void PlaySFX(AudioClip clip)
     {

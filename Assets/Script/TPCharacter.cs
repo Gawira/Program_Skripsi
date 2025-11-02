@@ -25,6 +25,20 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         [SerializeField] float moveSpeed = 5f;
         [SerializeField] float strafeSpeed = 2f;
 
+        //// --- Combo control ---
+        //[SerializeField] private float minClickInterval = 0.08f;   // ignore ultra-fast double taps
+        //[SerializeField] private float comboWindowStart = 0.50f;   // when the next hit is allowed
+        //[SerializeField] private float comboWindowEnd = 0.90f;
+
+        //private int _nextAttackIndex = 1;           // 1 -> 2 -> 1 -> 2
+        //private bool _queuedAttack = false;         // queue at most one click
+        //private float _lastClickTime = -999f;
+
+        //[SerializeField] float attackSpeed = 1.3f; // 1 = normal, >1 = faster
+
+        private int _nextAttackIndex = 1;  // starts with Attack1
+
+
         // === ADD to TPCharacter ===
         [HideInInspector] public float baseMoveSpeed;
         [HideInInspector] public float baseStrafeSpeed;
@@ -51,6 +65,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         CapsuleCollider m_Capsule;
         bool m_Crouching;
 
+        
+
         private void Awake()
         {
             // if you already have Awake(), just add these 2 lines there
@@ -64,6 +80,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             m_Capsule = GetComponent<CapsuleCollider>();
             m_CapsuleHeight = m_Capsule.height;
             m_CapsuleCenter = m_Capsule.center;
+
+            
 
             m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             m_OrigGroundCheckDistance = m_GroundCheckDistance;
@@ -81,16 +99,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    int rand = Random.Range(0, 2);
+                    // alternate 1 -> 2 -> 1 -> 2
+                    string trigger = (_nextAttackIndex == 1) ? "Attack1" : "Attack2";
 
-                    if (rand == 0)
-                        m_Animator.SetTrigger("Attack1");
-                    else
-                        m_Animator.SetTrigger("Attack2");
+                    // small safety so one trigger can’t get “sticky” when mashing
+                    m_Animator.ResetTrigger("Attack1");
+                    m_Animator.ResetTrigger("Attack2");
+                    m_Animator.SetTrigger(trigger);
 
-                    // >>> play sword swoosh immediately
-                    if (audioController != null)
-                        audioController.PlayAttackSFX();
+                    // flip for next time
+                    _nextAttackIndex = (_nextAttackIndex == 1) ? 2 : 1;
+
+                    
                 }
             }
 
@@ -101,7 +121,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //}
         }
 
-        
+        //public void SetAttackSpeed(float s) 
+        //{ 
+        //    attackSpeed = s; m_Animator.SetFloat("AttackSpeed", s); 
+        //}
+
+        public void PlaySFX()
+        {
+            // play sword swoosh
+            if (audioController != null)
+                audioController.PlayAttackSFX();
+        }
         public void Move(Vector3 move, bool crouch, bool jump)
         {
             if (ThirdPersonControl.isDashing) return;
@@ -153,11 +183,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             UpdateAnimator(move);
         }
-
-
-
-
-
         void UpdateAnimator(Vector3 move)
         {
             // update the animator parameters
@@ -200,6 +225,56 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 // don't use that while airborne
                 m_Animator.speed = 1;
             }
+        }
+
+        //private void HandleAttackInput()
+        //{
+        //    var st = m_Animator.GetCurrentAnimatorStateInfo(0);
+        //    bool inAttack = m_Animator.IsInTransition(0)
+        //                    || st.IsName("rig_001|Attack01")
+        //                    || st.IsName("rig_001|Attack02");
+
+        //    if (!inAttack)
+        //    {
+        //        FireAttack();                   // start combo
+        //    }
+        //    else
+        //    {
+        //        _queuedAttack = true;           // wait for the combo window
+        //    }
+        //}
+
+        //private void LateUpdate()
+        //{
+        //    // Try to spend the queued click only inside the combo window
+        //    var st = m_Animator.GetCurrentAnimatorStateInfo(0);
+        //    bool inAttack = st.IsName("rig_001|Attack01") || st.IsName("rig_001|Attack02");
+
+        //    if (_queuedAttack && inAttack && !m_Animator.IsInTransition(0))
+        //    {
+        //        float t = st.normalizedTime;    // 0..1 of current attack
+        //        if (t >= comboWindowStart && t <= comboWindowEnd)
+        //        {
+        //            _queuedAttack = false;
+        //            FireAttack();
+        //        }
+        //    }
+        //}
+
+        private void FireAttack()
+        {
+            // Choose & sanitize triggers to avoid “sticky” ones during mashing
+            string thisTrig = (_nextAttackIndex == 1) ? "Attack1" : "Attack2";
+            string otherTrig = (_nextAttackIndex == 1) ? "Attack2" : "Attack1";
+
+            m_Animator.ResetTrigger(otherTrig); // make sure the other one can't hijack
+            m_Animator.ResetTrigger(thisTrig);  // clear any leftover set from previous frame
+            m_Animator.SetTrigger(thisTrig);
+
+            if (audioController != null)
+                audioController.PlayAttackSFX();
+
+            _nextAttackIndex = 3 - _nextAttackIndex; // 1<->2
         }
 
         public void ResetSpeedToBase()

@@ -134,13 +134,35 @@ public class DjimatSystem : MonoBehaviour
     }
 
     // ===== THE IMPORTANT PART =====
+    public void RecomputeNow()
+    {
+        ApplyBonuses();
+        OnChanged?.Invoke();
+        UpdateLimitUI();
+    }
+
+    // --- NEW: compute additive weapon-upgrade bonus from WeaponUpgradeManager ---
+    private int GetWeaponUpgradeBonus()
+    {
+        var w = FindObjectOfType<WeaponUpgradeManager>();
+        if (w == null || w.damagePerLevel == null || w.damagePerLevel.Length == 0) return 0;
+
+        int clamped = Mathf.Clamp(w.currentLevel, 0, w.damagePerLevel.Length - 1);
+        int baseVal = w.damagePerLevel[0];
+        // treat it as a bonus above base weapon damage
+        return Mathf.Max(0, w.damagePerLevel[clamped] - baseVal);
+    }
+
+    // ===== THE IMPORTANT PART =====
     private void ApplyBonuses()
     {
         if (playerManager == null) return;
 
-        // 1) Reset player base stats
+        // 1) Reset player base stats (now includes weapon-upgrade bonus on damage)
+        int upgradeBonus = GetWeaponUpgradeBonus();
+
         playerManager.playerHealth = baseHealth;
-        playerManager.damage = baseDamage;
+        playerManager.damage = baseDamage + upgradeBonus;   // <<--- changed here
         playerManager.lifesteal = baseLifesteal;
         playerManager.defense = baseDefense;
 
@@ -150,50 +172,35 @@ public class DjimatSystem : MonoBehaviour
         playerManager.regenPerSecond = 0;
         playerManager.healthMultiplier = 1f;
 
-        // NEW: movement reset
         if (tpChar != null) tpChar.ResetSpeedToBase();
 
-        // track effects we need to apply after scanning all items
         bool wantGodMode = false;
         bool wantHaste = false;
 
-        // 3) Scan equipped items
+        // 3) Scan equipped items (these ADD on top of base + upgrade)
         foreach (var eqSlot in gridMaker.equippedGridParent.GetComponentsInChildren<EquippedSlotUI>())
         {
             if (eqSlot.equippedDjimat == null) continue;
 
             DjimatItem item = eqSlot.equippedDjimat;
 
-            // flat stats
             playerManager.playerHealth += item.healthBonus;
-            playerManager.damage += item.damageBonus;
+            playerManager.damage += item.damageBonus;    // stacks with upgrade bonus
             playerManager.lifesteal += item.lifestealBonus;
             playerManager.defense += item.defenseBonus;
 
-            // specials
             switch (item.itemName)
             {
                 case "Paper of Oath":
-                    playerManager.canReviveOnce = true;
-                    break;
-
+                    playerManager.canReviveOnce = true; break;
                 case "Sacred Vest":
-                    playerManager.healthMultiplier *= 0.5f;
-                    break;
-
+                    playerManager.healthMultiplier *= 0.5f; break;
                 case "Pure Water":
-                    playerManager.hasRegen = true;
-                    playerManager.regenPerSecond += 2;
-                    break;
-
-                // === NEW ===
+                    playerManager.hasRegen = true; playerManager.regenPerSecond += 2; break;
                 case "Haste":
-                    wantHaste = true;
-                    break;
-
+                    wantHaste = true; break;
                 case "God Mode":
-                    wantGodMode = true;
-                    break;
+                    wantGodMode = true; break;
             }
         }
 
@@ -204,21 +211,12 @@ public class DjimatSystem : MonoBehaviour
         if (playerManager.currentHealth > playerManager.playerHealth)
             playerManager.currentHealth = playerManager.playerHealth;
 
-        // 6) Apply movement + invincibility toggles
-        if (tpChar != null && wantHaste)
-            tpChar.ApplySpeedMultiplier(hasteMultiplier);
+        // 6) Movement / invincibility toggles
+        if (tpChar != null && wantHaste) tpChar.ApplySpeedMultiplier(hasteMultiplier);
+        if (wantGodMode) playerManager.SetInvincible(); else playerManager.SetVulnerable();
 
-        if (wantGodMode)
-            playerManager.SetInvincible();
-        else
-            playerManager.SetVulnerable();
-
-        Debug.Log(
-            $"[DjimatSystem] Final Stats → HP:{playerManager.playerHealth}, DMG:{playerManager.damage}, " +
-            $"LS:{playerManager.lifesteal}, DEF:{playerManager.defense} | " +
-            $"Revive:{playerManager.canReviveOnce} Regen:{playerManager.hasRegen}({playerManager.regenPerSecond}/s) " +
-            $"HPx{playerManager.healthMultiplier} | Haste:{wantHaste} GodMode:{wantGodMode}"
-        );
+        Debug.Log($"[DjimatSystem] Final Stats → HP:{playerManager.playerHealth}, DMG:{playerManager.damage}, " +
+                  $"LS:{playerManager.lifesteal}, DEF:{playerManager.defense} (Upgrade+Djimat stacked)");
     }
 
     private void UpdateLimitUI()

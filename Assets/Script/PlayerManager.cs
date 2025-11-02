@@ -282,9 +282,9 @@ namespace UnityEngine
             // Re-enable vulnerability after respawn
             SetVulnerable();
 
-            EnemyRespawner respawner = FindObjectOfType<EnemyRespawner>();
-            if (respawner != null)
-                respawner.RespawnEnemy();
+            EnemyRespawner[] allRespawners = FindObjectsOfType<EnemyRespawner>();
+            foreach (var r in allRespawners)
+                r.ForceRespawnNow();
 
             if (anim != null)
                 anim.SetTrigger("Respawned");
