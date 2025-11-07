@@ -23,8 +23,15 @@ public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [Header("Audio")]
     [Tooltip("Played when mouse cursor enters this slot.")]
     public AudioClip hoverSFX;
-    [Tooltip("Played when buying / clicking this slot.")]
+    [Tooltip("Played immediately when clicking this slot (tactile).")]
     public AudioClip clickSFX;
+    [Tooltip("Played when purchase succeeds.")]
+    public AudioClip purchaseSuccessSFX;
+    [Tooltip("Played when purchase fails due to NOT ENOUGH MONEY.")]
+    public AudioClip notEnoughMoneySFX;
+    [Tooltip("Fallback SFX for other failure reasons.")]
+    public AudioClip purchaseFailSFX;
+
     [Tooltip("Avoid hover spam when UI re-fires enter events (seconds).")]
     public float hoverCooldown = 0.05f;
     [Tooltip("If false, hover SFX will not play when the item is already sold/darkened.")]
@@ -52,15 +59,12 @@ public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (highlight) highlight.enabled = true;
-
-        if (infoDisplay != null && itemData != null)
-            infoDisplay.ShowInfo(itemData);
+        if (infoDisplay != null && itemData != null) infoDisplay.ShowInfo(itemData);
 
         if (Time.unscaledTime - _lastHoverTime >= hoverCooldown)
         {
             if (playHoverWhenDarkened || !isDarkened)
                 PlayHoverSFX();
-
             _lastHoverTime = Time.unscaledTime;
         }
     }
@@ -68,25 +72,42 @@ public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerExit(PointerEventData eventData)
     {
         if (highlight) highlight.enabled = false;
-
-        if (infoDisplay != null)
-            infoDisplay.ClearInfo();
+        if (infoDisplay != null) infoDisplay.ClearInfo();
     }
 
     public void OnClickBuy()
     {
-        // Click sound first (feels snappier)
+        // Tactile click (optional)
         PlayClickSFX();
 
-        // Don't allow buying if already darkened
-        if (isDarkened)
+        if (merchantCatalog == null || itemData == null)
         {
-            Debug.Log("This item is already purchased / locked.");
+            PlayFailSFX(); // invalid
             return;
         }
 
-        merchantCatalog.TryPurchase(itemData, itemPrice, this);
-        Debug.Log("Bought");
+        // Ask catalog to process purchase and return a result
+        var result = merchantCatalog.TryPurchaseWithResult(itemData, itemPrice, this);
+
+        // Play result SFX
+        switch (result)
+        {
+            case MerchantCatalog.PurchaseResult.Success:
+                PlaySuccessSFX();
+                break;
+
+            case MerchantCatalog.PurchaseResult.NotEnoughMoney:
+                PlayNotEnoughMoneySFX();
+                break;
+
+            case MerchantCatalog.PurchaseResult.AlreadyPurchased:
+            case MerchantCatalog.PurchaseResult.AlreadyOwned:
+            case MerchantCatalog.PurchaseResult.DiamondCapReached:
+            case MerchantCatalog.PurchaseResult.Invalid:
+            default:
+                PlayFailSFX();
+                break;
+        }
     }
 
     public void SetDarkened(bool state)
@@ -96,7 +117,6 @@ public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (iconImage != null)
             iconImage.color = state ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white;
 
-        // Disable the button so it can't be clicked anymore
         var btn = GetComponent<Button>();
         if (btn != null)
             btn.interactable = !state;
@@ -106,12 +126,33 @@ public class MerchantSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private void PlayHoverSFX()
     {
         if (hoverSFX != null && AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(hoverSFX); // 2D UI SFX
+            AudioManager.Instance.PlaySFX(hoverSFX);
     }
 
     private void PlayClickSFX()
     {
         if (clickSFX != null && AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(clickSFX); // 2D UI SFX
+            AudioManager.Instance.PlaySFX(clickSFX);
+    }
+
+    private void PlaySuccessSFX()
+    {
+        if (purchaseSuccessSFX != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(purchaseSuccessSFX);
+    }
+
+    private void PlayNotEnoughMoneySFX()
+    {
+        // Prefer dedicated clip; fall back to generic fail if absent
+        if (notEnoughMoneySFX != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(notEnoughMoneySFX);
+        else
+            PlayFailSFX();
+    }
+
+    private void PlayFailSFX()
+    {
+        if (purchaseFailSFX != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(purchaseFailSFX);
     }
 }

@@ -30,6 +30,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         [SerializeField] private float groundedProbeDistance = 0.25f;
         [SerializeField] private Vector3 groundedProbeOffset = new Vector3(0f, 0.1f, 0f);
 
+        [Header("Fall Damage")]
+        [SerializeField] private bool enableFallDamage = true;
+        [Tooltip("No damage below this drop height (meters).")]
+        [SerializeField] private float minFallHeight = 3.0f;
+        [Tooltip("At/above this height, apply maxFallDamage.")]
+        [SerializeField] private float lethalFallHeight = 10.0f;
+        [Tooltip("Damage dealt at lethal height (or more).")]
+        [SerializeField] private int maxFallDamage = 100;
+        [Tooltip("Optional grunt/impact SFX (played once on landing if damage > 0).")]
+        [SerializeField] private AudioClip fallImpactSFX;
+
         [Header("Debug")]
         [SerializeField] private bool drawGroundProbeGizmos = true;
 
@@ -40,6 +51,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Animator m_Animator;
         public PlayerManager playermanager;
 
+        // --- fall state ---
+        private bool wasGrounded;
+        private bool falling;
+        private float fallStartY;
+
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
@@ -48,8 +64,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             m_Character = GetComponent<TPCharacter>();
 
-            // don’t hit our own layer when ray-testing during dash
+            // Don’t hit our own layer when ray-testing during dash
             dashCollisionMask &= ~(1 << gameObject.layer);
+
+            // Initialize ground state
+            wasGrounded = IsGroundedNow();
+            falling = false;
+            fallStartY = transform.position.y;
         }
 
         private void Update()
@@ -59,6 +80,59 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             if (Input.GetKeyDown(dashKey))
                 TryStartDash();
+
+            // --- FALL DAMAGE MONITOR ---
+            if (enableFallDamage)
+            {
+                bool groundedNow = IsGroundedNow();
+
+                // Start falling (left the ground)
+                if (wasGrounded && !groundedNow)
+                {
+                    falling = true;
+                    fallStartY = transform.position.y;
+                }
+
+                // Landed (hit the ground)
+                if (!wasGrounded && groundedNow && falling)
+                {
+                    float drop = fallStartY - transform.position.y;
+                    if (drop >= minFallHeight)
+                    {
+                        int dmg = ComputeFallDamage(drop);
+                        if (dmg > 0)
+                            ApplyFallDamage(dmg);
+                    }
+                    falling = false;
+                }
+
+                wasGrounded = groundedNow;
+            }
+        }
+
+        private int ComputeFallDamage(float dropHeight)
+        {
+            if (dropHeight <= minFallHeight) return 0;
+            if (dropHeight >= lethalFallHeight) return maxFallDamage;
+
+            // Linear scale between min and lethal
+            float t = (dropHeight - minFallHeight) / Mathf.Max(0.001f, (lethalFallHeight - minFallHeight));
+            int dmg = Mathf.RoundToInt(Mathf.Lerp(0f, maxFallDamage, t));
+            return Mathf.Max(0, dmg);
+            // If you want a softer curve, replace with:  Mathf.Lerp(0f, maxFallDamage, t*t)
+        }
+
+        private void ApplyFallDamage(int amount)
+        {
+            if (playermanager != null)
+            {
+                // Prefer a TakeDamage() if you have one; otherwise safely reduce currentHealth
+                // playermanager.TakeDamage(amount);
+                playermanager.currentHealth = Mathf.Max(0, playermanager.currentHealth - amount);
+            }
+
+            if (fallImpactSFX != null && AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(fallImpactSFX);
         }
 
         private void TryStartDash()
@@ -121,7 +195,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             if (lockOnSystem != null && lockOnSystem.LockOn && lockOnSystem.currentTarget != null)
             {
-                Vector3 toEnemy = (lockOnSystem.currentTarget.position - transform.position).normalized; toEnemy.y = 0f;
+                Vector3 toEnemy = (lockOnSystem.currentTarget.position - transform.position).normalized;
+                toEnemy.y = 0f;
                 transform.rotation = Quaternion.LookRotation(toEnemy);
                 Vector3 right = Vector3.Cross(Vector3.up, toEnemy);
                 Vector3 fwd = Vector3.Cross(right, Vector3.up);
@@ -152,31 +227,23 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             if (!drawGroundProbeGizmos) return;
 
-            // Use current values even in edit mode
             Vector3 origin = transform.position + groundedProbeOffset;
             float r = groundedProbeRadius;
             float d = groundedProbeDistance;
 
-            // Cast for visualization only
             bool hitSomething = Physics.SphereCast(origin, r, Vector3.down, out RaycastHit hit, d, ~0, QueryTriggerInteraction.Ignore);
 
-            // Origin sphere
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(origin, r);
-
-            // Line of the probe
-            Gizmos.color = Color.yellow;
             Gizmos.DrawLine(origin, origin + Vector3.down * d);
 
             if (hitSomething)
             {
-                // Hit point sphere (GREEN when grounded)
                 Gizmos.color = Color.green;
                 Gizmos.DrawWireSphere(hit.point, r * 0.9f);
             }
             else
             {
-                // End sphere (RED when not grounded)
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(origin + Vector3.down * d, r);
             }

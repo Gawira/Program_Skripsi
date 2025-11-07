@@ -1,67 +1,140 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class HowToPlayUIManager : MonoBehaviour
 {
-    [Header("Panel References")]
-    [SerializeField] private GameObject movementPanel;
-    [SerializeField] private GameObject lockOnPanel;
-    [SerializeField] private GameObject evadePanel;
-    [SerializeField] private GameObject combatPanel;
+    [System.Serializable]
+    public class PanelGroup
+    {
+        public string name;
+        public GameObject panel;
+        [Tooltip("Assign the two VideoPlayers for this panel. If left empty, the script will auto-find all VideoPlayers under the panel.")]
+        public VideoPlayer[] videos;
+    }
+
+    [Header("Groups")]
+    [SerializeField] private PanelGroup movement;
+    [SerializeField] private PanelGroup lockOn;
+    [SerializeField] private PanelGroup evade;
+    [SerializeField] private PanelGroup combat;
+
+    [Header("Options")]
+    [Tooltip("If ON, when you open a panel the videos restart from 0 instead of resuming.")]
+    [SerializeField] private bool restartOnShow = false;
+
+    // track what’s currently shown so we can pause only that group
+    private PanelGroup _current;
 
     private void Awake()
     {
-        // If not manually assigned in Inspector, try to find them by name
-        if (movementPanel == null) movementPanel = transform.Find("Movement")?.gameObject;
-        if (lockOnPanel == null) lockOnPanel = transform.Find("Lock-On")?.gameObject;
-        if (evadePanel == null) evadePanel = transform.Find("Evade")?.gameObject;
-        if (combatPanel == null) combatPanel = transform.Find("Combat")?.gameObject;
+        // Fill missing arrays by auto-finding VideoPlayers under each panel.
+        AutoFill(movement);
+        AutoFill(lockOn);
+        AutoFill(evade);
+        AutoFill(combat);
     }
 
     private void Start()
     {
-        // Show movement panel by default
-        ShowPanel(movementPanel);
+        // default: show movement panel
+        ShowPanel(movement);
     }
 
-    public void ShowMovement()
-    {
-        ShowPanel(movementPanel);
-    }
-
-    public void ShowLockOn()
-    {
-        ShowPanel(lockOnPanel);
-    }
-
-    public void ShowEvade()
-    {
-        ShowPanel(evadePanel);
-    }
-
-    public void ShowCombat()
-    {
-        ShowPanel(combatPanel);
-    }
+    // ---- Public UI hooks ----
+    public void ShowMovement() => ShowPanel(movement);
+    public void ShowLockOn() => ShowPanel(lockOn);
+    public void ShowEvade() => ShowPanel(evade);
+    public void ShowCombat() => ShowPanel(combat);
 
     public void BackToMenu()
     {
-        // Hide everything when back is pressed
-        movementPanel.SetActive(false);
-        lockOnPanel.SetActive(false);
-        evadePanel.SetActive(false);
-        combatPanel.SetActive(false);
+        PauseGroup(_current);
+        HideAllPanels();
+        _current = null;
     }
 
-    private void ShowPanel(GameObject panelToShow)
+    // ---- Core logic ----
+    private void ShowPanel(PanelGroup group)
     {
-        // Hide all
-        movementPanel.SetActive(false);
-        lockOnPanel.SetActive(false);
-        evadePanel.SetActive(false);
-        combatPanel.SetActive(false);
+        if (group == null || group.panel == null) return;
 
-        // Show chosen panel
-        if (panelToShow != null)
-            panelToShow.SetActive(true);
+        // Pause the one we’re leaving
+        if (_current != null) PauseGroup(_current);
+
+        // Hide all, then show this one
+        HideAllPanels();
+        group.panel.SetActive(true);
+
+        // Play this group’s videos (start both at the same time)
+        StartCoroutine(PlayGroup(group));
+
+        _current = group;
+    }
+
+    private IEnumerator PlayGroup(PanelGroup group)
+    {
+        if (group.videos == null) yield break;
+
+        // Optional restart
+        if (restartOnShow)
+        {
+            foreach (var vp in group.videos)
+            {
+                if (vp == null) continue;
+                if (vp.isPrepared) vp.time = 0;
+            }
+        }
+
+        // Ensure all are prepared first to reduce desync
+        foreach (var vp in group.videos)
+        {
+            if (vp == null) continue;
+            if (!vp.isPrepared) vp.Prepare();
+        }
+
+        // Wait until all are prepared (or already were)
+        bool allPrepared;
+        do
+        {
+            allPrepared = true;
+            foreach (var vp in group.videos)
+            {
+                if (vp == null) continue;
+                if (!vp.isPrepared) { allPrepared = false; break; }
+            }
+            if (!allPrepared) yield return null;
+        } while (!allPrepared);
+
+        // Fire them together
+        foreach (var vp in group.videos)
+        {
+            if (vp == null) continue;
+            vp.Play();
+        }
+    }
+
+    private void PauseGroup(PanelGroup group)
+    {
+        if (group == null || group.videos == null) return;
+        foreach (var vp in group.videos)
+        {
+            if (vp != null && vp.isPlaying) vp.Pause();
+        }
+    }
+
+    private void HideAllPanels()
+    {
+        if (movement.panel) movement.panel.SetActive(false);
+        if (lockOn.panel) lockOn.panel.SetActive(false);
+        if (evade.panel) evade.panel.SetActive(false);
+        if (combat.panel) combat.panel.SetActive(false);
+    }
+
+    private void AutoFill(PanelGroup g)
+    {
+        if (g == null || g.panel == null) return;
+        if (g.videos == null || g.videos.Length == 0)
+            g.videos = g.panel.GetComponentsInChildren<VideoPlayer>(true);
     }
 }

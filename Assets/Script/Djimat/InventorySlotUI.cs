@@ -19,6 +19,8 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public AudioClip hoverSFX;
     [Tooltip("Played when clicking this slot.")]
     public AudioClip clickSFX;
+    [Tooltip("Played when an equip action fails (e.g., diamond slot limit).")]
+    public AudioClip errorSFX;
     [Tooltip("Avoid hover spam when UI re-fires enter events (seconds).")]
     public float hoverCooldown = 0.05f;
     [Tooltip("If false, hover SFX plays only when slot has an item.")]
@@ -46,13 +48,14 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
         EquippedSlotUI selected = EquippedSlotUI.GetSelectedSlot();
         if (selected != null)
         {
-            // CASE 1: Inventory slot has a Djimat -> Try to equip it
+            // CASE 1: Has item -> try equip into selected slot
             if (assignedDjimat != null)
             {
                 DjimatItem itemToEquip = assignedDjimat;
                 DjimatItem previous = selected.equippedDjimat;
 
-                if (djimatSystem.EquipToSlot(selected, itemToEquip))
+                bool ok = djimatSystem != null && djimatSystem.EquipToSlot(selected, itemToEquip);
+                if (ok)
                 {
                     // Clear this inventory slot
                     assignedDjimat = null;
@@ -62,19 +65,23 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
                     if (previous != null)
                     {
                         GridMaker grid = FindObjectOfType<GridMaker>();
-                        if (grid != null)
-                            grid.AddToInventory(previous);
+                        if (grid != null) grid.AddToInventory(previous);
                     }
                 }
+                else
+                {
+                    // EQUIP FAILED (likely diamond slot capacity) -> play error SFX
+                    PlayErrorSFX();
+                    selected.PlayErrorSFX(); // also ping selected slot if it has its own error clip
+                }
             }
-            // CASE 2: Empty inventory slot clicked -> Unequip from selected slot into here
+            // CASE 2: Empty inventory slot -> move from selected slot into here
             else
             {
                 if (selected.equippedDjimat != null)
                 {
                     DjimatItem unequipped = selected.equippedDjimat;
-
-                    djimatSystem.UnequipSlot(selected);
+                    djimatSystem?.UnequipSlot(selected);
 
                     assignedDjimat = unequipped;
                     UpdateUI();
@@ -102,9 +109,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
     public void OnPointerExit(PointerEventData eventData)
     {
         if (highlight != null) highlight.enabled = false;
-
-        if (infoDisplay != null)
-            infoDisplay.ClearInfo();
+        if (infoDisplay != null) infoDisplay.ClearInfo();
     }
 
     public void UpdateUI()
@@ -131,12 +136,18 @@ public class InventorySlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnte
     private void PlayHoverSFX()
     {
         if (hoverSFX != null && AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(hoverSFX); // 2D UI SFX
+            AudioManager.Instance.PlaySFX(hoverSFX);
     }
 
     private void PlayClickSFX()
     {
         if (clickSFX != null && AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(clickSFX); // 2D UI SFX
+            AudioManager.Instance.PlaySFX(clickSFX);
+    }
+
+    private void PlayErrorSFX()
+    {
+        if (errorSFX != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(errorSFX);
     }
 }

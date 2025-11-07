@@ -20,6 +20,8 @@ public class EquippedSlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnter
     public AudioClip hoverSFX;
     [Tooltip("Played when clicking/selecting/deselecting this slot.")]
     public AudioClip clickSFX;
+    [Tooltip("Played when an equip action fails (e.g., diamond slot limit).")]
+    public AudioClip errorSFX;
     [Tooltip("Avoid hover spam when UI re-fires enter events (in seconds).")]
     public float hoverCooldown = 0.05f;
     [Tooltip("If false, hover sfx only plays when the slot has an item.")]
@@ -42,22 +44,18 @@ public class EquippedSlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // SFX
         PlayClickSFX();
 
         if (selectedSlot == this)
         {
-            // Deselect if clicked again
             selectedSlot = null;
             if (highlight != null) highlight.enabled = false;
         }
         else
         {
-            // Deselect previous
             if (selectedSlot != null && selectedSlot.highlight != null)
                 selectedSlot.highlight.enabled = false;
 
-            // Select this
             selectedSlot = this;
             if (highlight != null) highlight.enabled = true;
         }
@@ -71,12 +69,10 @@ public class EquippedSlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnter
         if (infoDisplay != null && equippedDjimat != null)
             infoDisplay.ShowInfo(equippedDjimat);
 
-        // SFX (with cooldown + optional “only when has item”)
         if (Time.unscaledTime - _lastHoverTime >= hoverCooldown)
         {
             if (playHoverWhenEmpty || equippedDjimat != null)
                 PlayHoverSFX();
-
             _lastHoverTime = Time.unscaledTime;
         }
     }
@@ -95,7 +91,6 @@ public class EquippedSlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnter
         equippedDjimat = newDjimat;
         UpdateUI();
 
-        // After assignment, deselect
         if (selectedSlot == this)
         {
             selectedSlot = null;
@@ -117,21 +112,25 @@ public class EquippedSlotUI : MonoBehaviour, IPointerClickHandler, IPointerEnter
         }
     }
 
-    public static EquippedSlotUI GetSelectedSlot()
-    {
-        return selectedSlot;
-    }
+    public static EquippedSlotUI GetSelectedSlot() => selectedSlot;
 
     // ---------- Audio helpers ----------
     private void PlayHoverSFX()
     {
         if (hoverSFX != null && AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(hoverSFX); // 2D UI SFX
+            AudioManager.Instance.PlaySFX(hoverSFX);
     }
 
     private void PlayClickSFX()
     {
         if (clickSFX != null && AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(clickSFX); // 2D UI SFX
+            AudioManager.Instance.PlaySFX(clickSFX);
+    }
+
+    // Exposed so InventorySlotUI can ping this slot’s error when equip fails
+    public void PlayErrorSFX()
+    {
+        if (errorSFX != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(errorSFX);
     }
 }

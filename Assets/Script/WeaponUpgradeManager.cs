@@ -26,9 +26,13 @@ public class WeaponUpgradeManager : MonoBehaviour
     public TMP_Text weaponinfoText_Inventory;
     public TMP_Text priceText;
 
+    [Header("Audio (via AudioManager)")]
+    public AudioClip upgradeSfx;   // play on successful upgrade
+    public AudioClip errorSfx;     // play on failure (optional)
+
     private PlayerManager playerManager;
     private SacredStoneGridMaker stoneInventory;
-    private DjimatSystem djimatSystem; // <-- to recompute final stats
+    private DjimatSystem djimatSystem;
 
     void Start()
     {
@@ -39,8 +43,9 @@ public class WeaponUpgradeManager : MonoBehaviour
         if (upgradeButton != null)
             upgradeButton.onClick.AddListener(TryUpgrade);
 
-        // no longer sets damage directly; just refreshes UI and asks DjimatSystem to recompute
-        ApplyDamageForCurrentLevel();
+        ApplyDamageForCurrentLevel(); // just updates labels + recompute totals
+        if (priceText != null && currentLevel < pricePerLevel.Length)
+            priceText.text = pricePerLevel[currentLevel];
     }
 
     void Update()
@@ -51,54 +56,61 @@ public class WeaponUpgradeManager : MonoBehaviour
 
     void TryUpgrade()
     {
+        // guard: already max
         if (currentLevel >= maxLevel)
         {
             if (feedbackText) feedbackText.text = "Max level reached!";
+            PlayError();
             return;
         }
 
+        // guard: money
         int cost = (currentLevel < upgradeCosts.Length) ? upgradeCosts[currentLevel] : 0;
         if (playerManager.money < cost)
         {
             if (feedbackText) feedbackText.text = "Not enough money!";
+            PlayError();
             return;
         }
 
+        // guard: stone requirement
         DjimatItem requiredStone = GetRequiredStoneForLevel(currentLevel + 1);
-        if (requiredStone == null || !stoneInventory.HasStone(requiredStone))
+        if (requiredStone == null || stoneInventory == null || !stoneInventory.HasStone(requiredStone))
         {
             if (feedbackText) feedbackText.text = "Missing required stone!";
+            PlayError();
             return;
         }
 
         // pay + consume
         playerManager.money -= cost;
-        stoneInventory.RemoveStone(requiredStone);
+        stoneInventory.RemoveFromInventory(requiredStone); // consume from SO + refresh UI
 
         // level up
         currentLevel++;
 
-        // refresh labels + recompute stats (now additive with Djimat)
+        // refresh labels + recompute stacked stats (Djimat + upgrade)
         ApplyDamageForCurrentLevel();
 
         if (feedbackText) feedbackText.text = $"Weapon upgraded to +{currentLevel}!";
         if (weaponinfoText) weaponinfoText.text = $"Courteous+{currentLevel}";
         if (weaponinfoText_Inventory) weaponinfoText_Inventory.text = $"Courteous+{currentLevel}";
+
+        // SFX success
+        PlayUpgrade();
     }
 
     /// <summary>
-    /// Now only updates UI and tells DjimatSystem to rebuild totals.
-    /// The actual damage math lives in DjimatSystem so it stacks with items.
+    /// Only updates labels and asks DjimatSystem to rebuild totals so upgrades stack with Djimat bonuses.
     /// </summary>
     public void ApplyDamageForCurrentLevel()
     {
-        // Update labels
         if (weaponinfoText) weaponinfoText.text = $"Courteous+{currentLevel}";
         if (weaponinfoText_Inventory) weaponinfoText_Inventory.text = $"Courteous+{currentLevel}";
 
-        // Ask DjimatSystem to recompute final stats (base + upgrade bonus + djimat)
         if (djimatSystem == null) djimatSystem = FindObjectOfType<DjimatSystem>();
-        djimatSystem?.RecomputeNow();
+        // Recompute final stats (base + upgrade + djimat)
+        djimatSystem?.ApplyBonusesAfterLoad();
     }
 
     DjimatItem GetRequiredStoneForLevel(int level)
@@ -111,5 +123,18 @@ public class WeaponUpgradeManager : MonoBehaviour
             case 4: return divineStone;
             default: return null;
         }
+    }
+
+    // ---------- SFX helpers ----------
+    private void PlayUpgrade()
+    {
+        if (upgradeSfx != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(upgradeSfx);
+    }
+
+    private void PlayError()
+    {
+        if (errorSfx != null && AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(errorSfx);
     }
 }
