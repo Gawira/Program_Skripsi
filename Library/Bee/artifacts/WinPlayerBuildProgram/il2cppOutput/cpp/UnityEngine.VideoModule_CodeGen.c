@@ -18,8 +18,12 @@ extern void VideoClip__ctor_m0D5152E4073E1D970B8A947BC16309696AAF084A (void);
 extern void VideoClip_get_length_m3A5628F24610F06D4F1E7FBC700722B77942121D (void);
 extern void VideoPlayer_set_clip_m85C09C15E184E9AAE117C1A534D8AC25175C8DC9 (void);
 extern void VideoPlayer_Prepare_mC0EF4CC2E5A6B7C04F9F810DD9406A6146BEE6EA (void);
+extern void VideoPlayer_get_isPrepared_mF2F3AD27BE0FD06695EE9DEE762B68F431E15767 (void);
 extern void VideoPlayer_Play_m8E99607F39F1D214BDD704F3E130DD2418787ACE (void);
+extern void VideoPlayer_Pause_m1975BF6BEE27064602EEB8191C963888CF5B226E (void);
 extern void VideoPlayer_Stop_m1F2DE73183E042998140A56FF69432A200430BF1 (void);
+extern void VideoPlayer_get_isPlaying_mC4CCA87F909A3A14209D632D16D7C8FC34F01520 (void);
+extern void VideoPlayer_set_time_m011A5EC42BF4C5DE301346942998F2E889DB9056 (void);
 extern void VideoPlayer_set_isLooping_m37563E7D24110FDBBBB4E48EA90E639BE778264E (void);
 extern void VideoPlayer_add_prepareCompleted_m4DB8843A3E3E3CFF7E361E70EA51983AF457183B (void);
 extern void VideoPlayer_remove_prepareCompleted_mDA77FE81F97195666D407DBB5689F8289A0513DF (void);
@@ -42,7 +46,7 @@ extern void FrameReadyEventHandler__ctor_mD875F736BCA2A2128427AB0546B5081ED3B22D
 extern void FrameReadyEventHandler_Invoke_m73FF71F81A620194421226D8A98C64FB82E7B235 (void);
 extern void TimeEventHandler__ctor_m7BF78A616C8FF71B3A7CA62B1A03446A5C581309 (void);
 extern void TimeEventHandler_Invoke_m2327761543815FB7181FFF73E87FC5EC0F84349D (void);
-static Il2CppMethodPointer s_methodPointers[30] = 
+static Il2CppMethodPointer s_methodPointers[34] = 
 {
 	VideoClipPlayable_GetHandle_m1D990903234220E9FE756F2DA895650EBDC1415D,
 	VideoClipPlayable_Equals_mDBA2CCE1368B628829B065EA8DEDE84512B2723E,
@@ -50,8 +54,12 @@ static Il2CppMethodPointer s_methodPointers[30] =
 	VideoClip_get_length_m3A5628F24610F06D4F1E7FBC700722B77942121D,
 	VideoPlayer_set_clip_m85C09C15E184E9AAE117C1A534D8AC25175C8DC9,
 	VideoPlayer_Prepare_mC0EF4CC2E5A6B7C04F9F810DD9406A6146BEE6EA,
+	VideoPlayer_get_isPrepared_mF2F3AD27BE0FD06695EE9DEE762B68F431E15767,
 	VideoPlayer_Play_m8E99607F39F1D214BDD704F3E130DD2418787ACE,
+	VideoPlayer_Pause_m1975BF6BEE27064602EEB8191C963888CF5B226E,
 	VideoPlayer_Stop_m1F2DE73183E042998140A56FF69432A200430BF1,
+	VideoPlayer_get_isPlaying_mC4CCA87F909A3A14209D632D16D7C8FC34F01520,
+	VideoPlayer_set_time_m011A5EC42BF4C5DE301346942998F2E889DB9056,
 	VideoPlayer_set_isLooping_m37563E7D24110FDBBBB4E48EA90E639BE778264E,
 	VideoPlayer_add_prepareCompleted_m4DB8843A3E3E3CFF7E361E70EA51983AF457183B,
 	VideoPlayer_remove_prepareCompleted_mDA77FE81F97195666D407DBB5689F8289A0513DF,
@@ -82,7 +90,7 @@ static Il2CppTokenAdjustorThunkPair s_adjustorThunks[2] =
 	{ 0x06000001, VideoClipPlayable_GetHandle_m1D990903234220E9FE756F2DA895650EBDC1415D_AdjustorThunk },
 	{ 0x06000002, VideoClipPlayable_Equals_mDBA2CCE1368B628829B065EA8DEDE84512B2723E_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[30] = 
+static const int32_t s_InvokerIndices[34] = 
 {
 	5732,
 	3524,
@@ -90,8 +98,12 @@ static const int32_t s_InvokerIndices[30] =
 	5652,
 	4721,
 	5832,
+	5629,
 	5832,
 	5832,
+	5832,
+	5629,
+	4656,
 	4629,
 	4721,
 	4721,
@@ -119,7 +131,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_UnityEngine_VideoModule_CodeGenModul
 const Il2CppCodeGenModule g_UnityEngine_VideoModule_CodeGenModule = 
 {
 	"UnityEngine.VideoModule.dll",
-	30,
+	34,
 	s_methodPointers,
 	2,
 	s_adjustorThunks,

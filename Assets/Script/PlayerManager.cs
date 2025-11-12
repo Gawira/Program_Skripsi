@@ -13,6 +13,10 @@ namespace UnityEngine
         public int lifesteal = 8;
         public int defense = 5;
 
+        [Header("Skill")]
+        public float skillBarMax = 100f;
+        public float skillBar = 0f;
+
         public int money = 0;
         public int damage = 10;
         public int slotMax = 2;
@@ -35,6 +39,8 @@ namespace UnityEngine
         public float fadeDuration = 2f;   // how long the fade takes
 
         [SerializeField] private PlayerAudioController audioController;
+
+        [SerializeField] private PlayerSkillBar psb;
 
         // --- internal guard ---
         public bool isDead = false;
@@ -59,11 +65,21 @@ namespace UnityEngine
 
         [SerializeField] private UnityStandardAssets.Cameras.LockOnTarget lockOnSystem;
 
+        [Header("Backstep (Simple)")]
+        public bool isBackstepping = false;
+        public float backstepDistance = 2.0f;      // how far to hop back
+        public float backstepSpeed = 25f;       // how fast to slide to target
+
+        private Vector3 backstepTarget;
+
         private void Start()
         {
             anim = GetComponent<Animator>();
             if (audioController == null)
                 audioController = GetComponent<PlayerAudioController>();
+
+            if (psb == null)
+                psb = GetComponent<PlayerSkillBar>();
 
             if (lockOnSystem == null)
                 lockOnSystem = FindObjectOfType<UnityStandardAssets.Cameras.LockOnTarget>();
@@ -165,6 +181,37 @@ namespace UnityEngine
                     anim.SetBool("IsRunning", false);
                 }
             }
+
+            if (!isBackstepping) return;
+
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                backstepTarget,
+                backstepSpeed * Time.deltaTime
+            );
+
+            // stop when we arrive
+            if ((transform.position - backstepTarget).sqrMagnitude <= 0.0001f)
+                isBackstepping = false;
+        }
+
+        /// <summary>
+        /// Call from Animator Event to begin the backstep.
+        /// </summary>
+        public void Backstep()
+        {
+            if (isBackstepping) return;
+
+            isBackstepping = true;
+            backstepTarget = transform.position - transform.forward * backstepDistance;
+        }
+
+        /// <summary>
+        /// Call from Animator Event to gracefully cancel/stop early.
+        /// </summary>
+        public void BackstepStop()
+        {
+            isBackstepping = false;
         }
 
         // =======================
@@ -415,6 +462,7 @@ namespace UnityEngine
         public int DealDamage()
         {
             ApplyLifesteal();
+            psb.RewardOnHit();
             return damage;
         }
 

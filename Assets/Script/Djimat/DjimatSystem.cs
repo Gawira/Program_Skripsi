@@ -158,65 +158,58 @@ public class DjimatSystem : MonoBehaviour
     {
         if (playerManager == null) return;
 
-        // 1) Reset player base stats (now includes weapon-upgrade bonus on damage)
+        // --- keep previous state to preserve ratio ---
+        int prevMax = Mathf.Max(1, playerManager.playerHealth); // avoid div-by-zero
+        int prevCurrent = Mathf.Clamp(playerManager.currentHealth, 0, prevMax);
+
+        // 1) Reset player base stats (includes weapon-upgrade bonus on damage)
         int upgradeBonus = GetWeaponUpgradeBonus();
 
         playerManager.playerHealth = baseHealth;
-        playerManager.damage = baseDamage + upgradeBonus;   // <<--- changed here
+        playerManager.damage = baseDamage + upgradeBonus;
         playerManager.lifesteal = baseLifesteal;
         playerManager.defense = baseDefense;
 
-        // 2) Reset special flags
+        // 2) Reset specials
         playerManager.canReviveOnce = false;
         playerManager.hasRegen = false;
         playerManager.regenPerSecond = 0;
-        playerManager.healthMultiplier = 1f;
-
         if (tpChar != null) tpChar.ResetSpeedToBase();
 
         bool wantGodMode = false;
         bool wantHaste = false;
 
-        // 3) Scan equipped items (these ADD on top of base + upgrade)
+        // 3) Add Djimat bonuses
         foreach (var eqSlot in gridMaker.equippedGridParent.GetComponentsInChildren<EquippedSlotUI>())
         {
             if (eqSlot.equippedDjimat == null) continue;
 
-            DjimatItem item = eqSlot.equippedDjimat;
-
+            var item = eqSlot.equippedDjimat;
             playerManager.playerHealth += item.healthBonus;
-            playerManager.damage += item.damageBonus;    // stacks with upgrade bonus
+            playerManager.damage += item.damageBonus;
             playerManager.lifesteal += item.lifestealBonus;
             playerManager.defense += item.defenseBonus;
 
             switch (item.itemName)
             {
-                case "Paper of Oath":
-                    playerManager.canReviveOnce = true; break;
-                case "Sacred Vest":
-                    playerManager.healthMultiplier *= 0.5f; break;
-                case "Pure Water":
-                    playerManager.hasRegen = true; playerManager.regenPerSecond += 2; break;
-                case "Haste":
-                    wantHaste = true; break;
-                case "God Mode":
-                    wantGodMode = true; break;
+                case "Paper of Oath": playerManager.canReviveOnce = true; break;
+                case "Pure Water": playerManager.hasRegen = true; playerManager.regenPerSecond += 2; break;
+                case "Haste": wantHaste = true; break;
+                case "God Mode": wantGodMode = true; break;
             }
         }
 
-        // 4) Apply HP multiplier after flats
-        playerManager.playerHealth = Mathf.RoundToInt(playerManager.playerHealth * playerManager.healthMultiplier);
+        // 4) Preserve health percentage relative to new max
+        int newMax = Mathf.Max(1, playerManager.playerHealth);
+        float ratio = Mathf.Clamp01(prevCurrent / (float)prevMax);  // e.g., 0.75
+        playerManager.currentHealth = Mathf.Clamp(Mathf.RoundToInt(newMax * ratio), 0, newMax);
 
-        // 5) Clamp current HP
-        if (playerManager.currentHealth > playerManager.playerHealth)
-            playerManager.currentHealth = playerManager.playerHealth;
-
-        // 6) Movement / invincibility toggles
+        // 5) Toggles
         if (tpChar != null && wantHaste) tpChar.ApplySpeedMultiplier(hasteMultiplier);
         if (wantGodMode) playerManager.SetInvincible(); else playerManager.SetVulnerable();
 
-        Debug.Log($"[DjimatSystem] Final Stats → HP:{playerManager.playerHealth}, DMG:{playerManager.damage}, " +
-                  $"LS:{playerManager.lifesteal}, DEF:{playerManager.defense} (Upgrade+Djimat stacked)");
+        Debug.Log($"[DjimatSystem] Final Stats → HP:{playerManager.playerHealth} (cur {playerManager.currentHealth}), " +
+                  $"DMG:{playerManager.damage}, LS:{playerManager.lifesteal}, DEF:{playerManager.defense}");
     }
 
     private void UpdateLimitUI()

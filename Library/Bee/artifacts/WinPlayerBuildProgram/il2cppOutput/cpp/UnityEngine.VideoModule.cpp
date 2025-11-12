@@ -505,12 +505,29 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VideoPlayer_Prepare_mC0EF4CC2E5A6B7C04F9
 	_il2cpp_icall_func = (VideoPlayer_Prepare_mC0EF4CC2E5A6B7C04F9F810DD9406A6146BEE6EA_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Video.VideoPlayer::Prepare()");
 	_il2cpp_icall_func(__this);
 }
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VideoPlayer_get_isPrepared_mF2F3AD27BE0FD06695EE9DEE762B68F431E15767 (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3* __this, const RuntimeMethod* method) 
+{
+	typedef bool (*VideoPlayer_get_isPrepared_mF2F3AD27BE0FD06695EE9DEE762B68F431E15767_ftn) (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3*);
+	static VideoPlayer_get_isPrepared_mF2F3AD27BE0FD06695EE9DEE762B68F431E15767_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (VideoPlayer_get_isPrepared_mF2F3AD27BE0FD06695EE9DEE762B68F431E15767_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Video.VideoPlayer::get_isPrepared()");
+	bool icallRetVal = _il2cpp_icall_func(__this);
+	return icallRetVal;
+}
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VideoPlayer_Play_m8E99607F39F1D214BDD704F3E130DD2418787ACE (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3* __this, const RuntimeMethod* method) 
 {
 	typedef void (*VideoPlayer_Play_m8E99607F39F1D214BDD704F3E130DD2418787ACE_ftn) (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3*);
 	static VideoPlayer_Play_m8E99607F39F1D214BDD704F3E130DD2418787ACE_ftn _il2cpp_icall_func;
 	if (!_il2cpp_icall_func)
 	_il2cpp_icall_func = (VideoPlayer_Play_m8E99607F39F1D214BDD704F3E130DD2418787ACE_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Video.VideoPlayer::Play()");
+	_il2cpp_icall_func(__this);
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VideoPlayer_Pause_m1975BF6BEE27064602EEB8191C963888CF5B226E (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3* __this, const RuntimeMethod* method) 
+{
+	typedef void (*VideoPlayer_Pause_m1975BF6BEE27064602EEB8191C963888CF5B226E_ftn) (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3*);
+	static VideoPlayer_Pause_m1975BF6BEE27064602EEB8191C963888CF5B226E_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (VideoPlayer_Pause_m1975BF6BEE27064602EEB8191C963888CF5B226E_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Video.VideoPlayer::Pause()");
 	_il2cpp_icall_func(__this);
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VideoPlayer_Stop_m1F2DE73183E042998140A56FF69432A200430BF1 (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3* __this, const RuntimeMethod* method) 
@@ -520,6 +537,23 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VideoPlayer_Stop_m1F2DE73183E042998140A5
 	if (!_il2cpp_icall_func)
 	_il2cpp_icall_func = (VideoPlayer_Stop_m1F2DE73183E042998140A56FF69432A200430BF1_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Video.VideoPlayer::Stop()");
 	_il2cpp_icall_func(__this);
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool VideoPlayer_get_isPlaying_mC4CCA87F909A3A14209D632D16D7C8FC34F01520 (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3* __this, const RuntimeMethod* method) 
+{
+	typedef bool (*VideoPlayer_get_isPlaying_mC4CCA87F909A3A14209D632D16D7C8FC34F01520_ftn) (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3*);
+	static VideoPlayer_get_isPlaying_mC4CCA87F909A3A14209D632D16D7C8FC34F01520_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (VideoPlayer_get_isPlaying_mC4CCA87F909A3A14209D632D16D7C8FC34F01520_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Video.VideoPlayer::get_isPlaying()");
+	bool icallRetVal = _il2cpp_icall_func(__this);
+	return icallRetVal;
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VideoPlayer_set_time_m011A5EC42BF4C5DE301346942998F2E889DB9056 (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3* __this, double ___0_value, const RuntimeMethod* method) 
+{
+	typedef void (*VideoPlayer_set_time_m011A5EC42BF4C5DE301346942998F2E889DB9056_ftn) (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3*, double);
+	static VideoPlayer_set_time_m011A5EC42BF4C5DE301346942998F2E889DB9056_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (VideoPlayer_set_time_m011A5EC42BF4C5DE301346942998F2E889DB9056_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Video.VideoPlayer::set_time(System.Double)");
+	_il2cpp_icall_func(__this, ___0_value);
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VideoPlayer_set_isLooping_m37563E7D24110FDBBBB4E48EA90E639BE778264E (VideoPlayer_t48EA4A8117B822BC59590150DED9AD46C62F65D3* __this, bool ___0_value, const RuntimeMethod* method) 
 {
