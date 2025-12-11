@@ -192,10 +192,10 @@ public class DjimatSystem : MonoBehaviour
 
             switch (item.itemName)
             {
-                case "Paper of Oath": playerManager.canReviveOnce = true; break;
-                case "Pure Water": playerManager.hasRegen = true; playerManager.regenPerSecond += 2; break;
-                case "Haste": wantHaste = true; break;
-                case "God Mode": wantGodMode = true; break;
+                case "Kertas Sumpah": playerManager.canReviveOnce = true; break;
+                case "Air Murni": playerManager.hasRegen = true; playerManager.regenPerSecond += 2; break;
+                case "Mode Cepat": wantHaste = true; break;
+                case "Mode Dewa": wantGodMode = true; break;
             }
         }
 

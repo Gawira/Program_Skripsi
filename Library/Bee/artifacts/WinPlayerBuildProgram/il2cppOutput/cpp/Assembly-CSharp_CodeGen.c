@@ -1368,6 +1368,8 @@ extern void SceneSpawnManager__ctor_mF3231371D1701A5A7D09CAE062B4F426B3C9BA0A (v
 extern void SilenceTrigger_Reset_mA332A55648B479129724CC4A99B395CD4449CF0D (void);
 extern void SilenceTrigger_OnTriggerEnter_m12C240263A64389239AD3DFD7C24A53B40A5AC52 (void);
 extern void SilenceTrigger__ctor_mE51059A7347424FBBB1ECCBD808670C8AE6DD6BB (void);
+extern void SimpleMove_Update_mDCFBAACDA80076D12B74336BABD1C318057B3AED (void);
+extern void SimpleMove__ctor_mE8D3D010F926CDDF3C2DD66B870746754CA071DD (void);
 extern void GridMaker_Start_m084776E82EDD80751DB151EEAC7C0AF72AAB0F25 (void);
 extern void GridMaker_SetupGridLayout_m56F5158308C847C263C9E4E343C0FD4928500FFD (void);
 extern void GridMaker_BuildEquippedGrid_mEC2CBFB6A058EE26C8B7DD8723FF0E310AB480E6 (void);
@@ -3718,7 +3720,7 @@ extern void RPGBAIAgent__ctor_m1D69EB8163D7F40DFD13793E7A97F3947A003FC9 (void);
 extern void RPGBAIAgent__cctor_mD39C7693C7B04131EC14E439200E1365442F6BE4 (void);
 extern void THREAT_TABLE_DATA__ctor_mC24229E177E919193E92FAE94837A8DDB1CBB7FC (void);
 extern void U3CPrivateImplementationDetailsU3E_ComputeStringHash_m6EA1F233618497AEFF8902A5EDFA24C74E2F2876 (void);
-static Il2CppMethodPointer s_methodPointers[3721] = 
+static Il2CppMethodPointer s_methodPointers[3723] = 
 {
 	NULL,
 	NULL,
@@ -5091,6 +5093,8 @@ static Il2CppMethodPointer s_methodPointers[3721] =
 	SilenceTrigger_Reset_mA332A55648B479129724CC4A99B395CD4449CF0D,
 	SilenceTrigger_OnTriggerEnter_m12C240263A64389239AD3DFD7C24A53B40A5AC52,
 	SilenceTrigger__ctor_mE51059A7347424FBBB1ECCBD808670C8AE6DD6BB,
+	SimpleMove_Update_mDCFBAACDA80076D12B74336BABD1C318057B3AED,
+	SimpleMove__ctor_mE8D3D010F926CDDF3C2DD66B870746754CA071DD,
 	GridMaker_Start_m084776E82EDD80751DB151EEAC7C0AF72AAB0F25,
 	GridMaker_SetupGridLayout_m56F5158308C847C263C9E4E343C0FD4928500FFD,
 	GridMaker_BuildEquippedGrid_mEC2CBFB6A058EE26C8B7DD8723FF0E310AB480E6,
@@ -7445,9 +7449,9 @@ static Il2CppMethodPointer s_methodPointers[3721] =
 extern void POINT__ctor_mCA1C042724FD8AB270710AA03BAB745DB99F9286_AdjustorThunk (void);
 static Il2CppTokenAdjustorThunkPair s_adjustorThunks[1] = 
 {
-	{ 0x06000712, POINT__ctor_mCA1C042724FD8AB270710AA03BAB745DB99F9286_AdjustorThunk },
+	{ 0x06000714, POINT__ctor_mCA1C042724FD8AB270710AA03BAB745DB99F9286_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[3721] = 
+static const int32_t s_InvokerIndices[3723] = 
 {
 	0,
 	0,
@@ -8819,6 +8823,8 @@ static const int32_t s_InvokerIndices[3721] =
 	5832,
 	5832,
 	4721,
+	5832,
+	5832,
 	5832,
 	5832,
 	2653,
@@ -11212,7 +11218,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	3721,
+	3723,
 	s_methodPointers,
 	1,
 	s_adjustorThunks,
